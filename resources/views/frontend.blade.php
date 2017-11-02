@@ -30,6 +30,7 @@
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/frontend/css/slick.css"/>
     <link rel="stylesheet" type="text/css" href="/frontend/css/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="/frontend/css/font-awesome.min.css"/>
 
 
     <!-- CSS -->
@@ -277,8 +278,20 @@
         <div class="row">
             <div class="col-md-4 col-sm-3">
                 <h3>Liên hệ</h3>
-                <a href="tel://004542344599" id="phone">+45 423 445 99</a>
-                <a href="mailto:help@citytours.com" id="email_footer">help@citytours.com</a>
+                <ul class="contact_footer">
+                    <li>
+                        <i class="fa fa-envelope"></i> <a href="#">0905786996</a>
+                    </li>
+                    <li>
+                        <i class="fa fa-headphones"></i> <a href="mailto:lienhe@viethouse24.com">lienhe@viethouse24.com</a>
+                    </li>
+                    <li class="location">
+                        <i class="fa fa-home"></i> <a href="#"> 39 Lý Thái Tổ, Võ Cường, Tp. Bắc Ninh, Bắc Ninh, Việt Nam</a>
+                    </li>
+                    <li class="location">
+                        <i class="fa fa-skype"></i> <a href="skype:Hoangpn86"> Hoangpn86 </a>
+                    </li>
+                </ul>
             </div>
             <div class="col-md-4 col-sm-3">
                 <h3>Liên kết</h3>
