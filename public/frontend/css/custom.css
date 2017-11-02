@@ -1,3 +1,145 @@
-@charset "UTF-8";
-/* CSS Document */
+.ht-bgcover {
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: 50% 50%; }
 
+.ht-bgcontain {
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-position: 50% 50%;
+  background-repeat: no-repeat; }
+
+.home-search-wrapper {
+  position: relative;
+  background-color: #999;
+  z-index: 1; }
+  .home-search-wrapper .tab-pane {
+    height: 480px;
+    background-color: #777; }
+    .home-search-wrapper .tab-pane .tab-heading-title {
+      position: absolute;
+      bottom: 60%;
+      left: 0;
+      right: 0;
+      margin: 0;
+      padding: 0 0 16px;
+      line-height: 1.2;
+      font-size: 20px;
+      color: #fff; }
+      @media (min-width: 768px) {
+        .home-search-wrapper .tab-pane .tab-heading-title {
+          font-size: 24px; } }
+      @media (min-width: 992px) {
+        .home-search-wrapper .tab-pane .tab-heading-title {
+          font-size: 28px; } }
+      @media (min-width: 1248px) {
+        .home-search-wrapper .tab-pane .tab-heading-title {
+          font-size: 36px; } }
+  .home-search-wrapper .tab-content {
+    padding: 0px;
+    margin: 0;
+    border: 0;
+    border-radius: 0; }
+  .home-search-wrapper .search-content {
+    margin-top: 16px;
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0; }
+  .home-search-wrapper ul.ht-nav-justified {
+    width: 100%; }
+    .home-search-wrapper ul.ht-nav-justified > li {
+      display: table-cell;
+      width: 1%; }
+  .home-search-wrapper ul.home-search-nav-tabs {
+    margin: 0;
+    padding: 0 0 20px 0; }
+    .home-search-wrapper ul.home-search-nav-tabs li {
+      position: relative; }
+      .home-search-wrapper ul.home-search-nav-tabs li a {
+        display: block;
+        padding: 12px 4px;
+        line-height: 20px;
+        font-size: 13px;
+        text-align: center;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.4);
+        border: 2px solid #fff;
+        border-right: 0; }
+        @media (min-width: 768px) {
+          .home-search-wrapper ul.home-search-nav-tabs li a {
+            font-size: 14px; } }
+        @media (min-width: 992px) {
+          .home-search-wrapper ul.home-search-nav-tabs li a {
+            padding: 12px 4px;
+            font-size: 16px; } }
+        .home-search-wrapper ul.home-search-nav-tabs li a:hover {
+          background-color: rgba(33, 150, 243, 0.4); }
+      .home-search-wrapper ul.home-search-nav-tabs li:last-child {
+        border-right: 2px solid #fff; }
+      .home-search-wrapper ul.home-search-nav-tabs li:after {
+        content: "";
+        display: none;
+        position: absolute;
+        top: 100%;
+        margin-top: 8px;
+        left: 50%;
+        margin-left: -10px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 10px 12px 10px;
+        border-color: transparent transparent #fff transparent; }
+      .home-search-wrapper ul.home-search-nav-tabs li.active a {
+        background-color: rgba(33, 150, 243, 0.8); }
+      .home-search-wrapper ul.home-search-nav-tabs li.active:after {
+        display: block; }
+  .home-search-wrapper .home-search-form .form-group {
+    margin: 0;
+    position: relative;
+    background-color: #fff;
+    border-radius: 4px; }
+    @media (max-width: 767px) {
+      .home-search-wrapper .home-search-form .form-group {
+        padding: 0 8px 8px; } }
+  .home-search-wrapper .home-search-form .ht-form-control {
+    display: block;
+    width: 100%;
+    padding: 16px 8px;
+    font-size: 18px;
+    line-height: 24px;
+    height: 56px;
+    background-color: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: none;
+    outline: none; }
+    .home-search-wrapper .home-search-form .ht-form-control:focus {
+      outline: none; }
+    @media (min-width: 768px) {
+      .home-search-wrapper .home-search-form .ht-form-control {
+        padding: 16px; } }
+  .home-search-wrapper .home-search-form .ht-btn-search {
+    display: block;
+    height: 36px;
+    line-height: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+    background-color: #2196F3;
+    border: 0;
+    border-radius: 4px; }
+    @media (max-width: 767px) {
+      .home-search-wrapper .home-search-form .ht-btn-search {
+        display: block;
+        width: 100%; } }
+    @media (min-width: 768px) {
+      .home-search-wrapper .home-search-form .ht-btn-search {
+        position: absolute;
+        top: 10px;
+        right: 10px; } }

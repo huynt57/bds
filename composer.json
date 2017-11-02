@@ -13,7 +13,19 @@
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~5.0",
         "symfony/css-selector": "3.1.*",
-        "symfony/dom-crawler": "3.1.*"
+        "symfony/dom-crawler": "3.1.*",
+        "barryvdh/laravel-ide-helper": "^2.2",
+        "intervention/image": "^2.3",
+        "intervention/imagecache": "^2.3",
+        "laravelcollective/html": "^5.3",
+        "maatwebsite/excel": "^2.1",
+        "yajra/laravel-datatables-oracle":"~6.0",
+        "predis/predis": "^1.1",
+        "laracasts/flash": "^2.0",
+        "laravel/socialite": "^2.0",
+        "weidner/goutte": "@dev",
+        "barryvdh/laravel-debugbar": "^2.4",
+        "doctrine/dbal": "*"
     },
     "autoload": {
         "classmap": [
