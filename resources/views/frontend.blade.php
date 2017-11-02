@@ -39,6 +39,9 @@
     <!--[if lt IE 9]>
     <script src="/frontend/js/html5shiv.min.js"></script>
     <script src="/frontend/js/respond.min.js"></script>
+    <!-- Owl Stylesheets -->
+    <link rel="stylesheet" href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.theme.default.min.css">
     <![endif]-->
     <style>
         .title-over {
@@ -51,6 +54,35 @@
         .title-h {
             color: white !important;
             text-align: center;
+        }
+
+        .testimonials{
+            background: #4c4c4c;
+            padding: 10px 20px;
+            position: relative;
+        }
+        .testimonials:before{
+            content: '';
+            left: 20%;
+            bottom: -15px;
+            position: absolute;
+            z-index: 999;
+            border-color: transparent #4c4c4c
+            transparent transparent;
+            border-style: solid;
+            border-width: 0 35px 15px 0;
+        }
+        .testimonials p{
+            color: #f4f4f4;
+            font-size: 14px;
+            line-height: 22px;
+            margin: 0;
+        }
+        .testimonial_autor{
+            color: #f4f4f4;
+            padding: 20px 0 0 0;
+            font-style: italic;
+            text-align: right;
         }
     </style>
 
@@ -90,7 +122,7 @@
                     <ul id="top_links">
                         <li>
                             <div class="dropdown dropdown-access">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="access_link">Sign in</a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="access_link">Đăng nhập</a>
                                 <div class="dropdown-menu">
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
@@ -121,7 +153,7 @@
                             </div>
                             <!-- End Dropdown access -->
                         </li>
-                        <li><a href="#" id="wishlist_link">Wishlist</a>
+                        <li><a href="#" id="wishlist_link">Yêu thích</a>
                         </li>
                     </ul>
                 </div>
@@ -177,47 +209,51 @@
                                 <li><a href="all_hotels_map_listing.html">Các dự án đang phát triển (tư vấn)</a></li>
                             </ul>
                         </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0);" class="show-submenu">Thuê và cho thuê <i
+                                        class="icon-down-open-mini"></i></a>
+                            <ul>
+                                <li><a href="all_hotels_list.html">BĐS cho thuê</a></li>
+                                <li><a href="all_hotels_grid.html">Cần thuê</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0);" class="show-submenu">Mua bán <i
+                                        class="icon-down-open-mini"></i></a>
+                            <ul>
+                                <li><a href="all_hotels_list.html">BĐS cần bán</a></li>
+                                <li><a href="all_hotels_grid.html">Cần mua</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0);" class="show-submenu">Dịch vụ <i
+                                        class="icon-down-open-mini"></i></a>
+                            <ul>
+                                <li><a href="all_hotels_list.html">Tư vấn phát lập/phát triển dự án BĐS</a></li>
+                                <li><a href="all_hotels_grid.html">Tư vấn cấp phép xây dựng</a></li>
+                                <li><a href="all_hotels_list.html">Tư vấn pháp lý về kinh doanh BĐS</a></li>
+                                <li><a href="all_hotels_grid.html">Tư vấn về kiến trúc</a></li>
+                            </ul>
+                        </li>
+                        <li class="submenu">
+                            <a href="javascript:void(0);" class="show-submenu">Liên hệ <i
+                                        class="icon-down-open-mini"></i></a>
+                            <ul>
+                                <li><a href="all_hotels_list.html">Contact Viethouse24</a></li>
+                                <li><a href="all_hotels_grid.html">Phiếu thông tin khách hàng</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div><!-- End main-menu -->
-                <ul id="top_tools">
-                    <li>
-                        <div class="dropdown dropdown-search">
-                            <a href="#" class="search-overlay-menu-btn" data-toggle="dropdown"><i
-                                        class="icon-search"></i></a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="dropdown dropdown-cart">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class=" icon-basket-1"></i>Cart
-                                (0) </a>
-                            <ul class="dropdown-menu" id="cart_items">
-                                <li>
-                                    <div class="image"><img src="/frontend/img/thumb_cart_1.jpg" alt="image"></div>
-                                    <strong>
-                                        <a href="#">Louvre museum</a>1x $36.00 </strong>
-                                    <a href="#" class="action"><i class="icon-trash"></i></a>
-                                </li>
-                                <li>
-                                    <div class="image"><img src="/frontend/img/thumb_cart_2.jpg" alt="image"></div>
-                                    <strong>
-                                        <a href="#">Versailles tour</a>2x $36.00 </strong>
-                                    <a href="#" class="action"><i class="icon-trash"></i></a>
-                                </li>
-                                <li>
-                                    <div class="image"><img src="/frontend/img/thumb_cart_3.jpg" alt="image"></div>
-                                    <strong>
-                                        <a href="#">Versailles tour</a>1x $36.00 </strong>
-                                    <a href="#" class="action"><i class="icon-trash"></i></a>
-                                </li>
-                                <li>
-                                    <div>Total: <span>$120.00</span></div>
-                                    <a href="cart.html" class="button_drop">Go to cart</a>
-                                    <a href="payment.html" class="button_drop outline">Check out</a>
-                                </li>
-                            </ul>
-                        </div><!-- End dropdown-cart-->
-                    </li>
-                </ul>
+                {{--<ul id="top_tools">--}}
+                    {{--<li>--}}
+                        {{--<div class="dropdown dropdown-search">--}}
+                            {{--<a href="#" class="search-overlay-menu-btn" data-toggle="dropdown"><i--}}
+                                        {{--class="icon-search"></i></a>--}}
+                        {{--</div>--}}
+                    {{--</li>--}}
+
+                {{--</ul>--}}
             </nav>
         </div>
     </div>
@@ -253,13 +289,37 @@
                     <li><a href="#">Dịch vụ</a></li>
                 </ul>
             </div>
-            <div class="col-md-4 col-sm-3">
-                <h3>Khách hàng nói về chúng tôi</h3>
-                <ul>
-                    <li><a href="#">Community blog</a></li>
-                    <li><a href="#">Tour guide</a></li>
-                    <li><a href="#">Wishlist</a></li>
-                    <li><a href="#">Gallery</a></li>
+            <div class="col-md-4 testimonial-carousel-container">
+                <ul class="testimonial-carousel">
+                    <!-- Item Testimonial -->
+                    <li>
+                        <div class="testimonials">
+                            <p>Viethouse24 có dịch vụ rất tốt, nhiệt tình, dù bỏ ra không nhiều tiền nhưng được phục vụ chu đáo. Tôi đã có được tổ ấm lý tưởng nhờ Viethouse24.</p>
+                            <span class="arrow_testimonials"></span>
+                        </div>
+                        <h6 class="testimonial_autor">Lê Đăng Nam - Bắc Ninh</h6>
+                    </li>
+                    <!-- Item Testimonial -->
+
+                    <li>
+                        <div class="testimonials">
+                            <p>Mua nhà đầu tư ở Bắc Ninh mà không sử dụng dịch vụ của Viethouse24 thì thật sự đáng tiếc!</p>
+                            <span class="arrow_testimonials"></span>
+                        </div>
+                        <h6 class="testimonial_autor">Phùng Ngọc Hoàng - Hà Nội</h6>
+                    </li>
+                    <!-- Item Testimonial -->
+
+                    <li>
+                        <div class="testimonials">
+                            <p>Thông tin trung thực, giá không bị ảo.</p>
+                            <span class="arrow_testimonials"></span>
+                        </div>
+                        <h6 class="testimonial_autor">Nguyễn Nam Phong - Thanh Hoá</h6>
+                    </li>
+                    <!-- Item Testimonial -->
+
+
                 </ul>
             </div>
 
@@ -269,15 +329,10 @@
                 <div id="social_footer">
                     <ul>
                         <li><a href="#"><i class="icon-facebook"></i></a></li>
-                        <li><a href="#"><i class="icon-twitter"></i></a></li>
+
                         <li><a href="#"><i class="icon-google"></i></a></li>
-                        <li><a href="#"><i class="icon-instagram"></i></a></li>
-                        <li><a href="#"><i class="icon-pinterest"></i></a></li>
-                        <li><a href="#"><i class="icon-vimeo"></i></a></li>
-                        <li><a href="#"><i class="icon-youtube-play"></i></a></li>
-                        <li><a href="#"><i class="icon-linkedin"></i></a></li>
                     </ul>
-                    <p>© Citytours 2015</p>
+                    <p>© Viethouse24 2017</p>
                 </div>
             </div>
         </div><!-- End row -->
@@ -301,7 +356,8 @@
 <script src="/frontend/js/common_scripts_min.js"></script>
 <script src="/frontend/js/functions.js"></script>
 <script src="/frontend/js/slick.js"></script>
-
+<!--owlcarousel-->
+<script type='text/javascript' src="http://viethouse24.com/assets/frontend/js/owlcarousel/owl.carousel.js"></script>
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -313,6 +369,28 @@
             autoplaySpeed: 2000,
         });
 
+    });
+
+    $(document).ready(function () {
+
+        var owl = $('.testimonial-carousel');
+        owl.owlCarousel({
+            items: 1,
+            loop: true,
+            margin: 10,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true
+        });
+
+        owl.on('mousewheel', '.owl-stage', function (e) {
+            if (e.deltaY > 0) {
+                owl.trigger('next.owl');
+            } else {
+                owl.trigger('prev.owl');
+            }
+            e.preventDefault();
+        });
     });
 
 </script>
