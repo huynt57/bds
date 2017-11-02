@@ -12,4 +12,15 @@ class MainController extends Controller
     {
         return view('frontend.index');
     }
+
+    public function getHouseByAttribute(Request $request)
+    {
+
+    }
+
+    public function addToWishlist(Request $request)
+    {
+
+    }
+
 }

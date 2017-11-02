@@ -12,3 +12,10 @@
 */
 
 Route::get('/', 'Frontend\MainController@index');
+
+
+Route::group(['prefix' => 'admin'], function () {
+
+    Route::get('/', 'Backend\DashboardController@index');
+
+});

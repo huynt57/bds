@@ -120,7 +120,7 @@
             <!-- BEGIN LOGO -->
             <div class="page-logo">
                 <a href="{{ url('/') }}">
-                    <img src="/assets/images/logo.png" alt="logo" class="logo-default" style="width: 90px; margin-top: 10px" /> </a>
+                    </a>
                 <div class="menu-toggler sidebar-toggler">
                     <span></span>
                 </div>
@@ -427,8 +427,8 @@
                     <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                     <li class="dropdown dropdown-user">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <img alt="" class="img-circle" src="{{ auth('frontend')->user()->image }}" style="height: 29px; width: 29px" />
-                            <span class="username username-hide-on-mobile"> {{ auth('frontend')->user()->name }} </span>
+                            <img alt="" class="img-circle" src="" style="height: 29px; width: 29px" />
+                            <span class="username username-hide-on-mobile">  </span>
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-default">
