@@ -34,6 +34,7 @@ class CreateHousesTable extends Migration
             $table->integer('status')->nullable();
             $table->string('slug')->nullable();
             $table->string('address')->nullable();
+            $table->boolean('is_feature')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -20,16 +20,17 @@ class HouseController extends Controller
 
     public function create()
     {
-        
+        return view('admin.house.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-
+        $data = $request->all();
     }
 
     public function edit()
     {
+
 
     }
 
