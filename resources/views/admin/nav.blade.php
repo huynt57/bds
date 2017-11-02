@@ -62,6 +62,20 @@
                     <i class="icon-user"></i>
                     <span class="title">Quản lý danh sách nhà</span>
                 </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="{{url('admin/thong-tin-ca-nhan')}}" class="nav-link ">
+                            <span class="title">Danh sách</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item  ">
+                        <a href="{{ url('admin/thay-mat-khau') }}" class="nav-link ">
+                            <span class="title">Thêm mới</span>
+                        </a>
+                    </li>
+
+                </ul>
             </li>
         </ul>
         <!-- END SIDEBAR MENU -->
