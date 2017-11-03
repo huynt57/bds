@@ -17,7 +17,12 @@ Route::get('/', 'Frontend\MainController@index');
 Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/', 'Backend\DashboardController@index');
+
     Route::group(['prefix' => 'house'], function() {
         Route::get('create', 'Backend\HouseController@create');
+
+        Route::get('house.data', ['as' => 'house.data',
+            'uses' => 'Backend\HouseController@getHouseByAttribute'
+        ]);
     });
 });

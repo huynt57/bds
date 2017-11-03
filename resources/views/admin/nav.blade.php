@@ -44,7 +44,7 @@
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-user"></i>
-                    <span class="title">Quản lý người dùng hệ thống</span>
+                    <span class="title">Quản lý người dùng</span>
                 </a>
             </li>
             <li class="nav-item  ">

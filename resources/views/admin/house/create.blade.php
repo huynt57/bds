@@ -99,6 +99,7 @@
             position: relative;
             width: 295px;
         }
+
         .slide-bsp .product-select-name {
             display: block;
             display: -webkit-box;
@@ -106,7 +107,7 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
-            width:200px;
+            width: 200px;
         }
     </style>
 @endsection
@@ -146,42 +147,32 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Mã sản phẩm</label>
+                        <label>Địa chỉ</label>
                         <div>
-                            <input type="text" name="code" class="form-control"
-                                   placeholder="Điền mã vạch hoặc mã sản phẩm" value="{{ old('code') }}">
+                            <input type="text" name="address" class="form-control"
+                                   placeholder="Địa chỉ" value="{{ old('code') }}">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Giá thị trường (nếu có)</label>
+                        <label>Giá</label>
                         <div>
-                            <input type="text" name="tt_price" id="price" class="form-control"
-                                   placeholder="Điền giá thị trường" value="{{ old('tt_price') }}">
+                            <input type="text" name="price" id="price" class="form-control"
+                                   placeholder="Điền giá thị trường" value="{{ old('price') }}">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>Giá bán lẻ *</label>
+                    <div class="form-group dmc0">
+                        <label>Loại nhà</label>
                         <div>
-                            <input type="text" name="price" id="ban_le" class="form-control"
-                                   placeholder="Nhập vào giá bán lẻ" value="{{ old('price') }}">
+                            <select class="form-control" name="categories[]" id="shop_cate" data-index="0">
+                                <option value="">Chọn danh mục</option>
+                                @php $categories = \App\Models\Category::all();@endphp
+
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>Giá NCC</label>
-                        <div>
-                            <input type="text" name="provider_price" class="form-control" placeholder="Điền giá NCC"
-                                   value="{{ old('provider_price') }}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Đơn vị tính</label>
-                        <div>
-                            <input type="text" name="dvt" class="form-control" placeholder="Chiếc, cái,..."
-                                   value="{{ old('dvt') }}">
-                        </div>
-                    </div>
-                    <input type="hidden" name="name_bsp" id="name_bsp">
-                    <input type="hidden" name="products_bsp" id="products_bsp">
                 </div>
 
             </div>
@@ -191,26 +182,54 @@
                     <div>
                         <select class="form-control" name="categories[]" id="shop_cate" data-index="0">
                             <option value="">Chọn danh mục</option>
+                            @php $categories = \App\Models\Category::all();@endphp
 
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Meta keyword</label>
+                <div class="form-group dmc0">
+                    <label>Tỉnh / thành phố *</label>
                     <div>
-                        <input type="text" name="meta_keyword" class="form-control" placeholder="meta keyword"
-                               value="{{ old('meta_keyword') }}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Meta description</label>
-                    <div>
-                             <textarea class="form-control " placeholder="meta description"
-                                       name="meta_description">{{ old('meta_description') }}</textarea>
-                    </div>
-                </div>
+                        <select class="form-control" name="categories[]" id="shop_cate" data-index="0">
+                            <option value="">Chọn danh mục</option>
+                            @php $categories = \App\Models\Category::all();@endphp
 
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group dmc0">
+                    <label>Quận / huyện *</label>
+                    <div>
+                        <select class="form-control" name="categories[]" id="shop_cate" data-index="0">
+                            <option value="">Chọn danh mục</option>
+                            @php $categories = \App\Models\Category::all();@endphp
+
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group dmc0">
+                    <label>Phường / xã *</label>
+                    <div>
+                        <select class="form-control" name="categories[]" id="shop_cate" data-index="0">
+                            <option value="">Chọn danh mục</option>
+                            @php $categories = \App\Models\Category::all();@endphp
+
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
 
 
             </div>
@@ -223,7 +242,7 @@
             </div>
         </div>
         <div class="form-group col-lg-12">
-            <label>Danh sách  miêu tả</label>
+            <label>Danh sách miêu tả</label>
             <div>
                 <input type="file" class="product-image form-control" multiple name="images[]"
                        rel="post_status_images">
@@ -357,7 +376,7 @@
 <script type="text/javascript" src="/esg/slick/slick.min.js"></script>
 <script>
     var index_file = 0;
-    var loadFile = function(event) {
+    var loadFile = function (event) {
         var html = '';
         index_file += 1;
 
@@ -365,11 +384,11 @@
         x.attr('id', 'file-upload-' + index_file);
         x.attr('name', 'image-bt[]');
 
-        for(var i=0; i<event.target.files.length; i++) {
-            var url = "url('" + URL.createObjectURL(event.target.files[i])+"')"
-            html += '<div class="col-lg-3 col-'+index_file+'">' +
+        for (var i = 0; i < event.target.files.length; i++) {
+            var url = "url('" + URL.createObjectURL(event.target.files[i]) + "')"
+            html += '<div class="col-lg-3 col-' + index_file + '">' +
                 '<span class="close-img"><i class="fa fa-times-circle"></i></span>' +
-                '<div class="div-img" style="background: '+url+' center;"></div>' +
+                '<div class="div-img" style="background: ' + url + ' center;"></div>' +
                 '    <input type="text" class="form-control" placeholder="Giá trị" name="color-bt[]">' +
                 '</div>';
         }
@@ -397,8 +416,6 @@
                 }
             }
         });
-
-
 
 
         $(document).on('click', '.close-img', function (e) {
@@ -473,7 +490,6 @@
             $('#tab_1_1_btn').click();
         });
     });
-
 
 
     function getProductCollectionAttr() {

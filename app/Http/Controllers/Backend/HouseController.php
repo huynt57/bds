@@ -17,9 +17,16 @@ class HouseController extends Controller
 
     public function getHouseByAttribute()
     {
-        $houses = House::query();
+        $houses = \DB::table('houses')
+            ->select(\DB::raw('houses.*, categories.name as category, users.name as agent'))
+            ->leftJoin('categories', 'houses.category_id', '=', 'categories.id')
+            ->leftJoin('users', 'houses.user_id', '=', 'users.id');
 
-        return Datatables::of($houses)->make(true);
+        return Datatables::of($houses)
+            ->editColumn('is_featured', function($house) {
+
+            })
+            ->make(true);
     }
 
     public function create()

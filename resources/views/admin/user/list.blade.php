@@ -63,15 +63,11 @@
                 <tr>
                     {{--<th>Id</th>--}}
                     <th>Ảnh</th>
-                    <th>Tiêu đề</th>
-                    <th>Giá</th>
-                    <th>Loại</th>
+                    <th>Tên</th>
+                    <th>Email</th>
+                    <th>SĐT</th>
                     {{--<th>Miêu tả</th>--}}
-                    <th>Danh mục</th>
-                    <th>Người môi giới</th>
-                    <th>Nổi bật</th>
-                    <th>Trạng thái</th>
-                    <th>Tạo lúc</th>
+                    <th>Loại</th>
                     <th>Hành động</th>
                 </tr>
                 </thead>
@@ -129,7 +125,7 @@
             processing: true,
             searching: true,
             "aaSorting": [],
-             serverSide: true,
+            serverSide: true,
             ajax: {
                 url: '{!! url('admin/house.data') !!}',
             },

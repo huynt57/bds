@@ -8,6 +8,11 @@ use App\Http\Controllers\Controller;
 class SettingController extends Controller
 {
     //
+    public function listSetting(Request $request)
+    {
+
+    }
+
     public function updateSetting(Request $request)
     {
 
