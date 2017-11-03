@@ -29,6 +29,96 @@
                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
             </li>
 
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-user"></i>
+                    <span class="title">Bảng điều khiển</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-user"></i>
+                    <span class="title">Quản lý menu</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-user"></i>
+                    <span class="title">Quản lý người dùng hệ thống</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-user"></i>
+                    <span class="title">Quản lý danh sách nhà</span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="{{url('admin/thong-tin-ca-nhan')}}" class="nav-link ">
+                            <span class="title">Danh sách</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item  ">
+                        <a href="{{ url('admin/thay-mat-khau') }}" class="nav-link ">
+                            <span class="title">Thêm mới</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-user"></i>
+                    <span class="title">Quản lý cài đặt</span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="{{url('admin/thong-tin-ca-nhan')}}" class="nav-link ">
+                            <span class="title">Cấu hình chung</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item  ">
+                        <a href="{{ url('admin/thay-mat-khau') }}" class="nav-link ">
+                            <span class="title">Slides trang chủ</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="{{ url('admin/thay-mat-khau') }}" class="nav-link ">
+                            <span class="title">Ý kiến từ khách hàng</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-user"></i>
+                    <span class="title">Quản lý thông tin liên hệ</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-user"></i>
+                    <span class="title">Quản lý tin tức</span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="{{url('admin/thong-tin-ca-nhan')}}" class="nav-link ">
+                            <span class="title">Danh sách</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item  ">
+                        <a href="{{ url('admin/thay-mat-khau') }}" class="nav-link ">
+                            <span class="title">Thêm mới</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
 
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
@@ -57,26 +147,7 @@
 
                 </ul>
             </li>
-            <li class="nav-item  ">
-                <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="icon-user"></i>
-                    <span class="title">Quản lý danh sách nhà</span>
-                </a>
-                <ul class="sub-menu">
-                    <li class="nav-item  ">
-                        <a href="{{url('admin/thong-tin-ca-nhan')}}" class="nav-link ">
-                            <span class="title">Danh sách</span>
-                        </a>
-                    </li>
 
-                    <li class="nav-item  ">
-                        <a href="{{ url('admin/thay-mat-khau') }}" class="nav-link ">
-                            <span class="title">Thêm mới</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </li>
         </ul>
         <!-- END SIDEBAR MENU -->
         <!-- END SIDEBAR MENU -->

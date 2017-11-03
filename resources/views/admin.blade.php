@@ -64,7 +64,7 @@
 
     <link href="/css/button.css" rel="stylesheet" type="text/css" />
 
-@yield('style')
+@yield('styles')
 
 
 
