@@ -20,9 +20,14 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['prefix' => 'house'], function() {
         Route::get('create', 'Backend\HouseController@create');
+        Route::get('list', 'Backend\HouseController@index');
 
         Route::get('house.data', ['as' => 'house.data',
             'uses' => 'Backend\HouseController@getHouseByAttribute'
         ]);
+    });
+
+    Route::group(['prefix' => 'menu'], function() {
+        Route::get('/', 'Backend\MenuController@index');
     });
 });

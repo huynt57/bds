@@ -2,8 +2,6 @@
 @section('content')
     <h3 class="inline">Quản lý danh sách nhà</h3>
 
-    @include('admin.flash_message')
-
     <div class="portlet-title">
 
     </div>

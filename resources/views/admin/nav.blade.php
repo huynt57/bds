@@ -54,13 +54,13 @@
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item  ">
-                        <a href="{{url('admin/thong-tin-ca-nhan')}}" class="nav-link ">
+                        <a href="{{url('admin/house/list')}}" class="nav-link ">
                             <span class="title">Danh sách</span>
                         </a>
                     </li>
 
                     <li class="nav-item  ">
-                        <a href="{{ url('admin/thay-mat-khau') }}" class="nav-link ">
+                        <a href="{{ url('admin/house/create') }}" class="nav-link ">
                             <span class="title">Thêm mới</span>
                         </a>
                     </li>
