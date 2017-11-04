@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\House;
 use App\Models\Image;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
@@ -27,8 +28,11 @@ class HouseController extends AdminController
             ->editColumn('is_featured', function ($house) {
 
             })
-            ->addColumn('action', function($house) {
+            ->addColumn('action', function ($house) {
 
+            })
+            ->editColumn('created_at', function ($house) {
+                return Carbon::createFromFormat('Y-m-d H:i:s', $house->created_at)->format('d/m/Y H:i');
             })
             ->make(true);
     }
@@ -42,14 +46,13 @@ class HouseController extends AdminController
     {
         $data = $request->all();
 
-     //   $data['user_id'] = auth('backend')->user()->id;
+        //   $data['user_id'] = auth('backend')->user()->id;
 
         if ($request->file('main_image') && $request->file('main_image')->isValid()) {
             $data['main_images'] = $this->saveImage($request->file('main_image'));
         }
 
-        if(!is_numeric($data['price']))
-        {
+        if (!is_numeric($data['price'])) {
             $data['price'] = 0;
         }
 
@@ -138,5 +141,32 @@ class HouseController extends AdminController
         }
 
         return redirect()->back()->with('success', 'Thêm dữ liệu thành công');
+    }
+
+    public function changeFeaturedHouse(Request $request)
+    {
+        $houseId = $request->input('house_id');
+
+        $house = House::find($houseId);
+
+        if (!$house) {
+            return response([
+                'status' => 0,
+                'message' => 'Dữ liệu không hợp lệ'
+            ]);
+        }
+
+        if ($house->is_featured) {
+            $house->is_featured = false;
+        } else {
+            $house->is_featured = true;
+        }
+
+        $house->save();
+
+        return response([
+            'status' => 1,
+            'message' => 'Thành công'
+        ]);
     }
 }

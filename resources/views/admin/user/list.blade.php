@@ -1,8 +1,6 @@
 @extends('admin')
 @section('content')
-    <h3 class="inline">Quản lý danh sách nhà</h3>
-
-    @include('admin.flash_message')
+    <h3 class="inline">Quản lý người dùng hệ thống</h3>
 
     <div class="portlet-title">
 
@@ -97,7 +95,7 @@
             "aaSorting": [],
             searching: true,
             ajax: {
-                url: '{!! url('admin/post.data') !!}',
+                url: '{!! url('admin/user/user.data') !!}',
                 data: {
                     start_time: startTime,
                     end_time: endTime,
@@ -106,14 +104,15 @@
             },
             columns: [
 //                {data: 'id', name: 'id'},
-                {data: 'title', name: 'title'},
+                {
+                    "render": function (data, type, full, meta) {
+                        return '<img src="/files/'+full.image+'" style="max-width: 150px">';
+                    }
+                },
                 {data: 'name', name: 'name'},
-                {data: 'price', name: 'price'},
+                {data: 'email', name: 'email'},
+                {data: 'phone', name: 'phone'},
                 {data: 'type', name: 'type'},
-                {data: 'category', name: 'category'},
-                {data: 'agent', name: 'agent'},
-                {data: 'is_feature', name: 'is_feature'},
-                {data: 'status', name: 'status'},
                 {data: 'action', name: 'action'},
             ]
         });
@@ -127,19 +126,19 @@
             "aaSorting": [],
             serverSide: true,
             ajax: {
-                url: '{!! url('admin/house.data') !!}',
+                url: '{!! url('admin/user/user.data') !!}',
             },
             columns: [
 
-                {data: 'title', name: 'title'},
+                {
+                    "render": function (data, type, full, meta) {
+                        return '<img src="/files/'+full.image+'" style="max-width: 150px">';
+                    }
+                },
                 {data: 'name', name: 'name'},
-                {data: 'price', name: 'price'},
+                {data: 'email', name: 'email'},
+                {data: 'phone', name: 'phone'},
                 {data: 'type', name: 'type'},
-                {data: 'category', name: 'category'},
-                {data: 'agent', name: 'agent'},
-                {data: 'is_feature', name: 'is_feature'},
-                {data: 'status', name: 'status'},
-                {data: 'created_at', name: 'created_at'},
                 {data: 'action', name: 'action'},
             ]
         });

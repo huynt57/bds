@@ -35,6 +35,10 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['prefix' => 'user'], function () {
         Route::get('list', 'Backend\UserController@index');
+
+        Route::get('user.data', ['as' => 'user.data',
+            'uses' => 'Backend\UserController@getUserByAttribute'
+        ]);
     });
 
     Route::group(['prefix' => 'category'], function () {

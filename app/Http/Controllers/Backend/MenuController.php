@@ -12,4 +12,11 @@ class MenuController extends Controller
     {
         return view('admin.menu.index');
     }
+
+    public function store(Request $request)
+    {
+        $json = $request->input('data');
+
+        $data = json_decode($json);
+    }
 }
