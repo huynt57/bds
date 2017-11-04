@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.31 on 2017-11-03.
+ * Generated for Laravel 5.3.31 on 2017-11-04.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -11101,6 +11101,144 @@ namespace Illuminate\Support\Facades {
  
 }
 
+namespace Intervention\Image\Facades { 
+
+    class Image {
+        
+        /**
+         * Overrides configuration settings
+         *
+         * @param array $config
+         * @static 
+         */ 
+        public static function configure($config = array())
+        {
+            return \Intervention\Image\ImageManager::configure($config);
+        }
+        
+        /**
+         * Initiates an Image instance from different input types
+         *
+         * @param mixed $data
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function make($data)
+        {
+            return \Intervention\Image\ImageManager::make($data);
+        }
+        
+        /**
+         * Creates an empty image canvas
+         *
+         * @param integer $width
+         * @param integer $height
+         * @param mixed $background
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function canvas($width, $height, $background = null)
+        {
+            return \Intervention\Image\ImageManager::canvas($width, $height, $background);
+        }
+        
+        /**
+         * Create new cached image and run callback
+         * (requires additional package intervention/imagecache)
+         *
+         * @param \Closure $callback
+         * @param integer $lifetime
+         * @param boolean $returnObj
+         * @return \Image 
+         * @static 
+         */ 
+        public static function cache($callback, $lifetime = null, $returnObj = false)
+        {
+            return \Intervention\Image\ImageManager::cache($callback, $lifetime, $returnObj);
+        }
+         
+    }
+ 
+}
+
+namespace Yajra\Datatables\Facades { 
+
+    class Datatables {
+        
+        /**
+         * Gets query and returns instance of class.
+         *
+         * @param mixed $builder
+         * @return mixed 
+         * @static 
+         */ 
+        public static function of($builder)
+        {
+            return \Yajra\Datatables\Datatables::of($builder);
+        }
+        
+        /**
+         * Datatables using Query Builder.
+         *
+         * @param \Illuminate\Database\Query\Builder $builder
+         * @return \Yajra\Datatables\Engines\QueryBuilderEngine 
+         * @static 
+         */ 
+        public static function usingQueryBuilder($builder)
+        {
+            return \Yajra\Datatables\Datatables::usingQueryBuilder($builder);
+        }
+        
+        /**
+         * Datatables using Collection.
+         *
+         * @param \Illuminate\Support\Collection $builder
+         * @return \Yajra\Datatables\Engines\CollectionEngine 
+         * @static 
+         */ 
+        public static function usingCollection($builder)
+        {
+            return \Yajra\Datatables\Datatables::usingCollection($builder);
+        }
+        
+        /**
+         * Datatables using Eloquent.
+         *
+         * @param mixed $builder
+         * @return \Yajra\Datatables\Engines\EloquentEngine 
+         * @static 
+         */ 
+        public static function usingEloquent($builder)
+        {
+            return \Yajra\Datatables\Datatables::usingEloquent($builder);
+        }
+        
+        /**
+         * Get html builder class.
+         *
+         * @return \Yajra\Datatables\Html\Builder 
+         * @static 
+         */ 
+        public static function getHtmlBuilder()
+        {
+            return \Yajra\Datatables\Datatables::getHtmlBuilder();
+        }
+        
+        /**
+         * Get request object.
+         *
+         * @return \Yajra\Datatables\Request 
+         * @static 
+         */ 
+        public static function getRequest()
+        {
+            return \Yajra\Datatables\Datatables::getRequest();
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -13002,6 +13140,12 @@ namespace  {
     class Validator extends \Illuminate\Support\Facades\Validator {}
 
     class View extends \Illuminate\Support\Facades\View {}
+
+    class DataTables extends \Yajra\DataTables\Facades\DataTables {}
+
+    class Image extends \Intervention\Image\Facades\Image {}
+
+    class Datatables extends \Yajra\Datatables\Facades\Datatables {}
  
 }
 

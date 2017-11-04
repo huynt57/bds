@@ -10,8 +10,39 @@ class House extends Model
     //
     use SoftDeletes;
     protected $fillable = [
-
+        'name',
+        'category_id',
+        'user_id',
+        'city_id',
+        'district_id',
+        'lat',
+        'lng',
+        'type',
+        'zip',
+        'price',
+        'desc',
+        'size',
+        'features',
+        'main_images',
+        'status',
+        'slug',
+        'address',
+        'is_feature',
+        'created_at',
+        'updated_at',
+        'deleted_at'
     ];
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
+    public function images()
+    {
+        return $this->hasMany('App\Models\Image');
+    }
 
     /*
      * \App\Model\User::whereNotIn('id', $ids)

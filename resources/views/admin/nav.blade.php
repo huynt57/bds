@@ -30,26 +30,32 @@
             </li>
 
             <li class="nav-item  ">
-                <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="icon-user"></i>
+                <a href="{{ url('admin') }}" class="nav-link nav-toggle">
+                    <i class="fa fa-tachometer"></i>
                     <span class="title">Bảng điều khiển</span>
                 </a>
             </li>
             <li class="nav-item  ">
-                <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="icon-user"></i>
+                <a href="{{ url('admin/menu') }}" class="nav-link nav-toggle">
+                    <i class="fa fa-bars"></i>
                     <span class="title">Quản lý menu</span>
                 </a>
             </li>
             <li class="nav-item  ">
-                <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="icon-user"></i>
+                <a href="{{ url('admin/category') }}" class="nav-link nav-toggle">
+                    <i class="fa fa-tasks"></i>
+                    <span class="title">Quản lý danh mục</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="{{ url('admin/user/list') }}" class="nav-link nav-toggle">
+                    <i class="fa fa-users"></i>
                     <span class="title">Quản lý người dùng</span>
                 </a>
             </li>
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="icon-user"></i>
+                    <i class="fa fa-home"></i>
                     <span class="title">Quản lý danh sách nhà</span>
                 </a>
                 <ul class="sub-menu">
@@ -69,23 +75,23 @@
             </li>
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="icon-user"></i>
+                    <i class="fa fa-cogs"></i>
                     <span class="title">Quản lý cài đặt</span>
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item  ">
-                        <a href="{{url('admin/thong-tin-ca-nhan')}}" class="nav-link ">
+                        <a href="{{url('admin/settings/list')}}" class="nav-link ">
                             <span class="title">Cấu hình chung</span>
                         </a>
                     </li>
 
                     <li class="nav-item  ">
-                        <a href="{{ url('admin/thay-mat-khau') }}" class="nav-link ">
+                        <a href="{{ url('admin/settings/slides') }}" class="nav-link ">
                             <span class="title">Slides trang chủ</span>
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="{{ url('admin/thay-mat-khau') }}" class="nav-link ">
+                        <a href="{{ url('admin/settings/contact') }}" class="nav-link ">
                             <span class="title">Ý kiến từ khách hàng</span>
                         </a>
                     </li>
@@ -94,24 +100,24 @@
             </li>
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="icon-user"></i>
+                    <i class="fa fa-envelope"></i>
                     <span class="title">Quản lý thông tin liên hệ</span>
                 </a>
             </li>
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="icon-user"></i>
+                    <i class="fa fa-newspaper-o"></i>
                     <span class="title">Quản lý tin tức</span>
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item  ">
-                        <a href="{{url('admin/thong-tin-ca-nhan')}}" class="nav-link ">
+                        <a href="{{url('admin/post/list')}}" class="nav-link ">
                             <span class="title">Danh sách</span>
                         </a>
                     </li>
 
                     <li class="nav-item  ">
-                        <a href="{{ url('admin/thay-mat-khau') }}" class="nav-link ">
+                        <a href="{{ url('admin/post/create') }}" class="nav-link ">
                             <span class="title">Thêm mới</span>
                         </a>
                     </li>
@@ -122,7 +128,7 @@
 
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="icon-user"></i>
+                    <i class="fa fa-user"></i>
                     <span class="title">Thông tin tài khoản</span>
                     <span class="arrow"></span>
                 </a>

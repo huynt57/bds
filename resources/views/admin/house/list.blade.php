@@ -53,7 +53,7 @@
 
     <div class="row">
         <div class="col-md-12" style="margin-bottom: 12px">
-            <a href="{{ url('admin/add-post') }}?type={{ request()->input('type') }}" class="btn btn-success">Thêm</a>
+            <a href="{{ url('admin/house/create') }}" class="btn btn-success">Thêm</a>
         </div>
         <div class="col-md-12">
             <table class="table table-striped table-bordered table-hover" id="orders-table">
@@ -108,7 +108,11 @@
             },
             columns: [
 //                {data: 'id', name: 'id'},
-                {data: 'title', name: 'title'},
+                {
+                    "render": function (data, type, full, meta) {
+                        return '<img src="/files/'+full.main_images+'" style="max-width: 150px">';
+                    }
+                },
                 {data: 'name', name: 'name'},
                 {data: 'price', name: 'price'},
                 {data: 'type', name: 'type'},
@@ -129,11 +133,15 @@
             "aaSorting": [],
              serverSide: true,
             ajax: {
-                url: '{!! url('admin/house.data') !!}',
+                url: '{!! url('admin/house/house.data') !!}',
             },
             columns: [
 
-                {data: 'title', name: 'title'},
+                {
+                    "render": function (data, type, full, meta) {
+                        return '<img src="/files/'+full.main_images+'" style="max-width: 150px">';
+                    }
+                },
                 {data: 'name', name: 'name'},
                 {data: 'price', name: 'price'},
                 {data: 'type', name: 'type'},

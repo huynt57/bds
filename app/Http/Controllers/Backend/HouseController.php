@@ -27,6 +27,9 @@ class HouseController extends AdminController
             ->editColumn('is_featured', function ($house) {
 
             })
+            ->addColumn('action', function($house) {
+
+            })
             ->make(true);
     }
 
@@ -39,10 +42,15 @@ class HouseController extends AdminController
     {
         $data = $request->all();
 
-        $data['user_id'] = auth('backend')->user()->id;
+     //   $data['user_id'] = auth('backend')->user()->id;
 
         if ($request->file('main_image') && $request->file('main_image')->isValid()) {
             $data['main_images'] = $this->saveImage($request->file('main_image'));
+        }
+
+        if(!is_numeric($data['price']))
+        {
+            $data['price'] = 0;
         }
 
         \DB::beginTransaction();

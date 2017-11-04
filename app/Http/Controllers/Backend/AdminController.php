@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Intervention\Image\Image;
+use Image;
 
 class AdminController extends Controller
 {

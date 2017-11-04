@@ -130,7 +130,7 @@
     @endif
     <h3>Thêm nhà mới</h3>
 
-    <form action="{{url('admin/add-house')}}" id="create-form" class="form-horizontal" method="post"
+    <form action="{{url('admin/house/store')}}" id="create-form" class="form-horizontal" method="post"
           enctype="multipart/form-data">
 
         {{ csrf_field() }}
@@ -141,7 +141,7 @@
                     <div class="form-group">
                         <label>Tên nhà *</label>
                         <div>
-                            <input type="text" name="name" class="form-control" placeholder="Điền tên sản phẩm"
+                            <input type="text" name="name" class="form-control" placeholder="Điền tên nhà"
                                    value="{{ old('name') }}">
                         </div>
                     </div>
@@ -238,7 +238,7 @@
         <div class="form-group col-lg-12">
             <label>Ảnh đại diện *</label>
             <div>
-                <input type="file" class="product-image form-control" name="image">
+                <input type="file" class="product-image form-control" name="main_image">
             </div>
         </div>
         <div class="form-group col-lg-12">
@@ -259,7 +259,7 @@
             <label>Miêu tả chi tiết</label>
             <div>
                                 <textarea class="form-control ckeditor" placeholder="Điền miêu tả"
-                                          name="description">{{ old('description') }}</textarea>
+                                          name="desc">{{ old('desc') }}</textarea>
             </div>
         </div>
         <div class="form-group">
@@ -272,86 +272,6 @@
                     </label>
                 </div>
             </div>
-        </div>
-        <div class="modal fade bs-modal-lg" id="thong-so-modal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                        <h4 class="modal-title">Thiết lập thông số sản phẩm</h4>
-                    </div>
-                    <div class="modal-body" id="thong-so-list">
-                        <ul class="nav nav-tabs">
-                            <li class="active">
-                                <a href="#tab_1_1" data-toggle="tab" id="tab_1_1_btn"> Thêm mới </a>
-                            </li>
-                            <li>
-                                <a href="#tab_1_2" data-toggle="tab" id="kho-ts-tab"> Lấy từ kho thông số </a>
-                            </li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane fade active in" id="tab_1_1">
-                                <div class="row" style="padding: 0px 10px">
-                                    <div class="portlet-body">
-                                        <table class="table table-hover table-striped table-bordered thong-so-table">
-                                            <tbody>
-                                            <tr>
-                                                <td class="col-md-5" style="text-align: center;font-weight: bold;">
-                                                    Thông số
-                                                </td>
-                                                <td class="col-md-5" style="text-align: center;font-weight: bold;">
-                                                    Giá trị
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="col-md-5">
-                                                    <div class="form-group" style="margin: 0px;">
-                                                        <input class="form-control unicase-form-control text-input"
-                                                               name="ts_key[]">
-                                                    </div>
-                                                </td>
-                                                <td class="col-md-5">
-                                                    <div class="form-group" style="margin: 0px;">
-                                                        <input class="form-control unicase-form-control text-input"
-                                                               name="ts_value[]">
-                                                    </div>
-                                                </td>
-                                                <td class="col-md-2" style="text-align: center">
-                                                    <button type="button" class="btn red xoa-ts-btn"
-                                                            style="margin-right: 0px;">Xóa
-                                                    </button>
-                                                </td>
-                                                <input type="hidden" name="ts_id[]">
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                        <div style="text-align: center">
-                                            <a class="btn red btn-outline sbold uppercase" id="add_row"> Thêm mới </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn green" data-dismiss="modal">Xong</button>
-                                    <button type="button" class="btn dark btn-outline" data-dismiss="modal">Đóng
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="tab_1_2">
-                                <div class="mt-checkbox-list">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn green" id="collect-ts">Lấy</button>
-                                    <button type="button" class="btn dark btn-outline" data-dismiss="modal">Đóng
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
         </div>
         <div class="form-actions">
             <div class="row">
