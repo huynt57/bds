@@ -18,7 +18,7 @@ class MainController extends Controller
 
     public function getHouseByAttribute(Request $request)
     {
-
+        $categoryId = $request->input('category_id');
 
     }
 
