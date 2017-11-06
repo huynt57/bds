@@ -56,6 +56,26 @@ class HouseController extends AdminController
             $data['price'] = 0;
         }
 
+        if(!is_numeric($data['district_id']))
+        {
+            $data['district_id'] = 0;
+        }
+
+        if(!is_numeric($data['category_id']))
+        {
+            $data['category_id'] = 0;
+        }
+
+        if(!is_numeric($data['city_id']))
+        {
+            $data['city_id'] = 0;
+        }
+
+        if(!is_numeric($data['ward_id']))
+        {
+            $data['ward_id'] = 0;
+        }
+
         \DB::beginTransaction();
 
         try {
@@ -81,6 +101,8 @@ class HouseController extends AdminController
         } catch (\Exception $ex) {
             \DB::rollBack();
 
+            dump($ex->getMessage());
+            dd($ex->getTraceAsString());
             return redirect()->back()->with('error', 'Thêm dữ liệu không thành công');
         }
 
@@ -111,6 +133,25 @@ class HouseController extends AdminController
 
         if ($request->file('main_image') && $request->file('main_image')->isValid()) {
             $data['main_images'] = $this->saveImage($request->file('main_image'), $house->main_images);
+        }
+
+        if (!is_numeric($data['price'])) {
+            $data['price'] = 0;
+        }
+
+        if(!is_numeric($data['district_id']))
+        {
+            $data['district_id'] = 0;
+        }
+
+        if(!is_numeric($data['city_id']))
+        {
+            $data['city_id'] = 0;
+        }
+
+        if(!is_numeric($data['ward_id']))
+        {
+            $data['ward_id'] = 0;
         }
 
         \DB::beginTransaction();

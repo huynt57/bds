@@ -14,12 +14,12 @@ class House extends Model
     const SALE = 0;
 
     protected $fillable = [
-        'name',
+        'name', 'ward_id',
         'category_id',
-        'user_id',
-        'city_id',
-        'district_id',
-        'lat',
+        'user_id', 'meta_keywords',
+        'city_id', 'meta_desc',
+        'district_id', 'bath',
+        'lat', 'beds',
         'lng',
         'type',
         'zip',
@@ -42,6 +42,13 @@ class House extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    public function getMainImagesAttribute()
+    {
+
+        return '/files/' . $this->attributes['main_images'];
+
+    }
 
     public function images()
     {
@@ -68,5 +75,10 @@ class House extends Model
         return $query->select('*')
             ->selectRaw("{$haversine} AS distance")
             ->whereRaw("{$haversine} < ?", [$radius]);
+    }
+
+    public function scopeFeatured($query)
+    {
+        return $query->where('is_featured', true);
     }
 }

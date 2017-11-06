@@ -15,10 +15,44 @@ class MainController extends Controller
         return view('frontend.index', compact('features'));
     }
 
+    public function getHouseMarker()
+    {
+        $houses = House::paginate(10);
+
+        $returnArr = [];
+
+        foreach ($houses as $house) {
+            $itemArr = [];
+            $itemArr['name'] = $house->name;
+            $itemArr['location_latitude'] = $house->lat;
+            $itemArr['location_longitude'] = $house->lng;
+            $itemArr['map_image_url'] = $house->main_images;
+            $itemArr['name_point'] = $house->name;
+            $itemArr['description_point'] = 'tt';
+            $itemArr['get_directions_start_address'] = '';
+            $itemArr['phone'] = '0444444444444';
+            $itemArr['url_point'] = '';
+
+            $returnArr[] = $itemArr;
+        }
+
+        $centerPoint['lat'] = $returnArr[0]['location_latitude'];
+        $centerPoint['lng'] = $returnArr[0]['location_longitude'];
+
+        return response([
+            'data' => ['Historic' => $returnArr],
+            'center' => $centerPoint
+        ]);
+    }
+
 
     public function getHouseByAttribute(Request $request)
     {
         $categoryId = $request->input('category_id');
+
+        $items = House::paginate(10);
+
+        return view('frontend.houses', compact('items'));
 
     }
 

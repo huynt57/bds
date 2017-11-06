@@ -12,7 +12,8 @@
 */
 
 Route::get('/', 'Frontend\MainController@index');
-
+Route::get('map', 'Frontend\MainController@getHouseByAttribute');
+Route::get('get-house-marker', 'Frontend\MainController@getHouseMarker');
 
 Route::group(['prefix' => 'admin'], function () {
 
@@ -35,6 +36,14 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['prefix' => 'user'], function () {
         Route::get('list', 'Backend\UserController@index');
+
+        Route::get('user.data', ['as' => 'user.data',
+            'uses' => 'Backend\UserController@getUserByAttribute'
+        ]);
+    });
+
+    Route::group(['prefix' => 'settings'], function () {
+        Route::get('slides', 'Backend\SettingController@listSlides');
 
         Route::get('user.data', ['as' => 'user.data',
             'uses' => 'Backend\UserController@getUserByAttribute'

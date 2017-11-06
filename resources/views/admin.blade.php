@@ -674,6 +674,7 @@
     jQuery.fn.dataTableExt.oSort["string-nbr-desc"] = function(x,y) {x = strip_and_string(x); y=strip_and_string(y);return ((parseInt(x.split('.').join("")) < parseInt(y.split('.').join(""))) ?  1 : ((parseInt(x.split('.').join("")) > parseInt(y.split('.').join(""))) ? -1 : 0));};
 
     $(document).ready(function() {
+        //$('.ckedtior').ckeditor();
 
         $('#time_range').change(function() {
 

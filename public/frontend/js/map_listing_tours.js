@@ -12,107 +12,6 @@
 		mapObject,
 		markers = [],
 		markersData = {
-			'Historic': [
-			{
-				name: 'Arc de Triomphe',
-				location_latitude: 48.873792, 
-				location_longitude: 2.295028,
-				map_image_url: 'img/thumb_map_historic_1.jpg',
-				name_point: 'Arc de Triomphe',
-				description_point: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-				get_directions_start_address: '',
-				phone: '+3934245255',
-				url_point: 'single_tour.html'
-			},
-				{
-				name: 'Versailles Tour',
-				location_latitude: 48.800040, 
-				location_longitude: 2.139670,
-				map_image_url: 'img/thumb_map_historic_2.jpg',
-				name_point: 'Versailles Tour',
-				description_point: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-				get_directions_start_address: '',
-				phone: '+3934245255',
-				url_point: 'single_tour.html'
-			},
-			{
-				name: 'Pantheon',
-				location_latitude: 48.846222, 
-				location_longitude: 2.346414,
-				map_image_url: 'img/thumb_map_historic_3.jpg',
-				name_point: 'Pantheon',
-				description_point: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-				get_directions_start_address: '',
-				phone: '+3934245255',
-				url_point: 'single_tour.html'
-			}
-			],
-			'Sightseeing': [
-			{
-				name: 'Open Bus',
-				location_latitude: 48.865633, 
-				location_longitude: 2.321236,
-				map_image_url: 'img/thumb_map_sightseeing_1.jpg',
-				name_point: 'Open Bus',
-				description_point: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-				get_directions_start_address: '',
-				phone: '+3934245255',
-				url_point: 'single_tour.html'
-			}
-			],
-			'Museums': [
-			{
-				name: 'Louvre',
-				location_latitude: 48.863893, 
-				location_longitude: 2.342348,
-				map_image_url: 'img/thumb_map_museums_1.jpg',
-				name_point: 'Louvre',
-				description_point: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-				get_directions_start_address: '',
-				phone: '+3934245255',
-				url_point: 'single_tour.html'
-			}
-			],
-			'Skyline': [
-			{
-				name: 'Tour Eiffel',
-				location_latitude: 48.858370, 
-				location_longitude: 2.294481,
-				map_image_url: 'img/thumb_map_skyline_1.jpg',
-				name_point: 'Tour Eiffel',
-				description_point: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-				get_directions_start_address: '',
-				phone: '+3934245255',
-				url_point: 'single_tour.html'
-			}
-			],
-			'Walking': [
-			{
-				name: 'Pompidou ',
-				location_latitude: 48.860642,
-				location_longitude: 2.352245,
-				map_image_url: 'img/thumb_map_walking_1.jpg',
-				name_point: 'Pompidou',
-				description_point: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-				get_directions_start_address: '',
-				phone: '+3934245255',
-				url_point: 'single_tour.html'
-			}
-			],
-			'Churches': [
-			{
-				name: 'Notre Dame',
-				location_latitude: 48.852729, 
-				location_longitude: 2.350564,
-				map_image_url: 'img/thumb_map_churches_1.jpg',
-				name_point: 'Notre Dame',
-				description_point: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-				get_directions_start_address: '',
-				phone: '+3934245255',
-				url_point: 'single_tour.html'
-			}
-			]
-
 		};
 
 			var mapOptions = {
@@ -251,25 +150,39 @@
 			var
 			marker;
 			mapObject = new google.maps.Map(document.getElementById('map'), mapOptions);
-			for (var key in markersData)
-				markersData[key].forEach(function (item) {
-					marker = new google.maps.Marker({
-						position: new google.maps.LatLng(item.location_latitude, item.location_longitude),
-						map: mapObject,
-						icon: 'img/pins/' + key + '.png',
-					});
 
-					if ('undefined' === typeof markers[key])
-						markers[key] = [];
-					markers[key].push(marker);
-					google.maps.event.addListener(marker, 'click', (function () {
-      closeInfoBox();
-      getInfoBox(item).open(mapObject, this);
-      mapObject.setCenter(new google.maps.LatLng(item.location_latitude, item.location_longitude));
-     }));
+			$.ajax({
+				url: 'get-house-marker',
+				type: 'get',
+				dataType: 'json',
+				success: function(response)
+				{
+					 markersData = response.data;
+                    for (var key in markersData) {
+                        markersData[key].forEach(function (item) {
+                            marker = new google.maps.Marker({
+                                position: new google.maps.LatLng(item.location_latitude, item.location_longitude),
+                                map: mapObject,
+                                icon: 'img/pins/' + key + '.png',
+                            });
 
-					
-				});				
+                            if ('undefined' === typeof markers[key])
+                                markers[key] = [];
+                            markers[key].push(marker);
+                            google.maps.event.addListener(marker, 'click', (function () {
+                                closeInfoBox();
+                                getInfoBox(item).open(mapObject, this);
+                                mapObject.setCenter(new google.maps.LatLng(item.location_latitude, item.location_longitude));
+                            }));
+
+
+                        });
+                    }
+
+                    mapObject.panTo(new google.maps.LatLng(response.center.lat,response.center.lng));
+                }
+			});
+
 
 		function hideAllMarkers () {
 			for (var key in markers)
@@ -299,7 +212,7 @@
 			return new InfoBox({
 				content:
 				'<div class="marker_info_2">' +
-				'<img src="' + item.map_image_url + '" alt="Image"/>' +
+				'<img style="width: 240px; height: 140px" src="' + item.map_image_url + '" alt="Image"/>' +
 				'<h3>'+ item.name_point +'</h3>' +
 				'<span>'+ item.description_point +'</span>' +
 				'<div class="marker_tools">' +

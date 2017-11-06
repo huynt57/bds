@@ -86,6 +86,7 @@
             text-align: right;
         }
     </style>
+    <style>html, body {height: 100%;}</style>
 
     @yield('styles')
 
@@ -369,6 +370,12 @@
 <script src="/frontend/js/common_scripts_min.js"></script>
 <script src="/frontend/js/functions.js"></script>
 <script src="/frontend/js/slick.js"></script>
+
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC5_oqCsJvZdLWEadt934vSKipvwhIDFNY"></script>
+
+
+<script src="/frontend/js/map_listing_tours.js"></script>
+<script src="/frontend/js/infobox.js"></script>
 <!--owlcarousel-->
 <script type='text/javascript' src="http://viethouse24.com/assets/frontend/js/owlcarousel/owl.carousel.js"></script>
 <script type="text/javascript">

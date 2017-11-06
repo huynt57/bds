@@ -1,0 +1,87 @@
+
+
+ul {
+    padding: 0;
+    margin: 0
+}
+
+ul li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0
+}
+
+
+
+
+
+
+
+.mdt-breadcrumb {
+    height: 40px;
+    border: #ccc 1px solid;
+    margin: 0 0 23px;
+    min-width: 100%
+}
+
+.mdt-breadcrumb ul li {
+    float: left;
+    position: relative
+}
+
+.mdt-breadcrumb ul li a {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 30px;
+    font-size: 0.9em;
+    color: #8f8699;
+    background: url("/collection_theme/1/css/images/breadcrumb-right.png") no-repeat right top
+}
+
+.mdt-breadcrumb ul li a:hover {
+    color: #0ab3a3
+}
+
+.mdt-breadcrumb ul li .item-a {
+    color: rgba(0, 0, 0, 0.8);
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    font-size: 14px;
+    width: 140px;
+    height: 18px;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.mdt-breadcrumb ul li .mdt-drop-menu {
+    position: absolute;
+    background: #f2f2f2;
+    left: -70px;
+    top: 38px;
+    width: 420px;
+    padding: 10px 20px;
+    display: none;
+    z-index: 10
+}
+
+.mdt-breadcrumb ul li .mdt-drop-menu a {
+    display: block;
+    float: left;
+    width: 50%;
+    padding: 0;
+    background: no-repeat;
+    height: 30px;
+    line-height: 30px
+}
+
+.mdt-breadcrumb ul li:hover {
+    background: url("images/iu.png") no-repeat center bottom
+}
+
+.mdt-breadcrumb ul li:hover .mdt-drop-menu {
+    display: block
+}

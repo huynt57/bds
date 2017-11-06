@@ -1,0 +1,50 @@
+.page-content-wrapper .page-content {
+    padding-top: 5px;
+}
+
+.ck-tu-dong-table .form-group {
+    margin: 0px;
+}
+
+.dt-button-collection a.buttons-columnVisibility:before,
+.dt-button-collection a.buttons-columnVisibility.active span:before {
+    display:block;
+    position:absolute;
+    top:1.2em;
+    left:0;
+    width:12px;
+    height:12px;
+    box-sizing:border-box;
+}
+
+.dt-button-collection a.buttons-columnVisibility:before {
+    content:' ';
+    margin-top:-6px;
+    margin-left:5px;
+    border:1px solid black;
+    border-radius:0px;
+}
+
+.dt-button-collection a.buttons-columnVisibility.active span:before {
+    content:'\2714';
+    margin-top:-11px;
+    margin-left:8px;
+    text-align:center;
+    text-shadow:1px 1px #DDD, -1px -1px #DDD, 1px -1px #DDD, -1px 1px #DDD;
+}
+
+.dt-button-collection a.buttons-columnVisibility span {
+    margin-left:10px;
+}
+th {
+    white-space: nowrap;
+}
+
+.bootstrap-tagsinput {
+    width: 100%;
+}
+
+.slide-bsp img {
+    width: 200px;
+    height: 200px;
+}

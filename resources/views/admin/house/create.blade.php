@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <style>
         #myMap {
-            height: 250px;
-            width: 1050px;
+            height: 350px;
+            width: auto;
         }
     </style>
     <style>
@@ -156,7 +156,7 @@
                         <label>Địa chỉ</label>
                         <div>
                             <input type="text" name="address" class="form-control"
-                                   placeholder="Địa chỉ" value="{{ old('code') }}">
+                                   placeholder="Địa chỉ" id="address" value="{{ old('address') }}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -183,7 +183,7 @@
                 <div class="form-group dmc0">
                     <label>Danh mục *</label>
                     <div>
-                        <select class="form-control select2" name="category_id" id="shop_cate" data-index="0">
+                        <select class="form-control select2" name="category_id">
                             <option value="">Chọn danh mục</option>
                             @php $categories = \App\Models\Category::all();@endphp
 
@@ -197,7 +197,7 @@
                 <div class="form-group dmc0">
                     <label>Tỉnh / thành phố *</label>
                     <div>
-                        <select class="form-control select2" name="province_id" data-index="0">
+                        <select class="form-control select2" name="city_id" data-index="0">
                             <option value="">Chọn thành phố</option>
                             @php $cities = \App\Components\Functions::getProvinces();@endphp
 
@@ -249,10 +249,31 @@
         {{--name="short_description">{{ old('short_description') }}</textarea>--}}
         {{--</div>--}}
         {{--</div>--}}
+
+        <div class="form-group col-lg-12">
+            <label>Latitude</label>
+            <div>
+                <input type="text" name="lat" id="latitude" class="form-control"
+                       placeholder="Điền Latitude" value="{{ old('lat') }}">
+            </div>
+        </div>
+        <div class="form-group col-lg-12">
+            <label>Longitude</label>
+            <div>
+                <input type="text" name="lng" id="longitude" class="form-control"
+                       placeholder="Điền Longitude" value="{{ old('lng') }}">
+            </div>
+        </div>
+        <div class="col-lg-12 form-group">
+            <label>Bản đồ</label>
+            <div id="myMap">
+
+            </div>
+        </div>
         <div class="col-lg-12 form-group">
             <label>Miêu tả chi tiết</label>
             <div>
-                                <textarea class="form-control ckeditor" placeholder="Điền miêu tả"
+                                <textarea class="form-control ckeditor" placeholder="Điền miêu tả" rows="10"
                                           name="desc">{{ old('desc') }}</textarea>
             </div>
         </div>
@@ -277,6 +298,12 @@
         </div>
 
 
+        <div class="col-md-12 col-sm-12">
+            <div class="form-group">
+                <input style="width: 300px; margin-top: 10px" id="pac-input" class="controls_map form-control" type="text" placeholder="Tìm địa chỉ">
+                <div id="myMap"></div>
+            </div>
+        </div>
     </form>
 
 @endsection
@@ -388,6 +415,8 @@
 
 
     $(document).on('ready', function () {
+
+
 
         $(".product-image").fileinput({
             showCaption: false, language: "vi",
