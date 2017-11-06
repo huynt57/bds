@@ -6,11 +6,16 @@
  * Time: 9:53 AM
  */
 
-namespace App;
+namespace App\Components;
 
 
 class Functions
 {
-
+    public static function getProvinces()
+    {
+        return cache()->rememberForever('provinces', function() {
+            return \DB::table('province')->get();
+        });
+    }
 
 }

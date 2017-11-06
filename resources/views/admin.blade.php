@@ -50,6 +50,7 @@
     <link href="/assets/global/plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" type="text/css" />
     <link href="/assets/global/plugins/jquery-file-upload/css/jquery.fileupload-ui.css" rel="stylesheet" type="text/css" />
 
+    <link href="/assets/global/plugins/bootstrap-sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="/assets/global/css/components-md.min.css" rel="stylesheet" id="style_components" type="text/css" />
@@ -62,8 +63,15 @@
     <link href="/assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
     <link href="/assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
 
+
+
     <link href="/css/button.css" rel="stylesheet" type="text/css" />
 
+    <style>
+        .sweet-alert {
+            z-index: 9999999999 !important;
+        }
+        </style>
 @yield('styles')
 
 
@@ -634,7 +642,8 @@
 <script src="/assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
 
 <script src="/assets/pages/scripts/components-date-time-pickers.min.js" type="text/javascript"></script>
-
+<script src="/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+<script src="/assets/pages/scripts/ui-sweetalert.min.js" type="text/javascript"></script>
 <script src="/js/admin/ckeditor/ckeditor.js"></script>
 
 

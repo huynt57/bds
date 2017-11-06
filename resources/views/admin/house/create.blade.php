@@ -10,6 +10,12 @@
     <link rel="stylesheet" type="text/css" href="/esg/slick/slick-theme.css"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <style>
+        #myMap {
+            height: 250px;
+            width: 1050px;
+        }
+    </style>
+    <style>
         .form-horizontal .form-group {
             margin-left: 0px;
             margin-right: 0px;
@@ -163,13 +169,10 @@
                     <div class="form-group dmc0">
                         <label>Loại nhà</label>
                         <div>
-                            <select class="form-control" name="categories[]" id="shop_cate" data-index="0">
-                                <option value="">Chọn danh mục</option>
-                                @php $categories = \App\Models\Category::all();@endphp
-
-                                @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
+                            <select class="form-control" name="type">
+                                <option value="">Chọn loại nhà</option>
+                                <option value="{{ \App\Models\House::RENT }}">Cho thuê</option>
+                                <option value="{{ \App\Models\House::SALE }}">Bán</option>
                             </select>
                         </div>
                     </div>
@@ -180,7 +183,7 @@
                 <div class="form-group dmc0">
                     <label>Danh mục *</label>
                     <div>
-                        <select class="form-control" name="categories[]" id="shop_cate" data-index="0">
+                        <select class="form-control select2" name="category_id" id="shop_cate" data-index="0">
                             <option value="">Chọn danh mục</option>
                             @php $categories = \App\Models\Category::all();@endphp
 
@@ -194,12 +197,12 @@
                 <div class="form-group dmc0">
                     <label>Tỉnh / thành phố *</label>
                     <div>
-                        <select class="form-control" name="categories[]" id="shop_cate" data-index="0">
-                            <option value="">Chọn danh mục</option>
-                            @php $categories = \App\Models\Category::all();@endphp
+                        <select class="form-control select2" name="province_id" data-index="0">
+                            <option value="">Chọn thành phố</option>
+                            @php $cities = \App\Components\Functions::getProvinces();@endphp
 
-                            @foreach($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @foreach($cities as $city)
+                                <option value="{{ $city->provinceid }}">{{ $city->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -207,26 +210,17 @@
                 <div class="form-group dmc0">
                     <label>Quận / huyện *</label>
                     <div>
-                        <select class="form-control" name="categories[]" id="shop_cate" data-index="0">
-                            <option value="">Chọn danh mục</option>
-                            @php $categories = \App\Models\Category::all();@endphp
-
-                            @foreach($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
+                        <select class="form-control" name="district_id">
+                            <option value="">Chọn quận huyện</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group dmc0">
                     <label>Phường / xã *</label>
                     <div>
-                        <select class="form-control" name="categories[]" id="shop_cate" data-index="0">
-                            <option value="">Chọn danh mục</option>
-                            @php $categories = \App\Models\Category::all();@endphp
+                        <select class="form-control" name="ward_id">
+                            <option value="">Chọn phường xã</option>
 
-                            @foreach($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -242,7 +236,7 @@
             </div>
         </div>
         <div class="form-group col-lg-12">
-            <label>Danh sách miêu tả</label>
+            <label>Ảnh phụ (có thể đính kèm nhiều ảnh)</label>
             <div>
                 <input type="file" class="product-image form-control" multiple name="images[]"
                        rel="post_status_images">
@@ -294,188 +288,106 @@
 <script src="/assets/js/fileinput.min.js"></script>
 <script src="../assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="/esg/slick/slick.min.js"></script>
+<script src="//maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyBRy4cuNgPMeS5sDUj8rZ8Ql4_BkMMf4TM"></script>
 <script>
-    var index_file = 0;
-    var loadFile = function (event) {
-        var html = '';
-        index_file += 1;
+    var map;
+    var marker;
+    var myLatlng = new google.maps.LatLng(21.172507007037446, 106.06212340942386);
+    var geocoder = new google.maps.Geocoder();
+    var infowindow = new google.maps.InfoWindow();
+    function initialize() {
+        var mapOptions = {
+            zoom: 12,
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
 
-        var x = $('#file-upload').clone();
-        x.attr('id', 'file-upload-' + index_file);
-        x.attr('name', 'image-bt[]');
+        map = new google.maps.Map(document.getElementById("myMap"), mapOptions);
 
-        for (var i = 0; i < event.target.files.length; i++) {
-            var url = "url('" + URL.createObjectURL(event.target.files[i]) + "')"
-            html += '<div class="col-lg-3 col-' + index_file + '">' +
-                '<span class="close-img"><i class="fa fa-times-circle"></i></span>' +
-                '<div class="div-img" style="background: ' + url + ' center;"></div>' +
-                '    <input type="text" class="form-control" placeholder="Giá trị" name="color-bt[]">' +
-                '</div>';
-        }
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        // Bias the SearchBox results towards current map's viewport.
+        google.maps.event.addListener(searchBox, 'places_changed', function () {
+            searchBox.set('map', null);
 
-        $('.img-input').append(html);
 
-        x.appendTo('.col-' + index_file);
-    };
+            var places = searchBox.getPlaces();
 
-    $(document).ready(function () {
-        $(document).on('blur', "input[name='color-bt[]']", function (e) {
-            var current_value = $(this).val();
+            var bounds = new google.maps.LatLngBounds();
+            var i, place;
+            for (i = 0; place = places[i]; i++) {
+                (function (place) {
 
-            if (current_value != '') {
-                var ind = 0;
-                $("input[name='color-bt[]']").each(function () {
-                    if ($(this).val() == current_value) {
-                        ind += 1;
+                    marker.setPosition(place.geometry.location);
+                    google.maps.event.addListener(marker, 'map_changed', function () {
+                        if (!this.getMap()) {
+                            this.unbindAll();
+                        }
+                    });
+                    bounds.extend(place.geometry.location);
+
+
+                }(place));
+
+            }
+            map.fitBounds(bounds);
+            searchBox.set('map', map);
+            map.setZoom(Math.min(map.getZoom(), 12));
+
+        });
+
+
+        marker = new google.maps.Marker({
+            map: map,
+            position: myLatlng,
+            draggable: true
+        });
+
+        geocoder.geocode({'latLng': myLatlng}, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                    $('#latitude,#longitude').show();
+
+                    // $('#zip').val(results[0].address_components[7].long_name);
+
+                    //$('#city').val(results[0].address_components[3].long_name);
+                    //$('#state').val(results[0].address_components[5].long_name);
+                    $('#address').val(results[0].formatted_address);
+                    $('#latitude').val(marker.getPosition().lat());
+                    $('#longitude').val(marker.getPosition().lng());
+                    infowindow.setContent(results[0].formatted_address);
+                    infowindow.open(map, marker);
+                }
+            }
+        });
+
+        google.maps.event.addListener(marker, 'dragend', function () {
+
+            geocoder.geocode({'latLng': marker.getPosition()}, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        console.log(results[0].address_components);
+                        //if (results[0].address_components[7].long_name != "") {
+                        //  $('#zip').val(results[0].address_components[7].long_name);
+                        //}
+                        //$('#city').val(results[0].address_components[3].long_name);
+                        //$('#state').val(results[0].address_components[5].long_name);
+                        $('#address').val(results[0].formatted_address);
+                        $('#latitude').val(marker.getPosition().lat());
+                        $('#longitude').val(marker.getPosition().lng());
+                        infowindow.setContent(results[0].formatted_address);
+                        infowindow.open(map, marker);
                     }
-                });
-
-                if (ind == 2) {
-                    $(this).val('');
-                    bootbox.alert('Màu sắc các biến thể không được trùng nhau');
-                }
-            }
-        });
-
-
-        $(document).on('click', '.close-img', function (e) {
-            $(this).parent().remove();
-        });
-
-        $(document).on('click', '.xoa-bien-the', function (e) {
-            $(this).parent().remove();
-        });
-    });
-
-    $(document).ready(function () {
-
-        $(document).on('click', '.xoa-ts-btn', function (e) {
-            $(this).parent().parent().remove();
-        });
-
-        var danh_muc_2_kho = '';
-        $(document).on('click', '#kho-ts-tab', function (e) {
-            var old_danh_muc_2_kho = danh_muc_2_kho;
-            $.ajax({
-                type: 'get',
-                url: '{{ url('admin/get-param-suggest') }}',
-                dataType: 'html',
-                data: {category_id: $('#ts_sp_input').val()},
-                success: function (response) {
-                    $('#tab_1_2 .mt-checkbox-list').html(response);
                 }
             });
         });
 
-
-        $('#collect-ts').click(function (e) {
-            var ts_html = '';
-
-            var selected = [];
-            $('.mt-checkbox-list input:checked').each(function () {
-                var id_cb = $(this).attr('data-id');
-                var name_cb = $(this).attr('data-name');
-
-                ts_html = ts_html + '<tr>' +
-                    '    <td class="col-md-5">' +
-                    '        <div class="form-group" style="margin: 0px;">' +
-                    '            <input class="form-control unicase-form-control text-input" disabled value="' + name_cb + '">' +
-                    '        </div>' +
-                    '    </td>' +
-                    '<input type="hidden" value="' + name_cb + '" name="ts_key[]">' +
-                    '    <td class="col-md-5">' +
-                    '        <div class="form-group" style="margin: 0px;">' +
-                    '            <input class="form-control unicase-form-control text-input" name="ts_value[]">' +
-                    '        </div>' +
-                    '    </td>' +
-                    '    <td class="col-md-2" style="text-align: center">' +
-                    '        <button type="button" class="btn red xoa-ts-btn" style="margin-right: 0px;">Xóa</button>' +
-                    '    </td>' +
-                    '    <input type="hidden" name="ts_id[]" value="' + id_cb + '">' +
-                    '</tr>';
-
-            });
-
-            $('.thong-so-table tbody').html(
-                '<tr>' +
-                '<td class="col-md-5" style="text-align: center;font-weight: bold;">' +
-                'Thông số' +
-                '</td>' +
-                '<td class="col-md-5" style="text-align: center;font-weight: bold;">' +
-                'Giá trị' +
-                '</td>' +
-                '</tr>' + ts_html
-            );
-
-            $('#tab_1_1_btn').click();
-        });
-    });
-
-
-    function getProductCollectionAttr() {
-        var industry = $('#select-category').val();
-
-        var department = $('#select-department').val();
-
-        $.ajax({
-            url: '{{ url('admin/product-store') }}',
-            type: 'get',
-            dataType: 'html',
-            data: {industry: industry, department: department},
-            success: function (response) {
-                $('#pro-list-div').html("");
-                $('#pro-list-div').html(response);
-            }
-        });
     }
+    google.maps.event.addDomListener(window, 'load', initialize);
 
-    $(document).ready(function () {
-
-        $('#add-product-collection').click(function (e) {
-            $('#name_bsp').val($('#name-bsp-modal').val());
-
-            $('#sp-lien-quan-modal').modal('hide');
-        });
-
-        $('#create-form').on('keyup keypress', function (e) {
-            var keyCode = e.keyCode || e.which;
-            if (keyCode === 13) {
-                e.preventDefault();
-                return false;
-            }
-        });
-
-        $(".product-image").fileinput({
-            'showUpload': false, 'previewFileType': 'any',
-            'showCaption': false
-        });
-
-        $('#size').select2({
-            tags: true
-        });
-
-        $('#color').select2({
-            tags: true
-        });
-
-        $('#category_id_phu').select2({
-            tags: true
-        });
-
-        $('#dm_cap4').select2({
-            tags: true
-        });
-
-
-    });
 
     $(document).on('ready', function () {
-        $('.slide-bsp').slick({
-            infinite: true,
-            slidesToShow: 4,
-            slidesToScroll: 4,
-            variableWidth: true,
-        });
 
         $(".product-image").fileinput({
             showCaption: false, language: "vi",

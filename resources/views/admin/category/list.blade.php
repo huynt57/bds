@@ -68,6 +68,37 @@
         </div>
     </div>
 
+    <div class="modal fade" id="add-category" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Thêm danh mục mới</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" class="form-horizontal" id="form-category">
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Tên</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" placeholder="Điền tên" name="name">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn dark btn-outline" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn green" id="btn-save">Lưu</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+
     <div class="row">
         <div class="col-md-12" id="detail">
         </div>
@@ -76,6 +107,32 @@
 
 @push('scripts')
 <script>
+
+    var table;
+        $(document).on('click', '#btn-save', function(e) {
+            e.preventDefault();
+
+            var data = $('#form-category').serialize();
+
+            $.ajax({
+                url: '{{ url('admin/category/store') }}',
+                data: data,
+                type: 'post',
+                dataType: 'json',
+                success: function(response)
+                {
+
+                    if(response.status == 1)
+                    {
+                        swal('Thành công', '', 'success');
+                        $('#add-category').modal('hide');
+                        table.draw();
+                    } else {
+                        swal('Có lỗi xảy ra', response.message, 'warning');
+                    }
+                }
+            });
+        });
 
     function getPostByAttr() {
         var startTime = $('#start_time').val();

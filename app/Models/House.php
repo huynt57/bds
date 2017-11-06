@@ -9,6 +9,10 @@ class House extends Model
 {
     //
     use SoftDeletes;
+
+    const RENT = 1;
+    const SALE = 0;
+
     protected $fillable = [
         'name',
         'category_id',

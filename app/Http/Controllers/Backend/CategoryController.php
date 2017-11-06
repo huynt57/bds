@@ -19,7 +19,29 @@ class CategoryController extends Controller
     {
         $categories = Category::orderBy('id', 'desc');
 
-        return Datatables::of($categories)->make(true);
+        return Datatables::of($categories)
+            ->addColumn('action', function($category) {
+
+            })
+            ->make(true);
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->all();
+
+        $data['status'] = Category::ACTIVE;
+
+        Category::create($data);
+
+        if ($request->ajax()) {
+            return response([
+                'status' => 1,
+                'message' => 'Thêm thành công'
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Thêm thành công');
     }
 
     public function update($id, Request $request)

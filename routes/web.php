@@ -44,6 +44,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'category'], function () {
         Route::get('/', 'Backend\CategoryController@index');
 
+        Route::post('store', 'Backend\CategoryController@store');
+
         Route::get('category.data', ['as' => 'category.data',
             'uses' => 'Backend\CategoryController@getCategoryByAttribute'
         ]);
