@@ -14,7 +14,23 @@ class CreateInvestorsTable extends Migration
     public function up()
     {
         //
-        Schema::create('investors', function() {
+        Schema::create('investors', function(Blueprint $table) {
+
+            $table->increments('id');
+            $table->text('desc')->nullable();
+            $table->string('year_begin')->nullable();
+            $table->string('member_from')->nullable();
+            $table->string('member_to')->nullable();
+            $table->string('address')->nullable();
+            $table->string('email')->nullable();
+            $table->string('website')->nullable();
+            $table->string('phone')->nullable();
+            $table->text('sector')->nullable();
+            $table->integer('agent_id')->nullable();
+            $table->string('title')->nullable();
+            $table->string('image')->nullable();
+            $table->timestamps();
+
         });
     }
 
@@ -26,5 +42,6 @@ class CreateInvestorsTable extends Migration
     public function down()
     {
         //
+        Schema::drop('investors');
     }
 }
