@@ -8,7 +8,7 @@
                  style="background-image: url('stock/stock-01.jpg')">
                 <div class="container">
                     <div class="text-center">
-                        <h1 class="tab-heading-title">HD Russian Army Parade Victory Day 2015</h1>
+                        <h1 class="tab-heading-title">Mua bán</h1>
                     </div>
                 </div>
             </div>
@@ -16,7 +16,7 @@
                  style="background-image: url('stock/stock-02.jpg')">
                 <div class="container">
                     <div class="text-center">
-                        <h1 class="tab-heading-title">Patriotism is good and healthy</h1>
+                        <h1 class="tab-heading-title">Cho thuê</h1>
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                  style="background-image: url('stock/stock-03.jpg')">
                 <div class="container">
                     <div class="text-center">
-                        <h1 class="tab-heading-title">Very impressive</h1>
+                        <h1 class="tab-heading-title">Phương án tài chính</h1>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                  style="background-image: url('stock/stock-04.jpg')">
                 <div class="container">
                     <div class="text-center">
-                        <h1 class="tab-heading-title">The Whitest Army in the World</h1>
+                        <h1 class="tab-heading-title">Môi giới</h1>
                     </div>
                 </div>
             </div>
