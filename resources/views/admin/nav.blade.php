@@ -54,6 +54,12 @@
                 </a>
             </li>
             <li class="nav-item  ">
+                <a href="{{ url('admin/investor/list') }}" class="nav-link nav-toggle">
+                    <i class="fa fa-users"></i>
+                    <span class="title">Quản lý nhà đầu tư</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-home"></i>
                     <span class="title">Quản lý danh sách nhà</span>
