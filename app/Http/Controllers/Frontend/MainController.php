@@ -11,7 +11,7 @@ class MainController extends Controller
     //
     public function index()
     {
-        $features = House::where('is_feature', true)->orderBy('id', 'desc')->take(15)->get();
+        $features = House::where('is_featured', true)->orderBy('id', 'desc')->take(15)->get();
         return view('frontend.index', compact('features'));
     }
 
@@ -48,9 +48,22 @@ class MainController extends Controller
 
     public function getHouseByAttribute(Request $request)
     {
+        $type = $request->input('type');
         $categoryId = $request->input('category_id');
 
-        $items = House::paginate(10);
+        $items = House::query();
+
+        if(!empty($type))
+        {
+            $items = $items->where('type', $type);
+        }
+
+        if(!empty($categoryId))
+        {
+            $items = $items->where('category_id', $categoryId);
+        }
+
+        $items = $items->paginate(10);
 
         return view('frontend.houses', compact('items'));
 

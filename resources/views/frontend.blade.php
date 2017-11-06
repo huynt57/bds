@@ -215,15 +215,15 @@
                             <a href="javascript:void(0);" class="show-submenu">Thuê và cho thuê <i
                                         class="icon-down-open-mini"></i></a>
                             <ul>
-                                <li><a href="all_hotels_list.html">BĐS cho thuê</a></li>
-                                <li><a href="all_hotels_grid.html">Cần thuê</a></li>
+                                <li><a href="{{ url('house/map?type='.\App\Models\House::RENT) }}">BĐS cho thuê</a></li>
+                                <li><a href="{{ url('house/map?type='.\App\Models\House::RENT) }}">Cần thuê</a></li>
                             </ul>
                         </li>
                         <li class="submenu">
                             <a href="javascript:void(0);" class="show-submenu">Mua bán <i
                                         class="icon-down-open-mini"></i></a>
                             <ul>
-                                <li><a href="all_hotels_list.html">BĐS cần bán</a></li>
+                                <li><a href="{{ url('house/map?type='.\App\Models\House::SALE) }}">BĐS cần bán</a></li>
                                 <li><a href="all_hotels_grid.html">Cần mua</a></li>
                             </ul>
                         </li>
