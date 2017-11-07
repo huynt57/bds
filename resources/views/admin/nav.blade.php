@@ -113,7 +113,7 @@
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-newspaper-o"></i>
-                    <span class="title">Quản lý tin tức</span>
+                    <span class="title">Quản lý bài viết</span>
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item  ">

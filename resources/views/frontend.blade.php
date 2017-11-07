@@ -130,9 +130,6 @@
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <a href="#" class="bt_facebook"><i class="icon-facebook"></i>Facebook </a>
                                         </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-6">
-                                            <a href="#" class="bt_paypal"><i class="icon-paypal"></i>Paypal </a>
-                                        </div>
                                     </div>
                                     <div class="login-or">
                                         <hr class="hr-or">
@@ -216,7 +213,7 @@
                                         class="icon-down-open-mini"></i></a>
                             <ul>
                                 <li><a href="{{ url('house/map?type='.\App\Models\House::RENT) }}">BĐS cho thuê</a></li>
-                                <li><a href="{{ url('house/map?type='.\App\Models\House::RENT) }}">Cần thuê</a></li>
+                                <li><a href="{{ url('house/map?type='.\App\Models\House::FOR_RENT) }}">Cần thuê</a></li>
                             </ul>
                         </li>
                         <li class="submenu">
@@ -224,7 +221,7 @@
                                         class="icon-down-open-mini"></i></a>
                             <ul>
                                 <li><a href="{{ url('house/map?type='.\App\Models\House::SALE) }}">BĐS cần bán</a></li>
-                                <li><a href="all_hotels_grid.html">Cần mua</a></li>
+                                <li><a href="{{ url('house/map?type='.\App\Models\House::FOR_SALE) }}">Cần mua</a></li>
                             </ul>
                         </li>
                         <li class="submenu">

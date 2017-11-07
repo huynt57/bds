@@ -13,6 +13,9 @@ class House extends Model
     const RENT = 1;
     const SALE = 0;
 
+    const FOR_RENT = 2;
+    const FOR_SALE = 3;
+
     protected $fillable = [
         'name', 'ward_id',
         'category_id',

@@ -14,7 +14,7 @@ class CreateProjectsTable extends Migration
     public function up()
     {
         //
-        Schema::create('houses', function(Blueprint $table) {
+        Schema::create('projects', function(Blueprint $table) {
 
             $table->increments('id');
             $table->string('name')->nullable();
@@ -53,6 +53,6 @@ class CreateProjectsTable extends Migration
     public function down()
     {
         //
-        Schema::drop('houses');
+        Schema::drop('projects');
     }
 }

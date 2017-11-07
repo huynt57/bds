@@ -676,6 +676,8 @@
     $(document).ready(function() {
         //$('.ckedtior').ckeditor();
 
+        $(".make-switch").bootstrapSwitch();
+
         $('#time_range').change(function() {
 
             var data = $(this).val();

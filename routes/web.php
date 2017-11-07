@@ -30,6 +30,17 @@ Route::group(['prefix' => 'admin'], function () {
         ]);
     });
 
+    Route::group(['prefix' => 'post'], function () {
+        Route::get('create', 'Backend\PostController@create');
+        Route::get('list', 'Backend\PostController@index');
+
+        Route::post('store', 'Backend\PostController@store');
+
+        Route::get('post.data', ['as' => 'post.data',
+            'uses' => 'Backend\PostController@getPostByAttribute'
+        ]);
+    });
+
     Route::group(['prefix' => 'menu'], function () {
         Route::get('/', 'Backend\MenuController@index');
     });

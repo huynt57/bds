@@ -11,7 +11,7 @@ class MainController extends Controller
     //
     public function index()
     {
-        $features = House::where('is_featured', true)->orderBy('id', 'desc')->take(15)->get();
+        $features = House::where('is_feature', true)->orderBy('id', 'desc')->take(15)->get();
         return view('frontend.index', compact('features'));
     }
 
