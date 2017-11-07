@@ -22,20 +22,20 @@ class Functions
     {
         $cnt = \App\Models\Menu::where('parent_id', $menu->id)->get();
 
-        if ($cnt->count() > 0)
+        if ($cnt->count() > 0) {
             echo '<ol class="dd-list">';
 
-        foreach ($cnt as $item) {
+            foreach ($cnt as $item) {
 
-            echo ' <li class="dd-item" data-id="'.$item->id.'">';
-            echo '<div class="dd-handle"> '.$item->title.'</div>';
+                echo ' <li class="dd-item" data-id="' . $item->id . '">';
+                echo '<div class="dd-handle"> ' . $item->title . '</div>';
 
-            self::printMenu($item);
+                self::printMenu($item);
 
-            echo '</li>';
+                echo '</li>';
+            }
+            echo '</ol>';
         }
-        echo '</ol>';
-
 
     }
 

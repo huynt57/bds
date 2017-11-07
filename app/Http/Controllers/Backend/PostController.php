@@ -37,6 +37,8 @@ class PostController extends AdminController
 
     }
 
+
+
     public function getPostByAttribute()
     {
         $posts = Post::select(\DB::raw('posts.*, categories.name as category'))

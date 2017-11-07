@@ -43,6 +43,8 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['prefix' => 'menu'], function () {
         Route::get('/', 'Backend\MenuController@index');
+        Route::post('store', 'Backend\MenuController@store');
+        Route::post('update-state', 'Backend\MenuController@updateState');
     });
 
     Route::group(['prefix' => 'user'], function () {
