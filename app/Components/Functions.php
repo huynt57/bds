@@ -20,7 +20,7 @@ class Functions
 
     public static function printMenu($menu)
     {
-        $cnt = \App\Models\Menu::where('parent_id', $menu->id)->get();
+        $cnt = \App\Models\Menu::where('parent_id', $menu->id)->orderBy('order', 'desc')->get();
 
         if ($cnt->count() > 0) {
             echo '<ol class="dd-list">';
