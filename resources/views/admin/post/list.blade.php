@@ -125,6 +125,7 @@
     }
 
     $(function () {
+        $(".make-switch").bootstrapSwitch();
         table = $('#orders-table').DataTable({
             "bDestroy": true,
             processing: true,

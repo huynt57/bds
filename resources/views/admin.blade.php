@@ -652,6 +652,7 @@
 <script src="/assets/pages/scripts/ui-modals.min.js" type="text/javascript"></script>
 <!-- App scripts -->
 @stack('firebase_scripts')
+@stack('scripts')
 <script>
 
     function strip_and_string(content)
@@ -676,7 +677,7 @@
     $(document).ready(function() {
         //$('.ckedtior').ckeditor();
 
-        $(".make-switch").bootstrapSwitch();
+
 
         $('#time_range').change(function() {
 
@@ -838,7 +839,7 @@
 </script>
 
 
-@stack('scripts')
+
 
 </body>
 

@@ -172,8 +172,17 @@
                             <select class="form-control" name="type">
                                 <option value="">Chọn loại nhà</option>
                                 <option value="{{ \App\Models\House::RENT }}">Cho thuê</option>
+                                <option value="{{ \App\Models\House::FOR_RENT }}">Cần thuê</option>
                                 <option value="{{ \App\Models\House::SALE }}">Bán</option>
+                                <option value="{{ \App\Models\House::FOR_SALE }}">Cần bán</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group dmc0">
+                        <label>Số phòng ngủ</label>
+                        <div>
+                            <input type="number" name="beds" id="beds" class="form-control"
+                                   placeholder="Điền số phòng ngủ" value="{{ old('beds') }}">
                         </div>
                     </div>
                 </div>

@@ -47,8 +47,11 @@ class PostController extends AdminController
             ->editColumn('status', function($post) {
                 return view('admin.post.select', compact('post'))->render();
             })
+            ->editColumn('created_at', function($post) {
+                return $post->created_at->format('d/m/Y H:i');
+            })
             ->editColumn('action', function($post) {
-
+                return '';
             })
             ->make(true);
 

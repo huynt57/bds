@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Menu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -10,8 +11,10 @@ class MenuController extends Controller
     //
     public function index()
     {
-        return view('admin.menu.index');
+        $menus = Menu::where('parent_id', null)->get();
+        return view('admin.menu.index', compact('menus'));
     }
+
 
     public function store(Request $request)
     {
