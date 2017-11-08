@@ -42,15 +42,16 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
                         <ul class="home-search-nav-tabs ht-nav-justified" role="tablist">
-                            <li class="active"><a href="#demoSearchTab01" role="tab" data-toggle="tab">Tab 01</a></li>
-                            <li><a href="#demoSearchTab02" role="tab" data-toggle="tab">Tab 02</a></li>
-                            <li><a href="#demoSearchTab03" role="tab" data-toggle="tab">Tab 03</a></li>
-                            <li><a href="#demoSearchTab04" role="tab" data-toggle="tab">Tab 04</a></li>
+                            <li class="active"><a href="#demoSearchTab01" role="tab" data-toggle="tab">Mua bán</a></li>
+                            <li><a href="#demoSearchTab02" role="tab" data-toggle="tab">Cho thuê</a></li>
+                            <li><a href="#demoSearchTab03" role="tab" data-toggle="tab">Phương án tài chính</a></li>
+                            <li><a href="#demoSearchTab04" role="tab" data-toggle="tab">Môi giới</a></li>
                         </ul>
-                        <form action="#" class="home-search-form">
+                        <form action="{{ url('map') }}" class="home-search-form">
                             <div class="form-group">
                                 <label for="#" class="hidden">Tìm kiếm</label>
-                                <input type="text" class="ht-form-control" placeholder="Điền từ khóa cần tìm kiếm">
+                                <input type="text" class="ht-form-control" placeholder="Điền từ khóa cần tìm kiếm" name="keyword">
+                                <input type="hidden" value="" name="type">
                                 <button class="ht-btn ht-btn-search">Tìm kiếm</button>
                             </div>
                         </form>
@@ -72,205 +73,40 @@
 
         <div class="row slick-items">
 
-            <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.1s">
+            @foreach($features as $feature)
+            <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.{{ $loop->index + 1 }}s">
                 <div class="tour_container">
-                    <div class="ribbon_3 popular"><span>Popular</span>
-                    </div>
+                    {{--<div class="ribbon_3 popular"><span>Popular</span>--}}
+                    {{--</div>--}}
                     <div class="img_container">
-                        <a href="single_tour.html">
-                            <img src="/frontend/img/tour_box_1.jpg" class="img-responsive" alt="Image">
+                        <a href="{{ url('house/view/'.$feature->slug) }}">
+                            <div alt="Image" style="width:360px; height:240px; background-size: cover; background-image: url('{{ $feature->main_images }}');"></div>
                             <div class="short_info">
-                                <i class="icon_set_1_icon-44"></i>Historic Buildings<span
+                                <i class="icon_set_1_icon-44"></i>{{ $feature->name }}<span
                                         class="price"><sup>$</sup>39</span>
                             </div>
                         </a>
                     </div>
                     <div class="tour_title">
-                        <h3><strong>Arc Triomphe</strong> tour</h3>
-                        <div class="rating">
-                            <i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star-empty"></i>
-                            <small>(75)</small>
-                        </div>
+                        <h3><strong>{{ $feature->name }}</strong></h3>
+                        {{--<div class="rating">--}}
+                            {{--<i class="icon-star voted"></i><i class="icon-star voted"></i><i--}}
+                                    {{--class="icon-star voted"></i><i class="icon-star voted"></i><i--}}
+                                    {{--class="icon-star-empty"></i>--}}
+                            {{--<small>(75)</small>--}}
+                        {{--</div>--}}
                         <!-- end rating -->
                         <div class="wishlist">
                             <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
                                         class="tooltip-content-flip"><span
-                                            class="tooltip-back">Add to wishlist</span></span></a>
+                                            class="tooltip-back">Thêm vào mục yêu thích</span></span></a>
                         </div>
                         <!-- End wish list-->
                     </div>
                 </div>
                 <!-- End box tour -->
             </div>
-            <!-- End col-md-4 -->
-
-            <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.2s">
-                <div class="tour_container">
-                    <div class="ribbon_3 popular"><span>Popular</span>
-                    </div>
-                    <div class="img_container">
-                        <a href="single_tour.html">
-                            <img src="/frontend/img/tour_box_2.jpg" width="800" height="533" class="img-responsive" alt="Image">
-                            <div class="short_info">
-                                <i class="icon_set_1_icon-43"></i>Churches<span class="price"><sup>$</sup>45</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="tour_title">
-                        <h3><strong>Notredame</strong> tour</h3>
-                        <div class="rating">
-                            <i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star-empty"></i>
-                            <small>(75)</small>
-                        </div>
-                        <!-- end rating -->
-                        <div class="wishlist">
-                            <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
-                                        class="tooltip-content-flip"><span
-                                            class="tooltip-back">Add to wishlist</span></span></a>
-                        </div>
-                        <!-- End wish list-->
-                    </div>
-                </div>
-                <!-- End box tour -->
-            </div>
-            <!-- End col-md-4 -->
-
-            <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.3s">
-                <div class="tour_container">
-                    <div class="ribbon_3 popular"><span>Popular</span>
-                    </div>
-                    <div class="img_container">
-                        <a href="single_tour.html">
-                            <img src="/frontend/img/tour_box_3.jpg" width="800" height="533" class="img-responsive" alt="Image">
-                            <div class="short_info">
-                                <i class="icon_set_1_icon-44"></i>Historic Buildings<span
-                                        class="price"><sup>$</sup>48</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="tour_title">
-                        <h3><strong>Versailles</strong> tour</h3>
-                        <div class="rating">
-                            <i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star-empty"></i>
-                            <small>(75)</small>
-                        </div>
-                        <!-- end rating -->
-                        <div class="wishlist">
-                            <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
-                                        class="tooltip-content-flip"><span
-                                            class="tooltip-back">Add to wishlist</span></span></a>
-                        </div>
-                        <!-- End wish list-->
-                    </div>
-                </div>
-                <!-- End box tour -->
-            </div>
-
-            <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.4s">
-                <div class="tour_container">
-                    <div class="ribbon_3 popular"><span>Popular</span>
-                    </div>
-                    <div class="img_container">
-                        <a href="single_tour.html">
-                            <img src="/frontend/img/tour_box_1.jpg" class="img-responsive" alt="Image">
-                            <div class="short_info">
-                                <i class="icon_set_1_icon-44"></i>Historic Buildings<span
-                                        class="price"><sup>$</sup>39</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="tour_title">
-                        <h3><strong>Arc Triomphe</strong> tour</h3>
-                        <div class="rating">
-                            <i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star-empty"></i>
-                            <small>(75)</small>
-                        </div>
-                        <!-- end rating -->
-                        <div class="wishlist">
-                            <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
-                                        class="tooltip-content-flip"><span
-                                            class="tooltip-back">Add to wishlist</span></span></a>
-                        </div>
-                        <!-- End wish list-->
-                    </div>
-                </div>
-                <!-- End box tour -->
-            </div>
-            <!-- End col-md-4 -->
-
-            <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.5s">
-                <div class="tour_container">
-                    <div class="ribbon_3 popular"><span>Popular</span>
-                    </div>
-                    <div class="img_container">
-                        <a href="single_tour.html">
-                            <img src="/frontend/img/tour_box_2.jpg" width="800" height="533" class="img-responsive" alt="Image">
-                            <div class="short_info">
-                                <i class="icon_set_1_icon-43"></i>Churches<span class="price"><sup>$</sup>45</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="tour_title">
-                        <h3><strong>Notredame</strong> tour</h3>
-                        <div class="rating">
-                            <i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star-empty"></i>
-                            <small>(75)</small>
-                        </div>
-                        <!-- end rating -->
-                        <div class="wishlist">
-                            <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
-                                        class="tooltip-content-flip"><span
-                                            class="tooltip-back">Add to wishlist</span></span></a>
-                        </div>
-                        <!-- End wish list-->
-                    </div>
-                </div>
-                <!-- End box tour -->
-            </div>
-            <!-- End col-md-4 -->
-
-            <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.6s">
-                <div class="tour_container">
-                    <div class="ribbon_3 popular"><span>Popular</span>
-                    </div>
-                    <div class="img_container">
-                        <a href="single_tour.html">
-                            <img src="/frontend/img/tour_box_3.jpg" width="800" height="533" class="img-responsive" alt="Image">
-                            <div class="short_info">
-                                <i class="icon_set_1_icon-44"></i>Historic Buildings<span
-                                        class="price"><sup>$</sup>48</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="tour_title">
-                        <h3><strong>Versailles</strong> tour</h3>
-                        <div class="rating">
-                            <i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star-empty"></i>
-                            <small>(75)</small>
-                        </div>
-                        <!-- end rating -->
-                        <div class="wishlist">
-                            <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
-                                        class="tooltip-content-flip"><span
-                                            class="tooltip-back">Add to wishlist</span></span></a>
-                        </div>
-                        <!-- End wish list-->
-                    </div>
-                </div>
-                <!-- End box tour -->
-            </div>
+            @endforeach
             <!-- End col-md-4 -->
         </div>
         <!-- End row -->
@@ -289,205 +125,40 @@
 
         <div class="row slick-items">
 
-            <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.1s">
-                <div class="tour_container">
-                    <div class="ribbon_3 popular"><span>Popular</span>
-                    </div>
-                    <div class="img_container">
-                        <a href="single_tour.html">
-                            <img src="/frontend/img/tour_box_1.jpg" class="img-responsive" alt="Image">
-                            <div class="short_info">
-                                <i class="icon_set_1_icon-44"></i>Historic Buildings<span
-                                        class="price"><sup>$</sup>39</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="tour_title">
-                        <h3><strong>Arc Triomphe</strong> tour</h3>
-                        <div class="rating">
-                            <i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star-empty"></i>
-                            <small>(75)</small>
+            @foreach($sells as $sell)
+                <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.{{ $loop->index + 1 }}s">
+                    <div class="tour_container">
+                        {{--<div class="ribbon_3 popular"><span>Popular</span>--}}
+                        {{--</div>--}}
+                        <div class="img_container">
+                            <a href="{{ url('house/view/'.$sell->slug) }}">
+                                <div alt="Image" style="width:360px; height:240px; background-size: cover; background-image: url('{{ $sell->main_images }}');"></div>
+                                <div class="short_info">
+                                    <i class="icon_set_1_icon-44"></i>{{ $sell->name }}<span
+                                            class="price"><sup>$</sup>39</span>
+                                </div>
+                            </a>
                         </div>
+                        <div class="tour_title">
+                            <h3><strong>{{ $sell->name }}</strong></h3>
+                        {{--<div class="rating">--}}
+                        {{--<i class="icon-star voted"></i><i class="icon-star voted"></i><i--}}
+                        {{--class="icon-star voted"></i><i class="icon-star voted"></i><i--}}
+                        {{--class="icon-star-empty"></i>--}}
+                        {{--<small>(75)</small>--}}
+                        {{--</div>--}}
                         <!-- end rating -->
-                        <div class="wishlist">
-                            <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
-                                        class="tooltip-content-flip"><span
-                                            class="tooltip-back">Add to wishlist</span></span></a>
-                        </div>
-                        <!-- End wish list-->
-                    </div>
-                </div>
-                <!-- End box tour -->
-            </div>
-            <!-- End col-md-4 -->
-
-            <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.2s">
-                <div class="tour_container">
-                    <div class="ribbon_3 popular"><span>Popular</span>
-                    </div>
-                    <div class="img_container">
-                        <a href="single_tour.html">
-                            <img src="/frontend/img/tour_box_2.jpg" width="800" height="533" class="img-responsive" alt="Image">
-                            <div class="short_info">
-                                <i class="icon_set_1_icon-43"></i>Churches<span class="price"><sup>$</sup>45</span>
+                            <div class="wishlist">
+                                <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
+                                            class="tooltip-content-flip"><span
+                                                class="tooltip-back">Thêm vào mục yêu thích</span></span></a>
                             </div>
-                        </a>
-                    </div>
-                    <div class="tour_title">
-                        <h3><strong>Notredame</strong> tour</h3>
-                        <div class="rating">
-                            <i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star-empty"></i>
-                            <small>(75)</small>
+                            <!-- End wish list-->
                         </div>
-                        <!-- end rating -->
-                        <div class="wishlist">
-                            <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
-                                        class="tooltip-content-flip"><span
-                                            class="tooltip-back">Add to wishlist</span></span></a>
-                        </div>
-                        <!-- End wish list-->
                     </div>
+                    <!-- End box tour -->
                 </div>
-                <!-- End box tour -->
-            </div>
-            <!-- End col-md-4 -->
-
-            <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.3s">
-                <div class="tour_container">
-                    <div class="ribbon_3 popular"><span>Popular</span>
-                    </div>
-                    <div class="img_container">
-                        <a href="single_tour.html">
-                            <img src="/frontend/img/tour_box_3.jpg" width="800" height="533" class="img-responsive" alt="Image">
-                            <div class="short_info">
-                                <i class="icon_set_1_icon-44"></i>Historic Buildings<span
-                                        class="price"><sup>$</sup>48</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="tour_title">
-                        <h3><strong>Versailles</strong> tour</h3>
-                        <div class="rating">
-                            <i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star-empty"></i>
-                            <small>(75)</small>
-                        </div>
-                        <!-- end rating -->
-                        <div class="wishlist">
-                            <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
-                                        class="tooltip-content-flip"><span
-                                            class="tooltip-back">Add to wishlist</span></span></a>
-                        </div>
-                        <!-- End wish list-->
-                    </div>
-                </div>
-                <!-- End box tour -->
-            </div>
-
-            <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.1s">
-                <div class="tour_container">
-                    <div class="ribbon_3 popular"><span>Popular</span>
-                    </div>
-                    <div class="img_container">
-                        <a href="single_tour.html">
-                            <img src="/frontend/img/tour_box_1.jpg" class="img-responsive" alt="Image">
-                            <div class="short_info">
-                                <i class="icon_set_1_icon-44"></i>Historic Buildings<span
-                                        class="price"><sup>$</sup>39</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="tour_title">
-                        <h3><strong>Arc Triomphe</strong> tour</h3>
-                        <div class="rating">
-                            <i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star-empty"></i>
-                            <small>(75)</small>
-                        </div>
-                        <!-- end rating -->
-                        <div class="wishlist">
-                            <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
-                                        class="tooltip-content-flip"><span
-                                            class="tooltip-back">Add to wishlist</span></span></a>
-                        </div>
-                        <!-- End wish list-->
-                    </div>
-                </div>
-                <!-- End box tour -->
-            </div>
-            <!-- End col-md-4 -->
-
-            <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.2s">
-                <div class="tour_container">
-                    <div class="ribbon_3 popular"><span>Popular</span>
-                    </div>
-                    <div class="img_container">
-                        <a href="single_tour.html">
-                            <img src="/frontend/img/tour_box_2.jpg" width="800" height="533" class="img-responsive" alt="Image">
-                            <div class="short_info">
-                                <i class="icon_set_1_icon-43"></i>Churches<span class="price"><sup>$</sup>45</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="tour_title">
-                        <h3><strong>Notredame</strong> tour</h3>
-                        <div class="rating">
-                            <i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star-empty"></i>
-                            <small>(75)</small>
-                        </div>
-                        <!-- end rating -->
-                        <div class="wishlist">
-                            <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
-                                        class="tooltip-content-flip"><span
-                                            class="tooltip-back">Add to wishlist</span></span></a>
-                        </div>
-                        <!-- End wish list-->
-                    </div>
-                </div>
-                <!-- End box tour -->
-            </div>
-            <!-- End col-md-4 -->
-
-            <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.3s">
-                <div class="tour_container">
-                    <div class="ribbon_3 popular"><span>Popular</span>
-                    </div>
-                    <div class="img_container">
-                        <a href="single_tour.html">
-                            <img src="/frontend/img/tour_box_3.jpg" width="800" height="533" class="img-responsive" alt="Image">
-                            <div class="short_info">
-                                <i class="icon_set_1_icon-44"></i>Historic Buildings<span
-                                        class="price"><sup>$</sup>48</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="tour_title">
-                        <h3><strong>Versailles</strong> tour</h3>
-                        <div class="rating">
-                            <i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star-empty"></i>
-                            <small>(75)</small>
-                        </div>
-                        <!-- end rating -->
-                        <div class="wishlist">
-                            <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
-                                        class="tooltip-content-flip"><span
-                                            class="tooltip-back">Add to wishlist</span></span></a>
-                        </div>
-                        <!-- End wish list-->
-                    </div>
-                </div>
-                <!-- End box tour -->
-            </div>
+        @endforeach
             <!-- End col-md-4 -->
         </div>
         <!-- End row -->
@@ -506,205 +177,40 @@
 
         <div class="row slick-items">
 
-            <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.1s">
-                <div class="tour_container">
-                    <div class="ribbon_3 popular"><span>Popular</span>
-                    </div>
-                    <div class="img_container">
-                        <a href="single_tour.html">
-                            <img src="/frontend/img/tour_box_1.jpg" class="img-responsive" alt="Image">
-                            <div class="short_info">
-                                <i class="icon_set_1_icon-44"></i>Historic Buildings<span
-                                        class="price"><sup>$</sup>39</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="tour_title">
-                        <h3><strong>Arc Triomphe</strong> tour</h3>
-                        <div class="rating">
-                            <i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star-empty"></i>
-                            <small>(75)</small>
+            @foreach($rents as $rent)
+                <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.{{ $loop->index + 1 }}s">
+                    <div class="tour_container">
+                        {{--<div class="ribbon_3 popular"><span>Popular</span>--}}
+                        {{--</div>--}}
+                        <div class="img_container">
+                            <a href="{{ url('house/view/'.$rent->slug) }}">
+                                <div alt="Image" style="width:360px; height:240px; background-size: cover; background-image: url('{{ $rent->main_images }}');"></div>
+                                <div class="short_info">
+                                    <i class="icon_set_1_icon-44"></i>{{ $rent->name }}<span
+                                            class="price"><sup>$</sup>39</span>
+                                </div>
+                            </a>
                         </div>
+                        <div class="tour_title">
+                            <h3><strong>{{ $rent->name }}</strong></h3>
+                        {{--<div class="rating">--}}
+                        {{--<i class="icon-star voted"></i><i class="icon-star voted"></i><i--}}
+                        {{--class="icon-star voted"></i><i class="icon-star voted"></i><i--}}
+                        {{--class="icon-star-empty"></i>--}}
+                        {{--<small>(75)</small>--}}
+                        {{--</div>--}}
                         <!-- end rating -->
-                        <div class="wishlist">
-                            <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
-                                        class="tooltip-content-flip"><span
-                                            class="tooltip-back">Add to wishlist</span></span></a>
-                        </div>
-                        <!-- End wish list-->
-                    </div>
-                </div>
-                <!-- End box tour -->
-            </div>
-            <!-- End col-md-4 -->
-
-            <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.2s">
-                <div class="tour_container">
-                    <div class="ribbon_3 popular"><span>Popular</span>
-                    </div>
-                    <div class="img_container">
-                        <a href="single_tour.html">
-                            <img src="/frontend/img/tour_box_2.jpg" width="800" height="533" class="img-responsive" alt="Image">
-                            <div class="short_info">
-                                <i class="icon_set_1_icon-43"></i>Churches<span class="price"><sup>$</sup>45</span>
+                            <div class="wishlist">
+                                <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
+                                            class="tooltip-content-flip"><span
+                                                class="tooltip-back">Thêm vào mục yêu thích</span></span></a>
                             </div>
-                        </a>
-                    </div>
-                    <div class="tour_title">
-                        <h3><strong>Notredame</strong> tour</h3>
-                        <div class="rating">
-                            <i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star-empty"></i>
-                            <small>(75)</small>
+                            <!-- End wish list-->
                         </div>
-                        <!-- end rating -->
-                        <div class="wishlist">
-                            <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
-                                        class="tooltip-content-flip"><span
-                                            class="tooltip-back">Add to wishlist</span></span></a>
-                        </div>
-                        <!-- End wish list-->
                     </div>
+                    <!-- End box tour -->
                 </div>
-                <!-- End box tour -->
-            </div>
-            <!-- End col-md-4 -->
-
-            <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.6s">
-                <div class="tour_container">
-                    <div class="ribbon_3"><span>Top rated</span>
-                    </div>
-                    <div class="img_container">
-                        <a href="single_tour.html">
-                            <img src="/frontend/img/tour_box_5.jpg" width="800" height="533" class="img-responsive" alt="Image">
-                            <div class="short_info">
-                                <i class="icon_set_1_icon-44"></i>Historic Buildings<span
-                                        class="price"><sup>$</sup>40</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="tour_title">
-                        <h3><strong>Pantheon</strong> tour</h3>
-                        <div class="rating">
-                            <i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star-empty"></i>
-                            <small>(75)</small>
-                        </div>
-                        <!-- end rating -->
-                        <div class="wishlist">
-                            <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
-                                        class="tooltip-content-flip"><span
-                                            class="tooltip-back">Add to wishlist</span></span></a>
-                        </div>
-                        <!-- End wish list-->
-                    </div>
-                </div>
-                <!-- End box tour -->
-            </div>
-            <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.1s">
-                <div class="tour_container">
-                    <div class="ribbon_3 popular"><span>Popular</span>
-                    </div>
-                    <div class="img_container">
-                        <a href="single_tour.html">
-                            <img src="/frontend/img/tour_box_1.jpg" class="img-responsive" alt="Image">
-                            <div class="short_info">
-                                <i class="icon_set_1_icon-44"></i>Historic Buildings<span
-                                        class="price"><sup>$</sup>39</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="tour_title">
-                        <h3><strong>Arc Triomphe</strong> tour</h3>
-                        <div class="rating">
-                            <i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star-empty"></i>
-                            <small>(75)</small>
-                        </div>
-                        <!-- end rating -->
-                        <div class="wishlist">
-                            <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
-                                        class="tooltip-content-flip"><span
-                                            class="tooltip-back">Add to wishlist</span></span></a>
-                        </div>
-                        <!-- End wish list-->
-                    </div>
-                </div>
-                <!-- End box tour -->
-            </div>
-            <!-- End col-md-4 -->
-
-            <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.2s">
-                <div class="tour_container">
-                    <div class="ribbon_3 popular"><span>Popular</span>
-                    </div>
-                    <div class="img_container">
-                        <a href="single_tour.html">
-                            <img src="/frontend/img/tour_box_2.jpg" width="800" height="533" class="img-responsive" alt="Image">
-                            <div class="short_info">
-                                <i class="icon_set_1_icon-43"></i>Churches<span class="price"><sup>$</sup>45</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="tour_title">
-                        <h3><strong>Notredame</strong> tour</h3>
-                        <div class="rating">
-                            <i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star-empty"></i>
-                            <small>(75)</small>
-                        </div>
-                        <!-- end rating -->
-                        <div class="wishlist">
-                            <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
-                                        class="tooltip-content-flip"><span
-                                            class="tooltip-back">Add to wishlist</span></span></a>
-                        </div>
-                        <!-- End wish list-->
-                    </div>
-                </div>
-                <!-- End box tour -->
-            </div>
-            <!-- End col-md-4 -->
-
-            <div class="col-md-4 col-sm-6 wow zoomIn" data-wow-delay="0.6s">
-                <div class="tour_container">
-                    <div class="ribbon_3"><span>Top rated</span>
-                    </div>
-                    <div class="img_container">
-                        <a href="single_tour.html">
-                            <img src="/frontend/img/tour_box_5.jpg" width="800" height="533" class="img-responsive" alt="Image">
-                            <div class="short_info">
-                                <i class="icon_set_1_icon-44"></i>Historic Buildings<span
-                                        class="price"><sup>$</sup>40</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="tour_title">
-                        <h3><strong>Pantheon</strong> tour</h3>
-                        <div class="rating">
-                            <i class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star voted"></i><i class="icon-star voted"></i><i
-                                    class="icon-star-empty"></i>
-                            <small>(75)</small>
-                        </div>
-                        <!-- end rating -->
-                        <div class="wishlist">
-                            <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span
-                                        class="tooltip-content-flip"><span
-                                            class="tooltip-back">Add to wishlist</span></span></a>
-                        </div>
-                        <!-- End wish list-->
-                    </div>
-                </div>
-                <!-- End box tour -->
-            </div>
-            <!-- End col-md-4 -->
+            @endforeach
 
 
         </div>

@@ -12,7 +12,9 @@ class MainController extends Controller
     public function index()
     {
         $features = House::where('is_feature', true)->orderBy('id', 'desc')->take(15)->get();
-        return view('frontend.index', compact('features'));
+        $sells = House::whereIn('type', [House::SALE, House::FOR_SALE])->orderBy('id', 'desc')->take(15)->get();
+        $rents = House::whereIn('type', [House::RENT, House::FOR_RENT])->orderBy('id', 'desc')->take(15)->get();
+        return view('frontend.index', compact('features', 'sells', 'rents'));
     }
 
     public function getHouseMarker()
@@ -50,12 +52,21 @@ class MainController extends Controller
     {
         $type = $request->input('type');
         $categoryId = $request->input('category_id');
+        $keyword = $request->input('keyword');
 
         $items = House::query();
 
         if(!empty($type))
         {
             $items = $items->where('type', $type);
+        }
+
+        if(!empty(trim($keyword)))
+        {
+            $items->where(function($query) use ($keyword) {
+                $query->where('name', 'LIKE', '%'.$keyword.'%');
+                $query->orWhere('address', 'LIKE', '%'.$keyword.'%');
+            });
         }
 
         if(!empty($categoryId))
