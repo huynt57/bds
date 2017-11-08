@@ -63,6 +63,11 @@ class UserController extends AdminController
         return view('admin.user.create');
     }
 
+    public function edit(Request $request)
+    {
+        return view('admin.user.edit');
+    }
+
     public function store(CreateUserRequest $request)
     {
         $data = $request->all();
@@ -97,13 +102,20 @@ class UserController extends AdminController
         return redirect()->back()->with('success', 'Thêm người dùng thành công');
     }
 
-    public function edit($id)
+    public function update($id, Request $request)
     {
         $user = User::find($id);
 
-        if(!$user)
-        {
+        if (!$user) {
             return redirect()->back()->with('error', 'Dữ liệu không hợp lệ');
         }
+
+        if ($request->file('image') && $request->file('image')->isValid()) {
+            $data['image'] = $this->saveImage($request->file('image'), $user->image);
+        }
+
+        $user->update($data);
+
+        return redirect()->back()->with('success', 'Cập nhật người dùng thành công');
     }
 }

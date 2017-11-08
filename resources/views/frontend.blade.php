@@ -187,7 +187,7 @@
                                         <li><a href="index_20.html">Giới thiệu chung về Viethouse24</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="index_12.html">Các môi giới viên</a>
+                                <li><a href="/agents">Các môi giới viên</a>
 
                                 </li>
                             </ul>

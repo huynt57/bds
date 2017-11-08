@@ -49,6 +49,11 @@ class Post extends Model
 
     }
 
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category');
+    }
+
     public function scopePublish($query)
     {
         $query->where('status', true);

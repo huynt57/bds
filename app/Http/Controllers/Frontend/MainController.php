@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\House;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,6 +17,25 @@ class MainController extends Controller
         $sells = House::whereIn('type', [House::SALE, House::FOR_SALE])->orderBy('id', 'desc')->take(15)->get();
         $rents = House::whereIn('type', [House::RENT, House::FOR_RENT])->orderBy('id', 'desc')->take(15)->get();
         return view('frontend.index', compact('features', 'sells', 'rents'));
+    }
+
+    public function getAgents()
+    {
+        $agents = User::where('type', User::AGENT)->paginate(10);
+
+        return view('frontend.agents', compact('agents'));
+    }
+
+    public function getPostBySlug($slug, $id)
+    {
+        $post = Post::publish()->find($id);
+
+        if(!$post)
+        {
+            return redirect()->back()->with('error', 'Dữ liệu không hợp lệ');
+        }
+
+        return view('frontend.post', compact('post'));
     }
 
     public function getHouseMarker()

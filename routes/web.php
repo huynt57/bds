@@ -14,6 +14,10 @@
 Route::get('/', 'Frontend\MainController@index');
 Route::get('map', 'Frontend\MainController@getHouseByAttribute');
 Route::get('get-house-marker', 'Frontend\MainController@getHouseMarker');
+Route::get('agents', 'Frontend\MainController@getAgents');
+
+Route::get('post/{slug}-{id}', 'Frontend\MainController@getPostBySlug')
+    ->where(['slug' => '[a-zA-Z0-9-]+', 'id' => '[0-9-]+']);
 
 Route::group(['prefix' => 'admin'], function () {
 
