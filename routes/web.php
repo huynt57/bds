@@ -49,7 +49,8 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['prefix' => 'user'], function () {
         Route::get('list', 'Backend\UserController@index');
-
+        Route::get('create', 'Backend\UserController@create');
+        Route::post('store', 'Backend\UserController@store');
         Route::get('user.data', ['as' => 'user.data',
             'uses' => 'Backend\UserController@getUserByAttribute'
         ]);

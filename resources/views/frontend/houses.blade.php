@@ -37,7 +37,7 @@
                                             <a class="tooltip_flip tooltip-effect-1" href="#">+<span
                                                         class="tooltip-content-flip"><span class="tooltip-back">Thêm vào yêu thích</span></span></a>
                                         </div><!-- End wish list-->
-                                        <div onclick="onHtmlClick('Historic', 0)" class="view_on_map">Xem trên bản đồ</div>
+                                        <div onclick="onHtmlClick('Historic', '{{ $loop->index }}')" class="view_on_map">Xem trên bản đồ</div>
                                     </div>
                                 </div><!-- End box tour -->
                             </div><!-- End col-md-6 -->

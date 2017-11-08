@@ -172,7 +172,7 @@
                             google.maps.event.addListener(marker, 'click', (function () {
                                 closeInfoBox();
                                 getInfoBox(item).open(mapObject, this);
-                                mapObject.setCenter(new google.maps.LatLng(item.location_latitude, item.location_longitude));
+                                mapObject.panTo(new google.maps.LatLng(item.location_latitude, item.location_longitude));
                             }));
 
 

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
 
-class UserController extends Controller
+class UserController extends AdminController
 {
     //
     public function index()
@@ -18,18 +19,91 @@ class UserController extends Controller
     public function getUserByAttribute(Request $request)
     {
         $users = User::query();
-        return Datatables::of($users)->make(true);
+        return Datatables::of($users)
+            ->editColumn('type', function ($user) {
+                return $user->type_text;
+            })
+            ->editColumn('status', function ($user) {
+                return $user->status;
+            })
+            ->addColumn('action', function ($user) {
+
+                return '<button class="btn btn-sm yellow btn-outline "> Xem</button>' .
+                    '<button class="btn btn-sm green btn-outline "> Sửa</button>' .
+                    '<button class="btn btn-sm red btn-outline "> Xóa</button>';
+            })
+            ->make(true);
     }
 
-    public function store(Request $request)
+    public function updateStatusUser($id, Request $request)
     {
-        $data = $request->all();
+        $user = User::find($id);
 
-        User::create($data);
+        if (!$user) {
+            return response([
+                'status' => 0,
+                'message' => 'Dữ liệu không hợp lệ'
+            ]);
+        }
+        $status = $request->input('status');
+
+        $user->update([
+            'status' => $status
+        ]);
 
         return response([
             'status' => 1,
-            'message' => 'Success'
+            'message' => 'Thành công'
         ]);
+
+    }
+
+    public function create(Request $request)
+    {
+        return view('admin.user.create');
+    }
+
+    public function store(CreateUserRequest $request)
+    {
+        $data = $request->all();
+
+        if ($request->file('image') && $request->file('image')->isValid()) {
+            $data['image'] = $this->saveImage($request->file('image'));
+        }
+
+        if ($data['password'] != $data['retype_password']) {
+            return redirect()->back()->with('success', 'Mật khẩu nhập lại không khớp');
+        }
+
+        $data['password'] = \Hash::make($data['password']);
+
+        if (empty(trim($data['type']))) {
+            $data['type'] = User::AGENT;
+        }
+
+        if (!isset($data['status'])) {
+            $data['status'] = User::ACTIVE;
+        }
+
+        User::create($data);
+
+        if ($request->ajax()) {
+            return response([
+                'status' => 1,
+                'message' => 'Success'
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Thêm người dùng thành công');
+    }
+
+    public function edit($id)
+    {
+        $user = User::find($id);
+
+        if(!$user)
+        {
+            return redirect()->back()->with('error', 'Dữ liệu không hợp lệ');
+        }
     }
 }

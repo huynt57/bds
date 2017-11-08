@@ -48,10 +48,26 @@
                 </a>
             </li>
             <li class="nav-item  ">
-                <a href="{{ url('admin/user/list') }}" class="nav-link nav-toggle">
+                <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-users"></i>
                     <span class="title">Quản lý người dùng</span>
+                    <span class="arrow"></span>
                 </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="{{ url('admin/user/list') }}" class="nav-link ">
+                            <span class="title">Danh sách</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item  ">
+                        <a href="{{ url('admin/user/create') }}" class="nav-link ">
+                            <span class="title">Thêm mới</span>
+                        </a>
+                    </li>
+
+
+                </ul>
             </li>
             <li class="nav-item  ">
                 <a href="{{ url('admin/investor/list') }}" class="nav-link nav-toggle">
@@ -63,6 +79,7 @@
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-home"></i>
                     <span class="title">Quản lý danh sách nhà</span>
+                    <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item  ">
@@ -83,6 +100,7 @@
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-cogs"></i>
                     <span class="title">Quản lý cài đặt</span>
+                    <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item  ">
@@ -114,6 +132,7 @@
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-newspaper-o"></i>
                     <span class="title">Quản lý bài viết</span>
+                    <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item  ">

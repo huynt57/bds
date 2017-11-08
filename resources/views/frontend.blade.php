@@ -95,7 +95,7 @@
 <body>
 
 <!--[if lte IE 8]>
-<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+<p class="chromeframe"Bạn đang sử dụng <strong>trình duyệt lỗi thời</strong>. Vui lòng <a href="http://browsehappy.com/">nâng cấp
     your browser</a>.</p>
 <![endif]-->
 
@@ -212,16 +212,16 @@
                             <a href="javascript:void(0);" class="show-submenu">Thuê và cho thuê <i
                                         class="icon-down-open-mini"></i></a>
                             <ul>
-                                <li><a href="{{ url('house/map?type='.\App\Models\House::RENT) }}">BĐS cho thuê</a></li>
-                                <li><a href="{{ url('house/map?type='.\App\Models\House::FOR_RENT) }}">Cần thuê</a></li>
+                                <li><a href="{{ url('map?type='.\App\Models\House::RENT) }}">BĐS cho thuê</a></li>
+                                <li><a href="{{ url('map?type='.\App\Models\House::FOR_RENT) }}">Cần thuê</a></li>
                             </ul>
                         </li>
                         <li class="submenu">
                             <a href="javascript:void(0);" class="show-submenu">Mua bán <i
                                         class="icon-down-open-mini"></i></a>
                             <ul>
-                                <li><a href="{{ url('house/map?type='.\App\Models\House::SALE) }}">BĐS cần bán</a></li>
-                                <li><a href="{{ url('house/map?type='.\App\Models\House::FOR_SALE) }}">Cần mua</a></li>
+                                <li><a href="{{ url('map?type='.\App\Models\House::SALE) }}">BĐS cần bán</a></li>
+                                <li><a href="{{ url('map?type='.\App\Models\House::FOR_SALE) }}">Cần mua</a></li>
                             </ul>
                         </li>
                         <li class="submenu">

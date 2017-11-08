@@ -53,7 +53,7 @@
 
     <div class="row">
         <div class="col-md-12" style="margin-bottom: 12px">
-            <a href="{{ url('admin/add-post') }}?type={{ request()->input('type') }}" class="btn btn-success">Thêm</a>
+            <a href="{{ url('admin/user/create') }}" class="btn btn-success">Thêm</a>
         </div>
         <div class="col-md-12">
             <table class="table table-striped table-bordered table-hover" id="orders-table">
@@ -66,6 +66,7 @@
                     <th>SĐT</th>
                     {{--<th>Miêu tả</th>--}}
                     <th>Loại</th>
+                    <th>Trạng thái</th>
                     <th>Hành động</th>
                 </tr>
                 </thead>
@@ -113,6 +114,7 @@
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'type', name: 'type'},
+                {data: 'status', name: 'status'},
                 {data: 'action', name: 'action'},
             ]
         });
@@ -139,6 +141,7 @@
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'type', name: 'type'},
+                {data: 'status', name: 'status'},
                 {data: 'action', name: 'action'},
             ]
         });
