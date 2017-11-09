@@ -378,8 +378,6 @@
 
 <script type="text/javascript" src="http://map.fitme.vn/js/gmaps.js"></script>
 <script type="text/javascript" src="http://map.fitme.vn/js/prettify.js"></script>
-<script type="text/javascript" src="http://map.fitme.vn/js/gmaps.overlays.min.js"></script>
-<script type="text/javascript" src="http://map.fitme.vn/js/maplabel-compiled.js"></script>
 
 
 <script src="/frontend/js/map_listing_tours.js"></script>

@@ -155,4 +155,38 @@ class MainController extends Controller
         return redirect()->back()->with('success', 'Cám ơn bạn đã liên hệ, chúng tôi sẽ thông tin sớm nhất có thể');
     }
 
+
+    public function getSchoolNearBy(Request $request)
+    {
+        $lat = $request->input('lat');
+        $lng = $request->input('lng');
+
+        $url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' . $lat . ',' . $lng .
+            '&radius=5000&type=school&key=AIzaSyC5_oqCsJvZdLWEadt934vSKipvwhIDFNY';
+        $json = file_get_contents($url);
+
+        $data = json_decode($json, true);
+
+        $results = $data['results'];
+
+        $returnArr = [];
+
+        foreach ($results as $result) {
+
+            $lat = $result['geometry']['location']['lat'];
+            $lng = $result['geometry']['location']['lng'];
+
+            $itemArr = ['lat' => $lat, 'lng' => $lng];
+
+            $returnArr[] = $itemArr;
+
+        }
+
+        return response([
+            'status' => 1,
+            'data' => $returnArr
+        ]);
+
+    }
+
 }

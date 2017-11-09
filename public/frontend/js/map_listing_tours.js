@@ -35,6 +35,8 @@ var mapOptions = {
 
 
 var marker;
+var center_lat;
+var center_lng;
 //mapObject = new google.maps.Map(document.getElementById('map'), mapOptions);
 
 var map = new GMaps({
@@ -43,20 +45,72 @@ var map = new GMaps({
     lng: -77.028333
 });
 
+var marker_schools = [];
+
+var myPlace = {lat: 25.276987, lng: 55.296249};
 map.addControl({
     position: 'right_center',
-    content: 'Danh sách trường học',
+    content: 'Xem trường học',
+    id: 'school_map',
+    type: 'get',
     style: {
-        margin_top: '100px',
+        margin_top: '50px',
         height: '50px',
         width: '50px',
         padding: '1px 6px',
         border: 'solid 1px #717B87',
-        background: '#fff'
+        background: '#fff',
+
     },
     events: {
+
         click: function () {
-            console.log(this);
+
+            var type =  $(this).attr('type');
+
+            if(type == 'get') {
+                $.ajax({
+                    url: '/school',
+                    data: {
+                        lat: center_lat,
+                        lng: center_lng,
+
+                    },
+                    dataType: 'json',
+                    success: function (response) {
+                        var data = response.data;
+
+                        $('#school_map').html('Ẩn trường học').attr('type', 'remove');
+
+                        $.each(data, function (i, item) {
+
+
+                            var marker = map.addMarker({
+                                lat: item.lat,
+                                lng: item.lng,
+                                icon: 'img/pins/' + 'Walking' + '.png',
+                                click: function (e) {
+                                    closeInfoBox();
+                                    getInfoBox(item).open(map, this);
+                                    //  map.setCenter(item.location_latitude, item.location_longitude);
+
+                                }
+                            });
+
+                            marker_schools.push(marker);
+                        });
+                    }
+                });
+            } else {
+
+                marker_schools.forEach(function (marker) {
+                    marker.setMap(null);
+                });
+
+                $(this).attr('type', 'get');
+
+            }
+
         }
     }
 });
@@ -91,13 +145,6 @@ map.addControl({
     }
 });
 
-$(document).on('click', '#back', function () {
-    // $('.content-left').removeClass('col-md-3').addClass('col-md-5');
-    // $('.map-right').removeClass('col-md-9').addClass('col-md-7');
-    // $('.tour_container').parent().removeClass('col-md-12').addClass('col-sm-6').addClass('col-md-6');
-    // $('#change_map').html('Xem map rộng hơn').attr('id', 'change_map');
-    alert('123');
-});
 
 $.ajax({
     url: 'get-house-marker',
@@ -115,6 +162,7 @@ $.ajax({
                         closeInfoBox();
                         getInfoBox(item).open(map, this);
                         map.setCenter(item.location_latitude, item.location_longitude);
+
                     }
                 });
 
@@ -122,6 +170,8 @@ $.ajax({
             });
         }
         map.setCenter(response.center.lat, response.center.lng);
+        center_lat = response.center.lat;
+        center_lng = response.center.lng;
 
     }
 });

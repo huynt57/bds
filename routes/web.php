@@ -17,6 +17,8 @@ Route::get('get-house-marker', 'Frontend\MainController@getHouseMarker');
 Route::get('agents', 'Frontend\MainController@getAgents');
 Route::get('lien-he', 'Frontend\MainController@contact');
 
+Route::get('school', 'Frontend\MainController@getSchoolNearBy');
+
 Route::post('contact/store', 'Frontend\MainController@storeContact');
 
 Route::get('post/{slug}-{id}', 'Frontend\MainController@getPostBySlug')
