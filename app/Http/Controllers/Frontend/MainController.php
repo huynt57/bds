@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Http\Requests\CreateContactRequest;
+use App\Models\Contact;
 use App\Models\House;
 use App\Models\Post;
 use App\Models\User;
@@ -30,8 +32,7 @@ class MainController extends Controller
     {
         $post = Post::publish()->find($id);
 
-        if(!$post)
-        {
+        if (!$post) {
             return redirect()->back()->with('error', 'Dữ liệu không hợp lệ');
         }
 
@@ -77,21 +78,18 @@ class MainController extends Controller
 
         $items = House::query();
 
-        if(!empty($type))
-        {
+        if (!empty($type)) {
             $items = $items->where('type', $type);
         }
 
-        if(!empty(trim($keyword)))
-        {
-            $items->where(function($query) use ($keyword) {
-                $query->where('name', 'LIKE', '%'.$keyword.'%');
-                $query->orWhere('address', 'LIKE', '%'.$keyword.'%');
+        if (!empty(trim($keyword))) {
+            $items->where(function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', '%' . $keyword . '%');
+                $query->orWhere('address', 'LIKE', '%' . $keyword . '%');
             });
         }
 
-        if(!empty($categoryId))
-        {
+        if (!empty($categoryId)) {
             $items = $items->where('category_id', $categoryId);
         }
 
@@ -141,6 +139,20 @@ class MainController extends Controller
             'status' => 1,
             'message' => 'Thành công'
         ]);
+    }
+
+    public function contact(Request $request)
+    {
+        return view('frontend.contact');
+    }
+
+    public function storeContact(CreateContactRequest $request)
+    {
+        $data = $request->all();
+
+        Contact::create($data);
+
+        return redirect()->back()->with('success', 'Cám ơn bạn đã liên hệ, chúng tôi sẽ thông tin sớm nhất có thể');
     }
 
 }

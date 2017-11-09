@@ -45,6 +45,12 @@
     <link rel="stylesheet" href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.theme.default.min.css">
     <![endif]-->
     <style>
+        div {
+            transition-duration: 0.5s;
+        }
+        div {
+            transition-timing-function: ease-in-out;
+        }
         .title-over {
             z-index: 100;
             position: absolute;
@@ -369,6 +375,11 @@
 <script src="/frontend/js/slick.js"></script>
 
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC5_oqCsJvZdLWEadt934vSKipvwhIDFNY"></script>
+
+<script type="text/javascript" src="http://map.fitme.vn/js/gmaps.js"></script>
+<script type="text/javascript" src="http://map.fitme.vn/js/prettify.js"></script>
+<script type="text/javascript" src="http://map.fitme.vn/js/gmaps.overlays.min.js"></script>
+<script type="text/javascript" src="http://map.fitme.vn/js/maplabel-compiled.js"></script>
 
 
 <script src="/frontend/js/map_listing_tours.js"></script>
