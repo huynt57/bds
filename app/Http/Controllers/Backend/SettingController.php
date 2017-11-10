@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Setting;
 use App\Models\Slide;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,7 +13,8 @@ class SettingController extends Controller
 
     public function index(Request $request)
     {
-        return view('admin.setting.index');
+        $settings = Setting::all();
+        return view('admin.setting.index', compact('settings'));
     }
 
     public function addSlide(Request $request)
@@ -38,6 +40,19 @@ class SettingController extends Controller
     {
 
 
+    }
+
+    public function updateInline(Request $request)
+    {
+        $id = $request->input('pk');
+        $name = $request->input('name');
+        $value = $request->input('value');
+
+        $house = Setting::find($id);
+
+        $house->update([
+            $name => $value
+        ]);
     }
 
     public function updateSetting(Request $request)
