@@ -50,9 +50,8 @@ class MainController extends Controller
         return view('frontend.house', compact('$house'));
     }
 
-    public function getHouseMarker()
+    public function getHouseMarker($houses)
     {
-        $houses = House::paginate(10);
 
         $returnArr = [];
 
@@ -74,10 +73,10 @@ class MainController extends Controller
         $centerPoint['lat'] = $returnArr[0]['location_latitude'];
         $centerPoint['lng'] = $returnArr[0]['location_longitude'];
 
-        return response([
+        return [
             'data' => ['Historic' => $returnArr],
             'center' => $centerPoint
-        ]);
+        ];
     }
 
 
@@ -87,7 +86,7 @@ class MainController extends Controller
         $categoryId = $request->input('category_id');
         $keyword = $request->input('keyword');
 
-        $items = House::query();
+        $items = House::orderBy('id', 'desc');
 
         if (!empty($type)) {
             $items = $items->where('type', $type);
@@ -102,6 +101,14 @@ class MainController extends Controller
 
         if (!empty($categoryId)) {
             $items = $items->where('category_id', $categoryId);
+        }
+
+        if (isset($type)) {
+            $items = $items->where('type', $type);
+        }
+
+        if ($request->ajax()) {
+            return response($this->getHouseMarker($items->get()));
         }
 
         $items = $items->paginate(10);

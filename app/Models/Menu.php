@@ -14,6 +14,7 @@ class Menu extends Model
         'is_active',
         'post_id',
         'order',
+        'route',
         'created_at',
         'updated_at'
     ];

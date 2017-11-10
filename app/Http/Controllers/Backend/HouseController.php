@@ -73,14 +73,14 @@ class HouseController extends AdminController
             $data['city_id'] = 0;
         }
 
-        if($data['status'] == 'on')
+        if(isset($data['status']) && $data['status'] == 'on')
         {
             $data['status'] = true;
         } else {
             $data['status'] = false;
         }
 
-        if($data['is_feature'] == 'on')
+        if(isset($data['is_feature']) && $data['is_feature'] == 'on')
         {
             $data['is_feature'] = true;
         } else {
@@ -172,15 +172,43 @@ class HouseController extends AdminController
             $data['ward_id'] = 0;
         }
 
+        if(isset($data['status']) && $data['status'] == 'on')
+        {
+            $data['status'] = true;
+        } else {
+            $data['status'] = false;
+        }
+
+        if(isset($data['is_feature']) && $data['is_feature'] == 'on')
+        {
+            $data['is_feature'] = true;
+        } else {
+            $data['is_feature'] = false;
+        }
+
+        if(!is_numeric($data['ward_id']))
+        {
+            $data['ward_id'] = 0;
+        }
+
+        if(isset($data['features'])) {
+
+            $data['features'] = json_encode($data['features']);
+
+        }
+
         \DB::beginTransaction();
 
         try {
 
-            $house = House::create($data);
+            $house = $house->update($data);
 
             $images = $request->file('images');
 
             if ($images) {
+
+                Image::where('house_id', $house->id)->delete();
+
                 foreach ($images as $image) {
                     $img = $this->saveImage($image);
 
@@ -196,10 +224,12 @@ class HouseController extends AdminController
         } catch (\Exception $ex) {
             \DB::rollBack();
 
-            return redirect()->back()->with('error', 'Thêm dữ liệu không thành công');
+            dd($ex->getMessage());
+
+            return redirect()->back()->with('error', 'Cập nhật dữ liệu không thành công');
         }
 
-        return redirect()->back()->with('success', 'Thêm dữ liệu thành công');
+        return redirect()->back()->with('success', 'Cập nhật dữ liệu thành công');
     }
 
     public function changeFeaturedHouse(Request $request)

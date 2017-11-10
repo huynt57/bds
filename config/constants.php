@@ -21,5 +21,8 @@ return [
         'Thang máy',
         'Vườn',
         'Điện thoại cố định'
+    ],
+    'route_menu' => [
+        ''
     ]
 ];

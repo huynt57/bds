@@ -147,7 +147,7 @@ map.addControl({
 
 
 $.ajax({
-    url: 'get-house-marker',
+    url: window.location.href,
     type: 'get',
     dataType: 'json',
     success: function (response) {

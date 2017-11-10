@@ -92,6 +92,24 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Liên kết tới đường dẫn</label>
+                                <div class="col-md-9">
+                                    <select class="form-control select2" name="post_id">
+                                        <option value="">Không liên kết tới đường dẫn nào</option>
+                                        @php $posts = \App\Models\Post::all(); @endphp
+
+                                        @foreach($posts as $post)
+                                            <option value="{{ $post->id }}">
+                                                {{ $post->title }}
+                                            </option>
+                                        @endforeach
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </form>
 
                 </div>

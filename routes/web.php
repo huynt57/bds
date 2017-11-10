@@ -34,7 +34,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'house'], function () {
         Route::get('create', 'Backend\HouseController@create');
         Route::get('list', 'Backend\HouseController@index');
-        Route::get('edit', 'Backend\HouseController@edit');
+        Route::get('edit/{id}', 'Backend\HouseController@edit');
+        Route::post('update/{id}', 'Backend\HouseController@update');
 
         Route::post('store', 'Backend\HouseController@store');
 

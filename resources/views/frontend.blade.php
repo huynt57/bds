@@ -173,7 +173,7 @@
         <div class="row">
             <div class="col-md-3 col-sm-3 col-xs-3">
                 <div id="logo_home">
-                    <h1><a href="index.html" title="City tours travel template">City tours travel template</a></h1>
+                    <h1><a href="{{ url('/') }}" title="City tours travel template">City tours travel template</a></h1>
                 </div>
             </div>
             <nav class="col-md-9 col-sm-9 col-xs-9">
