@@ -24,6 +24,9 @@ Route::post('contact/store', 'Frontend\MainController@storeContact');
 Route::get('post/{slug}-{id}', 'Frontend\MainController@getPostBySlug')
     ->where(['slug' => '[a-zA-Z0-9-]+', 'id' => '[0-9-]+']);
 
+Route::get('house/{slug}-{id}', 'Frontend\MainController@getHouseById')
+    ->where(['slug' => '[a-zA-Z0-9-]+', 'id' => '[0-9-]+']);
+
 Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/', 'Backend\DashboardController@index');
@@ -31,6 +34,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'house'], function () {
         Route::get('create', 'Backend\HouseController@create');
         Route::get('list', 'Backend\HouseController@index');
+        Route::get('edit', 'Backend\HouseController@edit');
 
         Route::post('store', 'Backend\HouseController@store');
 

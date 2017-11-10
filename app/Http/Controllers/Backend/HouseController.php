@@ -22,14 +22,16 @@ class HouseController extends AdminController
         $houses = \DB::table('houses')
             ->select(\DB::raw('houses.*, categories.name as category, users.name as agent'))
             ->leftJoin('categories', 'houses.category_id', '=', 'categories.id')
-            ->leftJoin('users', 'houses.user_id', '=', 'users.id');
+            ->leftJoin('users', 'houses.agent_id', '=', 'users.id');
 
         return Datatables::of($houses)
             ->editColumn('is_featured', function ($house) {
 
             })
             ->addColumn('action', function ($house) {
-
+                return '<button class="btn btn-sm yellow btn-outline "> Xem</button>' .
+                    '<a href="' . url('admin/house/edit', ['id' => $house->id]) . '" class="btn btn-sm green btn-outline "> Sửa</a>' .
+                    '<button class="btn btn-sm red btn-outline "> Xóa</button>';
             })
             ->editColumn('created_at', function ($house) {
                 return Carbon::createFromFormat('Y-m-d H:i:s', $house->created_at)->format('d/m/Y H:i');
@@ -71,10 +73,26 @@ class HouseController extends AdminController
             $data['city_id'] = 0;
         }
 
+        if($data['status'] == 'on')
+        {
+            $data['status'] = true;
+        } else {
+            $data['status'] = false;
+        }
+
+        if($data['is_feature'] == 'on')
+        {
+            $data['is_feature'] = true;
+        } else {
+            $data['is_feature'] = false;
+        }
+
         if(!is_numeric($data['ward_id']))
         {
             $data['ward_id'] = 0;
         }
+
+        $data['features'] = json_encode($data['features']);
 
         \DB::beginTransaction();
 

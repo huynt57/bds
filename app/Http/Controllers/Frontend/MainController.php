@@ -39,6 +39,17 @@ class MainController extends Controller
         return view('frontend.post', compact('post'));
     }
 
+    public function getHouseById($slug, $id)
+    {
+        $house = House::publish()->find($id);
+
+        if (!$house) {
+            return redirect()->back()->with('error', 'Dữ liệu không hợp lệ');
+        }
+
+        return view('frontend.house', compact('$house'));
+    }
+
     public function getHouseMarker()
     {
         $houses = House::paginate(10);

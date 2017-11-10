@@ -38,6 +38,11 @@ class User extends Authenticatable
         'updated_at'
     ];
 
+    public function scopeAgent($query)
+    {
+        $query->where('type', User::AGENT);
+    }
+
     public function getTypeTextAttribute()
     {
         $type = $this->attributes['type'];

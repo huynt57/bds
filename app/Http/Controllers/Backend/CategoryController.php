@@ -21,7 +21,7 @@ class CategoryController extends Controller
 
         return Datatables::of($categories)
             ->addColumn('action', function($category) {
-
+                return '<button class="btn btn-sm red btn-outline "> Xóa</button>';
             })
             ->make(true);
     }

@@ -23,8 +23,8 @@ class House extends Model
         'city_id', 'meta_desc',
         'district_id', 'bath',
         'lat', 'beds',
-        'lng',
-        'type',
+        'lng', 'begin_year',
+        'type', 'agent_id',
         'zip',
         'price',
         'desc',
@@ -83,5 +83,10 @@ class House extends Model
     public function scopeFeatured($query)
     {
         return $query->where('is_featured', true);
+    }
+
+    public function scopePublish($query)
+    {
+        return $query->where('status', true);
     }
 }

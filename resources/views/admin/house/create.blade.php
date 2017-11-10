@@ -141,6 +141,12 @@
 
         {{ csrf_field() }}
         <div class="portlet light bordered col-lg-12">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="fa fa-home font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase">Thông tin nhà</span>
+                </div>
+            </div>
             <div class="col-lg-6">
 
                 <div class="form-body">
@@ -185,10 +191,45 @@
                                    placeholder="Điền số phòng ngủ" value="{{ old('beds') }}">
                         </div>
                     </div>
+                    <div class="form-group dmc0">
+                        <label>Số phòng tắm</label>
+                        <div>
+                            <input type="number" name="bathrooms" id="bathrooms" class="form-control"
+                                   placeholder="Điền số phòng tắm" value="{{ old('bathrooms') }}">
+                        </div>
+                    </div>
+                    <div class="form-group dmc0">
+                        <label>Kích thước (m2)</label>
+                        <div>
+                            <input type="number" name="size" id="size" class="form-control"
+                                   placeholder="Điền kích thước" value="{{ old('size') }}">
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
             <div class="col-lg-6" style="padding-right: 0px;">
+                <div class="form-group dmc0">
+                    <label>Xây dựng năm</label>
+                    <div>
+                        <input type="number" name="begin_year" id="begin_year" class="form-control"
+                               placeholder="Điền năm xây dựng" value="{{ old('begin_year') }}">
+                    </div>
+                </div>
+                <div class="form-group dmc0">
+                    <label>Danh mục *</label>
+                    <div>
+                        <select class="form-control select2" name="agent_id">
+                            <option value="">Chọn môi giới viên</option>
+                            @php $agents = \App\Models\User::agent()->get();@endphp
+
+                            @foreach($agents as $agent)
+                                <option value="{{ $agent->id }}">{{ $agent->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
                 <div class="form-group dmc0">
                     <label>Danh mục *</label>
                     <div>
@@ -229,12 +270,63 @@
                     <div>
                         <select class="form-control" name="ward_id">
                             <option value="">Chọn phường xã</option>
-
                         </select>
                     </div>
                 </div>
 
+            </div>
+        </div>
 
+        <div class="portlet light bordered col-lg-12">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="fa fa-info font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase">Trạng thái</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Có được hiển thị ?</label>
+                <div class="col-md-9">
+                    <div class="mt-checkbox-inline">
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            <input type="checkbox" name="status">
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Có được nổi bật ?</label>
+                <div class="col-md-9">
+                    <div class="mt-checkbox-inline">
+                        <label class="mt-checkbox mt-checkbox-outline">
+                            <input type="checkbox" name="is_feature">
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portlet light bordered col-lg-12">
+            <div class="portlet-title">
+                <div class="caption font-red-sunglo">
+                    <i class="icon-settings font-red-sunglo"></i>
+                    <span class="caption-subject bold uppercase">Các tiện ích khác</span>
+                </div>
+            </div>
+            <div class="mt-checkbox-inline">
+                @php $features = collect(config('constants.features'))->chunk(3); @endphp
+                @foreach($features as $feature)
+                    <div class="col-md-3">
+                        @foreach($feature as $item)
+                            <label class="mt-checkbox">
+                                <input type="checkbox" name="features[]" value="{{ $item }}"> {{ $item }}
+                                <span></span>
+                            </label>
+                        @endforeach
+                    </div>
+
+                @endforeach
             </div>
         </div>
 
@@ -274,7 +366,7 @@
             </div>
         </div>
         <div class="col-lg-12 form-group">
-            <label>Bản đồ</label>
+            <label>Bản đồ (Kéo thả biểu tượng để chọn vị trí)</label>
             <div id="myMap">
 
             </div>
@@ -286,17 +378,7 @@
                                           name="desc">{{ old('desc') }}</textarea>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-md-3 control-label">Có được hiển thị ?</label>
-            <div class="col-md-9">
-                <div class="mt-checkbox-inline">
-                    <label class="mt-checkbox mt-checkbox-outline">
-                        <input type="checkbox" name="status">
-                        <span></span>
-                    </label>
-                </div>
-            </div>
-        </div>
+
         <div class="form-actions">
             <div class="row">
                 <div class="col-md-offset-3 col-md-9">
@@ -309,7 +391,8 @@
 
         <div class="col-md-12 col-sm-12">
             <div class="form-group">
-                <input style="width: 300px; margin-top: 10px" id="pac-input" class="controls_map form-control" type="text" placeholder="Tìm địa chỉ">
+                <input style="width: 300px; margin-top: 10px" id="pac-input" class="controls_map form-control"
+                       type="text" placeholder="Tìm địa chỉ">
                 <div id="myMap"></div>
             </div>
         </div>
@@ -424,7 +507,6 @@
 
 
     $(document).on('ready', function () {
-
 
 
         $(".product-image").fileinput({
