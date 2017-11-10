@@ -140,7 +140,7 @@
 //                {data: 'id', name: 'id'},
                 {
                     "render": function (data, type, full, meta) {
-                        return '<img src="/files/'+full.main_images+'" style="max-width: 150px">';
+                        return '<img src="'+full.main_images+'" style="max-width: 150px">';
                     }
                 },
                 {data: 'name', name: 'name'},
@@ -169,7 +169,7 @@
 
                 {
                     "render": function (data, type, full, meta) {
-                        return '<img src="/files/'+full.main_images+'" style="max-width: 150px">';
+                        return '<img src="'+full.main_images+'" style="max-width: 150px">';
                     }
                 },
                 {data: 'name', name: 'name'},

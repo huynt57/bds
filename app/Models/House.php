@@ -89,4 +89,26 @@ class House extends Model
     {
         return $query->where('status', true);
     }
+
+    public function getStatusTextAttribute()
+    {
+        $status = $this->attributes['status'];
+
+        if ($status) {
+            return 'Có';
+        }
+
+        return 'Không';
+    }
+
+    public function getIsFeatureTextAttribute()
+    {
+        $isFeature = $this->attributes['is_feature'];
+
+        if ($isFeature) {
+            return 'Có';
+        }
+
+        return 'Không';
+    }
 }

@@ -19,8 +19,7 @@ class HouseController extends AdminController
 
     public function getHouseByAttribute()
     {
-        $houses = \DB::table('houses')
-            ->select(\DB::raw('houses.*, categories.name as category, users.name as agent'))
+        $houses = House::select(\DB::raw('houses.*, categories.name as category, users.name as agent'))
             ->leftJoin('categories', 'houses.category_id', '=', 'categories.id')
             ->leftJoin('users', 'houses.agent_id', '=', 'users.id');
 
@@ -30,13 +29,13 @@ class HouseController extends AdminController
                 data-pk="' . $house->id . '" data-url="' . url('admin/house/update-inline', ['id' => $house->id]) . '" 
                 data-id="' . $house->id . '" 
                 data-name="is_feature"
-                class="editable editable-click"> ' . $house->is_feature . ' </a>';
+                class="editable editable-click"> ' . $house->is_feature_text . ' </a>';
             })->editColumn('status', function ($house) {
                 return '<a href="javascript:;" data-type="select" 
                 data-pk="' . $house->id . '" data-url="' . url('admin/house/update-inline', ['id' => $house->id]) . '" 
                 data-id="' . $house->id . '" 
                 data-name="status"
-                class="editable editable-click"> ' . $house->status . ' </a>';
+                class="editable editable-click"> ' . $house->status_text . ' </a>';
             })
             ->addColumn('action', function ($house) {
                 return '<button class="btn btn-sm yellow btn-outline "> Xem</button>' .

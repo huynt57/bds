@@ -58,4 +58,15 @@ class Post extends Model
     {
         $query->where('status', true);
     }
+
+    public function getStatusTextAttribute()
+    {
+        $status = $this->attributes['status'];
+
+        if ($status) {
+            return 'Có hiển thị';
+        }
+
+        return 'Không';
+    }
 }

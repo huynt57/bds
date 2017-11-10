@@ -46,8 +46,12 @@ class PostController extends AdminController
             ->orderBy('id', 'desc');
 
         return \Datatables::of($posts)
-            ->editColumn('status', function($post) {
-                return view('admin.post.select', compact('post'))->render();
+            ->editColumn('status', function ($post) {
+                return '<a href="javascript:;" data-type="select" 
+                data-pk="' . $post->id . '" data-url="' . url('admin/post/update-inline', ['id' => $post->id]) . '" 
+                data-id="' . $post->id . '" 
+                data-name="status"
+                class="editable editable-click"> ' . $post->status_text . ' </a>';
             })
             ->editColumn('created_at', function($post) {
                 return $post->created_at->format('d/m/Y H:i');
@@ -57,5 +61,18 @@ class PostController extends AdminController
             })
             ->make(true);
 
+    }
+
+    public function updateInline($id, Request $request)
+    {
+        $id = $request->input('pk');
+        $name = $request->input('name');
+        $value = $request->input('value');
+
+        $house = Post::find($id);
+
+        $house->update([
+            $name => $value
+        ]);
     }
 }

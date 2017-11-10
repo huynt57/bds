@@ -135,12 +135,6 @@
                             <span class="title">Slides trang chủ</span>
                         </a>
                     </li>
-                    <li class="nav-item  ">
-                        <a href="{{ url('admin/settings/contact') }}" class="nav-link ">
-                            <span class="title">Ý kiến từ khách hàng</span>
-                        </a>
-                    </li>
-
                 </ul>
             </li>
             <li class="nav-item  ">

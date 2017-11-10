@@ -49,6 +49,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('create', 'Backend\PostController@create');
         Route::get('list', 'Backend\PostController@index');
 
+        Route::post('update-inline/{id}', 'Backend\PostController@updateInline');
         Route::post('store', 'Backend\PostController@store');
 
         Route::get('post.data', ['as' => 'post.data',
