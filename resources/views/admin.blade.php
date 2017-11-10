@@ -65,7 +65,7 @@
 
 
 
-    <link href="/css/button.css" rel="stylesheet" type="text/css" />
+    <link href="/frontend/css/button.css" rel="stylesheet" type="text/css" />
 
     <style>
         .sweet-alert {

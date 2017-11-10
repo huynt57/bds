@@ -36,6 +36,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('list', 'Backend\HouseController@index');
         Route::get('edit/{id}', 'Backend\HouseController@edit');
         Route::post('update/{id}', 'Backend\HouseController@update');
+        Route::post('update-inline/{id}', 'Backend\HouseController@updateInline');
 
         Route::post('store', 'Backend\HouseController@store');
 
@@ -85,6 +86,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/', 'Backend\CategoryController@index');
 
         Route::post('store', 'Backend\CategoryController@store');
+        Route::post('update/{id}', 'Backend\CategoryController@update');
 
         Route::get('category.data', ['as' => 'category.data',
             'uses' => 'Backend\CategoryController@getCategoryByAttribute'

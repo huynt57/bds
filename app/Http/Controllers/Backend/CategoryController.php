@@ -20,7 +20,14 @@ class CategoryController extends Controller
         $categories = Category::orderBy('id', 'desc');
 
         return Datatables::of($categories)
-            ->addColumn('action', function($category) {
+            ->editColumn('name', function ($category) {
+                return '<a href="javascript:;" data-type="text" 
+                data-pk="' . $category->id . '" data-url="' . url('admin/category/update', ['id' => $category->id]) . '" 
+                data-id="' . $category->id . '" 
+                data-name="name"
+                class="editable editable-click"> ' . $category->name . ' </a>';
+            })
+            ->addColumn('action', function ($category) {
                 return '<button class="btn btn-sm red btn-outline "> Xóa</button>';
             })
             ->make(true);
@@ -60,7 +67,8 @@ class CategoryController extends Controller
 
         $data = $request->all();
 
-        $category->update($data);
+        $rData['name'] = $data['value'];
+        $category->update($rData);
 
         if ($request->ajax()) {
             return response([

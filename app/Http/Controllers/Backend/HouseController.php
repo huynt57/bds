@@ -25,8 +25,18 @@ class HouseController extends AdminController
             ->leftJoin('users', 'houses.agent_id', '=', 'users.id');
 
         return Datatables::of($houses)
-            ->editColumn('is_featured', function ($house) {
-
+            ->editColumn('is_feature', function ($house) {
+                return '<a href="javascript:;" data-type="select" 
+                data-pk="' . $house->id . '" data-url="' . url('admin/house/update-inline', ['id' => $house->id]) . '" 
+                data-id="' . $house->id . '" 
+                data-name="is_feature"
+                class="editable editable-click"> ' . $house->is_feature . ' </a>';
+            })->editColumn('status', function ($house) {
+                return '<a href="javascript:;" data-type="select" 
+                data-pk="' . $house->id . '" data-url="' . url('admin/house/update-inline', ['id' => $house->id]) . '" 
+                data-id="' . $house->id . '" 
+                data-name="status"
+                class="editable editable-click"> ' . $house->status . ' </a>';
             })
             ->addColumn('action', function ($house) {
                 return '<button class="btn btn-sm yellow btn-outline "> Xem</button>' .
@@ -42,6 +52,19 @@ class HouseController extends AdminController
     public function create()
     {
         return view('admin.house.create');
+    }
+
+    public function updateInline($id, Request $request)
+    {
+        $id = $request->input('pk');
+        $name = $request->input('name');
+        $value = $request->input('value');
+
+        $house = House::find($id);
+
+        $house->update([
+            $name => $value
+        ]);
     }
 
     public function store(Request $request)
