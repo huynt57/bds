@@ -12,10 +12,10 @@
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
-    <title>Muadotot.com | Quản trị</title>
+    <title>Viethouse 24 | Quản trị</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta content="Quản trị mua đồ tốt" name="description" />
+    <meta content="Quản trị viethouse24" name="description" />
     <meta content="" name="author" />
 
     <link rel="icon" type="image/png" sizes="16x16" href="/mua-do-tot_favicon.png">
@@ -539,7 +539,7 @@
     <!-- END CONTAINER -->
     <!-- BEGIN FOOTER -->
     <div class="page-footer">
-        <div class="page-footer-inner"> {{ \Carbon\Carbon::now()->year }} &copy; Admin muadotot.com
+        <div class="page-footer-inner"> {{ \Carbon\Carbon::now()->year }} &copy; Admin viethouse24.com
 
         </div>
         <div class="scroll-to-top">

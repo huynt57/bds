@@ -29,7 +29,7 @@ class UserController extends AdminController
             ->addColumn('action', function ($user) {
 
                 return '<button class="btn btn-sm yellow btn-outline "> Xem</button>' .
-                    '<button class="btn btn-sm green btn-outline "> Sửa</button>' .
+                    '<a href="' . url('admin/user/edit', ['id' => $user->id]) . '" class="btn btn-sm green btn-outline "> Sửa</a>' .
                     '<button class="btn btn-sm red btn-outline "> Xóa</button>';
             })
             ->make(true);
@@ -63,9 +63,14 @@ class UserController extends AdminController
         return view('admin.user.create');
     }
 
-    public function edit(Request $request)
+    public function edit($id)
     {
-        return view('admin.user.edit');
+        $user = User::find($id);
+        if(!$user)
+        {
+            return redirect()->back()->with('error', 'Dữ liệu không hợp lệ');
+        }
+        return view('admin.user.edit', compact('user'));
     }
 
     public function store(CreateUserRequest $request)
@@ -117,5 +122,40 @@ class UserController extends AdminController
         $user->update($data);
 
         return redirect()->back()->with('success', 'Cập nhật người dùng thành công');
+    }
+
+    public function listInvestor(Request $request)
+    {
+        return view('admin.user.investors');
+    }
+
+    public function updatePassword($id, Request $request)
+    {
+        $password = $request->input('password');
+        $retypePassword = $request->input('retype_password');
+        $currentPassword = $request->input('current_password');
+
+        $user = User::find($id);
+
+        if(!$user)
+        {
+            return redirect()->back()->with('error', 'Dữ liệu không hợp lệ');
+        }
+
+        if($retypePassword != $password)
+        {
+            return redirect()->back()->with('error', 'Mật khẩu nhập lại không khớp');
+        }
+
+        if (\Hash::check($currentPassword, $user->password)) {
+
+            $user->update([
+                'password' => \Hash::make($password)
+            ]);
+
+            return redirect()->back()->with('success', 'Cập nhật thành công');
+        }
+
+        return redirect()->back()->with('error', 'Mật khẩu hiện tại không chính xác');
     }
 }

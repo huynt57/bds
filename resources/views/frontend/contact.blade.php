@@ -14,6 +14,7 @@
 
                         <div id="message-contact"></div>
                         <form method="post" action="{{ url('contact/store') }}" id="contactform">
+                            {!! csrf_field() !!}
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
@@ -53,8 +54,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Human verification</label>
-                                    <input type="submit" value="Submit" class="btn_1" id="submit-contact">
+                                    <input type="submit" value="Gửi" class="btn_1" id="submit-contact">
                                 </div>
                             </div>
                         </form>

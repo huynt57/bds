@@ -60,6 +60,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('list', 'Backend\UserController@index');
         Route::get('create', 'Backend\UserController@create');
         Route::post('store', 'Backend\UserController@store');
+        Route::get('edit/{id}', 'Backend\UserController@edit');
+        Route::post('edit/{id}', 'Backend\UserController@update');
         Route::get('user.data', ['as' => 'user.data',
             'uses' => 'Backend\UserController@getUserByAttribute'
         ]);
@@ -67,6 +69,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['prefix' => 'settings'], function () {
         Route::get('slides', 'Backend\SettingController@listSlides');
+        Route::get('list', 'Backend\SettingController@index');
 
         Route::get('user.data', ['as' => 'user.data',
             'uses' => 'Backend\UserController@getUserByAttribute'
@@ -80,6 +83,13 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::get('category.data', ['as' => 'category.data',
             'uses' => 'Backend\CategoryController@getCategoryByAttribute'
+        ]);
+    });
+
+    Route::group(['prefix' => 'contact'], function () {
+        Route::get('/', 'Backend\ContactController@index');
+        Route::get('contact.data', ['as' => 'contact.data',
+            'uses' => 'Backend\ContactController@getContactByAttribute'
         ]);
     });
 });

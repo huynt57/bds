@@ -72,7 +72,7 @@
             <li class="nav-item  ">
                 <a href="{{ url('admin/investor/list') }}" class="nav-link nav-toggle">
                     <i class="fa fa-users"></i>
-                    <span class="title">Quản lý nhà đầu tư</span>
+                    <span class="title">Quản lý nhà đầu tư - đối tác</span>
                 </a>
             </li>
             <li class="nav-item  ">
@@ -90,6 +90,27 @@
 
                     <li class="nav-item  ">
                         <a href="{{ url('admin/house/create') }}" class="nav-link ">
+                            <span class="title">Thêm mới</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-folder"></i>
+                    <span class="title">Quản lý dự án</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="{{url('admin/project/list')}}" class="nav-link ">
+                            <span class="title">Danh sách</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item  ">
+                        <a href="{{ url('admin/project/create') }}" class="nav-link ">
                             <span class="title">Thêm mới</span>
                         </a>
                     </li>
@@ -123,7 +144,7 @@
                 </ul>
             </li>
             <li class="nav-item  ">
-                <a href="javascript:;" class="nav-link nav-toggle">
+                <a href="{{ url('admin/contact') }}" class="nav-link nav-toggle">
                     <i class="fa fa-envelope"></i>
                     <span class="title">Quản lý thông tin liên hệ</span>
                 </a>

@@ -245,7 +245,7 @@
                                         class="icon-down-open-mini"></i></a>
                             <ul>
                                 <li><a href="all_hotels_list.html">Contact Viethouse24</a></li>
-                                <li><a href="all_hotels_grid.html">Phiếu thông tin khách hàng</a></li>
+                                <li><a href="{{ url('lien-he') }}">Phiếu thông tin khách hàng</a></li>
                             </ul>
                         </li>
                     </ul>

@@ -2,29 +2,8 @@
 
 @section('content')
 
-    <div class="page-bar">
-        <ul class="page-breadcrumb">
-            <li>
-                <a href="index.html">Home</a>
-                <i class="fa fa-circle"></i>
-            </li>
-            <li>
-                <span>Dashboard</span>
-            </li>
-        </ul>
-        <div class="page-toolbar">
-            <div id="dashboard-report-range" class="pull-right tooltips btn btn-sm" data-container="body"
-                 data-placement="bottom" data-original-title="Change dashboard date range">
-                <i class="icon-calendar"></i>&nbsp;
-                <span class="thin uppercase hidden-xs">October 5, 2017 - November 3, 2017</span>&nbsp;
-                <i class="fa fa-angle-down"></i>
-            </div>
-        </div>
-    </div>
-    <!-- END PAGE BAR -->
     <!-- BEGIN PAGE TITLE-->
-    <h1 class="page-title"> Bảng điều khiển admin viethouse
-        <small>statistics, charts, recent events and reports</small>
+    <h1 class="page-title"> Bảng điều khiển admin Viethouse24
     </h1>
     <!-- END PAGE TITLE-->
     <!-- END PAGE HEADER-->
@@ -39,7 +18,7 @@
                     <div class="number">
                         <span data-counter="counterup" data-value="1349">1349</span>
                     </div>
-                    <div class="desc"> New Feedbacks</div>
+                    <div class="desc"> Tổng số nhà</div>
                 </div>
             </a>
         </div>
@@ -52,7 +31,7 @@
                     <div class="number">
                         <span data-counter="counterup" data-value="12,5">12,5</span>M$
                     </div>
-                    <div class="desc"> Total Profit</div>
+                    <div class="desc"> Tổng người dùng hệ thống</div>
                 </div>
             </a>
         </div>

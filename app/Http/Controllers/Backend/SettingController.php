@@ -10,6 +10,11 @@ class SettingController extends Controller
 {
     //
 
+    public function index(Request $request)
+    {
+        return view('admin.setting.index');
+    }
+
     public function addSlide(Request $request)
     {
 
@@ -31,6 +36,7 @@ class SettingController extends Controller
 
     public function listSetting(Request $request)
     {
+
 
     }
 
