@@ -1,7 +1,6 @@
 @extends('frontend')
 
 @section('content')
-
     <div class="container-fluid full-height">
         <div class="row row-height">
             <div class="col-md-7 map-right">
@@ -37,7 +36,7 @@
                                             <a class="tooltip_flip tooltip-effect-1" href="#">+<span
                                                         class="tooltip-content-flip"><span class="tooltip-back">Thêm vào yêu thích</span></span></a>
                                         </div><!-- End wish list-->
-                                        <div onclick="onHtmlClick('Historic', '{{ $loop->index }}')" class="view_on_map">Xem trên bản đồ</div>
+                                        <div style="margin-top: 20px" onclick="onHtmlClick('Historic', '{{ $loop->index }}')" class="view_on_map">Xem trên bản đồ</div>
                                     </div>
                                 </div><!-- End box tour -->
                             </div><!-- End col-md-6 -->

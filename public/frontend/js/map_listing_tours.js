@@ -39,21 +39,37 @@ var center_lat;
 var center_lng;
 //mapObject = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-function get_house_by_center(lat, lng, zoom)
+function get_house_by_center(lat, lng, radius)
 {
     $.ajax({
         url: '/get-house-by-center',
         data: {
             lat: lat,
             lng: lng,
-            zoom: zoom
+            radius: radius
 
         },
         dataType: 'json',
         success: function (response) {
-            var data = response.data;
+           console.log(response);
         }
     });
+}
+
+function getBoundsRadius(bounds, c_lat, c_lng){
+    // r = radius of the earth in km
+    var r = 6378.8
+    // degrees to radians (divide by 57.2958)
+    var ne_lat = bounds.getNorthEast().lat() / 57.2958
+    var ne_lng = bounds.getNorthEast().lng() / 57.2958
+    var c_lat = bounds.getCenter().lat() / 57.2958
+    var c_lng = bounds.getCenter().lng() / 57.2958
+    // distance = circle radius from center to Northeast corner of bounds
+    var r_km = r * Math.acos(
+            Math.sin(c_lat) * Math.sin(ne_lat) +
+            Math.cos(c_lat) * Math.cos(ne_lat) * Math.cos(ne_lng - c_lng)
+        );
+    return r_km // radius in meters
 }
 
 var map = new GMaps({
@@ -62,16 +78,20 @@ var map = new GMaps({
     lng: -77.028333,
     zoom_changed: function(e)
     {
+
         var lat = e.center.lat();
         var lng = e.center.lng();
         var zoom = e.zoom;
-        get_house_by_center(lat, lng, zoom);
+        var radius = getBoundsRadius(e.getBounds(), lat, lng);
+        get_house_by_center(lat, lng, radius);
     },
     dragend: function(e) {
+
         var lat = e.center.lat();
         var lng = e.center.lng();
         var zoom = e.zoom;
-        get_house_by_center(lat, lng, zoom);
+        var radius = getBoundsRadius(e.getBounds(), lat, lng);
+        get_house_by_center(lat, lng, radius);
 
     }
 });
@@ -82,6 +102,7 @@ map.addControl({
     position: 'right_center',
     content: 'Xem trường học',
     id: 'school_map',
+    class: 'btn btn-success',
     type: 'get',
     style: {
         margin_top: '50px',

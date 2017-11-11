@@ -7,6 +7,7 @@ use App\Models\Contact;
 use App\Models\House;
 use App\Models\Post;
 use App\Models\User;
+use Faker\Factory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -81,10 +82,18 @@ class MainController extends Controller
 
     public function getHouseByCenter(Request $request)
     {
+        $lat = $request->input('lat');
+        $lng = $request->input('lng');
 
+        $radius = $request->input('radius');
+        $coordinates['latitude'] = $lat;
+        $coordinates['longitude'] = $lng;
 
+        $items = House::isWithinMaxDistance($coordinates, $radius);
 
+        $items = $items->get()->pluck('id')->toArray();
 
+        dd($items);
     }
 
     public function getHouseByAttribute(Request $request)
@@ -126,11 +135,9 @@ class MainController extends Controller
             $items = $items->isWithinMaxDistance($coordinates, $radius);
         }
 
-
         if ($request->ajax()) {
             return response($this->getHouseMarker($items->get()));
         }
-
 
         $items = $items->paginate(10);
 
