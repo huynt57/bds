@@ -42,12 +42,28 @@ var center_lng;
 var map = new GMaps({
     div: '#map',
     lat: -12.043333,
-    lng: -77.028333
+    lng: -77.028333,
+    dragend: function(e) {
+        var lat = e.center.lat();
+        var lng = e.center.lng();
+
+        $.ajax({
+            url: '/get-house-by-center',
+            data: {
+                lat: lat,
+                lng: lng,
+
+            },
+            dataType: 'json',
+            success: function (response) {
+                var data = response.data;
+            }
+        });
+    }
 });
 
 var marker_schools = [];
 
-var myPlace = {lat: 25.276987, lng: 55.296249};
 map.addControl({
     position: 'right_center',
     content: 'Xem trường học',

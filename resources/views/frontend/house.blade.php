@@ -1,5 +1,12 @@
 @extends('frontend')
 
+@section('styles')
+    <link href="/frontend/css/slider-pro.min.css" rel="stylesheet">
+    <link href="/frontend/css/date_time_picker.css" rel="stylesheet">
+    <link href="/frontend/css/owl.carousel.css" rel="stylesheet">
+    <link href="/frontend/css/owl.theme.css" rel="stylesheet">
+@endsection
+
 @section('content')
     <main style="margin-bottom: 353px;">
         <div id="position">
@@ -34,91 +41,94 @@
                             <li><i class="icon_set_1_icon-27"></i>Parking</li>
                         </ul>
                     </div>
-                    <p class="visible-sm visible-xs"><a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">View on map</a>
+                    <p class="visible-sm visible-xs"><a class="btn_map" data-toggle="collapse" href="#collapseMap"
+                                                        aria-expanded="false" aria-controls="collapseMap"
+                                                        data-text-swap="Hide map" data-text-original="View on map">View
+                            on map</a>
                     </p>
                     <!-- Map button for tablets/mobiles -->
-                    <div id="Img_carousel" class="slider-pro sp-horizontal" style="width: 100%; max-width: 960px;">
+                    <div id="Img_carousel" class="slider-pro">
+                        <div class="sp-slides">
 
+                            <div class="sp-slide">
+                                <img alt="Image" class="sp-image" src="/frontend/css/images/blank.gif" data-src="/img/slider_single_tour/1_medium.jpg" data-small="/img/slider_single_tour/1_small.jpg" data-medium="/img/slider_single_tour/1_medium.jpg" data-large="/img/slider_single_tour/1_large.jpg" data-retina="/img/slider_single_tour/1_large.jpg">
+                            </div>
+                            <div class="sp-slide">
+                                <img alt="Image" class="sp-image" src="/frontend/css/images/blank.gif" data-src="/img/slider_single_tour/2_medium.jpg" data-small="/img/slider_single_tour/2_small.jpg" data-medium="/img/slider_single_tour/2_medium.jpg" data-large="/img/slider_single_tour/2_large.jpg" data-retina="/img/slider_single_tour/2_large.jpg">
+                                <h3 class="sp-layer sp-black sp-padding" data-horizontal="40" data-vertical="40" data-show-transition="left">
+                                    Lorem ipsum dolor sit amet </h3>
+                                <p class="sp-layer sp-white sp-padding" data-horizontal="40" data-vertical="100" data-show-transition="left" data-show-delay="200">
+                                    consectetur adipisicing elit
+                                </p>
+                                <p class="sp-layer sp-black sp-padding" data-horizontal="40" data-vertical="160" data-width="350" data-show-transition="left" data-show-delay="400">
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </p>
+                            </div>
 
-                        <div class="sp-slides-container"><div class="sp-mask sp-grab" style="width: 750px; height: 390.625px;"><div class="sp-slides" style="transform: translate3d(-3670px, 0px, 0px);">
+                            <div class="sp-slide">
+                                <img alt="Image" class="sp-image" src="/frontend/css/images/blank.gif" data-src="/img/slider_single_tour/3_medium.jpg" data-small="/img/slider_single_tour/3_small.jpg" data-medium="/img/slider_single_tour/3_medium.jpg" data-large="/img/slider_single_tour/3_large.jpg" data-retina="/img/slider_single_tour/3_large.jpg">
+                                <p class="sp-layer sp-white sp-padding" data-position="centerCenter" data-vertical="-50" data-show-transition="right" data-show-delay="500">
+                                    Lorem ipsum dolor sit amet
+                                </p>
+                                <p class="sp-layer sp-black sp-padding" data-position="centerCenter" data-vertical="50" data-show-transition="left" data-show-delay="700">
+                                    consectetur adipisicing elit
+                                </p>
+                            </div>
 
+                            <div class="sp-slide">
+                                <img alt="Image" class="sp-image" src="/frontend/css/images/blank.gif" data-src="/img/slider_single_tour/4_medium.jpg" data-small="/img/slider_single_tour/4_small.jpg" data-medium="/img/slider_single_tour/4_medium.jpg" data-large="/img/slider_single_tour/4_large.jpg" data-retina="/img/slider_single_tour/4_large.jpg">
+                                <p class="sp-layer sp-black sp-padding" data-position="bottomLeft" data-vertical="0" data-width="100%" data-show-transition="up">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </p>
+                            </div>
 
+                            <div class="sp-slide">
+                                <img alt="Image" class="sp-image" src="/frontend/css/images/blank.gif" data-src="/img/slider_single_tour/5_medium.jpg" data-small="/img/slider_single_tour/5_small.jpg" data-medium="/img/slider_single_tour/5_medium.jpg" data-large="/img/slider_single_tour/5_large.jpg" data-retina="/img/slider_single_tour/5_large.jpg">
+                                <p class="sp-layer sp-white sp-padding" data-vertical="5%" data-horizontal="5%" data-width="90%" data-show-transition="down" data-show-delay="400">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </p>
+                            </div>
 
+                            <div class="sp-slide">
+                                <img alt="Image" class="sp-image" src="/frontend/css/images/blank.gif" data-src="/img/slider_single_tour/6_medium.jpg" data-small="/img/slider_single_tour/6_small.jpg" data-medium="/img/slider_single_tour/6_medium.jpg" data-large="/img/slider_single_tour/6_large.jpg" data-retina="/img/slider_single_tour/6_large.jpg">
+                                <p class="sp-layer sp-white sp-padding" data-horizontal="10" data-vertical="10" data-width="300">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </p>
+                            </div>
 
+                            <div class="sp-slide">
+                                <img alt="Image" class="sp-image" src="/frontend/css/images/blank.gif" data-src="/img/slider_single_tour/7_medium.jpg" data-small="/img/slider_single_tour/7_small.jpg" data-medium="/img/slider_single_tour/7_medium.jpg" data-large="/img/slider_single_tour/7_large.jpg" data-retina="/img/slider_single_tour/7_large.jpg">
+                                <p class="sp-layer sp-black sp-padding" data-position="bottomLeft" data-horizontal="5%" data-vertical="5%" data-width="90%" data-show-transition="up" data-show-delay="400">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </p>
+                            </div>
 
+                            <div class="sp-slide">
+                                <img alt="Image" class="sp-image" src="/frontend/css/images/blank.gif" data-src="/img/slider_single_tour/8_medium.jpg" data-small="/img/slider_single_tour/8_small.jpg" data-medium="/img/slider_single_tour/8_medium.jpg" data-large="/img/slider_single_tour/8_large.jpg" data-retina="/img/slider_single_tour/8_large.jpg">
+                                <p class="sp-layer sp-black sp-padding" data-horizontal="50" data-vertical="50" data-show-transition="down" data-show-delay="500">
+                                    Lorem ipsum dolor sit amet
+                                </p>
+                                <p class="sp-layer sp-white sp-padding" data-horizontal="50" data-vertical="100" data-show-transition="up" data-show-delay="500">
+                                    consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                </p>
+                            </div>
 
-
-
-
-
-
-
-
-
-
-
-
-                                    <div class="sp-slide sp-selected" data-index="0" data-init="true" data-loaded="true" style="width: 750px; height: 390.625px; left: 3670px;"><div class="sp-image-container" style="width: 750px; height: 390.625px;"><img class="sp-image" data-default="img/slider_single_tour/1_medium.jpg" data-retina="img/slider_single_tour/1_large.jpg" data-large="img/slider_single_tour/1_large.jpg" data-medium="img/slider_single_tour/1_medium.jpg" data-small="img/slider_single_tour/1_small.jpg" alt="Image" src="img/slider_single_tour/1_medium.jpg" style="width: 100%; height: auto; margin-left: 0px; margin-top: -54.5px;"></div>
-
-                                    </div><div class="sp-slide" data-index="1" data-init="true" data-loaded="true" style="width: 750px; height: 390.625px; left: 4430px;"><div class="sp-image-container" style="width: 750px; height: 390.625px;"><img class="sp-image" data-default="img/slider_single_tour/2_medium.jpg" data-retina="img/slider_single_tour/2_large.jpg" data-large="img/slider_single_tour/2_large.jpg" data-medium="img/slider_single_tour/2_medium.jpg" data-small="img/slider_single_tour/2_small.jpg" alt="Image" src="img/slider_single_tour/2_medium.jpg" style="width: 100%; height: auto; margin-left: 0px; margin-top: -54.5px;"></div>
-
-                                        <h3 class="sp-layer sp-black sp-padding" data-horizontal="40" data-vertical="40" data-show-transition="left" data-layer-init="true" style="visibility: hidden;">
-                                            Lorem ipsum dolor sit amet </h3>
-                                        <p class="sp-layer sp-white sp-padding" data-horizontal="40" data-vertical="100" data-show-transition="left" data-show-delay="200" data-layer-init="true" style="visibility: hidden;">
-                                            consectetur adipisicing elit
-                                        </p>
-                                        <p class="sp-layer sp-black sp-padding" data-horizontal="40" data-vertical="160" data-width="350" data-show-transition="left" data-show-delay="400" data-layer-init="true" style="visibility: hidden;">
-                                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                        </p>
-                                    </div><div class="sp-slide" data-index="2" data-init="true" style="width: 750px; height: 390.625px; left: 5190px;"><div class="sp-image-container" style="width: 960px; height: 500px;"><img alt="Image" class="sp-image" src="css/images/blank.gif" data-src="img/slider_single_tour/3_medium.jpg" data-small="img/slider_single_tour/3_small.jpg" data-medium="img/slider_single_tour/3_medium.jpg" data-large="img/slider_single_tour/3_large.jpg" data-retina="img/slider_single_tour/3_large.jpg" data-default="img/slider_single_tour/3_medium.jpg"></div>
-
-                                        <p class="sp-layer sp-white sp-padding" data-position="centerCenter" data-vertical="-50" data-show-transition="right" data-show-delay="500" data-layer-init="true" style="visibility: hidden;">
-                                            Lorem ipsum dolor sit amet
-                                        </p>
-                                        <p class="sp-layer sp-black sp-padding" data-position="centerCenter" data-vertical="50" data-show-transition="left" data-show-delay="700" data-layer-init="true" style="visibility: hidden;">
-                                            consectetur adipisicing elit
-                                        </p>
-                                    </div><div class="sp-slide" data-index="3" data-init="true" style="width: 750px; height: 390.625px; left: 6160px;"><div class="sp-image-container" style="width: 960px; height: 500px;"><img alt="Image" class="sp-image" src="css/images/blank.gif" data-src="img/slider_single_tour/4_medium.jpg" data-small="img/slider_single_tour/4_small.jpg" data-medium="img/slider_single_tour/4_medium.jpg" data-large="img/slider_single_tour/4_large.jpg" data-retina="img/slider_single_tour/4_large.jpg" data-default="img/slider_single_tour/4_medium.jpg"></div>
-
-                                        <p class="sp-layer sp-black sp-padding" data-position="bottomLeft" data-vertical="0" data-width="100%" data-show-transition="up" data-layer-init="true" style="visibility: hidden;">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                        </p>
-                                    </div><div class="sp-slide" data-index="4" data-init="true" style="width: 750px; height: 390.625px; left: 7130px;"><div class="sp-image-container" style="width: 960px; height: 500px;"><img alt="Image" class="sp-image" src="css/images/blank.gif" data-src="img/slider_single_tour/5_medium.jpg" data-small="img/slider_single_tour/5_small.jpg" data-medium="img/slider_single_tour/5_medium.jpg" data-large="img/slider_single_tour/5_large.jpg" data-retina="img/slider_single_tour/5_large.jpg" data-default="img/slider_single_tour/5_medium.jpg"></div>
-
-                                        <p class="sp-layer sp-white sp-padding" data-vertical="5%" data-horizontal="5%" data-width="90%" data-show-transition="down" data-show-delay="400" data-layer-init="true" style="visibility: hidden;">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                        </p>
-                                    </div><div class="sp-slide" data-index="5" data-init="true" style="width: 750px; height: 390.625px; left: 0px;"><div class="sp-image-container" style="width: 960px; height: 500px;"><img alt="Image" class="sp-image" src="css/images/blank.gif" data-src="img/slider_single_tour/6_medium.jpg" data-small="img/slider_single_tour/6_small.jpg" data-medium="img/slider_single_tour/6_medium.jpg" data-large="img/slider_single_tour/6_large.jpg" data-retina="img/slider_single_tour/6_large.jpg" data-default="img/slider_single_tour/6_medium.jpg"></div>
-
-                                        <p class="sp-layer sp-white sp-padding" data-horizontal="10" data-vertical="10" data-width="300" data-layer-init="true" style="visibility: hidden;">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                        </p>
-                                    </div><div class="sp-slide" data-index="6" data-init="true" style="width: 750px; height: 390.625px; left: 970px;"><div class="sp-image-container" style="width: 960px; height: 500px;"><img alt="Image" class="sp-image" src="css/images/blank.gif" data-src="img/slider_single_tour/7_medium.jpg" data-small="img/slider_single_tour/7_small.jpg" data-medium="img/slider_single_tour/7_medium.jpg" data-large="img/slider_single_tour/7_large.jpg" data-retina="img/slider_single_tour/7_large.jpg" data-default="img/slider_single_tour/7_medium.jpg"></div>
-
-                                        <p class="sp-layer sp-black sp-padding" data-position="bottomLeft" data-horizontal="5%" data-vertical="5%" data-width="90%" data-show-transition="up" data-show-delay="400" data-layer-init="true" style="visibility: hidden;">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                        </p>
-                                    </div><div class="sp-slide" data-index="7" data-init="true" style="width: 750px; height: 390.625px; left: 1940px;"><div class="sp-image-container" style="width: 960px; height: 500px;"><img alt="Image" class="sp-image" src="css/images/blank.gif" data-src="img/slider_single_tour/8_medium.jpg" data-small="img/slider_single_tour/8_small.jpg" data-medium="img/slider_single_tour/8_medium.jpg" data-large="img/slider_single_tour/8_large.jpg" data-retina="img/slider_single_tour/8_large.jpg" data-default="img/slider_single_tour/8_medium.jpg"></div>
-
-                                        <p class="sp-layer sp-black sp-padding" data-horizontal="50" data-vertical="50" data-show-transition="down" data-show-delay="500" data-layer-init="true" style="visibility: hidden;">
-                                            Lorem ipsum dolor sit amet
-                                        </p>
-                                        <p class="sp-layer sp-white sp-padding" data-horizontal="50" data-vertical="100" data-show-transition="up" data-show-delay="500" data-layer-init="true" style="visibility: hidden;">
-                                            consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                        </p>
-                                    </div><div class="sp-slide" data-index="8" data-init="true" data-loaded="true" style="width: 750px; height: 390.625px; left: 2910px;"><div class="sp-image-container" style="width: 750px; height: 390.625px;"><img class="sp-image" data-default="img/slider_single_tour/9_medium.jpg" data-retina="img/slider_single_tour/9_large.jpg" data-large="img/slider_single_tour/9_large.jpg" data-medium="img/slider_single_tour/9_medium.jpg" data-small="img/slider_single_tour/9_small.jpg" alt="Image" src="img/slider_single_tour/9_medium.jpg" style="width: 100%; height: auto; margin-left: 0px; margin-top: -54.5px;"></div>
-
-                                    </div></div></div><div class="sp-arrows sp-fade-arrows"><div class="sp-arrow sp-previous-arrow"></div><div class="sp-arrow sp-next-arrow"></div></div></div><div class="sp-thumbnails-container sp-bottom-thumbnails" style="width: 750px;"><div class="sp-thumbnails sp-grab" style="width: 932px; height: 80px;">
-
-
-
-
-
-
-
-
-
-                                <div class="sp-thumbnail-container sp-selected-thumbnail" data-loaded="true" style="width: 100px; height: 80px;"><img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/1_medium.jpg" data-index="0" data-init="true" style="width: auto; height: 100%; margin-left: -8.5px; margin-top: 0px;"></div><div class="sp-thumbnail-container" data-loaded="true" style="width: 100px; height: 80px;"><img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/2_medium.jpg" data-index="1" data-init="true" style="width: auto; height: 100%; margin-left: -10px; margin-top: 0px;"></div><div class="sp-thumbnail-container" data-loaded="true" style="width: 100px; height: 80px;"><img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/3_medium.jpg" data-index="2" data-init="true" style="width: auto; height: 100%; margin-left: -10px; margin-top: 0px;"></div><div class="sp-thumbnail-container" data-loaded="true" style="width: 100px; height: 80px;"><img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/4_medium.jpg" data-index="3" data-init="true" style="width: auto; height: 100%; margin-left: -10px; margin-top: 0px;"></div><div class="sp-thumbnail-container" data-loaded="true" style="width: 100px; height: 80px;"><img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/5_medium.jpg" data-index="4" data-init="true" style="width: auto; height: 100%; margin-left: -10px; margin-top: 0px;"></div><div class="sp-thumbnail-container" data-loaded="true" style="width: 100px; height: 80px;"><img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/6_medium.jpg" data-index="5" data-init="true" style="width: auto; height: 100%; margin-left: -10px; margin-top: 0px;"></div><div class="sp-thumbnail-container" data-loaded="true" style="width: 100px; height: 80px;"><img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/7_medium.jpg" data-index="6" data-init="true" style="width: auto; height: 100%; margin-left: -10px; margin-top: 0px;"></div><div class="sp-thumbnail-container" data-loaded="true" style="width: 100px; height: 80px;"><img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/8_medium.jpg" data-index="7" data-init="true" style="width: auto; height: 100%; margin-left: -10px; margin-top: 0px;"></div><div class="sp-thumbnail-container" style="width: 100px; height: 80px;"><img alt="Image" class="sp-thumbnail" src="img/slider_single_tour/9_medium.jpg" data-index="8" data-init="true" style="width: auto; height: 100%; margin-left: -10px; margin-top: 0px;"></div></div><div class="sp-thumbnail-arrows sp-fade-thumbnail-arrows"><div class="sp-thumbnail-arrow sp-previous-thumbnail-arrow" style="display: none;"></div><div class="sp-thumbnail-arrow sp-next-thumbnail-arrow" style="display: block;"></div></div></div></div>
+                            <div class="sp-slide">
+                                <img alt="Image" class="sp-image" src="/frontend/css/images/blank.gif" data-src="/img/slider_single_tour/9_medium.jpg" data-small="/img/slider_single_tour/9_small.jpg" data-medium="/img/slider_single_tour/9_medium.jpg" data-large="/img/slider_single_tour/9_large.jpg" data-retina="/img/slider_single_tour/9_large.jpg">
+                            </div>
+                        </div>
+                        <div class="sp-thumbnails">
+                            <img alt="Image" class="sp-thumbnail" src="/img/slider_single_tour/1_medium.jpg">
+                            <img alt="Image" class="sp-thumbnail" src="/img/slider_single_tour/2_medium.jpg">
+                            <img alt="Image" class="sp-thumbnail" src="/img/slider_single_tour/3_medium.jpg">
+                            <img alt="Image" class="sp-thumbnail" src="/img/slider_single_tour/4_medium.jpg">
+                            <img alt="Image" class="sp-thumbnail" src="/img/slider_single_tour/5_medium.jpg">
+                            <img alt="Image" class="sp-thumbnail" src="/img/slider_single_tour/6_medium.jpg">
+                            <img alt="Image" class="sp-thumbnail" src="/img/slider_single_tour/7_medium.jpg">
+                            <img alt="Image" class="sp-thumbnail" src="/img/slider_single_tour/8_medium.jpg">
+                            <img alt="Image" class="sp-thumbnail" src="/img/slider_single_tour/9_medium.jpg">
+                        </div>
+                    </div>
 
                     <hr>
 
@@ -128,11 +138,15 @@
                         </div>
                         <div class="col-md-9">
                             <p>
-                                Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo aeterno legimus insolens ad. Sit cu detraxit constituam, an mel iudico constituto efficiendi. Eu ponderum mediocrem has, vitae adolescens in pro. Mea liber ridens inermis ei, mei legendos vulputate an, labitur tibique te qui.
+                                Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo aeterno legimus insolens ad.
+                                Sit cu detraxit constituam, an mel iudico constituto efficiendi. Eu ponderum mediocrem
+                                has, vitae adolescens in pro. Mea liber ridens inermis ei, mei legendos vulputate an,
+                                labitur tibique te qui.
                             </p>
                             <h4>Hotel facilities</h4>
                             <p>
-                                Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo aeterno legimus insolens ad. Sit cu detraxit constituam, an mel iudico constituto efficiendi.
+                                Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo aeterno legimus insolens ad.
+                                Sit cu detraxit constituam, an mel iudico constituto efficiendi.
                             </p>
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
@@ -169,7 +183,8 @@
                         <div class="col-md-9">
                             <h4>Single Room</h4>
                             <p>
-                                Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo aeterno legimus insolens ad. Sit cu detraxit constituam, an mel iudico constituto efficiendi.
+                                Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo aeterno legimus insolens ad.
+                                Sit cu detraxit constituam, an mel iudico constituto efficiendi.
                             </p>
 
                             <div class="row">
@@ -189,31 +204,56 @@
                                 </div>
                             </div>
                             <!-- End row  -->
-                            <div class="carousel magnific-gallery owl-carousel owl-theme" style="opacity: 1; display: block;">
-                                <div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 1112px; left: 0px; display: block;"><div class="owl-item" style="width: 139px;"><div class="item">
-                                                <a href="img/carousel/1.jpg"><img src="img/carousel/1.jpg" alt="Image">
+                            <div class="carousel magnific-gallery owl-carousel owl-theme"
+                                 style="opacity: 1; display: block;">
+                                <div class="owl-wrapper-outer">
+                                    <div class="owl-wrapper" style="width: 1112px; left: 0px; display: block;">
+                                        <div class="owl-item" style="width: 139px;">
+                                            <div class="item">
+                                                <a href="/img/carousel/1.jpg"><img src="/img/carousel/1.jpg"
+                                                                                   alt="Image">
                                                 </a>
-                                            </div></div><div class="owl-item" style="width: 139px;"><div class="item">
-                                                <a href="img/carousel/2.jpg"><img src="img/carousel/2.jpg" alt="Image">
+                                            </div>
+                                        </div>
+                                        <div class="owl-item" style="width: 139px;">
+                                            <div class="item">
+                                                <a href="/img/carousel/2.jpg"><img src="/img/carousel/2.jpg"
+                                                                                   alt="Image">
                                                 </a>
-                                            </div></div><div class="owl-item" style="width: 139px;"><div class="item">
-                                                <a href="img/carousel/3.jpg"><img src="img/carousel/3.jpg" alt="Image">
+                                            </div>
+                                        </div>
+                                        <div class="owl-item" style="width: 139px;">
+                                            <div class="item">
+                                                <a href="/img/carousel/3.jpg"><img src="/img/carousel/3.jpg"
+                                                                                   alt="Image">
                                                 </a>
-                                            </div></div><div class="owl-item" style="width: 139px;"><div class="item">
-                                                <a href="img/carousel/4.jpg"><img src="img/carousel/4.jpg" alt="Image">
+                                            </div>
+                                        </div>
+                                        <div class="owl-item" style="width: 139px;">
+                                            <div class="item">
+                                                <a href="/img/carousel/4.jpg"><img src="/img/carousel/4.jpg"
+                                                                                   alt="Image">
                                                 </a>
-                                            </div></div></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
 
-
-                                <div class="owl-controls clickable" style="display: none;"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div></div></div></div>
+                                <div class="owl-controls clickable" style="display: none;">
+                                    <div class="owl-pagination">
+                                        <div class="owl-page active"><span class=""></span></div>
+                                    </div>
+                                </div>
+                            </div>
                             <!-- End photo carousel  -->
 
                             <hr>
 
                             <h4>Double Room</h4>
                             <p>
-                                Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo aeterno legimus insolens ad. Sit cu detraxit constituam, an mel iudico constituto efficiendi.
+                                Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo aeterno legimus insolens ad.
+                                Sit cu detraxit constituam, an mel iudico constituto efficiendi.
                             </p>
 
                             <div class="row">
@@ -233,24 +273,48 @@
                                 </div>
                             </div>
                             <!-- End row  -->
-                            <div class="carousel magnific-gallery owl-carousel owl-theme" style="opacity: 1; display: block;">
-                                <div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 1112px; left: 0px; display: block;"><div class="owl-item" style="width: 139px;"><div class="item">
-                                                <a href="img/carousel/1.jpg"><img src="img/carousel/1.jpg" alt="Image">
+                            <div class="carousel magnific-gallery owl-carousel owl-theme"
+                                 style="opacity: 1; display: block;">
+                                <div class="owl-wrapper-outer">
+                                    <div class="owl-wrapper" style="width: 1112px; left: 0px; display: block;">
+                                        <div class="owl-item" style="width: 139px;">
+                                            <div class="item">
+                                                <a href="/img/carousel/1.jpg"><img src="/img/carousel/1.jpg"
+                                                                                   alt="Image">
                                                 </a>
-                                            </div></div><div class="owl-item" style="width: 139px;"><div class="item">
-                                                <a href="img/carousel/2.jpg"><img src="img/carousel/2.jpg" alt="Image">
+                                            </div>
+                                        </div>
+                                        <div class="owl-item" style="width: 139px;">
+                                            <div class="item">
+                                                <a href="/img/carousel/2.jpg"><img src="/img/carousel/2.jpg"
+                                                                                   alt="Image">
                                                 </a>
-                                            </div></div><div class="owl-item" style="width: 139px;"><div class="item">
-                                                <a href="img/carousel/3.jpg"><img src="img/carousel/3.jpg" alt="Image">
+                                            </div>
+                                        </div>
+                                        <div class="owl-item" style="width: 139px;">
+                                            <div class="item">
+                                                <a href="/img/carousel/3.jpg"><img src="/img/carousel/3.jpg"
+                                                                                   alt="Image">
                                                 </a>
-                                            </div></div><div class="owl-item" style="width: 139px;"><div class="item">
-                                                <a href="img/carousel/4.jpg"><img src="img/carousel/4.jpg" alt="Image">
+                                            </div>
+                                        </div>
+                                        <div class="owl-item" style="width: 139px;">
+                                            <div class="item">
+                                                <a href="/img/carousel/4.jpg"><img src="/img/carousel/4.jpg"
+                                                                                   alt="Image">
                                                 </a>
-                                            </div></div></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
 
-
-                                <div class="owl-controls clickable" style="display: none;"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div></div></div></div>
+                                <div class="owl-controls clickable" style="display: none;">
+                                    <div class="owl-pagination">
+                                        <div class="owl-page active"><span class=""></span></div>
+                                    </div>
+                                </div>
+                            </div>
                             <!-- End photo carousel  -->
                         </div>
                         <!-- End col-md-9  -->
@@ -259,93 +323,14 @@
 
                     <hr>
 
-                    <div class="row">
-                        <div class="col-md-3">
-                            <h3>Reviews</h3>
-                            <a href="#" class="btn_1 add_bottom_30" data-toggle="modal" data-target="#myReview">Leave a review</a>
-                        </div>
-                        <div class="col-md-9">
-                            <div id="score_detail"><span>7.5</span>Good <small>(Based on 34 reviews)</small>
-                            </div>
-                            <!-- End general_rating -->
-                            <div class="row" id="rating_summary">
-                                <div class="col-md-6">
-                                    <ul>
-                                        <li>Position
-                                            <div class="rating">
-                                                <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-                                            </div>
-                                        </li>
-                                        <li>Comfort
-                                            <div class="rating">
-                                                <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-6">
-                                    <ul>
-                                        <li>Price
-                                            <div class="rating">
-                                                <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-                                            </div>
-                                        </li>
-                                        <li>Quality
-                                            <div class="rating">
-                                                <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- End row -->
-                            <hr>
-                            <div class="review_strip_single">
-                                <img src="img/avatar1.jpg" alt="Image" class="img-circle">
-                                <small> - 10 March 2015 -</small>
-                                <h4>Jhon Doe</h4>
-                                <p>
-                                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
-                                </p>
-                                <div class="rating">
-                                    <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-                                </div>
-                            </div>
-                            <!-- End review strip -->
-
-                            <div class="review_strip_single">
-                                <img src="img/avatar2.jpg" alt="Image" class="img-circle">
-                                <small> - 10 March 2015 -</small>
-                                <h4>Jhon Doe</h4>
-                                <p>
-                                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
-                                </p>
-                                <div class="rating">
-                                    <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-                                </div>
-                            </div>
-                            <!-- End review strip -->
-
-                            <div class="review_strip_single last">
-                                <img src="img/avatar3.jpg" alt="Image" class="img-circle">
-                                <small> - 10 March 2015 -</small>
-                                <h4>Jhon Doe</h4>
-                                <p>
-                                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
-                                </p>
-                                <div class="rating">
-                                    <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-                                </div>
-                            </div>
-                            <!-- End review strip -->
-                        </div>
-                    </div>
                 </div>
                 <!--End  single_tour_desc-->
 
                 <aside class="col-md-4">
                     <p class="hidden-sm hidden-xs">
-                        <a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">View on map</a>
+                        <a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false"
+                           aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">View
+                            on map</a>
                     </p>
                     <div class="box_style_1 expose">
                         <h3 class="inner">Check Availability</h3>
@@ -368,16 +353,22 @@
                                 <div class="form-group">
                                     <label>Adults</label>
                                     <div class="numbers-row">
-                                        <input type="text" value="1" id="adults" class="qty2 form-control" name="quantity">
-                                        <div class="inc button_inc">+</div><div class="dec button_inc">-</div></div>
+                                        <input type="text" value="1" id="adults" class="qty2 form-control"
+                                               name="quantity">
+                                        <div class="inc button_inc">+</div>
+                                        <div class="dec button_inc">-</div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label>Children</label>
                                     <div class="numbers-row">
-                                        <input type="text" value="0" id="children" class="qty2 form-control" name="quantity">
-                                        <div class="inc button_inc">+</div><div class="dec button_inc">-</div></div>
+                                        <input type="text" value="0" id="children" class="qty2 form-control"
+                                               name="quantity">
+                                        <div class="inc button_inc">+</div>
+                                        <div class="dec button_inc">-</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -406,3 +397,57 @@
 
     </main>
 @endsection
+
+@push('scripts')
+
+<!-- Specific scripts -->
+<script src="/frontend/js/icheck.js"></script>
+<script>
+    $('input').iCheck({
+        checkboxClass: 'icheckbox_square-grey',
+        radioClass: 'iradio_square-grey'
+    });
+</script>
+<!-- Date and time pickers -->
+<script src="/frontend/js/jquery.sliderPro.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function ($) {
+        $('#Img_carousel').sliderPro({
+            width: 960,
+            height: 500,
+            fade: true,
+            arrows: true,
+            buttons: false,
+            fullScreen: false,
+            smallSize: 500,
+            startSlide: 0,
+            mediumSize: 1000,
+            largeSize: 3000,
+            thumbnailArrows: true,
+            autoplay: false
+        });
+    });
+</script>
+
+
+<!-- Date and time pickers -->
+<script src="/frontend/js/bootstrap-datepicker.js"></script>
+<script>
+    $('input.date-pick').datepicker('setDate', 'today');
+</script>
+<!-- Map -->
+{{--<script src="http://maps.googleapis.com/maps/api/js"></script>--}}
+{{--<script src="/frontend/js/map.js"></script>--}}
+{{--<script src="/frontend/js/infobox.js"></script>--}}
+<!-- Carousel -->
+{{--<script src="/frontend/js/owl.carousel.min.js"></script>--}}
+<script>
+    $(document).ready(function () {
+        $(".carousel").owlCarousel({
+            items: 4,
+            itemsDesktop: [1199, 3],
+            itemsDesktopSmall: [979, 3]
+        });
+    });
+</script>
+@endpush

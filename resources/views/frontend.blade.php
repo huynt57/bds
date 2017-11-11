@@ -383,7 +383,7 @@
 <script src="/frontend/js/map_listing_tours.js"></script>
 <script src="/frontend/js/infobox.js"></script>
 <!--owlcarousel-->
-<script type='text/javascript' src="http://viethouse24.com/assets/frontend/js/owlcarousel/owl.carousel.js"></script>
+<script src="/frontend/js/owl.carousel.min.js"></script>
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -420,6 +420,8 @@
     });
 
 </script>
+
+@stack('scripts')
 
 </body>
 
