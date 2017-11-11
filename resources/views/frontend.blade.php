@@ -45,12 +45,12 @@
     <link rel="stylesheet" href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.theme.default.min.css">
     <![endif]-->
     <style>
-        div {
-            transition-duration: 0.5s;
-        }
-        div {
-            transition-timing-function: ease-in-out;
-        }
+        /*div {*/
+            /*transition-duration: 0.5s;*/
+        /*}*/
+        /*div {*/
+            /*transition-timing-function: ease-in-out;*/
+        /*}*/
         .title-over {
             z-index: 100;
             position: absolute;

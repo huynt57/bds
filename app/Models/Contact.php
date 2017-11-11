@@ -12,6 +12,8 @@ class Contact extends Model
         'phone',
         'email',
         'address',
+        'status',
+        'agent_id',
         'message',
         'created_at',
         'updated_ta'
@@ -21,4 +23,15 @@ class Contact extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function getStatusTextAttribute()
+    {
+        $status = $this->attributes['status'];
+
+        if ($status) {
+            return 'Đã xử lý';
+        }
+
+        return 'Chưa xử lý';
+    }
 }

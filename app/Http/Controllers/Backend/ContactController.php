@@ -16,19 +16,25 @@ class ContactController extends Controller
 
     public function getContactByAttribute(Request $request)
     {
-        $contacts = Contact::orderBy('id', 'desc');
+        $contacts = Contact::select(\DB::raw('contacts.*, users.name as agent'))
+            ->leftjoin('users', 'contacts.agent_id', '=', 'users.id')
+            ->orderBy('id', 'desc');
 
         return \Datatables::of($contacts)
-            ->addColumn('file', function($contact) {
+            ->addColumn('file', function ($contact) {
                 return '<a data-toggle="modal" href="#list-file" class="btn btn-success">Xem</a>';
             })
-            ->editColumn('created_at', function($contact) {
+            ->editColumn('created_at', function ($contact) {
                 return $contact->created_at->format('d/m/Y H:i');
             })
-            ->editColumn('status', function($contact) {
-                return $contact->status;
+            ->editColumn('status', function ($contact) {
+                return '<a href="javascript:;" data-type="select" 
+                data-pk="' . $contact->id . '" data-url="' . url('admin/contact/update-inline', ['id' => $contact->id]) . '" 
+                data-id="' . $contact->id . '" 
+                data-name="status"
+                class="editable editable-click"> ' . $contact->status_text . ' </a>';
             })
-            ->addColumn('action', function($contact) {
+            ->addColumn('action', function ($contact) {
 
             })
             ->make(true);

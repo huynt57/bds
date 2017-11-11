@@ -1,4 +1,16 @@
 @extends('admin')
+@section('styles')
+
+    <link href="/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/global/plugins/bootstrap-editable/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/global/plugins/bootstrap-editable/inputs-ext/address/address.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+@endsection
 @section('content')
     <h3 class="inline">Danh sách phiếu liên hệ</h3>
 
@@ -63,6 +75,7 @@
                     <th>Nội dung liên hệ</th>
                     {{--<th>Miêu tả</th>--}}
                     <th>File đính kèm</th>
+                    <th>Môi giới viên</th>
                     <th>Thời gian</th>
                     <th>Trạng thái</th>
                     <th>Hành động</th>
@@ -77,7 +90,22 @@
         </div>
     </div>
 @endsection
+@push('scripts')
 
+<script src="/assets/global/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/moment.min.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/jquery.mockjax.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/bootstrap-editable/bootstrap-editable/js/bootstrap-editable.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/bootstrap-editable/inputs-ext/address/address.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/bootstrap-editable/inputs-ext/wysihtml5/wysihtml5.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/bootstrap-typeahead/bootstrap3-typeahead.min.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+{{--<script src="/assets/pages/scripts/form-editable.min.js" type="text/javascript"></script>--}}
+
+@endpush
 @push('scripts')
 <script>
 
@@ -108,10 +136,23 @@
                 {data: 'address', name: 'address'},
                 {data: 'message', name: 'message'},
                 {data: 'file', name: 'file'},
+                {data: 'agent', name: 'agent'},
                 {data: 'created_at', name: 'created_at'},
                 {data: 'status', name: 'status'},
                 {data: 'action', name: 'action'},
-            ]
+            ],
+            initComplete: function () {
+                $('.editable').editable({
+                    prepend: "Chưa chọn",
+                    source: [{
+                        value: 1,
+                        text: 'Đã xử lý'
+                    }, {
+                        value: 0,
+                        text: 'Chưa xử lý'
+                    }],
+                });
+            }
         });
     }
 
@@ -131,10 +172,23 @@
                 {data: 'address', name: 'address'},
                 {data: 'message', name: 'message'},
                 {data: 'file', name: 'file'},
+                {data: 'agent', name: 'agent'},
                 {data: 'created_at', name: 'created_at'},
                 {data: 'status', name: 'status'},
                 {data: 'action', name: 'action'},
-            ]
+            ],
+            initComplete: function () {
+                $('.editable').editable({
+                    prepend: "Chưa chọn",
+                    source: [{
+                        value: 1,
+                        text: 'Đã xử lý'
+                    }, {
+                        value: 0,
+                        text: 'Chưa xử lý'
+                    }],
+                });
+            }
         });
     });
 

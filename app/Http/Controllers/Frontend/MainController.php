@@ -121,14 +121,16 @@ class MainController extends Controller
             $items = $items->where('type', $type);
         }
 
+        if(!empty($lat) && !empty($lng))
+        {
+            $items = $items->isWithinMaxDistance($coordinates, $radius);
+        }
+
+
         if ($request->ajax()) {
             return response($this->getHouseMarker($items->get()));
         }
 
-        if(!empty($lat) && !empty($lng))
-        {
-            $items = House::isWithinMaxDistance($coordinates, $radius);
-        }
 
         $items = $items->paginate(10);
 
