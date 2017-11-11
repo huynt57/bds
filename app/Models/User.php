@@ -43,6 +43,17 @@ class User extends Authenticatable
         $query->where('type', User::AGENT);
     }
 
+    public function getStatusTextAttribute()
+    {
+        $status = $this->attributes['status'];
+
+        if ($status) {
+            return 'Kích hoạt';
+        }
+
+        return 'Không kích hoạt';
+    }
+
     public function getTypeTextAttribute()
     {
         $type = $this->attributes['type'];

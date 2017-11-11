@@ -17,6 +17,8 @@ Route::get('get-house-marker', 'Frontend\MainController@getHouseMarker');
 Route::get('agents', 'Frontend\MainController@getAgents');
 Route::get('lien-he', 'Frontend\MainController@contact');
 
+Route::get('get-house-by-center', 'Frontend\MainController@getHouseByCenter');
+
 Route::get('school', 'Frontend\MainController@getSchoolNearBy');
 
 Route::post('contact/store', 'Frontend\MainController@storeContact');
@@ -24,7 +26,7 @@ Route::post('contact/store', 'Frontend\MainController@storeContact');
 Route::get('post/{slug}-{id}', 'Frontend\MainController@getPostBySlug')
     ->where(['slug' => '[a-zA-Z0-9-]+', 'id' => '[0-9-]+']);
 
-Route::get('house/{slug}-{id}', 'Frontend\MainController@getHouseById')
+Route::get('house/{slug}-{id}', 'Frontend\MainController@detail')
     ->where(['slug' => '[a-zA-Z0-9-]+', 'id' => '[0-9-]+']);
 
 Route::group(['prefix' => 'admin'], function () {
@@ -69,6 +71,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('store', 'Backend\UserController@store');
         Route::get('edit/{id}', 'Backend\UserController@edit');
         Route::post('edit/{id}', 'Backend\UserController@update');
+        Route::post('update-inline/{id}', 'Backend\UserController@updateStatusUser');
         Route::get('user.data', ['as' => 'user.data',
             'uses' => 'Backend\UserController@getUserByAttribute'
         ]);

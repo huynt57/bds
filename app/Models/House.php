@@ -69,11 +69,11 @@ class House extends Model
     public function scopeIsWithinMaxDistance($query, $coordinates, $radius = 5)
     {
         $haversine = "(6371 * acos(cos(radians(" . $coordinates['latitude'] . ")) 
-                    * cos(radians(`latitude`)) 
-                    * cos(radians(`longitude`) 
+                    * cos(radians(`lat`)) 
+                    * cos(radians(`lng`) 
                     - radians(" . $coordinates['longitude'] . ")) 
                     + sin(radians(" . $coordinates['latitude'] . ")) 
-                    * sin(radians(`latitude`))))";
+                    * sin(radians(`lat`))))";
 
         return $query->select('*')
             ->selectRaw("{$haversine} AS distance")

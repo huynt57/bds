@@ -79,12 +79,26 @@ class MainController extends Controller
         ];
     }
 
+    public function getHouseByCenter(Request $request)
+    {
+
+
+
+
+    }
 
     public function getHouseByAttribute(Request $request)
     {
         $type = $request->input('type');
         $categoryId = $request->input('category_id');
         $keyword = $request->input('keyword');
+
+        $lat = $request->input('lat');
+        $lng = $request->input('lng');
+
+        $coordinates['latitude'] = $lat;
+        $coordinates['longitude'] = $lng;
+        $radius = 5;
 
         $items = House::orderBy('id', 'desc');
 
@@ -111,13 +125,18 @@ class MainController extends Controller
             return response($this->getHouseMarker($items->get()));
         }
 
+        if(!empty($lat) && !empty($lng))
+        {
+            $items = House::isWithinMaxDistance($coordinates, $radius);
+        }
+
         $items = $items->paginate(10);
 
         return view('frontend.houses', compact('items'));
 
     }
 
-    public function detail($id, Request $request)
+    public function detail($slug, $id, Request $request)
     {
         $house = House::find($id);
 

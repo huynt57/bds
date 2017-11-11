@@ -39,26 +39,40 @@ var center_lat;
 var center_lng;
 //mapObject = new google.maps.Map(document.getElementById('map'), mapOptions);
 
+function get_house_by_center(lat, lng, zoom)
+{
+    $.ajax({
+        url: '/get-house-by-center',
+        data: {
+            lat: lat,
+            lng: lng,
+            zoom: zoom
+
+        },
+        dataType: 'json',
+        success: function (response) {
+            var data = response.data;
+        }
+    });
+}
+
 var map = new GMaps({
     div: '#map',
     lat: -12.043333,
     lng: -77.028333,
+    zoom_changed: function(e)
+    {
+        var lat = e.center.lat();
+        var lng = e.center.lng();
+        var zoom = e.zoom;
+        get_house_by_center(lat, lng, zoom);
+    },
     dragend: function(e) {
         var lat = e.center.lat();
         var lng = e.center.lng();
+        var zoom = e.zoom;
+        get_house_by_center(lat, lng, zoom);
 
-        $.ajax({
-            url: '/get-house-by-center',
-            data: {
-                lat: lat,
-                lng: lng,
-
-            },
-            dataType: 'json',
-            success: function (response) {
-                var data = response.data;
-            }
-        });
     }
 });
 

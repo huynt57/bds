@@ -266,13 +266,13 @@
 </header>
 <!-- End Header -->
 
-<!-- <section id="hero" class="subheader_plain">
-    <div class="intro_title">
-        <h3 class="animated fadeInDown">Affordable Paris tours</h3>
-        <p class="animated fadeInDown">CITY TOURS / TOUR TICKETS / TOUR GUIDES</p>
-        <a href="all_tours_list.html" class="animated fadeInUp button_intro">View Tours</a> <a href="single_tour.html" class="animated fadeInUp button_intro outline">Read more</a>
-    </div>
-</section> -->
+{{--<section id="hero" class="subheader_plain">--}}
+    {{--<div class="intro_title">--}}
+        {{--<h3 class="animated fadeInDown">Affordable Paris tours</h3>--}}
+        {{--<p class="animated fadeInDown">CITY TOURS / TOUR TICKETS / TOUR GUIDES</p>--}}
+        {{--<a href="all_tours_list.html" class="animated fadeInUp button_intro">View Tours</a> <a href="single_tour.html" class="animated fadeInUp button_intro outline">Read more</a>--}}
+    {{--</div>--}}
+{{--</section>--}}
 <!-- End section -->
 
 @yield('content')
@@ -359,14 +359,7 @@
 <div id="toTop"></div><!-- Back to top button -->
 
 <!-- Search Menu -->
-<div class="search-overlay-menu">
-    <span class="search-overlay-close"><i class="icon_set_1_icon-77"></i></span>
-    <form role="search" id="searchform" method="get">
-        <input value="" name="q" type="search" placeholder="Search..."/>
-        <button type="submit"><i class="icon_set_1_icon-78"></i>
-        </button>
-    </form>
-</div><!-- End Search Menu -->
+
 
 <!-- Common scripts -->
 <script src="/frontend/js/jquery-2.2.4.min.js"></script>
@@ -374,16 +367,16 @@
 <script src="/frontend/js/functions.js"></script>
 <script src="/frontend/js/slick.js"></script>
 
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC5_oqCsJvZdLWEadt934vSKipvwhIDFNY"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCydLs7dhJPuozABFQjJO-uk1PITW18oo8"></script>
 
 <script type="text/javascript" src="http://map.fitme.vn/js/gmaps.js"></script>
 <script type="text/javascript" src="http://map.fitme.vn/js/prettify.js"></script>
 
 
 <script src="/frontend/js/map_listing_tours.js"></script>
-<script src="/frontend/js/infobox.js"></script>
+
 <!--owlcarousel-->
-<script src="/frontend/js/owl.carousel.min.js"></script>
+<script type='text/javascript' src="http://viethouse24.com/assets/frontend/js/owlcarousel/owl.carousel.js"></script>
 <script type="text/javascript">
 
     $(document).ready(function () {

@@ -24,7 +24,11 @@ class UserController extends AdminController
                 return $user->type_text;
             })
             ->editColumn('status', function ($user) {
-                return $user->status;
+                return '<a href="javascript:;" data-type="select" 
+                data-pk="' . $user->id . '" data-url="' . url('admin/user/update-inline', ['id' => $user->id]) . '" 
+                data-id="' . $user->id . '" 
+                data-name="status"
+                class="editable editable-click"> ' . $user->status_text . ' </a>';
             })
             ->addColumn('action', function ($user) {
 
@@ -45,7 +49,7 @@ class UserController extends AdminController
                 'message' => 'Dữ liệu không hợp lệ'
             ]);
         }
-        $status = $request->input('status');
+        $status = $request->input('value');
 
         $user->update([
             'status' => $status

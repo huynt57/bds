@@ -68,4 +68,9 @@
 <script src="/assets/global/plugins/bootstrap-typeahead/bootstrap3-typeahead.min.js" type="text/javascript"></script>
 <script src="/assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
 
+<script>
+    $(document).ready(function() {
+       $('.editable').editable();
+    });
+</script>
 @endpush
