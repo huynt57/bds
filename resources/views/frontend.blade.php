@@ -8,12 +8,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="description"
-          content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
-    <meta name="author" content="Ansonika">
-    <title>CITY TOURS - City tours and travel site template by Ansonika</title>
+    <meta name="description" content="Viethouse24">
+    @yield('meta')
+
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="/frontend/img/favicon.ico" type="image/x-icon">
@@ -345,34 +345,19 @@
             <div class="col-md-4 testimonial-carousel-container">
                 <ul class="testimonial-carousel">
                     <!-- Item Testimonial -->
+                    @php $testimonials = cache()->get('testimonials'); @endphp
+
+                    @foreach($testimonials as $testimonial)
                     <li>
                         <div class="testimonials">
-                            <p>Viethouse24 có dịch vụ rất tốt, nhiệt tình, dù bỏ ra không nhiều tiền nhưng được phục vụ
-                                chu đáo. Tôi đã có được tổ ấm lý tưởng nhờ Viethouse24.</p>
+                            <p>{{ $testimonial->content }}</p>
                             <span class="arrow_testimonials"></span>
                         </div>
-                        <h6 class="testimonial_autor">Lê Đăng Nam - Bắc Ninh</h6>
+                        <h6 class="testimonial_autor">{{$testimonial->user}} - {{$testimonial->address}}</h6>
                     </li>
+                    @endforeach
                     <!-- Item Testimonial -->
 
-                    <li>
-                        <div class="testimonials">
-                            <p>Mua nhà đầu tư ở Bắc Ninh mà không sử dụng dịch vụ của Viethouse24 thì thật sự đáng
-                                tiếc!</p>
-                            <span class="arrow_testimonials"></span>
-                        </div>
-                        <h6 class="testimonial_autor">Phùng Ngọc Hoàng - Hà Nội</h6>
-                    </li>
-                    <!-- Item Testimonial -->
-
-                    <li>
-                        <div class="testimonials">
-                            <p>Thông tin trung thực, giá không bị ảo.</p>
-                            <span class="arrow_testimonials"></span>
-                        </div>
-                        <h6 class="testimonial_autor">Nguyễn Nam Phong - Thanh Hoá</h6>
-                    </li>
-                    <!-- Item Testimonial -->
 
 
                 </ul>

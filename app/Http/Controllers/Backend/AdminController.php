@@ -19,4 +19,9 @@ class AdminController extends Controller
         }
         return $filename;
     }
+
+    public function login()
+    {
+        return view('admin.login');
+    }
 }

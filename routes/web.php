@@ -33,6 +33,7 @@ Route::get('house/{slug}-{id}', 'Frontend\MainController@detail')
 Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/', 'Backend\DashboardController@index');
+    Route::get('login', 'Backend\AdminController@login');
 
     Route::group(['prefix' => 'house'], function () {
         Route::get('create', 'Backend\HouseController@create');
@@ -51,6 +52,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'post'], function () {
         Route::get('create', 'Backend\PostController@create');
         Route::get('list', 'Backend\PostController@index');
+        Route::get('edit/{id}', 'Backend\PostController@edit');
+        Route::post('update/{id}', 'Backend\PostController@update');
 
         Route::post('update-inline/{id}', 'Backend\PostController@updateInline');
         Route::post('store', 'Backend\PostController@store');
@@ -83,9 +86,16 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('list', 'Backend\SettingController@index');
 
         Route::get('testimonials', 'Backend\SettingController@listTestimonials');
+        Route::post('testimonial/store', 'Backend\SettingController@storeTestimonials');
+        Route::post('testimonial/update-inline/{id}', 'Backend\SettingController@updateInlineTestimonial');
+        Route::post('update-inline/{id}', 'Backend\SettingController@updateInlineSetting');
+
 
         Route::get('user.data', ['as' => 'user.data',
             'uses' => 'Backend\UserController@getUserByAttribute'
+        ]);
+        Route::get('testimonial.data', ['as' => 'testimonial.data',
+            'uses' => 'Backend\SettingController@getTestimonialsByAttribute'
         ]);
     });
 

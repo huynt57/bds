@@ -4,6 +4,31 @@
     <link href="/frontend/css/blog.css" rel="stylesheet">
 @endsection
 
+@section('meta')
+
+    <meta property="og:url" content="{{ request()->fullUrl() }}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="{{ $post->title }}"/>
+    <meta property="og:description" content="{{ $post->short_desc }}"/>
+    <meta property="og:image" content="{{ $post->image }}"/>
+    @if(!empty($post->meta_description))
+        <meta name="description" content="{{ $post->meta_description }}"/>
+    @else
+        <meta name="description" content="{{ $post->desc }}"/>
+    @endif
+
+    @if(!empty($post->meta_keyword))
+        <meta name="keywords" content="{{ $post->meta_keyword }}"/>
+    @else
+        <meta name="description" content="{{ $post->desc }}"/>
+    @endif
+
+    <title>{{ $post->title }}</title>
+
+
+
+@endsection
+
 @section('content')
 
     <main style="margin-bottom: 353px;">

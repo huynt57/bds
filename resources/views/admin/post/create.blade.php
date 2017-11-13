@@ -16,6 +16,73 @@
         }
     </style>
     <style>
+        .seo_preview {
+            display: block;
+            min-height: 100px;
+        }
+
+        .seo_title #render_seo_title {
+            color: #1e0fbe;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        .seo_title{
+            display: inline-block;
+            overflow: hidden;
+            width: 100%;
+            vertical-align: top;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .seo_preview {
+            position: relative;
+            background-color: #fff;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+        }
+
+        .seo_heading {
+            margin: 0 0 15px;
+            padding: 8px 20px;
+            color: #555;
+            font-family: "Open Sans", sans-serif;
+            font-size: 15px;
+            font-weight: 300;
+        }
+
+        .seo_preview_view {
+            width: 50%;
+            max-width: 100%;
+            padding: 0 20px;
+        }
+
+        .seo_url {
+            width: 50%;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        #render_seo_url {
+            color: #006621;
+            font-style: normal;
+        }
+
+        #render_seo_description {
+            color: #777;
+        }
+
+        .text-dot {
+            display: block;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+    <style>
         .form-horizontal .form-group {
             margin-left: 0px;
             margin-right: 0px;
@@ -148,7 +215,7 @@
                         <label>Title</label>
                         <div>
                             <input type="text" name="title" class="form-control" placeholder="Điền title bài viết"
-                                   value="{{ old('title') }}">
+                                   value="{{ old('title') }}" id="title">
                         </div>
                     </div>
                     <div class="form-group dmc0">
@@ -195,6 +262,61 @@
 
             </div>
         </div>
+        <div class="col-md-12">
+            <div class="portlet box red">
+                <div class="portlet-title">
+                    <div class="caption">SEO</div>
+
+
+
+                </div>
+                <div class="portlet-body" style="display: block;">
+
+                    <section class="seo_preview">
+                        <div class="seo_preview_view">
+                            <div class="seo_title">
+                                <span id="render_seo_title">
+                                        Vui lòng cung cấp tiêu đề
+                                </span>
+                            </div>
+                            <div class="seo_url">
+                                 <span id="render_seo_url">
+                                    viethouse24.com
+                                </span>
+                            </div>
+                            <div class="seo_description text-dot">
+                                     <span id="render_seo_description">
+
+                                     </span>
+                            </div>
+                        </div>
+
+                    </section>
+                    <section class="seo_preview" style="padding-bottom: 20px">
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Meta description</label>
+                                <div class="col-md-8">
+                                    <textarea class="form-control" id="input_seo_description" placeholder="Meta description" name="meta_description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">keyword</label>
+                                <div class="col-md-8">
+                                    <textarea class="form-control" placeholder="keyword" name="meta_keyword"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+
+
+
         <div class="col-lg-12 form-group">
             <label>Nội dung bài viết</label>
             <div>
@@ -202,6 +324,7 @@
                                           name="desc">{{ old('desc') }}</textarea>
             </div>
         </div>
+
 
         <div class="form-actions">
             <div class="row">
@@ -225,6 +348,21 @@
 <script src="../assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="/esg/slick/slick.min.js"></script>
 <script>
+    $('#title').bind('input', function () {
+        var title = $(this).val();
+        if(!title) {
+            title = 'Vui lòng cung cấp tiêu đề';
+        }
+        $('#render_seo_title').html(title);
+    });
+
+    $('#input_seo_description').bind('input',function () {
+        var content = $(this).val();
+        if(!content){
+            content = 'Vui lòng cung cấp meta description';
+        }
+        $('#render_seo_description').html(content);
+    });
 
     $(document).on('ready', function () {
 

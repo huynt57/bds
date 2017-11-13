@@ -32,6 +32,8 @@ class Post extends Model
         'category_id',
         'slug',
         'status',
+        'meta_keyword',
+        'meta_description',
         'image'
 
     ];

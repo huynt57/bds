@@ -35,7 +35,8 @@
                             <tr>
                                 <td style="width:15%">{{ $setting->display_name }}</td>
                                 <td style="width:50%">
-                                    <a href="javascript:;" data-type="text" data-pk="1" data-name="{{ $setting->name }}"
+                                    <a href="javascript:;" data-type="text" data-pk="1" data-name="value"
+                                       data-pk=" {{ $setting->id }} " data-url=" {{ url('admin/settings/update-inline', ['id' => $setting->id]) }}"
                                        data-original-title="Điền {{ $setting->display_name }}" class="editable editable-click">
                                         {{ $setting->value }} </a>
                                 </td>
