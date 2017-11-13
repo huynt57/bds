@@ -234,15 +234,20 @@ $.ajax({
         markersData = response.markers.data;
         for (var key in markersData) {
             markersData[key].forEach(function (item) {
-                map.addMarker({
+                var marker = map.addMarker({
                     lat: item.location_latitude,
                     lng: item.location_longitude,
                     icon: 'img/pins/' + key + '.png',
                     click: function (e) {
                         map.setCenter(item.location_latitude, item.location_longitude);
+
+                    },
+                    infoWindow: {
+                        content: item.info_window
                     }
                 });
 
+                markers.push(marker);
 
             });
         }
@@ -251,6 +256,7 @@ $.ajax({
         if (center_lat != -1 && center_lng != -1) {
             map.setCenter(response.markers.center.lat, response.markers.center.lng);
         }
+
     }
 });
 

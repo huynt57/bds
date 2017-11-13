@@ -6,7 +6,7 @@
                 <div class="tour_container">
                     {{--<div class="ribbon_3 popular"><span>Popular</span></div>--}}
                     <div class="img_container">
-                        <a href="{{ url('house/view/'.$item->slug) }}">
+                        <a href="{{ url('house/'.str_slug($item->name).'-'.$item->id) }}">
                             <div style="width:360px; height:240px; background-size: cover; background-image: url('{{ $item->main_images }}');"
                                  class="img-responsive"></div>
                             <div class="short_info">
