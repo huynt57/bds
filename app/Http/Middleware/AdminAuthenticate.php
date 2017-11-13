@@ -39,12 +39,12 @@ class AdminAuthenticate
 
         //permission check.
 
-        $action = last(explode('\\', request()->route()->getActionName()));
-
-        if (!$this->missingPermission($action)) {
-            flash('Admin permission required!', 'error');
-            return redirect('/');
-        }
+//        $action = last(explode('\\', request()->route()->getActionName()));
+//
+//        if (!$this->missingPermission($action)) {
+//            flash('Admin permission required!', 'error');
+//            return redirect('/');
+//        }
 
         return $next($request);
     }

@@ -22,12 +22,10 @@
                     <div class="dd" id="nestable_list_1">
                         <ol class="dd-list">
                             @foreach($menus as $menu)
-                            <li class="dd-item" data-id="{{ $menu->id }}">
-                                <div class="dd-handle"> {{ $menu->title }}</div>
-
-                                @php  \App\Components\Functions::printMenu($menu); @endphp
-
-                            </li>
+                                <li class="dd-item" data-id="{{ $menu->id }}">
+                                    <div class="dd-handle"> {{ $menu->title }}</div>
+                                    @php  \App\Components\Functions::printMenu($menu); @endphp
+                                </li>
                             @endforeach
 
                         </ol>
@@ -60,17 +58,17 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Chọn menu cha</label>
                                 <div class="col-md-9">
-                                   <select class="form-control select2" name="parent_id">
-                                       <option value="">Không có menu cha</option>
-                                       @php $menus = \App\Models\Menu::all(); @endphp
+                                    <select class="form-control select2" name="parent_id">
+                                        <option value="">Không có menu cha</option>
+                                        @php $menus = \App\Models\Menu::all(); @endphp
 
-                                       @foreach($menus as $menu)
-                                       <option value="{{ $menu->id }}">
-                                           {{ $menu->title }}
-                                       </option>
-                                           @endforeach
+                                        @foreach($menus as $menu)
+                                            <option value="{{ $menu->id }}">
+                                                {{ $menu->title }}
+                                            </option>
+                                        @endforeach
 
-                                   </select>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -126,34 +124,37 @@
 
 @push('scripts')
 <script src="/assets/global/plugins/jquery-nestable/jquery.nestable.js" type="text/javascript"></script>
+
+{{--https://cdnjs.cloudflare.com/ajax/libs/nestable2/1.6.0/jquery.nestable.min.js--}}
+
 <script src="/assets/pages/scripts/ui-nestable.min.js" type="text/javascript"></script>
 
 <script>
 
-    $(document).on('click', '#btn-save', function(e) {
-       e.preventDefault();
 
-       var data = $('#form-menu').serialize();
+    $(document).on('click', '#btn-save', function (e) {
+        e.preventDefault();
 
-       $.ajax({
-           url: '{{ url('admin/menu/store') }}',
-           data: data,
-           type: 'post',
-           dataType: 'json',
-           success: function(response)
-           {
-               if(response.status == 1)
-               {
-                   location.reload();
-               }
+        var data = $('#form-menu').serialize();
 
-           }
-       });
+        $.ajax({
+            url: '{{ url('admin/menu/store') }}',
+            data: data,
+            type: 'post',
+            dataType: 'json',
+            success: function (response) {
+                if (response.status == 1) {
+                    location.reload();
+                }
+
+            }
+        });
 
     });
 
-    $(document).ready(function() {
 
+
+    $(document).ready(function () {
         $('.select2').select2();
 
     });

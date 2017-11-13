@@ -12,7 +12,7 @@ class MenuController extends Controller
     //
     public function index()
     {
-        $menus = Menu::where('parent_id', null)->orderBy('order', 'desc')->get();
+        $menus = Menu::where('parent_id', null)->orderBy('order', 'asc')->get();
         return view('admin.menu.index', compact('menus'));
     }
 

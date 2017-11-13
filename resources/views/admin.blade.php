@@ -466,7 +466,7 @@
                             {{--<i class="icon-lock"></i> Lock Screen </a>--}}
                             {{--</li>--}}
                             <li>
-                                <a href="{{ url('logout') }}">
+                                <a href="{{ url('admin/logout') }}">
                                     <i class="icon-key"></i> Đăng xuất </a>
                             </li>
                         </ul>

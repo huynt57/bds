@@ -34,6 +34,8 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/', 'Backend\DashboardController@index');
     Route::get('login', 'Backend\AdminController@login');
+    Route::get('logout', 'Backend\AdminController@logout');
+    Route::post('process-login', 'Backend\AdminController@processLogin');
 
     Route::group(['prefix' => 'house'], function () {
         Route::get('create', 'Backend\HouseController@create');

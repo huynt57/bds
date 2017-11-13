@@ -139,6 +139,8 @@
 @push('scripts')
 <script>
 
+
+
     var table;
         $(document).on('click', '#btn-save', function(e) {
             e.preventDefault();
