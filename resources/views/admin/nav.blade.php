@@ -135,6 +135,11 @@
                             <span class="title">Slides trang chủ</span>
                         </a>
                     </li>
+                    <li class="nav-item  ">
+                        <a href="{{ url('admin/settings/testimonials') }}" class="nav-link ">
+                            <span class="title">Cảm nhận khách hàng</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item  ">

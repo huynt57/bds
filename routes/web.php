@@ -82,6 +82,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('slides', 'Backend\SettingController@listSlides');
         Route::get('list', 'Backend\SettingController@index');
 
+        Route::get('testimonials', 'Backend\SettingController@listTestimonials');
+
         Route::get('user.data', ['as' => 'user.data',
             'uses' => 'Backend\UserController@getUserByAttribute'
         ]);

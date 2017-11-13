@@ -176,6 +176,15 @@ class MainController extends Controller
         $lat = $request->input('lat');
         $lng = $request->input('lng');
 
+        $minPrice = $request->input('min_price');
+        $maxPrice = $request->input('max_price');
+
+        $minSize = $request->input('min_size');
+        $maxSize = $request->input('max_size');
+
+        $beds = $request->input('beds');
+        $bathrooms = $request->input('bathrooms');
+
         $coordinates['latitude'] = $lat;
         $coordinates['longitude'] = $lng;
 
@@ -204,13 +213,43 @@ class MainController extends Controller
             $items = $items->isWithinMaxDistance($coordinates, $radius);
         }
 
+        if(!empty($minSize))
+        {
+            $items = $items->where('size', '>=', $minSize);
+        }
+
+        if(!empty($maxSize))
+        {
+            $items = $items->where('size', '<=', $maxSize);
+        }
+
+        if(!empty($minPrice))
+        {
+            $items = $items->where('price', '>=', $minPrice);
+        }
+
+        if(!empty($maxPrice))
+        {
+            $items = $items->where('price', '<=', $maxPrice);
+        }
+
+        if(!empty($beds))
+        {
+            $items = $items->where('beds', '>=', $beds);
+        }
+
+        if(!empty($bathrooms))
+        {
+            $items = $items->where('bath', '>=', $bathrooms);
+        }
 
         $markers = $this->getHouseMarker($items->get());
         $items = $items->paginate(10);
 
         return response([
             'markers' => $markers,
-            'items' => view('frontend.houses_ajax', compact('items'))->render()
+            'items' => view('frontend.houses_ajax', compact('items'))->render(),
+            'url' => $request->fullUrl()
         ]);
     }
 

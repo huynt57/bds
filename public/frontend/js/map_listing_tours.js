@@ -57,6 +57,7 @@ function get_house_by_center(lat, lng, radius) {
         },
         dataType: 'json',
         success: function (response) {
+            markers = [];
             $('.content-left').removeClass('ht-on-loading').html(response.items);
 
             markersData = response.markers.data;
@@ -231,6 +232,7 @@ $.ajax({
     dataType: 'json',
     cache: false,
     success: function (response) {
+        markers = [];
         markersData = response.markers.data;
         for (var key in markersData) {
             markersData[key].forEach(function (item) {

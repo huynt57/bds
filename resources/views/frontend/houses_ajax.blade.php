@@ -1,12 +1,15 @@
 @php $houses = $items->chunk(2) @endphp
+@php $cnt = -1; @endphp
 @foreach($houses as $house)
+
     <div class="row">
         @foreach($house as $item)
+            @php $cnt++; @endphp
             <div class="col-md-6 col-sm-6">
                 <div class="tour_container">
                     {{--<div class="ribbon_3 popular"><span>Popular</span></div>--}}
                     <div class="img_container">
-                        <a href="{{ url('house/'.str_slug($item->name).'-'.$item->id) }}">
+                        <a target="_blank" href="{{ url('house/'.str_slug($item->name).'-'.$item->id) }}">
                             <div style="width:360px; height:240px; background-size: cover; background-image: url('{{ $item->main_images }}');"
                                  class="img-responsive"></div>
                             <div class="short_info">
@@ -26,7 +29,7 @@
                             <a class="tooltip_flip tooltip-effect-1" href="#">+<span
                                         class="tooltip-content-flip"><span class="tooltip-back">Thêm vào yêu thích</span></span></a>
                         </div><!-- End wish list-->
-                        <div style="margin-top: 20px" onclick="onHtmlClick('Historic', '{{ $loop->index }}')" class="view_on_map">Xem trên bản đồ</div>
+                        <div style="margin-top: 20px" onclick="onHtmlClick('Historic', '{{ $cnt }}')" class="view_on_map">Xem trên bản đồ</div>
                     </div>
                 </div><!-- End box tour -->
             </div><!-- End col-md-6 -->

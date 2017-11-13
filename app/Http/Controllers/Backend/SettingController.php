@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\Setting;
 use App\Models\Slide;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 class SettingController extends Controller
 {
@@ -58,5 +60,11 @@ class SettingController extends Controller
     public function updateSetting(Request $request)
     {
 
+    }
+
+    public function listTestimonials(Request $request)
+    {
+        $items = Testimonial::all();
+        return \Datatables::of($items)->make(true);
     }
 }
