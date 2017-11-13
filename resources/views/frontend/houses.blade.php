@@ -20,17 +20,17 @@
                                             <div style="width:360px; height:240px; background-size: cover; background-image: url('{{ $item->main_images }}');"
                                                  class="img-responsive"></div>
                                             <div class="short_info">
-                                                <i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>45</span>
+                                                <i class="icon_set_1_icon-44"></i>{{ $item->type_text }}<span class="price">{{ $item->price_text }}<sup>VNĐ</sup></span>
                                             </div>
                                         </a>
                                     </div>
                                     <div class="tour_title">
                                         <h3><strong>{{ $item->name }}</strong></h3>
                                         {{--<div class="rating">--}}
-                                            {{--<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i--}}
-                                                    {{--class="icon-smile voted"></i><i class="icon-smile voted"></i><i--}}
-                                                    {{--class="icon-smile"></i>--}}
-                                            {{--<small>(75)</small>--}}
+                                        {{--<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i--}}
+                                        {{--class="icon-smile voted"></i><i class="icon-smile voted"></i><i--}}
+                                        {{--class="icon-smile"></i>--}}
+                                        {{--<small>(75)</small>--}}
                                         {{--</div><!-- end rating -->--}}
                                         <div class="wishlist">
                                             <a class="tooltip_flip tooltip-effect-1" href="#">+<span
@@ -47,7 +47,7 @@
                 <hr>
 
                 <div class="text-center">
-                    {!! $items->links('frontend.pagination') !!}
+                    {!! $items->appends(\Illuminate\Support\Facades\Input::except('page'))->links('frontend.pagination') !!}
 
                 </div><!-- end pagination-->
             </div>

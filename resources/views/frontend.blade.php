@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!--[if IE 8]>
 <html class="ie ie8"> <![endif]-->
@@ -19,7 +18,8 @@
     <!-- Favicons-->
     <link rel="shortcut icon" href="/frontend/img/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" type="image/x-icon" href="/frontend/img/apple-touch-icon-57x57-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="/frontend/img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72"
+          href="/frontend/img/apple-touch-icon-72x72-precomposed.png">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114"
           href="/frontend/img/apple-touch-icon-114x114-precomposed.png">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144"
@@ -41,15 +41,40 @@
     <script src="/frontend/js/html5shiv.min.js"></script>
     <script src="/frontend/js/respond.min.js"></script>
     <!-- Owl Stylesheets -->
-    <link rel="stylesheet" href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.theme.default.min.css">
+    <link rel="stylesheet"
+          href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+          href="https://owlcarousel2.github.io/OwlCarousel2/assets/owlcarousel/assets/owl.theme.default.min.css">
     <![endif]-->
+
+    <style>
+        .ht-on-loading {
+            display: block;
+            position: relative;
+        }
+
+        .ht-on-loading:after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, .6);
+            background-image: url('/spinner.gif');
+            background-position: 50% 50%;
+            -webkit-background-size: 36px 36px;
+            background-size: 36px 36px;
+            background-repeat: no-repeat;
+        }
+    </style>
     <style>
         /*div {*/
-            /*transition-duration: 0.5s;*/
+        /*transition-duration: 0.5s;*/
         /*}*/
         /*div {*/
-            /*transition-timing-function: ease-in-out;*/
+        /*transition-timing-function: ease-in-out;*/
         /*}*/
         .title-over {
             z-index: 100;
@@ -63,36 +88,40 @@
             text-align: center;
         }
 
-        .testimonials{
+        .testimonials {
             background: #4c4c4c;
             padding: 10px 20px;
             position: relative;
         }
-        .testimonials:before{
+
+        .testimonials:before {
             content: '';
             left: 20%;
             bottom: -15px;
             position: absolute;
             z-index: 999;
-            border-color: transparent #4c4c4c
-            transparent transparent;
+            border-color: transparent #4c4c4c transparent transparent;
             border-style: solid;
             border-width: 0 35px 15px 0;
         }
-        .testimonials p{
+
+        .testimonials p {
             color: #f4f4f4;
             font-size: 14px;
             line-height: 22px;
             margin: 0;
         }
-        .testimonial_autor{
+
+        .testimonial_autor {
             color: #f4f4f4;
             padding: 20px 0 0 0;
             font-style: italic;
             text-align: right;
         }
     </style>
-    <style>html, body {height: 100%;}</style>
+    <style>html, body {
+            height: 100%;
+        }</style>
 
     @yield('styles')
 
@@ -101,7 +130,8 @@
 <body>
 
 <!--[if lte IE 8]>
-<p class="chromeframe"Bạn đang sử dụng <strong>trình duyệt lỗi thời</strong>. Vui lòng <a href="http://browsehappy.com/">nâng cấp
+<p class="chromeframe" Bạn đang sử dụng <strong>trình duyệt lỗi thời</strong>. Vui lòng <a
+        href="http://browsehappy.com/">nâng cấp
     your browser</a>.</p>
 <![endif]-->
 
@@ -130,7 +160,8 @@
                     <ul id="top_links">
                         <li>
                             <div class="dropdown dropdown-access">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="access_link">Đăng nhập</a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="access_link">Đăng
+                                    nhập</a>
                                 <div class="dropdown-menu">
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
@@ -180,12 +211,14 @@
                 <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
                 <div class="main-menu">
                     <div id="header_menu">
-                        <img src="/frontend/img/logo_sticky.png" width="160" height="34" alt="City tours" data-retina="true">
+                        <img src="/frontend/img/logo_sticky.png" width="160" height="34" alt="City tours"
+                             data-retina="true">
                     </div>
                     <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                     <ul>
                         <li class="submenu">
-                            <a href="javascript:void(0);" class="show-submenu">Trang chủ <i class="icon-down-open-mini"></i></a>
+                            <a href="javascript:void(0);" class="show-submenu">Trang chủ <i
+                                        class="icon-down-open-mini"></i></a>
                             <ul>
                                 <li><a href="javascript:void(0);">Về chúng tôi</a>
                                     <ul>
@@ -199,7 +232,8 @@
                             </ul>
                         </li>
                         <li class="submenu">
-                            <a href="javascript:void(0);" class="show-submenu">Bản đồ <i class="icon-down-open-mini"></i></a>
+                            <a href="javascript:void(0);" class="show-submenu">Bản đồ <i
+                                        class="icon-down-open-mini"></i></a>
                             <ul>
                                 <li><a href="all_tours_list.html">Các BĐS theo tỉnh / thành phố</a></li>
                                 <li><a href="all_tours_grid.html">Các BĐS tại Bắc Ninh</a></li>
@@ -251,12 +285,12 @@
                     </ul>
                 </div><!-- End main-menu -->
                 {{--<ul id="top_tools">--}}
-                    {{--<li>--}}
-                        {{--<div class="dropdown dropdown-search">--}}
-                            {{--<a href="#" class="search-overlay-menu-btn" data-toggle="dropdown"><i--}}
-                                        {{--class="icon-search"></i></a>--}}
-                        {{--</div>--}}
-                    {{--</li>--}}
+                {{--<li>--}}
+                {{--<div class="dropdown dropdown-search">--}}
+                {{--<a href="#" class="search-overlay-menu-btn" data-toggle="dropdown"><i--}}
+                {{--class="icon-search"></i></a>--}}
+                {{--</div>--}}
+                {{--</li>--}}
 
                 {{--</ul>--}}
             </nav>
@@ -267,11 +301,11 @@
 <!-- End Header -->
 
 {{--<section id="hero" class="subheader_plain">--}}
-    {{--<div class="intro_title">--}}
-        {{--<h3 class="animated fadeInDown">Affordable Paris tours</h3>--}}
-        {{--<p class="animated fadeInDown">CITY TOURS / TOUR TICKETS / TOUR GUIDES</p>--}}
-        {{--<a href="all_tours_list.html" class="animated fadeInUp button_intro">View Tours</a> <a href="single_tour.html" class="animated fadeInUp button_intro outline">Read more</a>--}}
-    {{--</div>--}}
+{{--<div class="intro_title">--}}
+{{--<h3 class="animated fadeInDown">Affordable Paris tours</h3>--}}
+{{--<p class="animated fadeInDown">CITY TOURS / TOUR TICKETS / TOUR GUIDES</p>--}}
+{{--<a href="all_tours_list.html" class="animated fadeInUp button_intro">View Tours</a> <a href="single_tour.html" class="animated fadeInUp button_intro outline">Read more</a>--}}
+{{--</div>--}}
 {{--</section>--}}
 <!-- End section -->
 
@@ -287,10 +321,12 @@
                         <i class="fa fa-envelope"></i> <a href="#">0905786996</a>
                     </li>
                     <li>
-                        <i class="fa fa-headphones"></i> <a href="mailto:lienhe@viethouse24.com">lienhe@viethouse24.com</a>
+                        <i class="fa fa-headphones"></i> <a href="mailto:lienhe@viethouse24.com">lienhe@viethouse
+                            24.com</a>
                     </li>
                     <li class="location">
-                        <i class="fa fa-home"></i> <a href="#"> 39 Lý Thái Tổ, Võ Cường, Tp. Bắc Ninh, Bắc Ninh, Việt Nam</a>
+                        <i class="fa fa-home"></i> <a href="#"> 39 Lý Thái Tổ, Võ Cường, Tp. Bắc Ninh, Bắc Ninh, Việt
+                            Nam</a>
                     </li>
                     <li class="location">
                         <i class="fa fa-skype"></i> <a href="skype:Hoangpn86"> Hoangpn86 </a>
@@ -311,7 +347,8 @@
                     <!-- Item Testimonial -->
                     <li>
                         <div class="testimonials">
-                            <p>Viethouse24 có dịch vụ rất tốt, nhiệt tình, dù bỏ ra không nhiều tiền nhưng được phục vụ chu đáo. Tôi đã có được tổ ấm lý tưởng nhờ Viethouse24.</p>
+                            <p>Viethouse24 có dịch vụ rất tốt, nhiệt tình, dù bỏ ra không nhiều tiền nhưng được phục vụ
+                                chu đáo. Tôi đã có được tổ ấm lý tưởng nhờ Viethouse24.</p>
                             <span class="arrow_testimonials"></span>
                         </div>
                         <h6 class="testimonial_autor">Lê Đăng Nam - Bắc Ninh</h6>
@@ -320,7 +357,8 @@
 
                     <li>
                         <div class="testimonials">
-                            <p>Mua nhà đầu tư ở Bắc Ninh mà không sử dụng dịch vụ của Viethouse24 thì thật sự đáng tiếc!</p>
+                            <p>Mua nhà đầu tư ở Bắc Ninh mà không sử dụng dịch vụ của Viethouse24 thì thật sự đáng
+                                tiếc!</p>
                             <span class="arrow_testimonials"></span>
                         </div>
                         <h6 class="testimonial_autor">Phùng Ngọc Hoàng - Hà Nội</h6>
@@ -367,7 +405,8 @@
 <script src="/frontend/js/functions.js"></script>
 <script src="/frontend/js/slick.js"></script>
 
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCydLs7dhJPuozABFQjJO-uk1PITW18oo8"></script>
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCydLs7dhJPuozABFQjJO-uk1PITW18oo8"></script>
 
 <script type="text/javascript" src="http://map.fitme.vn/js/gmaps.js"></script>
 <script type="text/javascript" src="http://map.fitme.vn/js/prettify.js"></script>
@@ -378,6 +417,20 @@
 <!--owlcarousel-->
 <script type='text/javascript' src="http://viethouse24.com/assets/frontend/js/owlcarousel/owl.carousel.js"></script>
 <script type="text/javascript">
+
+    $(document).on('click', '.ajax-pagination', function () {
+
+        var url = $(this).attr('data-href');
+
+        $.ajax({
+            url: url,
+            type: 'get',
+            dataType: 'json',
+            success: function (response) {
+                $('.content-left').html(response.items);
+            }
+        });
+    });
 
     $(document).ready(function () {
         $('.slick-items').slick({

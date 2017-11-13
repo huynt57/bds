@@ -13,6 +13,7 @@
 
 Route::get('/', 'Frontend\MainController@index');
 Route::get('map', 'Frontend\MainController@getHouseByAttribute');
+Route::get('map-ajax', 'Frontend\MainController@getHouseByAttributeAjax');
 Route::get('get-house-marker', 'Frontend\MainController@getHouseMarker');
 Route::get('agents', 'Frontend\MainController@getAgents');
 Route::get('lien-he', 'Frontend\MainController@contact');

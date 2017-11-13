@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     //
+    const PENDING = 0;
+    const PROCESSED = 1;
+
     protected $fillable = [
         'name',
         'phone',
@@ -16,7 +19,8 @@ class Contact extends Model
         'agent_id',
         'message',
         'created_at',
-        'updated_ta'
+        'updated_at',
+        'files',
     ];
 
     protected $dates = [

@@ -90,6 +90,20 @@ class House extends Model
         return $query->where('status', true);
     }
 
+    public function getPriceTextAttribute()
+    {
+        $price = $this->attributes['price'];
+
+        if ($price >= 1000 && $price < 1000000) {
+            return number_format(round($price / 1000), 0, '.', '.') . ' ngàn';
+        } else if ($price >= 1000000 && $price < 1000000000) {
+            return number_format(round($price / 1000000), 0, '.', '.') . ' triệu';
+        } else if ($price >= 1000000000) {
+            return number_format(round($price / 1000000), 0, '.', '.') . ' tỷ';
+        }
+        return number_format($price, 0, '.', '.');
+    }
+
     public function getStatusTextAttribute()
     {
         $status = $this->attributes['status'];
@@ -110,5 +124,22 @@ class House extends Model
         }
 
         return 'Không';
+    }
+
+    public function getTypeTextAttribute()
+    {
+        $type = $this->attributes['type'];
+
+        if ($type == House::RENT) {
+            return 'Cho thuê';
+        } else if ($type == House::SALE) {
+            return 'Bán';
+        } else if ($type == House::FOR_RENT) {
+            return 'Cần thuê';
+        } else if ($type == House::FOR_SALE) {
+            return 'Cần bán';
+        }
+
+        return 'Chưa rõ';
     }
 }

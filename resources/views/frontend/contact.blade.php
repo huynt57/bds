@@ -13,7 +13,7 @@
                     <div class="step">
 
                         <div id="message-contact"></div>
-                        <form method="post" action="{{ url('contact/store') }}" id="contactform">
+                        <form method="post" action="{{ url('contact/store') }}" id="contactform" enctype="multipart/form-data">
                             {!! csrf_field() !!}
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
@@ -49,6 +49,14 @@
                                     <div class="form-group">
                                         <label>Nội dung liên hệ</label>
                                         <textarea rows="5" id="message_contact" name="message" class="form-control" placeholder="Vui lòng để lại thông tin" style="height:200px;"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Đính kèm file</label>
+                                        <input type="file" multiple name="files[]">
                                     </div>
                                 </div>
                             </div>

@@ -39,24 +39,52 @@ var center_lat;
 var center_lng;
 //mapObject = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-function get_house_by_center(lat, lng, radius)
-{
+function get_house_by_center(lat, lng, radius) {
+
+    var current_url = window.location.href;
+    var url = current_url.replace('map?', 'map-ajax?');
     $.ajax({
-        url: '/get-house-by-center',
+        url: url,
+        cache: false,
         data: {
             lat: lat,
             lng: lng,
             radius: radius
 
         },
+        beforeSend: function () {
+            $('.content-left').addClass('ht-on-loading');
+        },
         dataType: 'json',
         success: function (response) {
-           console.log(response);
+            $('.content-left').removeClass('ht-on-loading').html(response.items);
+
+            markersData = response.markers.data;
+            for (var key in markersData) {
+                markersData[key].forEach(function (item) {
+                    var marker = map.addMarker({
+                        lat: item.location_latitude,
+                        lng: item.location_longitude,
+                        icon: 'img/pins/' + key + '.png',
+                        click: function (e) {
+                            map.setCenter(item.location_latitude, item.location_longitude);
+
+                        },
+                        infoWindow: {
+                            content: item.info_window
+                        }
+                    });
+                    markers.push(marker);
+
+                });
+            }
+            center_lat = response.markers.center.lat;
+            center_lng = response.markers.center.lng;
         }
     });
 }
 
-function getBoundsRadius(bounds, c_lat, c_lng){
+function getBoundsRadius(bounds, c_lat, c_lng) {
     // r = radius of the earth in km
     var r = 6378.8
     // degrees to radians (divide by 57.2958)
@@ -76,8 +104,7 @@ var map = new GMaps({
     div: '#map',
     lat: -12.043333,
     lng: -77.028333,
-    zoom_changed: function(e)
-    {
+    zoom_changed: function (e) {
 
         var lat = e.center.lat();
         var lng = e.center.lng();
@@ -85,7 +112,7 @@ var map = new GMaps({
         var radius = getBoundsRadius(e.getBounds(), lat, lng);
         get_house_by_center(lat, lng, radius);
     },
-    dragend: function(e) {
+    dragend: function (e) {
 
         var lat = e.center.lat();
         var lng = e.center.lng();
@@ -117,11 +144,12 @@ map.addControl({
 
         click: function () {
 
-            var type =  $(this).attr('type');
+            var type = $(this).attr('type');
 
-            if(type == 'get') {
+            if (type == 'get') {
                 $.ajax({
                     url: '/school',
+                    cache: false,
                     data: {
                         lat: center_lat,
                         lng: center_lng,
@@ -201,8 +229,9 @@ $.ajax({
     url: window.location.href,
     type: 'get',
     dataType: 'json',
+    cache: false,
     success: function (response) {
-        markersData = response.data;
+        markersData = response.markers.data;
         for (var key in markersData) {
             markersData[key].forEach(function (item) {
                 map.addMarker({
@@ -210,20 +239,18 @@ $.ajax({
                     lng: item.location_longitude,
                     icon: 'img/pins/' + key + '.png',
                     click: function (e) {
-                        closeInfoBox();
-                        getInfoBox(item).open(map, this);
                         map.setCenter(item.location_latitude, item.location_longitude);
-
                     }
                 });
 
 
             });
         }
-        map.setCenter(response.center.lat, response.center.lng);
-        center_lat = response.center.lat;
-        center_lng = response.center.lng;
-
+        center_lat = response.markers.center.lat;
+        center_lng = response.markers.center.lng;
+        if (center_lat != -1 && center_lng != -1) {
+            map.setCenter(response.markers.center.lat, response.markers.center.lng);
+        }
     }
 });
 
@@ -277,5 +304,5 @@ function getInfoBox(item) {
 };
 
 function onHtmlClick(location_type, key) {
-    google.maps.event.trigger(markers[location_type][key], "click");
+    google.maps.event.trigger(markers[key], "click");
 }
