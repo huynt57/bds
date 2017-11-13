@@ -42,7 +42,7 @@ var center_lng;
 function get_house_by_center(lat, lng, radius) {
 
     var current_url = window.location.href;
-    var url = current_url.replace('map?', 'map-ajax?');
+    var url = current_url.replace('map', 'map-ajax');
     $.ajax({
         url: url,
         cache: false,
