@@ -34,6 +34,8 @@
             </div>
 
         </div>
+        <div class="col-md-6" id="detail-menu"></div>
+
     </div>
 
 
@@ -123,13 +125,41 @@
 @endsection
 
 @push('scripts')
-<script src="/assets/global/plugins/jquery-nestable/jquery.nestable.js" type="text/javascript"></script>
+{{--<script src="/assets/global/plugins/jquery-nestable/jquery.nestable.js" type="text/javascript"></script>--}}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nestable2/1.6.0/jquery.nestable.min.js"></script>
 
 {{--https://cdnjs.cloudflare.com/ajax/libs/nestable2/1.6.0/jquery.nestable.min.js--}}
 
-<script src="/assets/pages/scripts/ui-nestable.min.js" type="text/javascript"></script>
+{{--<script src="/assets/pages/scripts/ui-nestable.min.js" type="text/javascript"></script>--}}
 
 <script>
+
+    $("#nestable_list_1").nestable({
+        group: 1, beforeDragStop: function (l, e) {
+            // l is the main container
+            // e is the element that was moved
+
+            $.ajax({
+                url: '/admin/menu/detail/' + e.attr('data-id'),
+                type: 'get',
+                success: function (response) {
+                    $('#detail-menu').html(response);
+                }
+            });
+        }
+    }).on("change", function () {
+        $.ajax({
+            url: '/admin/menu/update-state',
+            data: {
+                list: $(this).nestable('serialize')
+            },
+            type: 'post',
+            success: function () {
+                //$('#nestable_list_1').nestable('destroy');
+            }
+        });
+    });
 
 
     $(document).on('click', '#btn-save', function (e) {
@@ -152,6 +182,66 @@
 
     });
 
+    $(document).on('click', '#btn-save-2', function (e) {
+        e.preventDefault();
+
+        var data = $('#form-menu-2').serialize();
+
+        $.ajax({
+            url: '{{ url('admin/menu/update') }}',
+            data: data,
+            type: 'post',
+            dataType: 'json',
+            success: function (response) {
+                if (response.status == 1) {
+                    location.reload();
+                }
+
+            }
+        });
+
+    });
+
+    $(document).on('click', '#btn-delete-2', function (e) {
+        e.preventDefault();
+
+        bootbox.confirm({
+            message: "Bạn có chắc chắn muốn xóa",
+            buttons: {
+                confirm: {
+                    label: 'Có',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'Không',
+                    className: 'btn-danger'
+                }
+            },
+
+
+            callback: function (result) {
+                if (result == true) {
+                    var data = $('#form-menu-2').serialize();
+
+                    $.ajax({
+                        url: '{{ url('admin/menu/delete') }}',
+                        data: data,
+                        type: 'post',
+                        dataType: 'json',
+                        success: function (response) {
+                            if (response.status == 1) {
+                                location.reload();
+                            }
+
+                        }
+                    });
+
+                }
+            }
+        });
+
+
+    });
 
 
     $(document).ready(function () {

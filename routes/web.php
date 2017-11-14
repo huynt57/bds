@@ -67,6 +67,9 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['prefix' => 'menu'], function () {
         Route::get('/', 'Backend\MenuController@index');
+        Route::get('detail/{id}', 'Backend\MenuController@detail');
+        Route::post('update', 'Backend\MenuController@update');
+        Route::post('delete', 'Backend\MenuController@destroy');
         Route::post('store', 'Backend\MenuController@store');
         Route::post('update-state', 'Backend\MenuController@updateState');
     });
