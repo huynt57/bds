@@ -1,7 +1,7 @@
 @extends('frontend')
 
 @section('content')
-<div class="ht-ht-after-lg-header" style="margin-top: 98px; background: #fff">
+<div class="ht-ht-after-lg-header" style=" background: #fff">
     <div class="home-search-wrapper">
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active ht-bgcover" id="demoSearchTab01"

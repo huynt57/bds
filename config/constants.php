@@ -22,6 +22,9 @@ return [
         'Vườn',
         'Điện thoại cố định'
     ],
+    'WARD' => 1,
+    'DISTRICT' => 2,
+    'PROVINCE' => 3,
     'route_menu' => [
         ''
     ]

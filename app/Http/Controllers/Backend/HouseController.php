@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\House;
 use App\Models\Image;
+use App\Models\Region;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -53,6 +54,11 @@ class HouseController extends AdminController
         return view('admin.house.create');
     }
 
+    public function region()
+    {
+        return view('admin.house.region');
+    }
+
     public function updateInline($id, Request $request)
     {
         $id = $request->input('pk');
@@ -80,37 +86,31 @@ class HouseController extends AdminController
             $data['price'] = 0;
         }
 
-        if(!is_numeric($data['district_id']))
-        {
+        if (!is_numeric($data['district_id'])) {
             $data['district_id'] = 0;
         }
 
-        if(!is_numeric($data['category_id']))
-        {
+        if (!is_numeric($data['category_id'])) {
             $data['category_id'] = 0;
         }
 
-        if(!is_numeric($data['city_id']))
-        {
+        if (!is_numeric($data['city_id'])) {
             $data['city_id'] = 0;
         }
 
-        if(isset($data['status']) && $data['status'] == 'on')
-        {
+        if (isset($data['status']) && $data['status'] == 'on') {
             $data['status'] = true;
         } else {
             $data['status'] = false;
         }
 
-        if(isset($data['is_feature']) && $data['is_feature'] == 'on')
-        {
+        if (isset($data['is_feature']) && $data['is_feature'] == 'on') {
             $data['is_feature'] = true;
         } else {
             $data['is_feature'] = false;
         }
 
-        if(!is_numeric($data['ward_id']))
-        {
+        if (!is_numeric($data['ward_id'])) {
             $data['ward_id'] = 0;
         }
 
@@ -179,41 +179,35 @@ class HouseController extends AdminController
             $data['price'] = 0;
         }
 
-        if(!is_numeric($data['district_id']))
-        {
+        if (!is_numeric($data['district_id'])) {
             $data['district_id'] = 0;
         }
 
-        if(!is_numeric($data['city_id']))
-        {
+        if (!is_numeric($data['city_id'])) {
             $data['city_id'] = 0;
         }
 
-        if(!is_numeric($data['ward_id']))
-        {
+        if (!is_numeric($data['ward_id'])) {
             $data['ward_id'] = 0;
         }
 
-        if(isset($data['status']) && $data['status'] == 'on')
-        {
+        if (isset($data['status']) && $data['status'] == 'on') {
             $data['status'] = true;
         } else {
             $data['status'] = false;
         }
 
-        if(isset($data['is_feature']) && $data['is_feature'] == 'on')
-        {
+        if (isset($data['is_feature']) && $data['is_feature'] == 'on') {
             $data['is_feature'] = true;
         } else {
             $data['is_feature'] = false;
         }
 
-        if(!is_numeric($data['ward_id']))
-        {
+        if (!is_numeric($data['ward_id'])) {
             $data['ward_id'] = 0;
         }
 
-        if(isset($data['features'])) {
+        if (isset($data['features'])) {
 
             $data['features'] = json_encode($data['features']);
 
@@ -279,5 +273,33 @@ class HouseController extends AdminController
             'status' => 1,
             'message' => 'Thành công'
         ]);
+    }
+
+    public function getRegionByAttribute(Request $request)
+    {
+        $items = Region::all();
+        return Datatables::of($items)->addColumn('action', function ($item) {
+
+        })->make(true);
+    }
+
+    public function getRegionByType(Request $request)
+    {
+        $type = $request->input('type');
+        if($type == config('constants.WARD'))
+        {
+            $tid = 'wardid';
+            $items = \DB::table('ward')->get();
+        } elseif ($type == config('constants.DISTRICT'))
+        {
+            $tid = 'districtid';
+            $items = \DB::table('district')->get();
+        }elseif ($type == config('constants.PROVINCE'))
+        {
+            $tid = 'provinceid';
+            $items = \DB::table('province')->get();
+        }
+
+        return view('admin.house.option', compact('items', 'tid'))->render();
     }
 }

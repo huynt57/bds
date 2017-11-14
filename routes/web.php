@@ -33,6 +33,7 @@ Route::get('house/{slug}-{id}', 'Frontend\MainController@detail')
 Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/', 'Backend\DashboardController@index');
+    Route::get('get-region-by-type', 'Backend\HouseController@getRegionByType');
     Route::get('login', 'Backend\AdminController@login');
     Route::get('logout', 'Backend\AdminController@logout');
     Route::post('process-login', 'Backend\AdminController@processLogin');
@@ -40,6 +41,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'house'], function () {
         Route::get('create', 'Backend\HouseController@create');
         Route::get('list', 'Backend\HouseController@index');
+        Route::get('region', 'Backend\HouseController@region');
         Route::get('edit/{id}', 'Backend\HouseController@edit');
         Route::post('update/{id}', 'Backend\HouseController@update');
         Route::post('update-inline/{id}', 'Backend\HouseController@updateInline');
@@ -48,6 +50,9 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::get('house.data', ['as' => 'house.data',
             'uses' => 'Backend\HouseController@getHouseByAttribute'
+        ]);
+        Route::get('region.data', ['as' => 'region.data',
+            'uses' => 'Backend\HouseController@getRegionByAttribute'
         ]);
     });
 
@@ -98,6 +103,9 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::get('user.data', ['as' => 'user.data',
             'uses' => 'Backend\UserController@getUserByAttribute'
+        ]);
+        Route::get('slide.data', ['as' => 'slide.data',
+            'uses' => 'Backend\SettingController@getSlidesByAttribute'
         ]);
         Route::get('testimonial.data', ['as' => 'testimonial.data',
             'uses' => 'Backend\SettingController@getTestimonialsByAttribute'

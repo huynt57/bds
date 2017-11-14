@@ -35,6 +35,8 @@ class SettingController extends Controller
 
         return \Datatables::of($slides)->addColumn('action', function ($slide) {
 
+
+
         })->make(true);
     }
 

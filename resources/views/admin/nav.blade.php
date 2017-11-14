@@ -118,6 +118,12 @@
                 </ul>
             </li>
             <li class="nav-item  ">
+                <a href="{{ url('admin/house/region') }}" class="nav-link nav-toggle">
+                    <i class="fa fa-map"></i>
+                    <span class="title">BĐS theo khu vực</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-cogs"></i>
                     <span class="title">Quản lý cài đặt</span>

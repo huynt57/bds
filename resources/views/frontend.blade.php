@@ -216,72 +216,14 @@
                     </div>
                     <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                     <ul>
+                        @php $menus = \App\Models\Menu::where('parent_id', null)->orderBy('order', 'asc')->get(); @endphp
+                        @foreach($menus as $menu)
                         <li class="submenu">
-                            <a href="javascript:void(0);" class="show-submenu">Trang chủ <i
+                            <a href="javascript:void(0);" class="show-submenu">{{ $menu->title }} <i
                                         class="icon-down-open-mini"></i></a>
-                            <ul>
-                                <li><a href="javascript:void(0);">Về chúng tôi</a>
-                                    <ul>
-                                        <li><a href="index.html">Tầm nhìn, sứ mệnh, mục tiêu</a></li>
-                                        <li><a href="index_20.html">Giới thiệu chung về Viethouse24</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="/agents">Các môi giới viên</a>
-
-                                </li>
-                            </ul>
+                            @php  \App\Components\Functions::printMenuFrontend($menu); @endphp
                         </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);" class="show-submenu">Bản đồ <i
-                                        class="icon-down-open-mini"></i></a>
-                            <ul>
-                                <li><a href="all_tours_list.html">Các BĐS theo tỉnh / thành phố</a></li>
-                                <li><a href="all_tours_grid.html">Các BĐS tại Bắc Ninh</a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);" class="show-submenu">Dự án BĐS <i
-                                        class="icon-down-open-mini"></i></a>
-                            <ul>
-                                <li><a href="all_hotels_list.html">Các dự án đang phân phối/mở bán</a></li>
-                                <li><a href="all_hotels_grid.html">Các dự án chuẩn bị mở bán</a></li>
-                                <li><a href="all_hotels_map_listing.html">Các dự án đang phát triển (tư vấn)</a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);" class="show-submenu">Thuê và cho thuê <i
-                                        class="icon-down-open-mini"></i></a>
-                            <ul>
-                                <li><a href="{{ url('map?type='.\App\Models\House::RENT) }}">BĐS cho thuê</a></li>
-                                <li><a href="{{ url('map?type='.\App\Models\House::FOR_RENT) }}">Cần thuê</a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);" class="show-submenu">Mua bán <i
-                                        class="icon-down-open-mini"></i></a>
-                            <ul>
-                                <li><a href="{{ url('map?type='.\App\Models\House::SALE) }}">BĐS cần bán</a></li>
-                                <li><a href="{{ url('map?type='.\App\Models\House::FOR_SALE) }}">Cần mua</a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);" class="show-submenu">Dịch vụ <i
-                                        class="icon-down-open-mini"></i></a>
-                            <ul>
-                                <li><a href="all_hotels_list.html">Tư vấn phát lập/phát triển dự án BĐS</a></li>
-                                <li><a href="all_hotels_grid.html">Tư vấn cấp phép xây dựng</a></li>
-                                <li><a href="all_hotels_list.html">Tư vấn pháp lý về kinh doanh BĐS</a></li>
-                                <li><a href="all_hotels_grid.html">Tư vấn về kiến trúc</a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);" class="show-submenu">Liên hệ <i
-                                        class="icon-down-open-mini"></i></a>
-                            <ul>
-                                <li><a href="all_hotels_list.html">Contact Viethouse24</a></li>
-                                <li><a href="{{ url('lien-he') }}">Phiếu thông tin khách hàng</a></li>
-                            </ul>
-                        </li>
+                        @endforeach
                     </ul>
                 </div><!-- End main-menu -->
                 {{--<ul id="top_tools">--}}
@@ -362,7 +304,7 @@
 
                 </ul>
             </div>
-
+i
         </div><!-- End row -->
         <div class="row">
             <div class="col-md-12">

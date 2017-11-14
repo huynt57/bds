@@ -39,4 +39,20 @@ class Functions
 
     }
 
+    public static function printMenuFrontend($menu)
+    {
+        $cnt = \App\Models\Menu::where('parent_id', $menu->id)->orderBy('order', 'asc')->get();
+
+        if ($cnt->count() > 0) {
+            echo '<ul >';
+            echo '<li >';
+
+            foreach ($cnt as $item) {
+                echo '<a href = "javascript:void(0);" >'.$item->title.'</a >';
+                self::printMenuFrontend($item);
+            }
+            echo '</ul >';
+        }
+    }
+
 }

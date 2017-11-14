@@ -1,8 +1,4 @@
 @extends('admin')
-
-@section('content')
-
-    @extends('admin')
 @section('content')
     <h3 class="inline">Quản lý danh sách nhà</h3>
 
@@ -56,24 +52,13 @@
 
 
     <div class="row">
-        <div class="col-md-12" style="margin-bottom: 12px">
-            <a href="{{ url('admin/house/create') }}" class="btn btn-success">Thêm</a>
-        </div>
         <div class="col-md-12">
             <table class="table table-striped table-bordered table-hover" id="orders-table">
                 <thead>
                 <tr>
                     {{--<th>Id</th>--}}
                     <th>Ảnh</th>
-                    <th>Tiêu đề</th>
-                    <th>Giá</th>
-                    <th>Loại</th>
-                    {{--<th>Miêu tả</th>--}}
-                    <th>Danh mục</th>
-                    <th>Người môi giới</th>
-                    <th>Nổi bật</th>
-                    <th>Trạng thái</th>
-                    <th>Tạo lúc</th>
+                    <th>Slogan</th>
                     <th>Hành động</th>
                 </tr>
                 </thead>
@@ -90,44 +75,6 @@
 @push('scripts')
 <script>
 
-    function getPostByAttr() {
-        var startTime = $('#start_time').val();
-        var endTime = $('#end_time').val();
-        var timeRange = $('#time_range').val();
-
-
-        $('#orders-table').DataTable({
-            "bDestroy": true,
-            processing: true,
-            //  serverSide: true,
-            "aaSorting": [],
-            searching: true,
-            ajax: {
-                url: '{!! url('admin/post.data') !!}',
-                data: {
-                    start_time: startTime,
-                    end_time: endTime,
-                    time_range: timeRange,
-                }
-            },
-            columns: [
-//                {data: 'id', name: 'id'},
-                {
-                    "render": function (data, type, full, meta) {
-                        return '<img src="/files/'+full.main_images+'" style="max-width: 150px">';
-                    }
-                },
-                {data: 'name', name: 'name'},
-                {data: 'price', name: 'price'},
-                {data: 'type', name: 'type'},
-                {data: 'category', name: 'category'},
-                {data: 'agent', name: 'agent'},
-                {data: 'is_feature', name: 'is_feature'},
-                {data: 'status', name: 'status'},
-                {data: 'action', name: 'action'},
-            ]
-        });
-    }
 
     $(function () {
         table = $('#orders-table').DataTable({
@@ -137,23 +84,16 @@
             "aaSorting": [],
             serverSide: true,
             ajax: {
-                url: '{!! url('admin/house/house.data') !!}',
+                url: '{!! url('admin/settings/slide.data') !!}',
             },
             columns: [
 
                 {
                     "render": function (data, type, full, meta) {
-                        return '<img src="/files/'+full.main_images+'" style="max-width: 150px">';
+                        return '<img src="/files/'+full.path+'" style="max-width: 150px">';
                     }
                 },
                 {data: 'name', name: 'name'},
-                {data: 'price', name: 'price'},
-                {data: 'type', name: 'type'},
-                {data: 'category', name: 'category'},
-                {data: 'agent', name: 'agent'},
-                {data: 'is_feature', name: 'is_feature'},
-                {data: 'status', name: 'status'},
-                {data: 'created_at', name: 'created_at'},
                 {data: 'action', name: 'action'},
             ]
         });
@@ -163,4 +103,3 @@
 </script>
 @endpush
 
-@endsection
