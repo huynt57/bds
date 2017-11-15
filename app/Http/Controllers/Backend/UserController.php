@@ -16,6 +16,11 @@ class UserController extends AdminController
         return view('admin.user.list');
     }
 
+    public function indexInvestor()
+    {
+        return view('admin.user.investors');
+    }
+
     public function getUserByAttribute(Request $request)
     {
         $users = User::query();

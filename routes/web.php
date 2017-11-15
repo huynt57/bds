@@ -114,6 +114,22 @@ Route::group(['prefix' => 'admin'], function () {
         ]);
     });
 
+    Route::group(['prefix' => 'investor'], function () {
+        Route::get('list', 'Backend\UserController@indexInvestor');
+        Route::get('create', 'Backend\UserController@create');
+        Route::get('create-investor', 'Backend\UserController@createInvestor');
+        Route::post('store', 'Backend\UserController@store');
+        Route::get('edit/{id}', 'Backend\UserController@edit');
+        Route::post('edit/{id}', 'Backend\UserController@update');
+        Route::post('update-inline/{id}', 'Backend\UserController@updateStatusUser');
+        Route::get('user.data', ['as' => 'user.data',
+            'uses' => 'Backend\UserController@getUserByAttribute'
+        ]);
+        Route::get('investor.data', ['as' => 'user.data',
+            'uses' => 'Backend\UserController@getInvestorByAttribute'
+        ]);
+    });
+
     Route::group(['prefix' => 'settings'], function () {
         Route::get('slides', 'Backend\SettingController@listSlides');
         Route::get('list', 'Backend\SettingController@index');
