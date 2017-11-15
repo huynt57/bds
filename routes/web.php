@@ -56,6 +56,24 @@ Route::group(['prefix' => 'admin'], function () {
         ]);
     });
 
+    Route::group(['prefix' => 'project'], function () {
+        Route::get('create', 'Backend\ProjectController@create');
+        Route::get('list', 'Backend\ProjectController@index');
+        Route::get('region', 'Backend\ProjectController@region');
+        Route::get('edit/{id}', 'Backend\ProjectController@edit');
+        Route::post('update/{id}', 'Backend\ProjectController@update');
+        Route::post('update-inline/{id}', 'Backend\ProjectController@updateInline');
+
+        Route::post('store', 'Backend\ProjectController@store');
+
+        Route::get('project.data', ['as' => 'project.data',
+            'uses' => 'Backend\ProjectController@getProjectByAttribute'
+        ]);
+        Route::get('region.data', ['as' => 'region.data',
+            'uses' => 'Backend\ProjectController@getRegionByAttribute'
+        ]);
+    });
+
     Route::group(['prefix' => 'post'], function () {
         Route::get('create', 'Backend\PostController@create');
         Route::get('list', 'Backend\PostController@index');
