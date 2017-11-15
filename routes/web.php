@@ -33,6 +33,7 @@ Route::get('house/{slug}-{id}', 'Frontend\MainController@detail')
 Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/', 'Backend\DashboardController@index');
+    Route::get('get-image-slide', 'Backend\SettingController@getImageSlide');
     Route::get('get-region-by-type', 'Backend\HouseController@getRegionByType');
     Route::get('login', 'Backend\AdminController@login');
     Route::get('logout', 'Backend\AdminController@logout');
@@ -100,12 +101,16 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'user'], function () {
         Route::get('list', 'Backend\UserController@index');
         Route::get('create', 'Backend\UserController@create');
+        Route::get('create-investor', 'Backend\UserController@createInvestor');
         Route::post('store', 'Backend\UserController@store');
         Route::get('edit/{id}', 'Backend\UserController@edit');
         Route::post('edit/{id}', 'Backend\UserController@update');
         Route::post('update-inline/{id}', 'Backend\UserController@updateStatusUser');
         Route::get('user.data', ['as' => 'user.data',
             'uses' => 'Backend\UserController@getUserByAttribute'
+        ]);
+        Route::get('investor.data', ['as' => 'user.data',
+            'uses' => 'Backend\UserController@getInvestorByAttribute'
         ]);
     });
 
@@ -115,6 +120,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::get('testimonials', 'Backend\SettingController@listTestimonials');
         Route::post('testimonial/store', 'Backend\SettingController@storeTestimonials');
+        Route::post('slide/update/{id}', 'Backend\SettingController@updateSlide');
         Route::post('testimonial/update-inline/{id}', 'Backend\SettingController@updateInlineTestimonial');
         Route::post('update-inline/{id}', 'Backend\SettingController@updateInlineSetting');
 

@@ -39,6 +39,29 @@ class UserController extends AdminController
             ->make(true);
     }
 
+    public function getInvestorByAttribute(Request $request)
+    {
+        $users = User::investor();
+        return Datatables::of($users)
+            ->editColumn('type', function ($user) {
+                return $user->type_text;
+            })
+            ->editColumn('status', function ($user) {
+                return '<a href="javascript:;" data-type="select" 
+                data-pk="' . $user->id . '" data-url="' . url('admin/user/update-inline', ['id' => $user->id]) . '" 
+                data-id="' . $user->id . '" 
+                data-name="status"
+                class="editable editable-click"> ' . $user->status_text . ' </a>';
+            })
+            ->addColumn('action', function ($user) {
+
+                return '<button class="btn btn-sm yellow btn-outline "> Xem</button>' .
+                    '<a href="' . url('admin/user/edit', ['id' => $user->id]) . '" class="btn btn-sm green btn-outline "> Sửa</a>' .
+                    '<button class="btn btn-sm red btn-outline "> Xóa</button>';
+            })
+            ->make(true);
+    }
+
     public function updateStatusUser($id, Request $request)
     {
         $user = User::find($id);
@@ -65,6 +88,11 @@ class UserController extends AdminController
     public function create(Request $request)
     {
         return view('admin.user.create');
+    }
+
+    public function createInvestor(Request $request)
+    {
+        return view('admin.user.create_investor');
     }
 
     public function edit($id)

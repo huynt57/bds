@@ -11,6 +11,7 @@ class User extends Authenticatable
 
     const AGENT = 1;
     const ADMIN = 2;
+    const INVESTOR = 3;
 
     const ACTIVE = 1;
     const IN_ACTIVE = 0;
@@ -43,6 +44,11 @@ class User extends Authenticatable
         $query->where('type', User::AGENT);
     }
 
+    public function scopeInvestor($query)
+    {
+        $query->where('type', User::INVESTOR);
+    }
+
     public function getStatusTextAttribute()
     {
         $status = $this->attributes['status'];
@@ -65,4 +71,6 @@ class User extends Authenticatable
         }
         return '<span class="label label-sm label-primary"> Chưa rõ </span>';
     }
+
+
 }

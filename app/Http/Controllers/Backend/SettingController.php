@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Region;
 use App\Models\Setting;
 use App\Models\Slide;
 use App\Models\Testimonial;
@@ -9,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Symfony\Component\VarDumper\Cloner\Data;
 
-class SettingController extends Controller
+class SettingController extends AdminController
 {
     //
 
@@ -35,7 +36,8 @@ class SettingController extends Controller
 
         return \Datatables::of($slides)->addColumn('action', function ($slide) {
 
-
+            return
+                '<a href="#update-slide" data-toggle="modal" data-id="'.$slide->id.'" class="btn btn-sm green btn-outline update"> Sửa</a>' ;
 
         })->make(true);
     }
@@ -62,6 +64,49 @@ class SettingController extends Controller
     public function updateSetting(Request $request)
     {
 
+    }
+
+    public function updateSlide($id, Request $request)
+    {
+        $name = $request->input('name');
+        $data = $request->all();
+        if ($request->file('image') && $request->file('image')->isValid()) {
+            $data['path'] = $this->saveImage($request->file('image'));
+        }
+        $slide = Slide::find($id);
+
+        if(!$slide)
+        {
+            return redirect()->back()->with('error', 'Dữ liệu không hợp lệ');
+        }
+        $slide->update($data);
+
+        return redirect()->back()->with('success', 'Cập nhật Thành công');
+    }
+
+    public function getImageSlide(Request $request)
+    {
+        $id = $request->input('id');
+        $slide = Slide::find($id);
+        if(!$slide)
+        {
+            return response([
+                'data' => 'http://www.placehold.it/200x180/EFEFEF/AAAAAA&amp;text=no+image',
+                'name' => ''
+            ]);
+        }
+        if(empty($slide->path))
+        {
+            return response([
+                'data' => 'http://www.placehold.it/200x180/EFEFEF/AAAAAA&amp;text=no+image',
+                'name' => $slide->name
+            ]);
+        }
+
+        return response([
+            'data' => $slide->path,
+            'name' => $slide->name
+        ]);
     }
 
     public function listTestimonials(Request $request)
