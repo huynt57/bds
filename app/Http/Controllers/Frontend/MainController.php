@@ -6,6 +6,7 @@ use App\Http\Requests\CreateContactRequest;
 use App\Models\Contact;
 use App\Models\House;
 use App\Models\Post;
+use App\Models\Project;
 use App\Models\User;
 use Faker\Factory;
 use Illuminate\Http\Request;
@@ -189,6 +190,148 @@ class MainController extends Controller
         $coordinates['longitude'] = $lng;
 
         $items = House::orderBy('id', 'desc');
+
+        if (!empty($type)) {
+            $items = $items->where('type', $type);
+        }
+
+        if (!empty(trim($keyword))) {
+            $items->where(function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', '%' . $keyword . '%');
+                $query->orWhere('address', 'LIKE', '%' . $keyword . '%');
+            });
+        }
+
+        if (!empty($categoryId)) {
+            $items = $items->where('category_id', $categoryId);
+        }
+
+        if (isset($type)) {
+            $items = $items->where('type', $type);
+        }
+
+        if (!empty($lat) && !empty($lng)) {
+            $items = $items->isWithinMaxDistance($coordinates, $radius);
+        }
+
+        if(!empty($minSize))
+        {
+            $items = $items->where('size', '>=', $minSize);
+        }
+
+        if(!empty($maxSize))
+        {
+            $items = $items->where('size', '<=', $maxSize);
+        }
+
+        if(!empty($minPrice))
+        {
+            $items = $items->where('price', '>=', $minPrice);
+        }
+
+        if(!empty($maxPrice))
+        {
+            $items = $items->where('price', '<=', $maxPrice);
+        }
+
+        if(!empty($beds))
+        {
+            $items = $items->where('beds', '>=', $beds);
+        }
+
+        if(!empty($bathrooms))
+        {
+            $items = $items->where('bath', '>=', $bathrooms);
+        }
+
+        $markers = $this->getHouseMarker($items->get());
+        $items = $items->paginate(10);
+
+        return response([
+            'markers' => $markers,
+            'items' => view('frontend.houses_ajax', compact('items'))->render(),
+            'url' => $request->fullUrl()
+        ]);
+    }
+
+    public function getProjectByAttribute(Request $request)
+    {
+        $type = $request->input('type');
+        $categoryId = $request->input('category_id');
+        $keyword = $request->input('keyword');
+        $radius = $request->input('radius');
+
+        $lat = $request->input('lat');
+        $lng = $request->input('lng');
+
+        $coordinates['latitude'] = $lat;
+        $coordinates['longitude'] = $lng;
+
+        $items = Project::orderBy('id', 'desc');
+
+        if (!empty($type)) {
+            $items = $items->where('type', $type);
+        }
+
+        if (!empty(trim($keyword))) {
+            $items->where(function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', '%' . $keyword . '%');
+                $query->orWhere('address', 'LIKE', '%' . $keyword . '%');
+            });
+        }
+
+        if (!empty($categoryId)) {
+            $items = $items->where('category_id', $categoryId);
+        }
+
+        if (isset($type)) {
+            $items = $items->where('type', $type);
+        }
+
+        if (!empty($lat) && !empty($lng)) {
+            $items = $items->isWithinMaxDistance($coordinates, $radius);
+        }
+
+        if ($request->ajax()) {
+
+            $markers = $this->getHouseMarker($items->get());
+            $items = $items->paginate(10);
+
+            return response([
+                'markers' => $markers,
+                'items' => view('frontend.houses', compact('items'))->render()
+            ]);
+        }
+
+        $items = $items->paginate(10);
+
+        return view('frontend.houses', compact('items'));
+
+    }
+
+    public function getProjectByAttributeAjax(Request $request)
+    {
+        $type = $request->input('type');
+        $categoryId = $request->input('category_id');
+        $keyword = $request->input('keyword');
+        $radius = $request->input('radius');
+
+        $lat = $request->input('lat');
+        $lng = $request->input('lng');
+
+        $minPrice = $request->input('min_price');
+        $maxPrice = $request->input('max_price');
+
+        $minSize = $request->input('min_size');
+        $maxSize = $request->input('max_size');
+
+        $beds = $request->input('beds');
+        $bathrooms = $request->input('bathrooms');
+
+        $coordinates['latitude'] = $lat;
+        $coordinates['longitude'] = $lng;
+
+        $items = Project::orderBy('id', 'desc');
 
         if (!empty($type)) {
             $items = $items->where('type', $type);

@@ -45,10 +45,12 @@ class Functions
 
         if ($cnt->count() > 0) {
             echo '<ul >';
-            echo '<li >';
+
 
             foreach ($cnt as $item) {
+                echo '<li >';
                 echo '<a href = "javascript:void(0);" >'.$item->title.'</a >';
+                echo '</li>';
                 self::printMenuFrontend($item);
             }
             echo '</ul >';

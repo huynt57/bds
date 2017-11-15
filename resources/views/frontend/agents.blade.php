@@ -28,6 +28,7 @@
                                     </div>
                                     <div class="product_description">
                                         <h3><a href="#">{{ $agent->name }}</a></h3>
+                                        <h4><a href="#">{{ $agent->phone }}</a></h4>
                                     </div>
                                 </div>
                             </div>
