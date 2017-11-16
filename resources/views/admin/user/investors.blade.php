@@ -65,7 +65,7 @@
 
     <div class="row">
         <div class="col-md-12" style="margin-bottom: 12px">
-            <a href="{{ url('admin/user/create') }}" class="btn btn-success">Thêm</a>
+            <a href="{{ url('admin/user/create-investor') }}" class="btn btn-success">Thêm</a>
         </div>
         <div class="col-md-12">
             <table class="table table-striped table-bordered table-hover" id="orders-table">

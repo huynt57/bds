@@ -83,15 +83,16 @@
                                                                 <label class="control-label">Email</label>
                                                                 <input type="text" name="email" placeholder="Điền email người dùng" value="{{ old('email') }}"
                                                                        class="form-control"></div>
-                                                        </div>
-
-                                                        <div class="col-md-6">
                                                             <input type="hidden" value="{{ \App\Models\User::INVESTOR }}" name="type">
                                                             <div class="form-group">
                                                                 <label class="control-label">Website Url</label>
                                                                 <input type="text" name="website"
                                                                        placeholder="http://www.mywebsite.com" value="{{ old('website') }}"
                                                                        class="form-control"></div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+
                                                         </div>
                                                     </div>
                                                 </div>

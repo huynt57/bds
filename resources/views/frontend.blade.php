@@ -12,10 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="description" content="Viethouse24">
-    @yield('meta')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@yield('meta')
 
 
-    <!-- Favicons-->
+<!-- Favicons-->
     <link rel="shortcut icon" href="/frontend/img/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" type="image/x-icon" href="/frontend/img/apple-touch-icon-57x57-precomposed.png">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72"
@@ -172,20 +173,22 @@
                                         <hr class="hr-or">
                                         <span class="span-or">hoặc</span>
                                     </div>
-                                    <form method="post" action="{{ url('process-login') }}" >
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="inputUsernameEmail" name="email"
-                                               placeholder="Email">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" id="inputPassword" name="password"
-                                               placeholder="Mật khẩu">
-                                    </div>
-                                    <a id="forgot_pw" href="#">Quên mật khẩu?</a>
-                                    <input type="submit" name="Sign_in" value="Đăng nhập" id="Sign_in"
-                                           class="button_drop">
-                                    <a href="{{ url('dang-ky') }}" name="Sign_up" value="Đăng ký" id="Sign_up"
-                                       class="button_drop outline">Đăng ký</a>
+                                    <form method="post" action="{{ url('process-login') }}">
+                                        {!! csrf_field() !!}
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="inputUsernameEmail" name="email"
+                                                   placeholder="Email">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" id="inputPassword"
+                                                   name="password"
+                                                   placeholder="Mật khẩu">
+                                        </div>
+                                        <a id="forgot_pw" href="#">Quên mật khẩu?</a>
+                                        <input type="submit" name="Sign_in" value="Đăng nhập" id="Sign_in"
+                                               class="button_drop">
+                                        <a href="{{ url('dang-ky') }}" name="Sign_up" value="Đăng ký" id="Sign_up"
+                                           class="button_drop outline">Đăng ký</a>
                                     </form>
                                 </div>
                             </div>
@@ -220,11 +223,11 @@
                     <ul>
                         @php $menus = \App\Models\Menu::where('parent_id', null)->orderBy('order', 'asc')->get(); @endphp
                         @foreach($menus as $menu)
-                        <li class="submenu">
-                            <a href="javascript:void(0);" class="show-submenu">{{ $menu->title }} <i
-                                        class="icon-down-open-mini"></i></a>
-                            @php  \App\Components\Functions::printMenuFrontend($menu); @endphp
-                        </li>
+                            <li class="submenu">
+                                <a href="javascript:void(0);" class="show-submenu">{{ $menu->title }} <i
+                                            class="icon-down-open-mini"></i></a>
+                                @php  \App\Components\Functions::printMenuFrontend($menu); @endphp
+                            </li>
                         @endforeach
                     </ul>
                 </div><!-- End main-menu -->
@@ -292,16 +295,15 @@
                     @php $testimonials = cache()->get('testimonials'); @endphp
 
                     @foreach($testimonials as $testimonial)
-                    <li>
-                        <div class="testimonials">
-                            <p>{{ $testimonial->content }}</p>
-                            <span class="arrow_testimonials"></span>
-                        </div>
-                        <h6 class="testimonial_autor">{{$testimonial->user}} - {{$testimonial->address}}</h6>
-                    </li>
-                    @endforeach
-                    <!-- Item Testimonial -->
-
+                        <li>
+                            <div class="testimonials">
+                                <p>{{ $testimonial->content }}</p>
+                                <span class="arrow_testimonials"></span>
+                            </div>
+                            <h6 class="testimonial_autor">{{$testimonial->user}} - {{$testimonial->address}}</h6>
+                        </li>
+                @endforeach
+                <!-- Item Testimonial -->
 
 
                 </ul>
@@ -330,6 +332,13 @@
 
 <!-- Common scripts -->
 <script src="/frontend/js/jquery-2.2.4.min.js"></script>
+<script>
+    var baseUrl = '{{url('/')}}';
+    $.ajaxSetup({
+        headers: { 'X-CSRF-Token' : $('meta[name=csrf-token]').attr('content') }
+    });
+
+</script>
 <script src="/frontend/js/common_scripts_min.js"></script>
 <script src="/frontend/js/functions.js"></script>
 <script src="/frontend/js/slick.js"></script>
@@ -346,6 +355,20 @@
 <!--owlcarousel-->
 <script type='text/javascript' src="http://viethouse24.com/assets/frontend/js/owlcarousel/owl.carousel.js"></script>
 <script type="text/javascript">
+
+    function addWishlist(house_id) {
+        $.ajax({
+            url: '{{ url('wishlist/store') }}',
+            type: 'post',
+            data: {
+                house_id: house_id
+            },
+            dataType: 'json',
+            success: function (response) {
+                toastr.success('Thành công');
+            }
+        });
+    }
 
     $(document).on('click', '.ajax-pagination', function () {
 

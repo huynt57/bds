@@ -41,7 +41,7 @@ class HouseController extends AdminController
             ->addColumn('action', function ($house) {
                 return '<button class="btn btn-sm yellow btn-outline "> Xem</button>' .
                     '<a href="' . url('admin/house/edit', ['id' => $house->id]) . '" class="btn btn-sm green btn-outline "> Sửa</a>' .
-                    '<button class="btn btn-sm red btn-outline "> Xóa</button>';
+                    '<a href="' . url('admin/house/delete', ['id' => $house->id]) . '" class="btn btn-sm red btn-outline delete-btn"> Xóa</a>';
             })
             ->editColumn('created_at', function ($house) {
                 return Carbon::createFromFormat('Y-m-d H:i:s', $house->created_at)->format('d/m/Y H:i');
@@ -57,6 +57,34 @@ class HouseController extends AdminController
     public function region()
     {
         return view('admin.house.region');
+    }
+
+    public function addRegion(Request $request)
+    {
+        $regionId = $request->input('region_id');
+        $check = Region::where('region_id', $regionId)->count();
+        if ($check == 0) {
+            if ($request->file('image') && $request->file('image')->isValid()) {
+                $image = $this->saveImage($request->file('image'));
+            }
+            $region = \DB::table('province')->where('provinceid', $regionId)->first();
+
+            if($region)
+            {
+                $name = $region->name;
+            } else {
+                $name = '';
+            }
+            Region::create([
+                'region_id' => $regionId,
+                'region_type' => 1,
+                'name' => $name,
+                'image' => $image
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Thêm thành công');
+
     }
 
     public function updateInline($id, Request $request)
@@ -280,22 +308,36 @@ class HouseController extends AdminController
         $items = Region::all();
         return Datatables::of($items)->addColumn('action', function ($item) {
 
+            $url = url('admin/house/delete-region', ['id' => $item->id]);
+            return
+                '<a href="#update-slide" data-toggle="modal" data-id="'.$item->id.'" class="btn btn-sm green btn-outline update"> Sửa</a>'.
+                '<a href="'.$url.'"  data-id="'.$item->id.'" class="btn btn-sm red btn-outline delete-btn"> Xóa</a>';
+
         })->make(true);
+    }
+
+    public function deleteHouse($id)
+    {
+        House::find($id)->delete();
+        return redirect()->back()->with('success', 'Xóa dữ liệu thành công');
+    }
+
+    public function deleteRegion($id)
+    {
+        Region::find($id)->delete();
+        return redirect()->back()->with('success', 'Xóa dữ liệu thành công');
     }
 
     public function getRegionByType(Request $request)
     {
         $type = $request->input('type');
-        if($type == config('constants.WARD'))
-        {
+        if ($type == config('constants.WARD')) {
             $tid = 'wardid';
             $items = \DB::table('ward')->get();
-        } elseif ($type == config('constants.DISTRICT'))
-        {
+        } elseif ($type == config('constants.DISTRICT')) {
             $tid = 'districtid';
             $items = \DB::table('district')->get();
-        }elseif ($type == config('constants.PROVINCE'))
-        {
+        } elseif ($type == config('constants.PROVINCE')) {
             $tid = 'provinceid';
             $items = \DB::table('province')->get();
         }

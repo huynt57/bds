@@ -16,6 +16,21 @@
 
 @endsection
 @section('content')
+    @if (session()->has('error'))
+        <div class="alert alert-danger">{{ session()->get('error') }}</div>
+    @endif
+    @if (session()->has('success'))
+        <div class="alert alert-success">{{ session()->get('success') }}</div>
+    @endif
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <h3 class="inline">Lựa chọn khu vực hiển thị</h3>
 
     <div class="portlet-title">
@@ -93,8 +108,9 @@
                     <h4 class="modal-title">Thêm khu vực mới</h4>
                 </div>
                 <div class="modal-body">
-                    <form role="form" class="form-horizontal" id="form-category">
+                    <form role="form" class="form-horizontal" action="{{ url('admin/house/add-region') }}" id="form-region" method="post" enctype="multipart/form-data">
                         <div class="form-body">
+                            {!! csrf_field() !!}
                             {{--<div class="form-group">--}}
 
                             {{--<label class="col-md-3 control-label">Chọn loại khu vực</label>--}}
@@ -122,12 +138,46 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Ảnh đại diện</label>
+                                <div class="col-md-9">
+
+
+
+                                    <div class="fileinput fileinput-new"
+                                         data-provides="fileinput">
+
+                                        <div class="fileinput-new thumbnail"
+                                             style="width: 200px; height: 180px;">
+                                            <img id="inp-image" src="http://www.placehold.it/200x180/EFEFEF/AAAAAA&amp;text=no+image"
+                                                 alt=""></div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail"
+                                             style="max-width: 200px; max-height: 150px;"></div>
+                                        <div>
+                                                                            <span class="btn default btn-file">
+                                                                                <span class="fileinput-new"> Chọn hình ảnh </span>
+                                                                                <span class="fileinput-exists"> Thay đổi </span>
+                                                                                <input type="file" name="image"> </span>
+                                            <a href="javascript:;"
+                                               class="btn default fileinput-exists"
+                                               data-dismiss="fileinput"> Xóa </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button type="submit" class="btn green">Lưu</button>
+                                    <button type="button" class="btn default" data-dismiss="modal">Đóng</button>
+                                </div>
+                            </div>
+                        </div>
                     </form>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn dark btn-outline" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn green" id="btn-save">Lưu</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -161,6 +211,24 @@
 @push('scripts')
 <script>
 
+    $(document).on('click', '.update', function() {
+        var id = $(this).attr('data-id');
+        var url = '{{ url('admin/settings/slide/update')}}' + '/' +id;
+        $.ajax({
+            url: '{{ url('admin/get-image-slide') }}',
+            data: {
+                id: id
+            },
+            dataType: 'json',
+            success: function(response)
+            {
+                $('#inp-image').attr('src', response.data);
+                $('input[name="name"]').val(response.name);
+            }
+        });
+        $('#form-slide').attr('action', url);
+    });
+
     {{--$('#region_type').change(function () {--}}
         {{--$.ajax({--}}
             {{--url: '{{  url('admin/get-region-by-type') }}',--}}
@@ -173,9 +241,24 @@
         {{--});--}}
     {{--});--}}
 
-    $('#btn-save').click(function () {
+    {{--$('#btn-save').click(function () {--}}
 
-    });
+        {{--var data = $('#form-region').serialize();--}}
+        {{--$.ajax({--}}
+            {{--url: '{{ url('admin/house/add-region') }}',--}}
+            {{--data: data,--}}
+            {{--type: 'post',--}}
+            {{--dataType: 'json',--}}
+            {{--success: function(response)--}}
+            {{--{--}}
+                {{--if(response.status == 1)--}}
+                {{--{--}}
+                    {{--$('#add-region').modal('hide');--}}
+                    {{--swal('Thành công', '', 'success');--}}
+                {{--}--}}
+            {{--}--}}
+        {{--})--}}
+    {{--});--}}
     $(function () {
         table = $('#orders-table').DataTable({
             "bDestroy": true,

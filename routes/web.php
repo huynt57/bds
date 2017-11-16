@@ -19,14 +19,16 @@ Route::get('agents', 'Frontend\MainController@getAgents');
 Route::get('lien-he', 'Frontend\MainController@contact');
 Route::get('yeu-thich', 'Frontend\MainController@getWishlist');
 Route::get('dang-nhap', 'Frontend\AuthController@login');
-Route::get('process-login', 'Frontend\AuthController@processLogin');
-Route::get('process-register', 'Frontend\AuthController@processRegister');
+Route::get('dang-ky', 'Frontend\AuthController@register');
+Route::post('process-login', 'Frontend\AuthController@processLogin');
+Route::post('process-register', 'Frontend\AuthController@processRegister');
 
 Route::get('get-house-by-center', 'Frontend\MainController@getHouseByCenter');
 
 Route::get('school', 'Frontend\MainController@getSchoolNearBy');
 
 Route::post('contact/store', 'Frontend\MainController@storeContact');
+Route::post('wishlist/store', 'Frontend\MainController@addToWishlist');
 
 Route::get('post/{slug}-{id}', 'Frontend\MainController@getPostBySlug')
     ->where(['slug' => '[a-zA-Z0-9-]+', 'id' => '[0-9-]+']);
@@ -47,15 +49,18 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('create', 'Backend\HouseController@create');
         Route::get('list', 'Backend\HouseController@index');
         Route::get('region', 'Backend\HouseController@region');
+        Route::get('delete/{id}', 'Backend\HouseController@deleteHouse');
         Route::get('edit/{id}', 'Backend\HouseController@edit');
         Route::post('update/{id}', 'Backend\HouseController@update');
         Route::post('update-inline/{id}', 'Backend\HouseController@updateInline');
+        Route::post('add-region', 'Backend\HouseController@addRegion');
 
         Route::post('store', 'Backend\HouseController@store');
 
         Route::get('house.data', ['as' => 'house.data',
             'uses' => 'Backend\HouseController@getHouseByAttribute'
         ]);
+        Route::get('delete-region/{id}', 'Backend\HouseController@deleteRegion');
         Route::get('region.data', ['as' => 'region.data',
             'uses' => 'Backend\HouseController@getRegionByAttribute'
         ]);

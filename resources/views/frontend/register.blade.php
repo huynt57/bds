@@ -10,6 +10,8 @@
                             <div class="text-center"><img src="img/logo_sticky.png" alt="Image" data-retina="true"></div>
                             <hr>
                             <form method="post" action="{{ url('process-register') }}">
+
+                                {!! csrf_field() !!}
                                 <div class="form-group">
                                     <label>Email</label>
                                     <input type="email" name="email" class=" form-control" placeholder="Email">

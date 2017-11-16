@@ -420,6 +420,15 @@ class MainController extends Controller
         $userId = auth('frontend')->user()->id;
         $houseId = $request->input('house_id');
 
+        $check = Wishlist::where('house_id', $houseId)->where('account_id', $userId)->count();
+
+        if ($check > 0) {
+            return response([
+                'status' => 0,
+                'message' => 'Bạn đã đánh dấu BĐS này'
+            ]);
+        }
+
         Wishlist::create([
             'house_id' => $houseId,
             'account_id' => $userId,
@@ -498,8 +507,7 @@ class MainController extends Controller
 
     public function getWishlist(Request $request)
     {
-        if(!auth('backend')->check())
-        {
+        if (!auth('backend')->check()) {
             return redirect()->back()->with('error', 'Bạn chưa đăng nhập để sử dụng');
         }
 
