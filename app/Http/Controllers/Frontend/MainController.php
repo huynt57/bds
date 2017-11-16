@@ -425,7 +425,7 @@ class MainController extends Controller
         if ($check > 0) {
             return response([
                 'status' => 0,
-                'message' => 'Bạn đã đánh dấu BĐS này'
+                'message' => 'Bạn đã đánh dấu yêu thích BĐS này'
             ]);
         }
 
@@ -436,7 +436,7 @@ class MainController extends Controller
 
         return response([
             'status' => 1,
-            'message' => 'Thành công'
+            'message' => 'Đánh dấu yêu thích thành công'
         ]);
     }
 
@@ -517,6 +517,12 @@ class MainController extends Controller
             ->where('wishlists.account_id', $accountId)->paginate(10);
 
         return view('frontend.wishlist', compact('items'));
+    }
+
+    public function logout()
+    {
+        auth('frontend')->logout();
+        return redirect()->back()->with('success', 'Đăng xuất thành công');
     }
 
 }

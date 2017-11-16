@@ -4,7 +4,7 @@
             {{--<div class="ribbon_3 popular"><span>Popular</span>--}}
             {{--</div>--}}
             <div class="img_container">
-                <a href="{{ url('house/'.$item->slug.'-'.$item->id) }}">
+                <a href="{{ url('house/'.str_slug($item->name).'-'.$item->id) }}">
                     <div alt="Image" style="width:360px; height:240px; background-size: cover; background-image: url('{{ $item->main_images }}');"></div>
                     <div class="short_info">
                         <i class="icon_set_1_icon-44"></i>{{ $item->type_text }}<span class="price">{{ $item->price_text }}<sup>VNĐ</sup></span>

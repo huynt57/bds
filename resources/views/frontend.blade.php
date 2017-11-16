@@ -32,6 +32,8 @@
     <link rel="stylesheet" type="text/css" href="/frontend/css/slick.css"/>
     <link rel="stylesheet" type="text/css" href="/frontend/css/slick-theme.css"/>
     <link rel="stylesheet" type="text/css" href="/frontend/css/font-awesome.min.css"/>
+    <link href="/assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+
 
 
     <!-- CSS -->
@@ -161,8 +163,13 @@
                     <ul id="top_links">
                         <li>
                             <div class="dropdown dropdown-access">
+                                @if(!auth('frontend')->check())
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="access_link">Đăng
                                     nhập</a>
+                                @else
+                                    <a href="#" class="dropdown-toggle" id="access_link">Xin chào, {{ auth('frontend')->user()->name }}</a>
+                                    @endif
+
                                 <div class="dropdown-menu">
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
@@ -193,6 +200,10 @@
                                 </div>
                             </div>
                             <!-- End Dropdown access -->
+                        </li>
+                        @if(auth('frontend')->check())
+                        <li><a href="{{ url('logout') }}" >Đăng xuất</a>
+                            @endif
                         </li>
                         <li><a href="{{ url('yeu-thich') }}" id="wishlist_link">Yêu thích</a>
                         </li>
@@ -342,6 +353,9 @@
 <script src="/frontend/js/common_scripts_min.js"></script>
 <script src="/frontend/js/functions.js"></script>
 <script src="/frontend/js/slick.js"></script>
+<script src="/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+
+
 
 <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCydLs7dhJPuozABFQjJO-uk1PITW18oo8"></script>
@@ -365,7 +379,11 @@
             },
             dataType: 'json',
             success: function (response) {
-                toastr.success('Thành công');
+                if(response.status == 1) {
+                    toastr.success(response.message);
+                } else {
+                    toastr.error(response.message);
+                }
             }
         });
     }

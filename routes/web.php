@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'Frontend\MainController@index');
+Route::get('logout', 'Frontend\MainController@logout');
 Route::get('map', 'Frontend\MainController@getHouseByAttribute');
 Route::get('map-ajax', 'Frontend\MainController@getHouseByAttributeAjax');
 Route::get('get-house-marker', 'Frontend\MainController@getHouseMarker');
