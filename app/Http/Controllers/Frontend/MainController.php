@@ -507,13 +507,13 @@ class MainController extends Controller
 
     public function getWishlist(Request $request)
     {
-        if (!auth('backend')->check()) {
+        if (!auth('frontend')->check()) {
             return redirect()->back()->with('error', 'Bạn chưa đăng nhập để sử dụng');
         }
 
         $accountId = auth('frontend')->user()->id;
 
-        $items = House::join('wishlists', 'wishlists.house_id', '=', 'houses.id')
+        $items = House::select(\DB::raw('houses.*'))->join('wishlists', 'wishlists.house_id', '=', 'houses.id')
             ->where('wishlists.account_id', $accountId)->paginate(10);
 
         return view('frontend.wishlist', compact('items'));
