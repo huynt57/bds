@@ -122,6 +122,13 @@ class UserController extends AdminController
             return redirect()->back()->with('success', 'Mật khẩu nhập lại không khớp');
         }
 
+        $cnt = User::where('email', $data['email'])->count();
+
+        if($cnt > 0)
+        {
+            return redirect()->back()->with('error', 'Email đã tồn tại, vui lòng thử email khác');
+        }
+
         $data['password'] = \Hash::make($data['password']);
 
         if (empty(trim($data['type']))) {

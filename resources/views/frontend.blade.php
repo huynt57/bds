@@ -170,26 +170,28 @@
                                     </div>
                                     <div class="login-or">
                                         <hr class="hr-or">
-                                        <span class="span-or">or</span>
+                                        <span class="span-or">hoặc</span>
                                     </div>
+                                    <form method="post" action="{{ url('process-login') }}" >
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="inputUsernameEmail"
+                                        <input type="text" class="form-control" id="inputUsernameEmail" name="email"
                                                placeholder="Email">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control" id="inputPassword"
-                                               placeholder="Password">
+                                        <input type="password" class="form-control" id="inputPassword" name="password"
+                                               placeholder="Mật khẩu">
                                     </div>
-                                    <a id="forgot_pw" href="#">Forgot password?</a>
-                                    <input type="submit" name="Sign_in" value="Sign in" id="Sign_in"
+                                    <a id="forgot_pw" href="#">Quên mật khẩu?</a>
+                                    <input type="submit" name="Sign_in" value="Đăng nhập" id="Sign_in"
                                            class="button_drop">
-                                    <input type="submit" name="Sign_up" value="Sign up" id="Sign_up"
-                                           class="button_drop outline">
+                                    <a href="{{ url('dang-ky') }}" name="Sign_up" value="Đăng ký" id="Sign_up"
+                                       class="button_drop outline">Đăng ký</a>
+                                    </form>
                                 </div>
                             </div>
                             <!-- End Dropdown access -->
                         </li>
-                        <li><a href="#" id="wishlist_link">Yêu thích</a>
+                        <li><a href="{{ url('yeu-thich') }}" id="wishlist_link">Yêu thích</a>
                         </li>
                     </ul>
                 </div>

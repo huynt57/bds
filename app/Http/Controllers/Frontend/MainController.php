@@ -8,6 +8,7 @@ use App\Models\House;
 use App\Models\Post;
 use App\Models\Project;
 use App\Models\User;
+use App\Models\Wishlist;
 use Faker\Factory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -214,33 +215,27 @@ class MainController extends Controller
             $items = $items->isWithinMaxDistance($coordinates, $radius);
         }
 
-        if(!empty($minSize))
-        {
+        if (!empty($minSize)) {
             $items = $items->where('size', '>=', $minSize);
         }
 
-        if(!empty($maxSize))
-        {
+        if (!empty($maxSize)) {
             $items = $items->where('size', '<=', $maxSize);
         }
 
-        if(!empty($minPrice))
-        {
+        if (!empty($minPrice)) {
             $items = $items->where('price', '>=', $minPrice);
         }
 
-        if(!empty($maxPrice))
-        {
+        if (!empty($maxPrice)) {
             $items = $items->where('price', '<=', $maxPrice);
         }
 
-        if(!empty($beds))
-        {
+        if (!empty($beds)) {
             $items = $items->where('beds', '>=', $beds);
         }
 
-        if(!empty($bathrooms))
-        {
+        if (!empty($bathrooms)) {
             $items = $items->where('bath', '>=', $bathrooms);
         }
 
@@ -356,33 +351,27 @@ class MainController extends Controller
             $items = $items->isWithinMaxDistance($coordinates, $radius);
         }
 
-        if(!empty($minSize))
-        {
+        if (!empty($minSize)) {
             $items = $items->where('size', '>=', $minSize);
         }
 
-        if(!empty($maxSize))
-        {
+        if (!empty($maxSize)) {
             $items = $items->where('size', '<=', $maxSize);
         }
 
-        if(!empty($minPrice))
-        {
+        if (!empty($minPrice)) {
             $items = $items->where('price', '>=', $minPrice);
         }
 
-        if(!empty($maxPrice))
-        {
+        if (!empty($maxPrice)) {
             $items = $items->where('price', '<=', $maxPrice);
         }
 
-        if(!empty($beds))
-        {
+        if (!empty($beds)) {
             $items = $items->where('beds', '>=', $beds);
         }
 
-        if(!empty($bathrooms))
-        {
+        if (!empty($bathrooms)) {
             $items = $items->where('bath', '>=', $bathrooms);
         }
 
@@ -431,7 +420,10 @@ class MainController extends Controller
         $userId = auth('frontend')->user()->id;
         $houseId = $request->input('house_id');
 
-        auth('frontend')->user()->sync([$houseId]);
+        Wishlist::create([
+            'house_id' => $houseId,
+            'account_id' => $userId,
+        ]);
 
         return response([
             'status' => 1,
@@ -465,8 +457,7 @@ class MainController extends Controller
             Contact::create($data);
 
             return redirect()->back()->with('success', 'Cám ơn bạn đã liên hệ, chúng tôi sẽ thông tin sớm nhất có thể');
-        } catch (\Exception $ex)
-        {
+        } catch (\Exception $ex) {
             dd($ex->getTraceAsString());
         }
     }
@@ -503,6 +494,21 @@ class MainController extends Controller
             'data' => $returnArr
         ]);
 
+    }
+
+    public function getWishlist(Request $request)
+    {
+        if(!auth('backend')->check())
+        {
+            return redirect()->back()->with('error', 'Bạn chưa đăng nhập để sử dụng');
+        }
+
+        $accountId = auth('frontend')->user()->id;
+
+        $items = House::join('wishlists', 'wishlists.house_id', '=', 'houses.id')
+            ->where('wishlists.account_id', $accountId)->paginate(10);
+
+        return view('frontend.wishlist', compact('items'));
     }
 
 }

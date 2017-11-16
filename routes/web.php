@@ -17,6 +17,10 @@ Route::get('map-ajax', 'Frontend\MainController@getHouseByAttributeAjax');
 Route::get('get-house-marker', 'Frontend\MainController@getHouseMarker');
 Route::get('agents', 'Frontend\MainController@getAgents');
 Route::get('lien-he', 'Frontend\MainController@contact');
+Route::get('yeu-thich', 'Frontend\MainController@getWishlist');
+Route::get('dang-nhap', 'Frontend\AuthController@login');
+Route::get('process-login', 'Frontend\AuthController@processLogin');
+Route::get('process-register', 'Frontend\AuthController@processRegister');
 
 Route::get('get-house-by-center', 'Frontend\MainController@getHouseByCenter');
 
