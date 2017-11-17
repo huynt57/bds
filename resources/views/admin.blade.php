@@ -436,7 +436,7 @@
                     <li class="dropdown dropdown-user">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                             <img alt="" class="img-circle" src="" style="height: 29px; width: 29px" />
-                            <span class="username username-hide-on-mobile">  </span>
+                            <span class="username username-hide-on-mobile"> {{ auth('backend')->user()->name }} </span>
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-default">

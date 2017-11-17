@@ -72,27 +72,27 @@
 
                 <div class="col-md-4 col-sm-4">
                     <div class="box_style_1">
-                        <span class="tape"></span>
+                        
                         <h4>Địa chỉ <span><i class="icon-pin pull-right"></i></span></h4>
                         <p>
-                            Place Charles de Gaulle, 75008 Paris
+                            {{ cache()->get('settings')['address'] }}
                         </p>
                         <hr>
-                        <h4>Help center <span><i class="icon-help pull-right"></i></span></h4>
+                        <h4>Trung tâm trợ giúp <span><i class="icon-help pull-right"></i></span></h4>
                         <p>
-                            Lorem ipsum dolor sit amet, vim id accusata sensibus, id ridens quaeque qui. Ne qui vocent ornatus molestie.
+                            Đừng ngại ngần liên lạc ngay với chúng tôi
                         </p>
                         <ul id="contact-info">
-                            <li>+ 61 (2) 8093 3400 / + 61 (2) 8093 3402</li>
-                            <li><a href="#">info@domain.com</a>
+                            <li>{{ cache()->get('settings')['phone'] }}</li>
+                            <li><a href="#">{{ cache()->get('settings')['email'] }}</a>
                             </li>
                         </ul>
                     </div>
                     <div class="box_style_4">
                         <i class="icon_set_1_icon-57"></i>
-                        <h4>Need <span>Help?</span></h4>
-                        <a href="tel://004542344599" class="phone">+45 423 445 99</a>
-                        <small>Monday to Friday 9.00am - 7.30pm</small>
+                        <h4>Cần <span>trợ giúp?</span></h4>
+                        <a href="tel://{{ cache()->get('settings')['phone'] }}" class="phone">{{ cache()->get('settings')['phone'] }}</a>
+                        <small>Thứ hai tới thứ sáu 9.00 sáng - 7.30 tối</small>
                     </div>
                 </div>
                 <!-- End col-md-4 -->

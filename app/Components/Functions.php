@@ -9,6 +9,8 @@
 namespace App\Components;
 
 
+use App\Models\Post;
+
 class Functions
 {
     public static function getProvinces()
@@ -49,12 +51,27 @@ class Functions
 
             foreach ($cnt as $item) {
                 echo '<li >';
-                echo '<a href = "javascript:void(0);" >'.$item->title.'</a >';
+                echo '<a href = "'.self::getUrlMenu($item).'" >' . $item->title . '</a >';
                 echo '</li>';
                 self::printMenuFrontend($item);
             }
             echo '</ul >';
         }
+    }
+
+    public static function getUrlMenu($menu)
+    {
+        if (!empty($menu->post_id)) {
+            $post = Post::find($menu->post_id);
+            if ($post) {
+                return url('post/' . str_slug($post->title) . '-' . $post->id);
+            }
+        } else if (!empty($menu->route))
+        {
+            return $menu->route;
+        }
+
+        return 'javascript:void(0);';
     }
 
 }

@@ -235,7 +235,7 @@
                         @php $menus = \App\Models\Menu::where('parent_id', null)->orderBy('order', 'asc')->get(); @endphp
                         @foreach($menus as $menu)
                             <li class="submenu">
-                                <a href="javascript:void(0);" class="show-submenu">{{ $menu->title }} <i
+                                <a href="{{ \App\Components\Functions::getUrlMenu($menu) }}" class="show-submenu">{{ $menu->title }} <i
                                             class="icon-down-open-mini"></i></a>
                                 @php  \App\Components\Functions::printMenuFrontend($menu); @endphp
                             </li>

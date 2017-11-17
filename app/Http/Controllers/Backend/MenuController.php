@@ -100,10 +100,14 @@ class MenuController extends Controller
 
         $menu->update($data);
 
-        return response([
-            'status' => 1,
-            'message' => 'Cập nhật thành công',
-        ]);
+        if($request->ajax()) {
+            return response([
+                'status' => 1,
+                'message' => 'Cập nhật thành công',
+
+            ]);
+        }
+        return redirect()->back()->with('success', 'Cập nhật thành công');
     }
 
     public function destroy(Request $request)

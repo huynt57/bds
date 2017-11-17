@@ -2,10 +2,26 @@
 
 @section('styles')
     <link href="/assets/global/plugins/jquery-nestable/jquery.nestable.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
 
 @endsection
 
 @section('content')
+    @if (session()->has('error'))
+        <div class="alert alert-danger">{{ session()->get('error') }}</div>
+    @endif
+    @if (session()->has('success'))
+        <div class="alert alert-success">{{ session()->get('success') }}</div>
+    @endif
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="row">
         <div class="col-md-6">
             <div class="portlet light bordered">
@@ -45,6 +61,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                     <h4 class="modal-title">Thêm menu mới</h4>
+                    <span class="caption-helper">Hệ thống ưu tiên hiển thị bài viết liên kết trước đường dẫn liên kết</span>
                 </div>
                 <div class="modal-body">
                     <form role="form" class="form-horizontal" id="form-menu">
@@ -96,13 +113,13 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Liên kết tới đường dẫn</label>
                                 <div class="col-md-9">
-                                    <select class="form-control select2" name="post_id">
+                                    <select class="form-control select2" name="route">
                                         <option value="">Không liên kết tới đường dẫn nào</option>
-                                        @php $posts = \App\Models\Post::all(); @endphp
+                                        @php $routes = config('constants.route_menu') @endphp
 
-                                        @foreach($posts as $post)
-                                            <option value="{{ $post->id }}">
-                                                {{ $post->title }}
+                                        @foreach($routes as $key => $route)
+                                            <option value="{{ $route }}">
+                                                {{ $key }}
                                             </option>
                                         @endforeach
 
@@ -128,6 +145,7 @@
 {{--<script src="/assets/global/plugins/jquery-nestable/jquery.nestable.js" type="text/javascript"></script>--}}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/nestable2/1.6.0/jquery.nestable.min.js"></script>
+<script src="/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
 
 {{--https://cdnjs.cloudflare.com/ajax/libs/nestable2/1.6.0/jquery.nestable.min.js--}}
 
@@ -145,6 +163,7 @@
                 type: 'get',
                 success: function (response) {
                     $('#detail-menu').html(response);
+                    $('.select2').select2();
                 }
             });
         }
@@ -194,7 +213,9 @@
             dataType: 'json',
             success: function (response) {
                 if (response.status == 1) {
-                    location.reload();
+                    toastr.success('Cập nhật thành công');
+                    setTimeout(function(){  location.reload(); }, 1200);
+
                 }
 
             }

@@ -3,6 +3,7 @@
         <div class="caption">
             <i class="icon-bubble font-green"></i>
             <span class="caption-subject font-green sbold uppercase">Chi tiết menu</span>
+            <span class="caption-helper">Hệ thống ưu tiên hiển thị bài viết liên kết trước đường dẫn liên kết</span>
         </div>
     </div>
     <div class="portlet-body">
@@ -57,14 +58,12 @@
                 <div class="form-group">
                     <label class="col-md-3 control-label">Liên kết tới đường dẫn</label>
                     <div class="col-md-9">
-                        <select class="form-control select2" name="post_id">
+                        <select class="form-control select2" name="route">
                             <option value="">Không liên kết tới đường dẫn nào</option>
-                            @php $posts = \App\Models\Post::all(); @endphp
+                            @php $routes = config('constants.route_menu') @endphp
 
-                            @foreach($posts as $post)
-                                <option value="{{ $post->id }}">
-                                    {{ $post->title }}
-                                </option>
+                            @foreach($routes as $key => $route)
+                                <option value="{{ $route }}" @if($item->route == $route) selected @endif>{{ $key }}</option>
                             @endforeach
 
                         </select>
@@ -74,8 +73,8 @@
             <div class="form-actions">
                 <div class="row">
                     <div class="col-md-offset-3 col-md-9">
-                        <button type="button" class="btn green"  id="btn-save-2">Lưu</button>
-                        <button type="button" class="btn red"  id="btn-delete-2">Xóa menu
+                        <button type="button" class="btn green" id="btn-save-2">Lưu</button>
+                        <button type="button" class="btn red" id="btn-delete-2">Xóa menu
                         </button>
                     </div>
                 </div>
