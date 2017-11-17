@@ -78,7 +78,7 @@
                     <th>Môi giới viên</th>
                     <th>Thời gian</th>
                     <th>Trạng thái</th>
-                    <th>Hành động</th>
+                    {{--<th>Hành động</th>--}}
                 </tr>
                 </thead>
             </table>
@@ -88,6 +88,36 @@
     <div class="row">
         <div class="col-md-12" id="detail">
         </div>
+    </div>
+
+    <div class="modal fade" id="list-file" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Danh sách file đính kèm</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" class="form-horizontal" id="form-category">
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Tên</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" placeholder="Điền tên" name="name">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn dark btn-outline" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn green" id="btn-save">Lưu</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
     </div>
 @endsection
 @push('scripts')
@@ -139,7 +169,7 @@
                 {data: 'agent', name: 'agent'},
                 {data: 'created_at', name: 'created_at'},
                 {data: 'status', name: 'status'},
-                {data: 'action', name: 'action'},
+//                {data: 'action', name: 'action'},
             ],
             initComplete: function () {
                 $('.editable').editable({
@@ -175,7 +205,7 @@
                 {data: 'agent', name: 'agent'},
                 {data: 'created_at', name: 'created_at'},
                 {data: 'status', name: 'status'},
-                {data: 'action', name: 'action'},
+//                {data: 'action', name: 'action'},
             ],
             initComplete: function () {
                 $('.editable').editable({
