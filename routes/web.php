@@ -98,6 +98,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('list', 'Backend\PostController@index');
         Route::get('edit/{id}', 'Backend\PostController@edit');
         Route::post('update/{id}', 'Backend\PostController@update');
+        Route::get('delete/{id}', 'Backend\PostController@destroy');
 
         Route::post('update-inline/{id}', 'Backend\PostController@updateInline');
         Route::post('store', 'Backend\PostController@store');
@@ -118,10 +119,12 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['prefix' => 'user'], function () {
         Route::get('list', 'Backend\UserController@index');
+
         Route::get('create', 'Backend\UserController@create');
         Route::get('create-investor', 'Backend\UserController@createInvestor');
         Route::post('store', 'Backend\UserController@store');
         Route::get('edit/{id}', 'Backend\UserController@edit');
+        Route::get('delete/{id}', 'Backend\UserController@destroy');
         Route::post('edit/{id}', 'Backend\UserController@update');
         Route::post('update-inline/{id}', 'Backend\UserController@updateStatusUser');
         Route::get('user.data', ['as' => 'user.data',
@@ -136,7 +139,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('list', 'Backend\UserController@indexInvestor');
         Route::get('create', 'Backend\UserController@create');
         Route::get('create-investor', 'Backend\UserController@createInvestor');
-        Route::post('store', 'Backend\UserController@store');
+        Route::post('store', 'Backend\UserController@storeInvestor');
         Route::get('edit/{id}', 'Backend\UserController@edit');
         Route::post('edit/{id}', 'Backend\UserController@update');
         Route::post('update-inline/{id}', 'Backend\UserController@updateStatusUser');

@@ -204,24 +204,52 @@
                                    placeholder="Điền kích thước" value="{{ old('size') }}">
                         </div>
                     </div>
+                    <div class="form-group dmc0">
+                        <label>Xây dựng năm</label>
+                        <div>
+                            <input type="number" name="begin_year" id="begin_year" class="form-control"
+                                   placeholder="Điền năm xây dựng" value="{{ old('begin_year') }}">
+                        </div>
+                    </div>
+
 
                 </div>
 
             </div>
             <div class="col-lg-6" style="padding-right: 0px;">
                 <div class="form-group dmc0">
-                    <label>Xây dựng năm</label>
+                    <label>Điền số tòa</label>
                     <div>
-                        <input type="number" name="begin_year" id="begin_year" class="form-control"
-                               placeholder="Điền năm xây dựng" value="{{ old('begin_year') }}">
+                        <input type="number" name="building_number" id="building_number" class="form-control"
+                               placeholder="Điền số tòa nhà" value="{{ old('building_number') }}">
                     </div>
                 </div>
                 <div class="form-group dmc0">
-                    <label>Danh mục *</label>
+                    <label>Điền số tầng</label>
+                    <div>
+                        <input type="number" name="floor_number" id="floor_number" class="form-control"
+                               placeholder="Điền số tầng" value="{{ old('floor_number') }}">
+                    </div>
+                </div>
+                <div class="form-group dmc0">
+                    <label>Môi giới viên *</label>
                     <div>
                         <select class="form-control select2" name="agent_id">
                             <option value="">Chọn môi giới viên</option>
                             @php $agents = \App\Models\User::agent()->get();@endphp
+
+                            @foreach($agents as $agent)
+                                <option value="{{ $agent->id }}">{{ $agent->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group dmc0">
+                    <label>Chọn nhà đầu tư *</label>
+                    <div>
+                        <select class="form-control select2" name="agent_id">
+                            <option value="">Chọn nhà đầu tư</option>
+                            @php $agents = \App\Models\User::investor()->get();@endphp
 
                             @foreach($agents as $agent)
                                 <option value="{{ $agent->id }}">{{ $agent->name }}</option>

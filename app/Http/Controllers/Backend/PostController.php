@@ -94,10 +94,16 @@ class PostController extends AdminController
             ->editColumn('action', function ($post) {
                 return '<a class="btn btn-sm yellow btn-outline " href="' . url('post/' . $post->slug . '-' . $post->id) . '" target="_blank"> Xem</a>' .
                     '<a href="' . url('admin/post/edit', ['id' => $post->id]) . '" class="btn btn-sm green btn-outline "> Sửa</a>' .
-                    '<button class="btn btn-sm red btn-outline "> Xóa</button>';
+                    '<a href="' . url('admin/post/delete', ['id' => $post->id]) . '" class="btn btn-sm red btn-outline delete-btn"> Xóa</a>';
             })
             ->make(true);
 
+    }
+
+    public function destroy($id)
+    {
+        Post::find($id)->delete();
+        return redirect()->back()->with('success', 'Xóa thành công');
     }
 
     public function updateInline($id, Request $request)

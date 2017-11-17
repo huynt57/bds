@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Http\Requests\CreateInvestorRequest;
 use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class UserController extends AdminController
 
     public function getUserByAttribute(Request $request)
     {
-        $users = User::query();
+        $users = User::where('type', '<>', User::INVESTOR);
         return Datatables::of($users)
             ->editColumn('type', function ($user) {
                 return $user->type_text;
@@ -39,7 +40,7 @@ class UserController extends AdminController
 
                 return '<button class="btn btn-sm yellow btn-outline "> Xem</button>' .
                     '<a href="' . url('admin/user/edit', ['id' => $user->id]) . '" class="btn btn-sm green btn-outline "> Sửa</a>' .
-                    '<button class="btn btn-sm red btn-outline "> Xóa</button>';
+                    '<a href="'.url('admin/user/delete', ['id' => $user->id]).'" class="btn btn-sm red btn-outline delete-btn"> Xóa</a>';
             })
             ->make(true);
     }
@@ -62,7 +63,7 @@ class UserController extends AdminController
 
                 return '<button class="btn btn-sm yellow btn-outline "> Xem</button>' .
                     '<a href="' . url('admin/user/edit', ['id' => $user->id]) . '" class="btn btn-sm green btn-outline "> Sửa</a>' .
-                    '<button class="btn btn-sm red btn-outline "> Xóa</button>';
+                    '<a href="'.url('admin/user/delete', ['id' => $user->id]).'" class="btn btn-sm red btn-outline delete-btn"> Xóa</a>';
             })
             ->make(true);
     }
@@ -103,8 +104,7 @@ class UserController extends AdminController
     public function edit($id)
     {
         $user = User::find($id);
-        if(!$user)
-        {
+        if (!$user) {
             return redirect()->back()->with('error', 'Dữ liệu không hợp lệ');
         }
         return view('admin.user.edit', compact('user'));
@@ -124,8 +124,7 @@ class UserController extends AdminController
 
         $cnt = User::where('email', $data['email'])->count();
 
-        if($cnt > 0)
-        {
+        if ($cnt > 0) {
             return redirect()->back()->with('error', 'Email đã tồn tại, vui lòng thử email khác');
         }
 
@@ -138,6 +137,41 @@ class UserController extends AdminController
         if (!isset($data['status'])) {
             $data['status'] = User::ACTIVE;
         }
+
+        User::create($data);
+
+        if ($request->ajax()) {
+            return response([
+                'status' => 1,
+                'message' => 'Success'
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Thêm người dùng thành công');
+    }
+
+    public function destroy($id)
+    {
+        User::find($id)->delete();
+        return redirect()->back()->with('success', 'Xóa thành công');
+    }
+
+    public function storeInvestor(CreateInvestorRequest $request)
+    {
+        $data = $request->all();
+
+        if ($request->file('image') && $request->file('image')->isValid()) {
+            $data['image'] = $this->saveImage($request->file('image'));
+        }
+
+        $data['type'] = User::INVESTOR;
+
+
+        if (!isset($data['status'])) {
+            $data['status'] = User::ACTIVE;
+        }
+
+        $data['password'] = bcrypt(time());
 
         User::create($data);
 
@@ -181,13 +215,11 @@ class UserController extends AdminController
 
         $user = User::find($id);
 
-        if(!$user)
-        {
+        if (!$user) {
             return redirect()->back()->with('error', 'Dữ liệu không hợp lệ');
         }
 
-        if($retypePassword != $password)
-        {
+        if ($retypePassword != $password) {
             return redirect()->back()->with('error', 'Mật khẩu nhập lại không khớp');
         }
 

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateUserRequest extends FormRequest
+class CreateInvestorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,6 @@ class CreateUserRequest extends FormRequest
         return [
             'name' => 'required',
             'phone' => 'required',
-            'password' => 'required',
-            //'refer_phone' => 'required',
             'type' => 'required',
 
         ];
@@ -38,7 +36,6 @@ class CreateUserRequest extends FormRequest
         return [
             'name.required' => 'Không được bỏ trống tên',
             'phone.required' => 'Không được bỏ trống SĐT',
-            'password.required' => 'Không được bỏ trống mật khẩu',
             // 'refer_phone.required' => 'Không được bỏ trống SĐT người giới thiệu',
             'type.required' => 'Không được bỏ trống loại thành viên',
 
