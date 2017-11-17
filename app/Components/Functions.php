@@ -52,8 +52,9 @@ class Functions
             foreach ($cnt as $item) {
                 echo '<li >';
                 echo '<a href = "'.self::getUrlMenu($item).'" >' . $item->title . '</a >';
-                echo '</li>';
                 self::printMenuFrontend($item);
+                echo '</li>';
+
             }
             echo '</ul >';
         }
