@@ -270,6 +270,7 @@
                 success: function (response) {
                     if (response.status == 1) {
                         toastr.success('Thành công');
+                        $('#form-agent')[0].reset();
                     } else {
                         toastr.error(response.message);
                     }
