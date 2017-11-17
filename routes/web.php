@@ -14,7 +14,9 @@
 Route::get('/', 'Frontend\MainController@index');
 Route::get('logout', 'Frontend\MainController@logout');
 Route::get('map', 'Frontend\MainController@getHouseByAttribute');
+Route::get('map-project', 'Frontend\MainController@getProjectByAttribute');
 Route::get('map-ajax', 'Frontend\MainController@getHouseByAttributeAjax');
+Route::get('map-project-ajax', 'Frontend\MainController@getProjectByAttributeAjax');
 Route::get('get-house-marker', 'Frontend\MainController@getHouseMarker');
 Route::get('agents', 'Frontend\MainController@getAgents');
 Route::get('lien-he', 'Frontend\MainController@contact');
@@ -23,6 +25,9 @@ Route::get('dang-nhap', 'Frontend\AuthController@login');
 Route::get('dang-ky', 'Frontend\AuthController@register');
 Route::post('process-login', 'Frontend\AuthController@processLogin');
 Route::post('process-register', 'Frontend\AuthController@processRegister');
+Route::get('regions', 'Frontend\MainController@getRegions');
+
+Route::post('connect-house-agent', 'Frontend\MainController@contactAgent');
 
 Route::get('get-house-by-center', 'Frontend\MainController@getHouseByCenter');
 

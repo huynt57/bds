@@ -8,18 +8,21 @@
 @endsection
 
 @section('content')
-    <section class="parallax-window" data-parallax="scroll" data-image-src="{{ $house->main_images }}" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax-window" data-parallax="scroll" data-image-src="{{ $house->main_images }}"
+             data-natural-width="1400" data-natural-height="470">
         <div class="parallax-content-2">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-sm-8">
-                        <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class=" icon-star-empty"></i></span>
-                        <h1>Mariott Hotel</h1>
-                        <span>Champ de Mars, 5 Avenue Anatole, 75007 Paris.</span>
+                        <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i
+                                    class="icon-star voted"></i><i class="icon-star voted"></i><i
+                                    class=" icon-star-empty"></i></span>
+                        <h1>{{ $house->name }}</h1>
+                        <span>{{ $house->address }}</span>
                     </div>
                     <div class="col-md-4 col-sm-4">
                         <div id="price_single_main" class="hotel">
-                            from/per night <span><sup>$</sup>95</span>
+                            <span>{{ $house->price_text }} <sup>VNĐ</sup></span>
                         </div>
                     </div>
                 </div>
@@ -32,11 +35,9 @@
         <div id="position">
             <div class="container">
                 <ul>
-                    <li><a href="#">Home</a>
+                    <li><a href="{{ url('/') }}">Trang chủ</a>
                     </li>
-                    <li><a href="#">Category</a>
-                    </li>
-                    <li>Page active</li>
+                    <li>{{ $house->name }}</li>
                 </ul>
             </div>
         </div>
@@ -50,32 +51,38 @@
         <div class="container margin_60">
             <div class="row">
                 <div class="col-md-8" id="single_tour_desc">
-                    <div id="single_tour_feat">
-                        <ul>
-                            <li><i class="icon_set_2_icon-116"></i>Plasma TV</li>
-                            <li><i class="icon_set_1_icon-86"></i>Free Wifi</li>
-                            <li><i class="icon_set_2_icon-110"></i>Poll</li>
-                            <li><i class="icon_set_1_icon-59"></i>Breakfast</li>
-                            <li><i class="icon_set_1_icon-22"></i>Pet allowed</li>
-                            <li><i class="icon_set_1_icon-13"></i>Accessibiliy</li>
-                            <li><i class="icon_set_1_icon-27"></i>Parking</li>
-                        </ul>
-                    </div>
-                    <p class="visible-sm visible-xs"><a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">View on map</a>
+                    {{--<div id="single_tour_feat">--}}
+                    {{--<ul>--}}
+                    {{--<li><i class="icon_set_2_icon-116"></i>Plasma TV</li>--}}
+                    {{--<li><i class="icon_set_1_icon-86"></i>Free Wifi</li>--}}
+                    {{--<li><i class="icon_set_2_icon-110"></i>Poll</li>--}}
+                    {{--<li><i class="icon_set_1_icon-59"></i>Breakfast</li>--}}
+                    {{--<li><i class="icon_set_1_icon-22"></i>Pet allowed</li>--}}
+                    {{--<li><i class="icon_set_1_icon-13"></i>Accessibiliy</li>--}}
+                    {{--<li><i class="icon_set_1_icon-27"></i>Parking</li>--}}
+                    {{--</ul>--}}
+                    {{--</div>--}}
+                    <p class="visible-sm visible-xs"><a class="btn_map" data-toggle="collapse" href="#collapseMap"
+                                                        aria-expanded="false" aria-controls="collapseMap"
+                                                        data-text-swap="Hide map" data-text-original="View on map">View
+                            on map</a>
                     </p>
                     <!-- Map button for tablets/mobiles -->
                     <div id="Img_carousel" class="slider-pro">
                         <div class="sp-slides">
 
                             @foreach($house->images as $image)
-                            <div class="sp-slide">
-                                <img alt="Image" class="sp-image" src="css/images/blank.gif" data-src="{{ $image->path }}" data-small="{{ $image->path }}" data-medium="{{ $image->path }}" data-large="{{ $image->path }}" data-retina="{{ $image->path }}">
-                            </div>
+                                <div class="sp-slide">
+                                    <img alt="Image" class="sp-image" src="css/images/blank.gif"
+                                         data-src="{{ $image->path }}" data-small="{{ $image->path }}"
+                                         data-medium="{{ $image->path }}" data-large="{{ $image->path }}"
+                                         data-retina="{{ $image->path }}">
+                                </div>
                             @endforeach
                         </div>
                         <div class="sp-thumbnails">
                             @foreach($house->images as $image)
-                            <img alt="Image" class="sp-thumbnail" src="{{ $image->path }}">
+                                <img alt="Image" class="sp-thumbnail" src="{{ $image->path }}">
                             @endforeach
                         </div>
                     </div>
@@ -90,128 +97,24 @@
                             <p>
                                 {!! $house->description !!}
                             </p>
-                            <h4>Hotel facilities</h4>
-                            <p>
-                                Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo aeterno legimus insolens ad. Sit cu detraxit constituam, an mel iudico constituto efficiendi.
-                            </p>
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6">
-                                    <ul class="list_ok">
-                                        <li>Lorem ipsum dolor sit amet</li>
-                                        <li>No scripta electram necessitatibus sit</li>
-                                        <li>Quidam percipitur instructior an eum</li>
-                                        <li>Ut est saepe munere ceteros</li>
-                                        <li>No scripta electram necessitatibus sit</li>
-                                        <li>Quidam percipitur instructior an eum</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <ul class="list_ok">
-                                        <li>Lorem ipsum dolor sit amet</li>
-                                        <li>No scripta electram necessitatibus sit</li>
-                                        <li>Quidam percipitur instructior an eum</li>
-                                        <li>No scripta electram necessitatibus sit</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- End row  -->
-                        </div>
-                        <!-- End col-md-9  -->
-                    </div>
-                    <!-- End row  -->
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-3">
-                            <h3>Rooms Types</h3>
-                        </div>
-                        <div class="col-md-9">
-                            <h4>Single Room</h4>
-                            <p>
-                                Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo aeterno legimus insolens ad. Sit cu detraxit constituam, an mel iudico constituto efficiendi.
-                            </p>
+                            <h4>Tiện ích căn hộ</h4>
 
                             <div class="row">
-                                <div class="col-md-6 col-sm-6">
-                                    <ul class="list_icons">
-                                        <li><i class="icon_set_1_icon-86"></i> Free wifi</li>
-                                        <li><i class="icon_set_2_icon-116"></i> Plasma Tv</li>
-                                        <li><i class="icon_set_2_icon-106"></i> Safety box</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <ul class="list_ok">
-                                        <li>Lorem ipsum dolor sit amet</li>
-                                        <li>No scripta electram necessitatibus sit</li>
-                                        <li>Quidam percipitur instructior an eum</li>
-                                    </ul>
-                                </div>
+                                @php $featuresJson = $house->features; $featuredecoded = json_decode($featuresJson); $features = collect($featuredecoded); @endphp
+
+                                @php $items = $features->chunk(6); @endphp
+
+                                @foreach($items as $item)
+                                    <div class="col-md-6 col-sm-6">
+                                        <ul class="list_ok">
+                                            @foreach($item as $fe)
+                                                <li>{{ $fe }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endforeach
                             </div>
                             <!-- End row  -->
-                            <div class="carousel magnific-gallery">
-                                <div class="item">
-                                    <a href="/img/carousel/1.jpg"><img src="/img/carousel/1.jpg" alt="Image">
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a href="/img/carousel/2.jpg"><img src="/img/carousel/2.jpg" alt="Image">
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a href="/img/carousel/3.jpg"><img src="/img/carousel/3.jpg" alt="Image">
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a href="/img/carousel/4.jpg"><img src="/img/carousel/4.jpg" alt="Image">
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End photo carousel  -->
-
-                            <hr>
-
-                            <h4>Double Room</h4>
-                            <p>
-                                Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo aeterno legimus insolens ad. Sit cu detraxit constituam, an mel iudico constituto efficiendi.
-                            </p>
-
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6">
-                                    <ul class="list_icons">
-                                        <li><i class="icon_set_1_icon-86"></i> Free wifi</li>
-                                        <li><i class="icon_set_2_icon-116"></i> Plasma Tv</li>
-                                        <li><i class="icon_set_2_icon-106"></i> Safety box</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <ul class="list_ok">
-                                        <li>Lorem ipsum dolor sit amet</li>
-                                        <li>No scripta electram necessitatibus sit</li>
-                                        <li>Quidam percipitur instructior an eum</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- End row  -->
-                            <div class="carousel magnific-gallery">
-                                <div class="item">
-                                    <a href="/img/carousel/1.jpg"><img src="/img/carousel/1.jpg" alt="Image">
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a href="/img/carousel/2.jpg"><img src="/img/carousel/2.jpg" alt="Image">
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a href="/img/carousel/3.jpg"><img src="/img/carousel/3.jpg" alt="Image">
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a href="/img/carousel/4.jpg"><img src="/img/carousel/4.jpg" alt="Image">
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End photo carousel  -->
                         </div>
                         <!-- End col-md-9  -->
                     </div>
@@ -225,55 +128,71 @@
 
                 <aside class="col-md-4">
                     <p class="hidden-sm hidden-xs">
-                        <a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">View on map</a>
+                        <a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false"
+                           aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">Xem
+                            trên bản đồ</a>
                     </p>
-                    <div class="box_style_1 expose">
-                        <h3 class="inner">Liên lạc với môi giới viên</h3>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label><i class="icon-calendar-7"></i> Check in</label>
-                                    <input class="date-pick form-control" data-date-format="M d, D" type="text">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label><i class="icon-calendar-7"></i> Check out</label>
-                                    <input class="date-pick form-control" data-date-format="M d, D" type="text">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label>Adults</label>
-                                    <div class="numbers-row">
-                                        <input type="text" value="1" id="adults" class="qty2 form-control" name="quantity">
+                    <form id="form-agent">
+                        <div class="box_style_1 expose">
+                            <h3 class="inner">Liên lạc với môi giới viên</h3>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label><i class="fa fa-user"></i> Tên của bạn</label>
+                                        <input class="form-control" type="text" name="name">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label>Children</label>
-                                    <div class="numbers-row">
-                                        <input type="text" value="0" id="children" class="qty2 form-control" name="quantity">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
 
-                        <a class="btn_full" href="cart_hotel.html">Check now</a>
-                        <a class="btn_full_outline" href="#"><i class=" icon-heart"></i> Add to whislist</a>
-                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label><i class="fa fa-phone"></i> SĐT</label>
+                                        <input class="form-control" type="text" name="phone">
+                                    </div>
+                                </div>
+                                @if($house instanceof \App\Models\House)
+                                    <input type="hidden" name="house_id" value="{{ $house->id }}">
+                                    @else
+                                    <input type="hidden" name="project_id" value="{{ $house->id }}">
+                                @endif
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label><i class="fa fa-envelope"></i> Email</label>
+                                        <input class="form-control" type="text" name="email">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label><i class="fa fa-newspaper-o"></i> Nội dung liên hệ</label>
+                                        <textarea class="form-control" name="message"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <br>
+
+                            <a class="btn_full" href="javascript:;" id="send_agent">Gửi ngay</a>
+                            <a class="btn_full_outline" href="javascript:;" onclick="addWishlist('{{ $house->id }}')"><i
+                                        class=" icon-heart"></i>Thêm vào yêu thích</a>
+                        </div>
+                    </form>
                     <!--/box_style_1 -->
+                    @if($house->agent)
 
-                    <div class="box_style_4">
-                        <i class="icon_set_1_icon-90"></i>
-                        <h4><span>Book</span> by phone</h4>
-                        <a href="tel://004542344599" class="phone">+45 423 445 99</a>
-                        <small>Monday to Friday 9.00am - 7.30pm</small>
-                    </div>
+                        <div class="box_style_4">
+                            <i class="icon_set_1_icon-90"></i>
+                            <h4><span>Thông tin</span> Môi giới viên</h4>
+                            <h4>{{ $house->agent->name }}</h4>
+                            <a href="tel://{{ $house->agent->phone }}" class="phone">{{ $house->agent->phone }}</a>
+                        </div>
+                    @endif
 
                 </aside>
             </div>
@@ -337,6 +256,26 @@
             itemsDesktop: [1199, 3],
             itemsDesktopSmall: [979, 3]
         });
+
+        $('#send_agent').click(function () {
+            alert('123');
+            var data = $('#form-agent').serialize();
+            $.ajax({
+                url: '{{ url('connect-house-agent') }}',
+                type: 'post',
+                data: data,
+                dataType: 'json',
+                success: function (response) {
+                    if (response.status == 1) {
+                        toastr.success('Thành công');
+                    } else {
+                        toastr.error('Có lỗi xảy ra vui lòng thử lại sau');
+                    }
+                }
+            });
+        });
     });
+
+
 </script>
 @endpush

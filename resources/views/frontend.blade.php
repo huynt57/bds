@@ -11,7 +11,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="description" content="Viethouse24">
+    <meta name="description" content="{{ cache()->get('settings')['title'] }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @yield('meta')
 
@@ -220,14 +220,14 @@
         <div class="row">
             <div class="col-md-3 col-sm-3 col-xs-3">
                 <div id="logo_home">
-                    <h1><a href="{{ url('/') }}" title="City tours travel template">City tours travel template</a></h1>
+                    <h1><a href="{{ url('/') }}" title="City tours travel template">{{ cache()->get('settings')['title'] }}</a></h1>
                 </div>
             </div>
             <nav class="col-md-9 col-sm-9 col-xs-9">
-                <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
+                <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Danh mục di động</span></a>
                 <div class="main-menu">
                     <div id="header_menu">
-                        <img src="/frontend/img/logo_sticky.png" width="160" height="34" alt="City tours"
+                        <img src="/frontend/img/logo_sticky.png" width="160" height="34" alt="{{ cache()->get('settings')['title'] }}"
                              data-retina="true">
                     </div>
                     <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>

@@ -72,7 +72,7 @@
 
                 <div class="col-md-4 col-sm-4">
                     <div class="box_style_1">
-                        
+
                         <h4>Địa chỉ <span><i class="icon-pin pull-right"></i></span></h4>
                         <p>
                             {{ cache()->get('settings')['address'] }}

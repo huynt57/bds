@@ -99,20 +99,57 @@ class MainController extends Controller
         ];
     }
 
-    public function getHouseByCenter(Request $request)
+    public function getRegions()
     {
-        $lat = $request->input('lat');
-        $lng = $request->input('lng');
+        $regions = Region::all();
+        return view('frontend.regions', compact('regions'));
+    }
 
-        $radius = $request->input('radius');
-        $coordinates['latitude'] = $lat;
-        $coordinates['longitude'] = $lng;
+    public function contactAgent(Request $request)
+    {
+        $data = $request->all();
 
-        $items = House::isWithinMaxDistance($coordinates, $radius);
+        if (empty(trim($data['phone']))) {
+            return response([
+                'status' => 0,
+                'message' => 'Không được để trống SĐT'
+            ]);
+        }
 
-        $items = $items->get()->pluck('id')->toArray();
+        if (empty(trim($data['name']))) {
+            return response([
+                'status' => 0,
+                'message' => 'Không được để trống tên'
+            ]);
+        }
 
-        dd($items);
+        if (empty(trim($data['message']))) {
+            return response([
+                'status' => 0,
+                'message' => 'Không được để trống tin nhắn'
+            ]);
+        }
+
+        if (!empty($data['house_id'])) {
+            $houseId = $data['house_id'];
+            $item = House::find($houseId);
+        } else if (!empty($data['project_id'])) {
+            $projectId = $data['project_id'];
+            $item = Project::find($projectId);
+        }
+
+        if ($item->agent) {
+            $data['agent_id'] = $item->agent->id;
+        }
+
+        $data['status'] = Contact::PENDING;
+
+        Contact::create($data);
+
+        return response([
+            'status' => 1,
+            'message' => 'Cám ơn bạn đã liên hệ'
+        ]);
     }
 
     public function getHouseByAttribute(Request $request)
@@ -469,6 +506,7 @@ class MainController extends Controller
 
             return redirect()->back()->with('success', 'Cám ơn bạn đã liên hệ, chúng tôi sẽ thông tin sớm nhất có thể');
         } catch (\Exception $ex) {
+            return redirect()->back()->with('error', 'Có lỗi xảy ra vui lòng thử lại sau');
             dd($ex->getTraceAsString());
         }
     }

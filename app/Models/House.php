@@ -53,6 +53,11 @@ class House extends Model
 
     }
 
+    public function agent()
+    {
+        return $this->belongsTo('App\Models\User', 'agent_id', 'id');
+    }
+
     public function images()
     {
         return $this->hasMany('App\Models\Image');
