@@ -306,9 +306,9 @@
             <div class="col-md-4 col-sm-3">
                 <h3>Liên kết</h3>
                 <ul>
-                    <li><a href="#">Dự án</a></li>
-                    <li><a href="#">Cho thuê</a></li>
-                    <li><a href="#">Mua bán</a></li>
+                    <li><a href="{{ url('map-project') }}">Dự án</a></li>
+                    <li><a href="{{ url('map?type='.\App\Models\House::BOTH_RENT) }}">Cho thuê</a></li>
+                    <li><a href="{{ url('map?type='.\App\Models\House::BOTH_SALE) }}">Mua bán</a></li>
                     <li><a href="#">Dịch vụ</a></li>
                 </ul>
             </div>
