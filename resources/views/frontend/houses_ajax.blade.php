@@ -5,7 +5,12 @@
     <div class="row">
         @foreach($house as $item)
             @php $cnt++; @endphp
-            <div class="col-md-6 col-sm-6">
+
+        @if(!empty($col))
+            <div class="col-md-{{$col}} col-sm-{{$col}}">
+                @else
+                    <div class="col-md-6 col-sm-6">
+                    @endif
                 <div class="tour_container">
                     {{--<div class="ribbon_3 popular"><span>Popular</span></div>--}}
                     <div class="img_container">

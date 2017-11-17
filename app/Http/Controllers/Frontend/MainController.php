@@ -7,6 +7,7 @@ use App\Models\Contact;
 use App\Models\House;
 use App\Models\Post;
 use App\Models\Project;
+use App\Models\Region;
 use App\Models\User;
 use App\Models\Wishlist;
 use Faker\Factory;
@@ -29,7 +30,8 @@ class MainController extends Controller
         $features = House::where('is_feature', true)->orderBy('id', 'desc')->take(15)->get();
         $sells = House::whereIn('type', [House::SALE, House::FOR_SALE])->orderBy('id', 'desc')->take(15)->get();
         $rents = House::whereIn('type', [House::RENT, House::FOR_RENT])->orderBy('id', 'desc')->take(15)->get();
-        return view('frontend.index', compact('features', 'sells', 'rents'));
+        $regions = Region::all();
+        return view('frontend.index', compact('features', 'sells', 'rents', 'regions'));
     }
 
     public function getAgents()

@@ -157,7 +157,7 @@
     <div id="top_line">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-6"><i class="icon-phone"></i><strong>0045 043204434</strong>
+                <div class="col-md-6 col-sm-6 col-xs-6"><i class="icon-phone"></i><strong>{{ cache()->get('settings')['phone'] }}</strong>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-6">
                     <ul id="top_links">
@@ -276,18 +276,16 @@
                 <h3>Liên hệ</h3>
                 <ul class="contact_footer">
                     <li>
-                        <i class="fa fa-envelope"></i> <a href="#">0905786996</a>
+                        <i class="fa fa-envelope"></i> <a href="#">{{ cache()->get('settings')['phone'] }}</a>
                     </li>
                     <li>
-                        <i class="fa fa-headphones"></i> <a href="mailto:lienhe@viethouse24.com">lienhe@viethouse
-                            24.com</a>
+                        <i class="fa fa-headphones"></i> <a href="mailto:{{ cache()->get('settings')['email'] }}">{{ cache()->get('settings')['email'] }}</a>
                     </li>
                     <li class="location">
-                        <i class="fa fa-home"></i> <a href="#"> 39 Lý Thái Tổ, Võ Cường, Tp. Bắc Ninh, Bắc Ninh, Việt
-                            Nam</a>
+                        <i class="fa fa-home"></i> <a href="#"> {{ cache()->get('settings')['address'] }}</a>
                     </li>
                     <li class="location">
-                        <i class="fa fa-skype"></i> <a href="skype:Hoangpn86"> Hoangpn86 </a>
+                        <i class="fa fa-skype"></i> <a href="skype:{{ cache()->get('settings')['skype'] }}"> {{ cache()->get('settings')['skype'] }} </a>
                     </li>
                 </ul>
             </div>

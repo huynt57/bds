@@ -17,6 +17,10 @@ class Project extends Model
     const FOR_RENT = 2;
     const FOR_SALE = 3;
 
+    const DEVELOPING = 4;
+    const SALING = 5;
+    const PREPARE_SALE = 6;
+
     protected $fillable = [
         'name', 'ward_id',
         'category_id',

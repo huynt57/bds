@@ -100,7 +100,7 @@ function getBoundsRadius(bounds, c_lat, c_lng) {
         );
     return r_km // radius in meters
 }
-var element =  document.getElementById('map');
+var element = document.getElementById('map');
 if (typeof(element) != 'undefined' && element != null) {
     var map = new GMaps({
         div: '#map',
@@ -135,13 +135,15 @@ if (typeof(element) != 'undefined' && element != null) {
         class: 'btn btn-success',
         type: 'get',
         style: {
-            margin_top: '50px',
-            height: '50px',
-            width: '50px',
-            padding: '1px 6px',
-            border: 'solid 1px #717B87',
-            background: '#fff',
-
+            color: '#444',
+            border: '1px solid #CCC',
+            background: '#DDD',
+            'box-shadow': '0 0 5px -1px rgba(0,0,0,0.2)',
+            cursor: 'pointer',
+            'vertical-align': 'middle',
+            'max-width': '100px',
+            'padding': '10px',
+            'text-align': 'center',
         },
         events: {
 
@@ -190,6 +192,7 @@ if (typeof(element) != 'undefined' && element != null) {
                     });
 
                     $(this).attr('type', 'get');
+                    $(this).html('Xem trường học');
 
                 }
 
@@ -202,13 +205,18 @@ if (typeof(element) != 'undefined' && element != null) {
         content: 'Xem map rộng hơn',
         id: 'change_map',
         style: {
-            margin_top: '80px',
-            height: '50px',
-            width: '50px',
-            padding: '1px 6px',
-            border: 'solid 1px #717B87',
-            background: '#fff'
+            color: '#444',
+            border: '1px solid #CCC',
+            background: '#DDD',
+            'box-shadow': '0 0 5px -1px rgba(0,0,0,0.2)',
+            cursor: 'pointer',
+            'vertical-align': 'middle',
+            'max-width': '100px',
+            'padding': '10px',
+            'text-align': 'center',
+            'margin-top' : '50px'
         },
+
         events: {
             click: function () {
                 if ($(this).attr('data-check') == '1') {

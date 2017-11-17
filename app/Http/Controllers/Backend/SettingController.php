@@ -6,6 +6,7 @@ use App\Models\Region;
 use App\Models\Setting;
 use App\Models\Slide;
 use App\Models\Testimonial;
+use Hamcrest\Core\Set;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Symfony\Component\VarDumper\Cloner\Data;
@@ -37,7 +38,7 @@ class SettingController extends AdminController
         return \Datatables::of($slides)->addColumn('action', function ($slide) {
 
             return
-                '<a href="#update-slide" data-toggle="modal" data-id="'.$slide->id.'" class="btn btn-sm green btn-outline update"> Sửa</a>' ;
+                '<a href="#update-slide" data-toggle="modal" data-id="' . $slide->id . '" class="btn btn-sm green btn-outline update"> Sửa</a>';
 
         })->make(true);
     }
@@ -75,8 +76,7 @@ class SettingController extends AdminController
         }
         $slide = Slide::find($id);
 
-        if(!$slide)
-        {
+        if (!$slide) {
             return redirect()->back()->with('error', 'Dữ liệu không hợp lệ');
         }
         $slide->update($data);
@@ -88,15 +88,13 @@ class SettingController extends AdminController
     {
         $id = $request->input('id');
         $slide = Slide::find($id);
-        if(!$slide)
-        {
+        if (!$slide) {
             return response([
                 'data' => 'http://www.placehold.it/200x180/EFEFEF/AAAAAA&amp;text=no+image',
                 'name' => ''
             ]);
         }
-        if(empty($slide->path))
-        {
+        if (empty($slide->path)) {
             return response([
                 'data' => 'http://www.placehold.it/200x180/EFEFEF/AAAAAA&amp;text=no+image',
                 'name' => $slide->name
@@ -165,13 +163,20 @@ class SettingController extends AdminController
         $name = $request->input('name');
         $value = $request->input('value');
 
-        if($setting->first()) {
+        if ($setting->first()) {
             $setting->update([
                 $name => $value
             ]);
 
+            cache()->forget('settings');
+
             cache()->rememberForever('settings', function () {
-                return Setting::all();
+                $settings = Setting::all();
+                $arr = [];
+                foreach ($settings as $setting) {
+                    $arr[$setting->name] = $setting->value;
+                }
+                return $arr;
             });
         }
 

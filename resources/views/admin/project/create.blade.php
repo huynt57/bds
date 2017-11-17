@@ -177,10 +177,9 @@
                         <div>
                             <select class="form-control" name="type">
                                 <option value="">Chọn loại dự án</option>
-                                <option value="{{ \App\Models\Project::RENT }}">Cho thuê</option>
-                                <option value="{{ \App\Models\Project::FOR_RENT }}">Cần thuê</option>
-                                <option value="{{ \App\Models\Project::SALE }}">Bán</option>
-                                <option value="{{ \App\Models\Project::FOR_SALE }}">Cần bán</option>
+                                <option value="{{ \App\Models\Project::DEVELOPING }}">Đang phát triển, tư vấn</option>
+                                <option value="{{ \App\Models\Project::SALING }}">Đang phân phối, mở bán</option>
+                                <option value="{{ \App\Models\Project::PREPARE_SALE }}">Chuẩn bị mở bán</option>
                             </select>
                         </div>
                     </div>
