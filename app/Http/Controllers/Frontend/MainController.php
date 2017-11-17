@@ -183,7 +183,13 @@ class MainController extends Controller
         }
 
         if (isset($type)) {
-            $items = $items->where('type', $type);
+            if ($type == House::BOTH_SALE) {
+                $items = $items->whereIN('type', [House::SALE, House::FOR_SALE]);
+            } else if ($type == House::BOTH_RENT) {
+                $items = $items->whereIN('type', [House::RENT, House::FOR_RENT]);
+            } else {
+                $items = $items->where('type', $type);
+            }
         }
 
         if (!empty($lat) && !empty($lng)) {
@@ -247,7 +253,13 @@ class MainController extends Controller
         }
 
         if (isset($type)) {
-            $items = $items->where('type', $type);
+            if ($type == House::BOTH_SALE) {
+                $items = $items->whereIN('type', [House::SALE, House::FOR_SALE]);
+            } else if ($type == House::BOTH_RENT) {
+                $items = $items->whereIN('type', [House::RENT, House::FOR_RENT]);
+            } else {
+                $items = $items->where('type', $type);
+            }
         }
 
         if (!empty($lat) && !empty($lng)) {

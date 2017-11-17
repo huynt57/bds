@@ -42,9 +42,9 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
                             <ul class="home-search-nav-tabs ht-nav-justified" role="tablist">
-                                <li class="active"><a href="#demoSearchTab01" role="tab" data-toggle="tab">Mua bán</a>
+                                <li class="active"><a id="searchTab01" href="#demoSearchTab01" role="tab" data-toggle="tab">Mua bán</a>
                                 </li>
-                                <li><a href="#demoSearchTab02" role="tab" data-toggle="tab">Cho thuê</a></li>
+                                <li><a id="searchTab02" href="#demoSearchTab02" role="tab" data-toggle="tab">Cho thuê</a></li>
                                 <li><a href="#demoSearchTab03" role="tab" data-toggle="tab">Phương án tài chính</a></li>
                                 <li><a href="#demoSearchTab04" role="tab" data-toggle="tab">Môi giới</a></li>
                             </ul>
@@ -53,7 +53,7 @@
                                     <label for="#" class="hidden">Tìm kiếm</label>
                                     <input type="text" class="ht-form-control" placeholder="Điền từ khóa cần tìm kiếm"
                                            name="keyword">
-                                    <input type="hidden" value="" name="type">
+                                    <input type="hidden" value="" name="type" id="type_search">
                                     <button class="ht-btn ht-btn-search">Tìm kiếm</button>
                                 </div>
                             </form>
@@ -219,3 +219,24 @@
     </main>
     <!-- End main -->
 @endsection
+
+@push('scripts')
+
+<script>
+
+    $(document).ready(function () {
+        $('#type_search').val('{{ \App\Models\House::BOTH_SALE }}');
+
+        $('#searchTab01').click(function () {
+
+            $('#type_search').val('{{ \App\Models\House::BOTH_SALE }}')
+        });
+
+        $('#searchTab02').click(function () {
+            $('#type_search').val('{{ \App\Models\House::BOTH_RENT }}')
+        });
+    });
+
+
+</script>
+@endpush
