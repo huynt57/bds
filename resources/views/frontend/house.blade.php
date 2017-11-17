@@ -153,7 +153,7 @@
                                 </div>
                                 @if($house instanceof \App\Models\House)
                                     <input type="hidden" name="house_id" value="{{ $house->id }}">
-                                    @else
+                                @else
                                     <input type="hidden" name="project_id" value="{{ $house->id }}">
                                 @endif
 
@@ -220,20 +220,23 @@
 <script src="/frontend/js/jquery.sliderPro.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function ($) {
-        $('#Img_carousel').sliderPro({
-            width: 960,
-            height: 500,
-            fade: true,
-            arrows: true,
-            buttons: false,
-            fullScreen: false,
-            smallSize: 500,
-            startSlide: 0,
-            mediumSize: 1000,
-            largeSize: 3000,
-            thumbnailArrows: true,
-            autoplay: false
-        });
+
+        if ($('.sp-thumbnails').children().length > 0) {
+            $('#Img_carousel').sliderPro({
+                width: 960,
+                height: 500,
+                fade: true,
+                arrows: true,
+                buttons: false,
+                fullScreen: false,
+                smallSize: 500,
+                startSlide: 0,
+                mediumSize: 1000,
+                largeSize: 3000,
+                thumbnailArrows: true,
+                autoplay: false
+            });
+        }
     });
 </script>
 
@@ -258,7 +261,6 @@
         });
 
         $('#send_agent').click(function () {
-            alert('123');
             var data = $('#form-agent').serialize();
             $.ajax({
                 url: '{{ url('connect-house-agent') }}',
@@ -269,7 +271,7 @@
                     if (response.status == 1) {
                         toastr.success('Thành công');
                     } else {
-                        toastr.error('Có lỗi xảy ra vui lòng thử lại sau');
+                        toastr.error(response.message);
                     }
                 }
             });
