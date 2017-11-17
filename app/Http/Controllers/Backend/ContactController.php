@@ -22,7 +22,7 @@ class ContactController extends Controller
 
         return \Datatables::of($contacts)
             ->addColumn('file', function ($contact) {
-                return '<a data-toggle="modal" href="#list-file" class="btn btn-success">Xem</a>';
+                return '<a data-toggle="modal" href="#list-file" data-id="'.$contact->id.'" class="btn btn-success list-file-contact">Xem</a>';
             })
             ->editColumn('created_at', function ($contact) {
                 return $contact->created_at->format('d/m/Y H:i');
@@ -38,5 +38,16 @@ class ContactController extends Controller
 
             })
             ->make(true);
+    }
+
+    public function getFile($id)
+    {
+        $contact = Contact::find($id);
+        if($contact)
+        {
+            $items = $contact->files;
+            $files = json_decode($items);
+            return view('admin.contact.files', compact('files'))->render();
+        }
     }
 }

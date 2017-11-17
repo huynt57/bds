@@ -33,6 +33,8 @@ Route::get('get-house-by-center', 'Frontend\MainController@getHouseByCenter');
 
 Route::get('school', 'Frontend\MainController@getSchoolNearBy');
 
+
+
 Route::post('contact/store', 'Frontend\MainController@storeContact');
 Route::post('wishlist/store', 'Frontend\MainController@addToWishlist');
 
@@ -45,6 +47,7 @@ Route::get('house/{slug}-{id}', 'Frontend\MainController@detail')
 Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/', 'Backend\DashboardController@index');
+    Route::get('thong-tin-ca-nhan', 'Backend\AdminController@getUser');
     Route::get('get-image-slide', 'Backend\SettingController@getImageSlide');
     Route::get('get-region-by-type', 'Backend\HouseController@getRegionByType');
     Route::get('login', 'Backend\AdminController@login');
@@ -178,7 +181,10 @@ Route::group(['prefix' => 'admin'], function () {
         ]);
     });
 
+
+
     Route::group(['prefix' => 'contact'], function () {
+        Route::get('get-file-contact/{id}', 'Backend\ContactController@getFile');
         Route::get('/', 'Backend\ContactController@index');
         Route::get('contact.data', ['as' => 'contact.data',
             'uses' => 'Backend\ContactController@getContactByAttribute'

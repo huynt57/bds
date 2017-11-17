@@ -191,13 +191,7 @@
                     </li>
 
                     <li class="nav-item  ">
-                        <a href="{{ url('admin/thay-mat-khau') }}" class="nav-link ">
-                            <span class="title">Bảo mật</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item  ">
-                        <a href="{{ url('admin/thay-mat-khau') }}" class="nav-link ">
+                        <a href="{{ url('admin/logout') }}" class="nav-link ">
                             <span class="title">Thoát</span>
                         </a>
                     </li>

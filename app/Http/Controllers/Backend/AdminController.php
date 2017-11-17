@@ -66,4 +66,11 @@ class AdminController extends Controller
         auth('backend')->logout();
         return redirect()->to(url('/'));
     }
+
+    public function getUser()
+    {
+        $user = auth('backend')->user();
+
+        return view('admin.current_user', compact('user'));
+    }
 }
