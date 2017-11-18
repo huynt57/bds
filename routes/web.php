@@ -156,6 +156,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('list', 'Backend\SettingController@index');
 
         Route::get('testimonials', 'Backend\SettingController@listTestimonials');
+        Route::get('testimonial/delete/{id}', 'Backend\SettingController@deleteTestimonial');
         Route::post('testimonial/store', 'Backend\SettingController@storeTestimonials');
         Route::post('slide/update/{id}', 'Backend\SettingController@updateSlide');
         Route::post('testimonial/update-inline/{id}', 'Backend\SettingController@updateInlineTestimonial');

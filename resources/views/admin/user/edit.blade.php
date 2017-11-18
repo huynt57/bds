@@ -22,7 +22,7 @@
             </ul>
         </div>
     @endif
-    <h1 class="page-title"> Thêm mới tài khoản
+    <h1 class="page-title"> Cập nhật tài khoản {{ $user->name }}
     </h1>
     <div class="row">
         <div class="col-md-12">
@@ -40,16 +40,18 @@
                                     <li class="active">
                                         <a href="#tab_1_1" data-toggle="tab">Thông tin cá nhân</a>
                                     </li>
+                                    @if($user->type != \App\Models\User::INVESTOR)
                                     <li>
                                         <a href="#tab_1_2" data-toggle="tab">Thay đổi mật khẩu</a>
                                     </li>
+                                        @endif
                                 </ul>
                             </div>
                             <div class="portlet-body">
                                 <div class="tab-content">
                                     <!-- PERSONAL INFO TAB -->
                                     <div class="tab-pane active" id="tab_1_1">
-                                        <form role="form" action="{{ url('/admin/user/update') }}" method="POST" enctype="multipart/form-data">
+                                        <form role="form" action="{{ url('/admin/user/edit', ['id'=> $user->id]) }}" method="POST" enctype="multipart/form-data">
                                             {!! csrf_field() !!}
                                             <div class="row">
                                                 <div class="col-md-12">
@@ -95,6 +97,7 @@
                                                                 <label class="control-label">Email</label>
                                                                 <input type="text" name="email" placeholder="Điền email người dùng" value="{{ $user->email }}"
                                                                        class="form-control"></div>
+                                                            @if($user->type != \App\Models\User::INVESTOR)
                                                             <div class="form-group">
                                                                 <label class="control-label">Loại người dùng</label>
                                                                 <select class="form-control" name="type">
@@ -109,6 +112,7 @@
 
                                                                 </select>
                                                             </div>
+
                                                             <div class="form-group">
                                                                 <label class="control-label">Trạng thái</label>
                                                                 <select class="form-control" name="status">
@@ -123,6 +127,7 @@
 
                                                                 </select>
                                                             </div>
+                                                            @endif
                                                             <div class="form-group">
                                                                 <label class="control-label">Website Url</label>
                                                                 <input type="text" name="website"

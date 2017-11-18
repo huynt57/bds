@@ -168,9 +168,6 @@ class MainController extends Controller
 
         $items = House::publish()->orderBy('id', 'desc');
 
-        if (!empty($type)) {
-            $items = $items->where('type', $type);
-        }
 
         if (!empty(trim($keyword))) {
             $items->where(function ($query) use ($keyword) {
@@ -185,9 +182,9 @@ class MainController extends Controller
 
         if (isset($type)) {
             if ($type == House::BOTH_SALE) {
-                $items = $items->whereIN('type', [House::SALE, House::FOR_SALE]);
+                $items = $items->whereIn('type', [House::SALE, House::FOR_SALE]);
             } else if ($type == House::BOTH_RENT) {
-                $items = $items->whereIN('type', [House::RENT, House::FOR_RENT]);
+                $items = $items->whereIn('type', [House::RENT, House::FOR_RENT]);
             } else {
                 $items = $items->where('type', $type);
             }
@@ -243,9 +240,6 @@ class MainController extends Controller
 
         $items = House::publish()->orderBy('id', 'desc');
 
-        if (!empty($type)) {
-            $items = $items->where('type', $type);
-        }
 
         if (!empty(trim($keyword))) {
             $items->where(function ($query) use ($keyword) {
@@ -260,9 +254,10 @@ class MainController extends Controller
 
         if (isset($type)) {
             if ($type == House::BOTH_SALE) {
-                $items = $items->whereIN('type', [House::SALE, House::FOR_SALE]);
+
+                $items = $items->whereIn('type', [House::SALE, House::FOR_SALE]);
             } else if ($type == House::BOTH_RENT) {
-                $items = $items->whereIN('type', [House::RENT, House::FOR_RENT]);
+                $items = $items->whereIn('type', [House::RENT, House::FOR_RENT]);
             } else {
                 $items = $items->where('type', $type);
             }

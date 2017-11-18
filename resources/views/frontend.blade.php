@@ -266,6 +266,7 @@
 {{--</div>--}}
 {{--</section>--}}
 <!-- End section -->
+<div class="container">
 @if (session()->has('error'))
     <div class="alert alert-danger">{{ session()->get('error') }}</div>
 @endif
@@ -281,6 +282,7 @@
         </ul>
     </div>
 @endif
+</div>
 @yield('content')
 
 <footer>

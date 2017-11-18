@@ -37,6 +37,8 @@ class ProjectController extends AdminController
                 data-id="' . $project->id . '" 
                 data-name="status"
                 class="editable editable-click"> ' . $project->status_text . ' </a>';
+            })->editColumn('type', function ($project) {
+              return $project->type_text;
             })
             ->addColumn('action', function ($project) {
                 return '<button class="btn btn-sm yellow btn-outline "> Xem</button>' .

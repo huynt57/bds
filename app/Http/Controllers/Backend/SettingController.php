@@ -134,8 +134,15 @@ class SettingController extends AdminController
                 data-name="address"
                 class="editable editable-click"> ' . $item->address . ' </a>';
         })->addColumn('action', function ($item) {
-            return '';
+            $url = url('admin/settings/testimonial/delete', ['id' => $item->id]);
+            return  '<a href="' . $url . '"  data-id="' . $item->id . '" class="btn btn-sm red btn-outline delete-btn"> Xóa</a>';
         })->make(true);
+    }
+
+    public function deleteTestimonial($id)
+    {
+        Testimonial::find($id)->delete();
+        return redirect()->back()->with('success', 'Xóa thành công');
     }
 
     public function updateInlineTestimonial($id, Request $request)
@@ -149,6 +156,7 @@ class SettingController extends AdminController
             $name => $value
         ]);
 
+        cache()->forget('testimonials');
         cache()->rememberForever('testimonials', function () {
             return Testimonial::all();
         });
@@ -188,6 +196,7 @@ class SettingController extends AdminController
 
         Testimonial::create($data);
 
+        cache()->forget('testimonials');
         cache()->rememberForever('testimonials', function () {
             return Testimonial::all();
         });

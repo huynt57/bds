@@ -188,6 +188,7 @@ class UserController extends AdminController
     public function update($id, Request $request)
     {
         $user = User::find($id);
+        $data = $request->all();
 
         if (!$user) {
             return redirect()->back()->with('error', 'Dữ liệu không hợp lệ');
