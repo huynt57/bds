@@ -280,7 +280,7 @@ class ProjectController extends AdminController
 
         try {
 
-            $project = $project->update($data);
+            $project->update($data);
 
             $images = $request->file('images');
 
@@ -303,7 +303,7 @@ class ProjectController extends AdminController
         } catch (\Exception $ex) {
             \DB::rollBack();
 
-            dd($ex->getMessage());
+            dd($ex->getLine());
 
             return redirect()->back()->with('error', 'Cập nhật dữ liệu không thành công');
         }

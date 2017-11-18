@@ -136,12 +136,12 @@ class Project extends Model
     {
         $type = $this->attributes['type'];
 
-        if ($type == Project::RENT) {
-            return 'Cho thuê';
-        } else if ($type == Project::SALE) {
-            return 'Bán';
-        } else if ($type == Project::FOR_RENT) {
-            return 'Cần thuê';
+        if ($type == Project::SALING) {
+            return 'Đang mở bán';
+        } else if ($type == Project::DEVELOPING) {
+            return 'Đang phát triển';
+        } else if ($type == Project::PREPARE_SALE) {
+            return 'Chuẩn bị mở bán';
         } else if ($type == Project::FOR_SALE) {
             return 'Cần bán';
         }
