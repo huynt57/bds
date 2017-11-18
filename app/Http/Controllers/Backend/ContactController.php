@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Contact;
+use App\Models\Region;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -12,6 +13,19 @@ class ContactController extends Controller
     public function index()
     {
         return view('admin.contact.index');
+    }
+
+    public function updateInline($id, Request $request)
+    {
+        $testimonial = Contact::find($id);
+
+        $name = $request->input('name');
+        $value = $request->input('value');
+
+        $testimonial->update([
+            $name => $value
+        ]);
+        
     }
 
     public function getContactByAttribute(Request $request)

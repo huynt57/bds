@@ -196,6 +196,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'contact'], function () {
         Route::get('get-file-contact/{id}', 'Backend\ContactController@getFile');
         Route::get('/', 'Backend\ContactController@index');
+        Route::post('update-inline/{id}', 'Backend\ContactController@updateInline');
         Route::get('contact.data', ['as' => 'contact.data',
             'uses' => 'Backend\ContactController@getContactByAttribute'
         ]);
