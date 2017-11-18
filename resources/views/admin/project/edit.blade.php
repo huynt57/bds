@@ -360,13 +360,13 @@
         <div class="form-group col-lg-12">
             <label>Ảnh đại diện *</label>
             <div>
-                <input type="file" class="product-image form-control" name="main_image">
+                <input type="file" class="product-image form-control main-preview" name="main_image">
             </div>
         </div>
         <div class="form-group col-lg-12">
             <label>Ảnh phụ (có thể đính kèm nhiều ảnh)</label>
             <div>
-                <input type="file" class="product-image form-control" multiple name="images[]"
+                <input type="file" class="product-image form-control other-image" multiple name="images[]"
                        rel="post_status_images">
             </div>
         </div>
@@ -543,7 +543,23 @@
     $(document).on('ready', function () {
 
 
-        $(".product-image").fileinput({
+        $(".main-preview").fileinput({
+            'initialPreview': [
+                "'<img src='{{ $house->main_images }}' class='kv-preview-data file-preview-image' style='width:auto;height:160px;'>",
+            ],
+            showCaption: false, language: "vi",
+            allowedFileExtensions: ["jpg", "png", "gif"],
+            allowedFileTypes: ['image'],
+            maxFileCount: 5
+        });
+
+        $(".other-image").fileinput({
+            'initialPreview': [
+                @php  $images = \App\Models\Image::where('house_id', $house->id)->get();@endphp
+                        @foreach ($images as $image)
+                    '<img src=" {{$image->path }} " class="kv-preview-data file-preview-image" style="width:auto;height:160px;">',
+                @endforeach
+            ],
             showCaption: false, language: "vi",
             allowedFileExtensions: ["jpg", "png", "gif"],
             allowedFileTypes: ['image'],

@@ -184,6 +184,79 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
+
+    <div class="modal fade" id="update-slide" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Cập nhật khu vực hiển thị</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" class="form-horizontal" id="form-slide" method="post" enctype="multipart/form-data" action="{{ url('admin/house/region/update') }}">
+                        {!! csrf_field() !!}
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Chọn khu vực</label>
+                                <div class="col-md-9">
+                                    <select class="form-control select2" name="region_id" id="region_id_update">
+                                        <option value="">Vui lòng chọn</option>
+
+                                        @php $cities = \App\Components\Functions::getProvinces(); @endphp
+
+                                        @foreach($cities as $city)
+                                            <option value="{{ $city->provinceid }}">{{ $city->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Ảnh đại diện</label>
+                                <div class="col-md-9">
+
+
+
+                                    <div class="fileinput fileinput-new"
+                                         data-provides="fileinput">
+
+                                        <div class="fileinput-new thumbnail"
+                                             style="width: 200px; height: 180px;">
+                                            <img id="inp-image-2" src="http://www.placehold.it/200x180/EFEFEF/AAAAAA&amp;text=no+image"
+                                                 alt=""></div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail"
+                                             style="max-width: 200px; max-height: 150px;"></div>
+                                        <div>
+                                                                            <span class="btn default btn-file">
+                                                                                <span class="fileinput-new"> Chọn hình ảnh </span>
+                                                                                <span class="fileinput-exists"> Thay đổi </span>
+                                                                                <input type="file" name="image"> </span>
+                                            <a href="javascript:;"
+                                               class="btn default fileinput-exists"
+                                               data-dismiss="fileinput"> Xóa </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button type="submit" class="btn green">Lưu</button>
+                                    <button type="button" class="btn default" data-dismiss="modal">Đóng</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 @endsection
 
 @push('scripts')
@@ -211,19 +284,20 @@
 @push('scripts')
 <script>
 
+
     $(document).on('click', '.update', function() {
         var id = $(this).attr('data-id');
-        var url = '{{ url('admin/settings/slide/update')}}' + '/' +id;
+        var url = '{{ url('admin/house/region/update')}}' + '/' +id;
         $.ajax({
-            url: '{{ url('admin/get-image-slide') }}',
+            url: '{{ url('admin/get-region') }}',
             data: {
                 id: id
             },
             dataType: 'json',
             success: function(response)
             {
-                $('#inp-image').attr('src', response.data);
-                $('input[name="name"]').val(response.name);
+                $('#inp-image-2').attr('src', response.data);
+                $('#region_id_update').val(response.region_id).trigger('change');
             }
         });
         $('#form-slide').attr('action', url);

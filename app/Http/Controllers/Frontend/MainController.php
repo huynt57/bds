@@ -238,6 +238,7 @@ class MainController extends Controller
         $coordinates['latitude'] = $lat;
         $coordinates['longitude'] = $lng;
 
+
         $items = House::publish()->orderBy('id', 'desc');
 
 
@@ -260,8 +261,11 @@ class MainController extends Controller
                 $items = $items->whereIn('type', [House::RENT, House::FOR_RENT]);
             } else {
                 $items = $items->where('type', $type);
+
             }
         }
+
+
 
         if (!empty($lat) && !empty($lng)) {
             $items = $items->isWithinMaxDistance($coordinates, $radius);

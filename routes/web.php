@@ -50,6 +50,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('thong-tin-ca-nhan', 'Backend\AdminController@getUser');
     Route::get('get-image-slide', 'Backend\SettingController@getImageSlide');
     Route::get('get-region-by-type', 'Backend\HouseController@getRegionByType');
+    Route::get('get-region', 'Backend\HouseController@getRegion');
     Route::get('login', 'Backend\AdminController@login');
     Route::get('logout', 'Backend\AdminController@logout');
     Route::post('process-login', 'Backend\AdminController@processLogin');
@@ -61,6 +62,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('delete/{id}', 'Backend\HouseController@deleteHouse');
         Route::get('edit/{id}', 'Backend\HouseController@edit');
         Route::post('update/{id}', 'Backend\HouseController@update');
+        Route::post('update/region/{id}', 'Backend\HouseController@updateRegion');
         Route::post('update-inline/{id}', 'Backend\HouseController@updateInline');
         Route::post('add-region', 'Backend\HouseController@addRegion');
 
@@ -73,6 +75,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('region.data', ['as' => 'region.data',
             'uses' => 'Backend\HouseController@getRegionByAttribute'
         ]);
+
+        Route::post('region/update/{id}', 'Backend\HouseController@updateRegion');
     });
 
     Route::group(['prefix' => 'project'], function () {
@@ -149,6 +153,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('investor.data', ['as' => 'user.data',
             'uses' => 'Backend\UserController@getInvestorByAttribute'
         ]);
+
+
     });
 
     Route::group(['prefix' => 'settings'], function () {

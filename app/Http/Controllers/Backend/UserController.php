@@ -198,6 +198,11 @@ class UserController extends AdminController
             $data['image'] = $this->saveImage($request->file('image'), $user->image);
         }
 
+        if(empty($data['status']))
+        {
+            $data['status'] = $user->status;
+        }
+
         $user->update($data);
 
         return redirect()->back()->with('success', 'Cập nhật người dùng thành công');

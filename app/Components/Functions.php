@@ -9,6 +9,7 @@
 namespace App\Components;
 
 
+use App\Models\Image;
 use App\Models\Post;
 
 class Functions
@@ -41,6 +42,16 @@ class Functions
 
     }
 
+    public static function getHouseOtherImages($houseId)
+    {
+        $images = Image::where('house_id', $houseId)->get();
+        $retVal = '';
+        foreach ($images as $image) {
+            $retVal .= '<img src="' . $image->path . '" class="kv-preview-data file-preview-image" style="width:auto;height:160px;">,';
+        }
+        return $retVal;
+    }
+
     public static function printMenuFrontend($menu)
     {
         $cnt = \App\Models\Menu::where('parent_id', $menu->id)->orderBy('order', 'asc')->get();
@@ -51,7 +62,7 @@ class Functions
 
             foreach ($cnt as $item) {
                 echo '<li >';
-                echo '<a href = "'.self::getUrlMenu($item).'" >' . $item->title . '</a >';
+                echo '<a href = "' . self::getUrlMenu($item) . '" >' . $item->title . '</a >';
                 self::printMenuFrontend($item);
                 echo '</li>';
 
@@ -67,8 +78,7 @@ class Functions
             if ($post) {
                 return url('post/' . str_slug($post->title) . '-' . $post->id);
             }
-        } else if (!empty($menu->route))
-        {
+        } else if (!empty($menu->route)) {
             return $menu->route;
         }
 

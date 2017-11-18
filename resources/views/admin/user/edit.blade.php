@@ -118,10 +118,10 @@
                                                                 <select class="form-control" name="status">
 
                                                                     <option value="">Vui lòng chọn</option>
-                                                                    <option @if($user->type ==  \App\Models\User::ACTIVE) selected @endif value="{{ \App\Models\User::ACTIVE }}"> Kích
+                                                                    <option @if($user->status ==  \App\Models\User::ACTIVE) selected @endif value="{{ \App\Models\User::ACTIVE }}"> Kích
                                                                         hoạt
                                                                     </option>
-                                                                    <option @if($user->type ==  \App\Models\User::IN_ACTIVE) selected @endif value="{{ \App\Models\User::IN_ACTIVE }}">
+                                                                    <option @if($user->status ==  \App\Models\User::IN_ACTIVE) selected @endif value="{{ \App\Models\User::IN_ACTIVE }}">
                                                                         Không kích hoạt
                                                                     </option>
 

@@ -56,6 +56,8 @@ class House extends Model
 
     }
 
+
+
     public function agent()
     {
         return $this->belongsTo('App\Models\User', 'agent_id', 'id');

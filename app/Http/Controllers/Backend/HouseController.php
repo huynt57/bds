@@ -107,6 +107,36 @@ class HouseController extends AdminController
         ]);
     }
 
+    public function updateRegion($id, Request $request)
+    {
+        $data = $request->all();
+        if ($request->file('image') && $request->file('image')->isValid()) {
+            $data['image'] = $this->saveImage($request->file('image'));
+        }
+        $region = \DB::table('province')->where('provinceid', $data['region_id'])->first();
+
+        if ($region) {
+            $name = $region->name;
+        } else {
+            $name = '';
+        }
+        $data['name'] = $name;
+        $uregion = Region::find($id);
+        if ($uregion) {
+            $uregion->update($data);
+        }
+
+        if($request->ajax()) {
+
+            return response([
+                'status' => 1,
+                'message' => 'Thành công'
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Cập nhật thành công');
+    }
+
     public function store(Request $request)
     {
         $data = $request->all();
@@ -169,7 +199,7 @@ class HouseController extends AdminController
             $data['ward_id'] = 0;
         }
 
-        if(isset($data['features'])) {
+        if (isset($data['features'])) {
 
             $data['features'] = json_encode($data['features']);
         }
@@ -303,7 +333,7 @@ class HouseController extends AdminController
 
                 $cnt = Image::where('house_id', $house->id)->count();
 
-                if($cnt) {
+                if ($cnt) {
                     Image::where('house_id', $house->id)->delete();
                 }
 
@@ -368,6 +398,18 @@ class HouseController extends AdminController
                 '<a href="' . $url . '"  data-id="' . $item->id . '" class="btn btn-sm red btn-outline delete-btn"> Xóa</a>';
 
         })->make(true);
+    }
+
+    public function getRegion(Request $request)
+    {
+        $id = $request->input('id');
+        $region = Region::find($id);
+        if ($region) {
+            return response([
+                'region_id' => $region->region_id,
+                'data' => $region->image
+            ]);
+        }
     }
 
     public function deleteHouse($id)

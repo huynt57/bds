@@ -136,7 +136,8 @@
     @endif
     <h3>Cập nhật thông tin nhà</h3>
 
-    <form action="{{url('admin/house/update', ['id'=>$house->id])}}" id="create-form" class="form-horizontal" method="post"
+    <form action="{{url('admin/house/update', ['id'=>$house->id])}}" id="create-form" class="form-horizontal"
+          method="post"
           enctype="multipart/form-data">
 
         {{ csrf_field() }}
@@ -233,7 +234,8 @@
                             @php $agents = \App\Models\User::agent()->get();@endphp
 
                             @foreach($agents as $agent)
-                                <option @if($house->agent_id == $agent->id) selected @endif value="{{ $agent->id }}">{{ $agent->name }}</option>
+                                <option @if($house->agent_id == $agent->id) selected
+                                        @endif value="{{ $agent->id }}">{{ $agent->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -246,7 +248,8 @@
                             @php $categories = \App\Models\Category::all();@endphp
 
                             @foreach($categories as $category)
-                                <option @if($house->category_id == $category->id) selected @endif value="{{ $category->id }}">{{ $category->name }}</option>
+                                <option @if($house->category_id == $category->id) selected
+                                        @endif value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -260,7 +263,8 @@
                             @php $cities = \App\Components\Functions::getProvinces();@endphp
 
                             @foreach($cities as $city)
-                                <option @if($house->city_id == $city->provinceid) selected @endif value="{{ $city->provinceid }}">{{ $city->name }}</option>
+                                <option @if($house->city_id == $city->provinceid) selected
+                                        @endif value="{{ $city->provinceid }}">{{ $city->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -341,13 +345,13 @@
         <div class="form-group col-lg-12">
             <label>Ảnh đại diện *</label>
             <div>
-                <input type="file" class="product-image form-control" name="main_image">
+                <input type="file" class="product-image form-control main-preview" name="main_image">
             </div>
         </div>
         <div class="form-group col-lg-12">
             <label>Ảnh phụ (có thể đính kèm nhiều ảnh)</label>
             <div>
-                <input type="file" class="product-image form-control" multiple name="images[]"
+                <input type="file" class="product-image form-control other-image" multiple name="images[]"
                        rel="post_status_images">
             </div>
         </div>
@@ -517,7 +521,23 @@
     $(document).on('ready', function () {
 
 
-        $(".product-image").fileinput({
+        $(".main-preview").fileinput({
+            'initialPreview': [
+                "'<img src='{{ $house->main_images }}' class='kv-preview-data file-preview-image' style='width:auto;height:160px;'>",
+            ],
+            showCaption: false, language: "vi",
+            allowedFileExtensions: ["jpg", "png", "gif"],
+            allowedFileTypes: ['image'],
+            maxFileCount: 5
+        });
+
+        $(".other-image").fileinput({
+            'initialPreview': [
+                @php  $images = \App\Models\Image::where('house_id', $house->id)->get();@endphp
+                        @foreach ($images as $image)
+                  '<img src=" {{$image->path }} " class="kv-preview-data file-preview-image" style="width:auto;height:160px;">',
+                @endforeach
+            ],
             showCaption: false, language: "vi",
             allowedFileExtensions: ["jpg", "png", "gif"],
             allowedFileTypes: ['image'],
