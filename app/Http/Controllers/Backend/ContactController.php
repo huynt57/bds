@@ -25,7 +25,7 @@ class ContactController extends Controller
         $testimonial->update([
             $name => $value
         ]);
-        
+
     }
 
     public function getContactByAttribute(Request $request)
