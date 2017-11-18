@@ -129,6 +129,22 @@ class HouseController extends AdminController
             $data['district_id'] = 0;
         }
 
+        if (!is_numeric($data['beds'])) {
+            $data['beds'] = 0;
+        }
+
+        if (!is_numeric($data['size'])) {
+            $data['size'] = 0;
+        }
+
+        if (!is_numeric($data['agent_id'])) {
+            $data['agent_id'] = 0;
+        }
+
+        if (!is_numeric($data['bathrooms'])) {
+            $data['bath'] = 0;
+        }
+
         if (!is_numeric($data['category_id'])) {
             $data['category_id'] = 0;
         }
@@ -153,7 +169,10 @@ class HouseController extends AdminController
             $data['ward_id'] = 0;
         }
 
-        $data['features'] = json_encode($data['features']);
+        if(isset($data['features'])) {
+
+            $data['features'] = json_encode($data['features']);
+        }
 
         \DB::beginTransaction();
 
@@ -218,20 +237,36 @@ class HouseController extends AdminController
             $data['price'] = 0;
         }
 
+        if (!is_numeric($data['begin_year'])) {
+            $data['begin_year'] = Carbon::now()->year;
+        }
+
         if (!is_numeric($data['district_id'])) {
             $data['district_id'] = 0;
+        }
+
+        if (!is_numeric($data['beds'])) {
+            $data['beds'] = 0;
+        }
+
+        if (!is_numeric($data['agent_id'])) {
+            $data['agent_id'] = 0;
+        }
+
+        if (!is_numeric($data['bathrooms'])) {
+            $data['bath'] = 0;
+        }
+
+        if (!is_numeric($data['category_id'])) {
+            $data['category_id'] = 0;
         }
 
         if (!is_numeric($data['city_id'])) {
             $data['city_id'] = 0;
         }
 
-        if (!is_numeric($data['begin_year'])) {
-            $data['begin_year'] = Carbon::now()->year;
-        }
-
-        if (!is_numeric($data['ward_id'])) {
-            $data['ward_id'] = 0;
+        if (!is_numeric($data['size'])) {
+            $data['size'] = 0;
         }
 
         if (isset($data['status']) && $data['status'] == 'on') {

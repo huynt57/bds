@@ -115,7 +115,7 @@
                                         <li>Năm xây dựng: {{ $house->begin_year }}</li>
                                         <li>Diện tích xây dựng: {{ $house->size }}</li>
                                         <li>Số phòng ngủ: {{ $house->beds }}</li>
-                                        <li>Số phòng tắm: {{ $house->bathroom }}</li>
+                                        <li>Số phòng tắm: {{ $house->bath }}</li>
 
                                     </ul>
                                 </div>

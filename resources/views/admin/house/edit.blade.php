@@ -203,7 +203,7 @@
                         <label>Số phòng tắm</label>
                         <div>
                             <input type="number" name="bathrooms" id="bathrooms" class="form-control"
-                                   placeholder="Điền số phòng tắm" value="{{ $house->bathrooms }}">
+                                   placeholder="Điền số phòng tắm" value="{{ $house->bath }}">
                         </div>
                     </div>
                     <div class="form-group dmc0">

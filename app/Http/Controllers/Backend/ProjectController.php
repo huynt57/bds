@@ -86,6 +86,164 @@ class ProjectController extends AdminController
             $data['price'] = 0;
         }
 
+        if (!is_numeric($data['beds'])) {
+            $data['beds'] = 0;
+        }
+
+        if (!is_numeric($data['agent_id'])) {
+            $data['agent_id'] = 0;
+        }
+
+        if (!is_numeric($data['investor_id'])) {
+            $data['investor_id'] = 0;
+        }
+
+        if (!is_numeric($data['bathrooms'])) {
+            $data['bath'] = 0;
+        }
+
+        if (!is_numeric($data['building_number'])) {
+            $data['building_number'] = 0;
+        }
+
+        if (!is_numeric($data['floor_number'])) {
+            $data['floor_number'] = 1;
+        }
+
+        if (!is_numeric($data['size'])) {
+            $data['size'] = 0;
+        }
+
+        if (!is_numeric($data['district_id'])) {
+            $data['district_id'] = 0;
+        }
+        if (!is_numeric($data['begin_year'])) {
+            $data['begin_year'] = 0;
+        }
+
+        if (!is_numeric($data['category_id'])) {
+            $data['category_id'] = 0;
+        }
+
+        if (!is_numeric($data['city_id'])) {
+            $data['city_id'] = 0;
+        }
+
+        if (isset($data['status']) && $data['status'] == 'on') {
+            $data['status'] = true;
+        } else {
+            $data['status'] = false;
+        }
+
+        if (isset($data['is_feature']) && $data['is_feature'] == 'on') {
+            $data['is_feature'] = true;
+        } else {
+            $data['is_feature'] = false;
+        }
+
+        if (!is_numeric($data['ward_id'])) {
+            $data['ward_id'] = 0;
+        }
+
+        if(isset($data['features'])) {
+            $data['features'] = json_encode($data['features']);
+        }
+
+        \DB::beginTransaction();
+
+        try {
+
+            $project = Project::create($data);
+
+            $images = $request->file('images');
+
+            if ($images) {
+
+                foreach ($images as $image) {
+                    $img = $this->saveImage($image);
+
+                    Image::create([
+                        'path' => $img,
+                        'project_id' => $project->id
+                    ]);
+                }
+            }
+
+            \DB::commit();
+
+        } catch (\Exception $ex) {
+            \DB::rollBack();
+
+            dd($ex->getMessage());
+
+            return redirect()->back()->with('error', 'Thêm dữ liệu không thành công');
+        }
+
+        return redirect()->back()->with('success', 'Thêm dữ liệu thành công');
+
+    }
+
+    public function edit($id)
+    {
+        $project = Project::find($id);
+
+        if (!$project) {
+            return redirect()->back()->with('error', 'Dữ liệu không hợp lệ');
+        }
+
+        return view('admin.project.edit', ['house' => $project]);
+    }
+
+    public function update($id, Request $request)
+    {
+        $project = Project::find($id);
+
+        if (!$project) {
+            return redirect()->back()->with('error', 'Dữ liệu không hợp lệ');
+        }
+
+        $data = $request->all();
+
+        if ($request->file('main_image') && $request->file('main_image')->isValid()) {
+            $data['main_images'] = $this->saveImage($request->file('main_image'), $project->main_images);
+        }
+
+        if (!is_numeric($data['price'])) {
+            $data['price'] = 0;
+        }
+
+        if (!is_numeric($data['begin_year'])) {
+            $data['begin_year'] = 0;
+        }
+
+        if (!is_numeric($data['beds'])) {
+            $data['beds'] = 0;
+        }
+
+        if (!is_numeric($data['agent_id'])) {
+            $data['agent_id'] = 0;
+        }
+
+        if (!is_numeric($data['investor_id'])) {
+            $data['investor_id'] = 0;
+        }
+
+        if (!is_numeric($data['bathrooms'])) {
+            $data['bath'] = 0;
+        }
+
+        if (!is_numeric($data['building_number'])) {
+            $data['building_number'] = 0;
+        }
+
+        if (!is_numeric($data['floor_number'])) {
+            $data['floor_number'] = 1;
+        }
+
+        if (!is_numeric($data['size'])) {
+            $data['size'] = 0;
+        }
+
         if (!is_numeric($data['district_id'])) {
             $data['district_id'] = 0;
         }
@@ -114,101 +272,8 @@ class ProjectController extends AdminController
             $data['ward_id'] = 0;
         }
 
-        $data['features'] = json_encode($data['features']);
-
-        \DB::beginTransaction();
-
-        try {
-
-            $project = Project::create($data);
-
-            $images = $request->file('images');
-
-            if ($images) {
-
-                foreach ($images as $image) {
-                    $img = $this->saveImage($image);
-
-                    Image::create([
-                        'path' => $img,
-                        'project_id' => $project->id
-                    ]);
-                }
-            }
-
-            \DB::commit();
-
-        } catch (\Exception $ex) {
-            \DB::rollBack();
-
-            return redirect()->back()->with('error', 'Thêm dữ liệu không thành công');
-        }
-
-        return redirect()->back()->with('success', 'Thêm dữ liệu thành công');
-
-    }
-
-    public function edit($id)
-    {
-        $project = Project::find($id);
-
-        if (!$project) {
-            return redirect()->back()->with('error', 'Dữ liệu không hợp lệ');
-        }
-
-        return view('admin.project.edit', compact('project'));
-    }
-
-    public function update($id, Request $request)
-    {
-        $project = Project::find($id);
-
-        if (!$project) {
-            return redirect()->back()->with('error', 'Dữ liệu không hợp lệ');
-        }
-
-        $data = $request->all();
-
-        if ($request->file('main_image') && $request->file('main_image')->isValid()) {
-            $data['main_images'] = $this->saveImage($request->file('main_image'), $project->main_images);
-        }
-
-        if (!is_numeric($data['price'])) {
-            $data['price'] = 0;
-        }
-
-        if (!is_numeric($data['district_id'])) {
-            $data['district_id'] = 0;
-        }
-
-        if (!is_numeric($data['city_id'])) {
-            $data['city_id'] = 0;
-        }
-
-        if (!is_numeric($data['ward_id'])) {
-            $data['ward_id'] = 0;
-        }
-
-        if (isset($data['status']) && $data['status'] == 'on') {
-            $data['status'] = true;
-        } else {
-            $data['status'] = false;
-        }
-
-        if (isset($data['is_feature']) && $data['is_feature'] == 'on') {
-            $data['is_feature'] = true;
-        } else {
-            $data['is_feature'] = false;
-        }
-
-        if (!is_numeric($data['ward_id'])) {
-            $data['ward_id'] = 0;
-        }
-
-        if (isset($data['features'])) {
-
+        if(isset($data['features'])) {
             $data['features'] = json_encode($data['features']);
-
         }
 
         \DB::beginTransaction();

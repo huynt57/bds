@@ -247,12 +247,12 @@
                 <div class="form-group dmc0">
                     <label>Chọn nhà đầu tư *</label>
                     <div>
-                        <select class="form-control select2" name="agent_id">
+                        <select class="form-control select2" name="investor_id">
                             <option value="">Chọn nhà đầu tư</option>
-                            @php $agents = \App\Models\User::investor()->get();@endphp
+                            @php $investors = \App\Models\User::investor()->get();@endphp
 
-                            @foreach($agents as $agent)
-                                <option value="{{ $agent->id }}">{{ $agent->name }}</option>
+                            @foreach($investors as $investor)
+                                <option value="{{ $investor->id }}">{{ $investor->name }}</option>
                             @endforeach
                         </select>
                     </div>

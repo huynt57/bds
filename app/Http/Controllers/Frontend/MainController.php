@@ -161,6 +161,7 @@ class MainController extends Controller
 
         $lat = $request->input('lat');
         $lng = $request->input('lng');
+        $cityId = $request->input('city_id');
 
         $coordinates['latitude'] = $lat;
         $coordinates['longitude'] = $lng;
@@ -194,6 +195,11 @@ class MainController extends Controller
 
         if (!empty($lat) && !empty($lng)) {
             $items = $items->isWithinMaxDistance($coordinates, $radius);
+        }
+
+        if(!empty($cityId))
+        {
+            $items = $items->where('city_id', $cityId);
         }
 
         if ($request->ajax()) {
@@ -345,13 +351,13 @@ class MainController extends Controller
 
             return response([
                 'markers' => $markers,
-                'items' => view('frontend.houses', compact('items'))->render()
+                'items' => view('frontend.projects', compact('items'))->render()
             ]);
         }
 
         $items = $items->paginate(10);
 
-        return view('frontend.houses', compact('items'));
+        return view('frontend.projects', compact('items'));
 
     }
 
@@ -440,6 +446,11 @@ class MainController extends Controller
     public function detail($slug, $id, Request $request)
     {
         $house = House::find($id);
+
+        if(!$house)
+        {
+            $house = Project::find($id);
+        }
 
         if (!$house) {
             if ($request->ajax()) {

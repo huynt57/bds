@@ -134,9 +134,9 @@
             </ul>
         </div>
     @endif
-    <h3>Cập nhật thông tin nhà</h3>
+    <h3>Cập nhật thông tin dự án</h3>
 
-    <form action="{{url('admin/house/update', ['id'=>$house->id])}}" id="create-form" class="form-horizontal" method="post"
+    <form action="{{url('admin/project/update', ['id'=>$house->id])}}" id="create-form" class="form-horizontal" method="post"
           enctype="multipart/form-data">
 
         {{ csrf_field() }}
@@ -144,16 +144,16 @@
             <div class="portlet-title">
                 <div class="caption font-red-sunglo">
                     <i class="fa fa-home font-red-sunglo"></i>
-                    <span class="caption-subject bold uppercase">Thông tin nhà</span>
+                    <span class="caption-subject bold uppercase">Thông tin dự án</span>
                 </div>
             </div>
             <div class="col-lg-6">
 
                 <div class="form-body">
                     <div class="form-group">
-                        <label>Tên nhà *</label>
+                        <label>Tên dự án *</label>
                         <div>
-                            <input type="text" name="name" class="form-control" placeholder="Điền tên nhà"
+                            <input type="text" name="name" class="form-control" placeholder="Điền tên dự án"
                                    value="{{ $house->name }}">
                         </div>
                     </div>
@@ -173,22 +173,13 @@
                         </div>
                     </div>
                     <div class="form-group dmc0">
-                        <label>Loại nhà</label>
+                        <label>Loại dự án</label>
                         <div>
                             <select class="form-control" name="type">
-                                <option value="">Chọn loại nhà</option>
-                                <option @if($house->type == \App\Models\House::RENT) selected
-                                        @endif value="{{ \App\Models\House::RENT }}">Cho thuê
-                                </option>
-                                <option @if($house->type == \App\Models\House::FOR_RENT) selected
-                                        @endif  value="{{ \App\Models\House::FOR_RENT }}">Cần thuê
-                                </option>
-                                <option @if($house->type == \App\Models\House::SALE) selected
-                                        @endif  value="{{ \App\Models\House::SALE }}">Bán
-                                </option>
-                                <option @if($house->type == \App\Models\House::FOR_SALE) selected
-                                        @endif  value="{{ \App\Models\House::FOR_SALE }}">Cần bán
-                                </option>
+                                <option value="">Chọn loại dự án</option>
+                                <option @if($house->type == \App\Models\Project::DEVELOPING) selected @endif value="{{ \App\Models\Project::DEVELOPING }}">Đang phát triển, tư vấn</option>
+                                <option @if($house->type == \App\Models\Project::SALING) selected @endif value="{{ \App\Models\Project::SALING }}">Đang phân phối, mở bán</option>
+                                <option @if($house->type == \App\Models\Project::PREPARE_SALE) selected @endif value="{{ \App\Models\Project::PREPARE_SALE }}">Chuẩn bị mở bán</option>
                             </select>
                         </div>
                     </div>
@@ -213,18 +204,33 @@
                                    placeholder="Điền kích thước" value="{{ $house->size }}">
                         </div>
                     </div>
+                    <div class="form-group dmc0">
+                        <label>Xây dựng năm</label>
+                        <div>
+                            <input type="number" name="begin_year" id="begin_year" class="form-control"
+                                   placeholder="Điền năm xây dựng" value="{{ $house->begin_year }}">
+                        </div>
+                    </div>
 
                 </div>
 
             </div>
             <div class="col-lg-6" style="padding-right: 0px;">
                 <div class="form-group dmc0">
-                    <label>Xây dựng năm</label>
+                    <label>Điền số tòa</label>
                     <div>
-                        <input type="number" name="begin_year" id="begin_year" class="form-control"
-                               placeholder="Điền năm xây dựng" value="{{ $house->begin_year }}">
+                        <input type="number" name="building_number" id="building_number" class="form-control"
+                               placeholder="Điền số tòa dự án" value="{{ $house->building_number }}">
                     </div>
                 </div>
+                <div class="form-group dmc0">
+                    <label>Điền số tầng</label>
+                    <div>
+                        <input type="number" name="floor_number" id="floor_number" class="form-control"
+                               placeholder="Điền số tầng" value="{{ $house->floor_number }}">
+                    </div>
+                </div>
+
                 <div class="form-group dmc0">
                     <label>Chọn môi giới viên</label>
                     <div>
@@ -234,6 +240,19 @@
 
                             @foreach($agents as $agent)
                                 <option @if($house->agent_id == $agent->id) selected @endif value="{{ $agent->id }}">{{ $agent->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group dmc0">
+                    <label>Chọn dự án đầu tư *</label>
+                    <div>
+                        <select class="form-control select2" name="investor_id">
+                            <option value="">Chọn dự án đầu tư</option>
+                            @php $investors = \App\Models\User::investor()->get();@endphp
+
+                            @foreach($investors as $investor)
+                                <option @if($house->investor_id == $agent->id) selected @endif value="{{ $investor->id }}">{{ $investor->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -419,7 +438,7 @@
 <script>
     var map;
     var marker;
-    var myLatlng = new google.maps.LatLng(21.172507007037446, 106.06212340942386);
+    var myLatlng = new google.maps.LatLng({{ $house->lat }}, {{ $house->lng }});
     var geocoder = new google.maps.Geocoder();
     var infowindow = new google.maps.InfoWindow();
     function initialize() {
@@ -441,12 +460,19 @@
 
             var places = searchBox.getPlaces();
 
+
+
             var bounds = new google.maps.LatLngBounds();
             var i, place;
             for (i = 0; place = places[i]; i++) {
                 (function (place) {
 
                     marker.setPosition(place.geometry.location);
+                    console.log(place);
+                    $('#address').val(place.formatted_address);
+                    $('#latitude').val(place.geometry.location.lat());
+                    $('#longitude').val(place.geometry.location.lng());
+                    infowindow.setContent(place.formatted_address);
                     google.maps.event.addListener(marker, 'map_changed', function () {
                         if (!this.getMap()) {
                             this.unbindAll();

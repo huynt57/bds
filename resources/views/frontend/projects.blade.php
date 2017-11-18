@@ -6,20 +6,17 @@
             <div class="row">
                 <div class="col-md-1">
                     <div class="form-group">
-                        <label>Chọn loại nhà</label>
+                        <label>Chọn loại dự án</label>
                         <select class="form-control" name="type" id="type">
                             <option value="">Loại nhà</option>
-                            <option @if(request()->input('type') == \App\Models\House::RENT ) selected
-                                    @endif value="{{ \App\Models\House::RENT }}">Cho thuê
+                            <option @if(request()->input('type') == \App\Models\Project::DEVELOPING ) selected
+                                    @endif value="{{ \App\Models\Project::DEVELOPING }}">Đang phát triển
                             </option>
-                            <option @if(request()->input('type') == \App\Models\House::FOR_RENT ) selected
-                                    @endif value="{{ \App\Models\House::FOR_RENT }}">Cần thuê
+                            <option @if(request()->input('type') == \App\Models\Project::PREPARE_SALE ) selected
+                                    @endif value="{{ \App\Models\Project::PREPARE_SALE }}">Chuẩn bị mở bán
                             </option>
-                            <option @if(request()->input('type') == \App\Models\House::SALE ) selected
-                                    @endif value="{{ \App\Models\House::SALE }}">Bán
-                            </option>
-                            <option @if(request()->input('type') == \App\Models\House::FOR_SALE ) selected
-                                    @endif value="{{ \App\Models\House::FOR_SALE }}">Cần bán
+                            <option @if(request()->input('type') == \App\Models\Project::SALING  ) selected
+                                    @endif value="{{ \App\Models\Project::SALING }}">Đang bán
                             </option>
                         </select>
                     </div>
