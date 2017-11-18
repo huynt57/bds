@@ -25,6 +25,14 @@ class HouseController extends AdminController
             ->leftJoin('users', 'houses.agent_id', '=', 'users.id');
 
         return Datatables::of($houses)
+            ->editColumn('type', function ($house) {
+//                return '<a href="javascript:;" data-type="select"
+//                data-pk="' . $house->id . '" data-url="' . url('admin/house/update-inline', ['id' => $house->id]) . '"
+//                data-id="' . $house->id . '"
+//                data-name="type"
+//                class="editable editable-click"> ' . $house->type_text . ' </a>';
+                return $house->type_text;
+            })
             ->editColumn('is_feature', function ($house) {
                 return '<a href="javascript:;" data-type="select" 
                 data-pk="' . $house->id . '" data-url="' . url('admin/house/update-inline', ['id' => $house->id]) . '" 
@@ -69,8 +77,7 @@ class HouseController extends AdminController
             }
             $region = \DB::table('province')->where('provinceid', $regionId)->first();
 
-            if($region)
-            {
+            if ($region) {
                 $name = $region->name;
             } else {
                 $name = '';
@@ -112,6 +119,10 @@ class HouseController extends AdminController
 
         if (!is_numeric($data['price'])) {
             $data['price'] = 0;
+        }
+
+        if (!is_numeric($data['begin_year'])) {
+            $data['begin_year'] = Carbon::now()->year;
         }
 
         if (!is_numeric($data['district_id'])) {
@@ -215,6 +226,10 @@ class HouseController extends AdminController
             $data['city_id'] = 0;
         }
 
+        if (!is_numeric($data['begin_year'])) {
+            $data['begin_year'] = Carbon::now()->year;
+        }
+
         if (!is_numeric($data['ward_id'])) {
             $data['ward_id'] = 0;
         }
@@ -245,13 +260,17 @@ class HouseController extends AdminController
 
         try {
 
-            $house = $house->update($data);
+            $house->update($data);
 
             $images = $request->file('images');
 
             if ($images) {
 
-                Image::where('house_id', $house->id)->delete();
+                $cnt = Image::where('house_id', $house->id)->count();
+
+                if($cnt) {
+                    Image::where('house_id', $house->id)->delete();
+                }
 
                 foreach ($images as $image) {
                     $img = $this->saveImage($image);
@@ -268,7 +287,7 @@ class HouseController extends AdminController
         } catch (\Exception $ex) {
             \DB::rollBack();
 
-            dd($ex->getMessage());
+            dd($ex->getTraceAsString());
 
             return redirect()->back()->with('error', 'Cập nhật dữ liệu không thành công');
         }
@@ -310,8 +329,8 @@ class HouseController extends AdminController
 
             $url = url('admin/house/delete-region', ['id' => $item->id]);
             return
-                '<a href="#update-slide" data-toggle="modal" data-id="'.$item->id.'" class="btn btn-sm green btn-outline update"> Sửa</a>'.
-                '<a href="'.$url.'"  data-id="'.$item->id.'" class="btn btn-sm red btn-outline delete-btn"> Xóa</a>';
+                '<a href="#update-slide" data-toggle="modal" data-id="' . $item->id . '" class="btn btn-sm green btn-outline update"> Sửa</a>' .
+                '<a href="' . $url . '"  data-id="' . $item->id . '" class="btn btn-sm red btn-outline delete-btn"> Xóa</a>';
 
         })->make(true);
     }

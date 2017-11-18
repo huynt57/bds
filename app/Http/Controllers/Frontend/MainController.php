@@ -27,9 +27,9 @@ class MainController extends Controller
 
     public function index()
     {
-        $features = House::where('is_feature', true)->orderBy('id', 'desc')->take(15)->get();
-        $sells = House::whereIn('type', [House::SALE, House::FOR_SALE])->orderBy('id', 'desc')->take(15)->get();
-        $rents = House::whereIn('type', [House::RENT, House::FOR_RENT])->orderBy('id', 'desc')->take(15)->get();
+        $features = House::publish()->where('is_feature', true)->orderBy('id', 'desc')->take(15)->get();
+        $sells = House::publish()->whereIn('type', [House::SALE, House::FOR_SALE])->orderBy('id', 'desc')->take(15)->get();
+        $rents = House::publish()->whereIn('type', [House::RENT, House::FOR_RENT])->orderBy('id', 'desc')->take(15)->get();
         $regions = Region::all();
         return view('frontend.index', compact('features', 'sells', 'rents', 'regions'));
     }
@@ -165,7 +165,7 @@ class MainController extends Controller
         $coordinates['latitude'] = $lat;
         $coordinates['longitude'] = $lng;
 
-        $items = House::orderBy('id', 'desc');
+        $items = House::publish()->orderBy('id', 'desc');
 
         if (!empty($type)) {
             $items = $items->where('type', $type);
@@ -235,7 +235,7 @@ class MainController extends Controller
         $coordinates['latitude'] = $lat;
         $coordinates['longitude'] = $lng;
 
-        $items = House::orderBy('id', 'desc');
+        $items = House::publish()->orderBy('id', 'desc');
 
         if (!empty($type)) {
             $items = $items->where('type', $type);
@@ -313,7 +313,7 @@ class MainController extends Controller
         $coordinates['latitude'] = $lat;
         $coordinates['longitude'] = $lng;
 
-        $items = Project::orderBy('id', 'desc');
+        $items = Project::publish()->orderBy('id', 'desc');
 
         if (!empty($type)) {
             $items = $items->where('type', $type);
@@ -377,7 +377,7 @@ class MainController extends Controller
         $coordinates['latitude'] = $lat;
         $coordinates['longitude'] = $lng;
 
-        $items = Project::orderBy('id', 'desc');
+        $items = Project::publish()->orderBy('id', 'desc');
 
         if (!empty($type)) {
             $items = $items->where('type', $type);

@@ -383,7 +383,7 @@
             <label>Miêu tả chi tiết</label>
             <div>
                                 <textarea class="form-control ckeditor" placeholder="Điền miêu tả" rows="10"
-                                          name="desc">{{ old('desc') }}</textarea>
+                                          name="desc">{!! $house->desc !!}</textarea>
             </div>
         </div>
 
@@ -419,7 +419,7 @@
 <script>
     var map;
     var marker;
-    var myLatlng = new google.maps.LatLng(21.172507007037446, 106.06212340942386);
+    var myLatlng = new google.maps.LatLng({{ $house->lat }}, {{ $house->lng }});
     var geocoder = new google.maps.Geocoder();
     var infowindow = new google.maps.InfoWindow();
     function initialize() {

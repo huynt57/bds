@@ -15,9 +15,10 @@
                 <div class="row">
                     <div class="col-md-8 col-sm-8">
                         {{--<span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i--}}
-                                    {{--class="icon-star voted"></i><i class="icon-star voted"></i><i--}}
-                                    {{--class=" icon-star-empty"></i></span>--}}
+                        {{--class="icon-star voted"></i><i class="icon-star voted"></i><i--}}
+                        {{--class=" icon-star-empty"></i></span>--}}
                         <h1>{{ $house->name }}</h1>
+                        <span>{{ $house->type_text }}</span><br>
                         <span>{{ $house->address }}</span>
                     </div>
                     <div class="col-md-4 col-sm-4">
@@ -95,10 +96,42 @@
                         </div>
                         <div class="col-md-9">
                             <p>
-                                {!! $house->description !!}
+                                {!! $house->desc !!}
                             </p>
-                            <h4>Tiện ích căn hộ</h4>
 
+                        </div>
+                        <!-- End col-md-9  -->
+                    </div>
+                    <!-- End row  -->
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h3>Thông tin</h3>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="row">
+
+                                <div class="col-md-6 col-sm-6">
+                                    <ul class="list_ok">
+                                        <li>Năm xây dựng: {{ $house->begin_year }}</li>
+                                        <li>Diện tích xây dựng: {{ $house->size }}</li>
+                                        <li>Số phòng ngủ: {{ $house->beds }}</li>
+                                        <li>Số phòng tắm: {{ $house->bathroom }}</li>
+
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <!-- End row  -->
+
+                            <!-- End row  -->
+                        </div>
+                        <!-- End col-md-9  -->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h3>Tiện ích BĐS</h3>
+                        </div>
+                        <div class="col-md-9">
                             <div class="row">
                                 @php $featuresJson = $house->features; $featuredecoded = json_decode($featuresJson); $features = collect($featuredecoded); @endphp
 
@@ -115,10 +148,11 @@
                                 @endforeach
                             </div>
                             <!-- End row  -->
+
+                            <!-- End row  -->
                         </div>
                         <!-- End col-md-9  -->
                     </div>
-                    <!-- End row  -->
 
                     <hr>
 
