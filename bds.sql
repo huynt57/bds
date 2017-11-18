@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-11-18 16:25:57
+Date: 2017-11-18 16:27:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -1297,7 +1297,7 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', 'Testing', 'huynt57@gmail.com', '$2y$10$bFnelmOS684.WWjdNLdh7eaNT9Dzm8D4knY8RpqHhNoO4q6je205.', 'NTNDqE9XDYB9ffEIMKm7PMXiZgP4863doUCgeJtUzJoUDYR9eZYyuNghbSpe', '2017-11-08 08:04:46', '2017-11-13 10:26:02', '590f1a70990c6d41286920818e8806d61506938225-animal-6png.png', '1679263615', '1', '0', '');
+INSERT INTO `users` VALUES ('1', 'Môi giới viên 2', 'huynt57@gmail.com', '$2y$10$bFnelmOS684.WWjdNLdh7eaNT9Dzm8D4knY8RpqHhNoO4q6je205.', 'NTNDqE9XDYB9ffEIMKm7PMXiZgP4863doUCgeJtUzJoUDYR9eZYyuNghbSpe', '2017-11-08 08:04:46', '2017-11-18 09:27:33', '9eb098d95e4cc923a73adaf4682797a5member1png.png', '1679263615', '1', '0', '');
 INSERT INTO `users` VALUES ('4', 'Môi giới viên 1', 'huynt571@gmail.com', '$2y$10$R9.MeomI1rlia6n//8qFw.vHWHxpqjbQsJhYwXZkzqRruoGqeC/zG', null, '2017-11-08 08:09:32', '2017-11-18 09:25:21', '94cc5ef0a0bf8b3584c27d8187d23f25member2png.png', '0985771135', '1', '1', '');
 INSERT INTO `users` VALUES ('5', 'Nhà đầu tư Viethouse', '', '$2y$10$G64dfs3DBw7CAacNHJ.d8OccDN2u2oipF6mHSxRn6ZeR4YoN0n/Cq', null, '2017-11-17 10:21:27', '2017-11-18 08:15:40', '2c5ee0ceecd621f9a2d27836f5db30bemember3png.png', '0985771135', '3', '1', '');
 
