@@ -219,7 +219,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-3 col-xs-3">
-                <a href="http://viethouse24.com"><h3 style="color: #f47b09; font-weight: 900; ">VIETHOUSE24</h3></a>
+                <a href="{{ url('/') }}"><h3 style="color: #f47b09; font-weight: 900; ">VIETHOUSE24</h3></a>
                 {{--<div id="logo_home">--}}
                     {{--<h1><a href="{{ url('/') }}" title="City tours travel template">{{ cache()->get('settings')['title'] }}</a></h1>--}}
                 {{--</div>--}}
@@ -294,16 +294,19 @@
                 <h3>Liên hệ</h3>
                 <ul class="contact_footer">
                     <li>
-                        <i class="fa fa-envelope"></i> <a href="#">{{ cache()->get('settings')['phone'] }}</a>
+                        <i class="fa fa-phone"></i> <a href="#">{{ cache()->get('settings')['phone'] }}</a>
                     </li>
                     <li>
-                        <i class="fa fa-headphones"></i> <a href="mailto:{{ cache()->get('settings')['email'] }}">{{ cache()->get('settings')['email'] }}</a>
+                        <i class="fa fa-envelope"></i> <a href="mailto:{{ cache()->get('settings')['email'] }}">{{ cache()->get('settings')['email'] }}</a>
                     </li>
                     <li class="location">
                         <i class="fa fa-home"></i> <a href="#"> {{ cache()->get('settings')['address'] }}</a>
                     </li>
                     <li class="location">
                         <i class="fa fa-skype"></i> <a href="skype:{{ cache()->get('settings')['skype'] }}"> {{ cache()->get('settings')['skype'] }} </a>
+                    </li>
+                    <li class="location">
+                        <i class="fa fa-facebook-official"></i> <a href="{{ cache()->get('settings')['facebook'] }}"> {{ cache()->get('settings')['facebook'] }} </a>
                     </li>
                 </ul>
             </div>
