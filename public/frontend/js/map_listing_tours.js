@@ -104,8 +104,13 @@ var element = document.getElementById('map');
 if (typeof(element) != 'undefined' && element != null) {
     var map = new GMaps({
         div: '#map',
+        zoomControl: true,
+        zoomControlOpt: {
+            position: 'TOP_RIGHT'
+        },
         lat: -12.043333,
         lng: -77.028333,
+
         zoom_changed: function (e) {
 
             var lat = e.center.lat();
