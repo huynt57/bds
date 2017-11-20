@@ -219,14 +219,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-3 col-xs-3">
-                <div id="logo_home">
-                    <h1><a href="{{ url('/') }}" title="City tours travel template">{{ cache()->get('settings')['title'] }}</a></h1>
-                </div>
+                <a href="http://viethouse24.com"><h3 style="color: #f47b09; font-weight: 900; ">VIETHOUSE24</h3></a>
+                {{--<div id="logo_home">--}}
+                    {{--<h1><a href="{{ url('/') }}" title="City tours travel template">{{ cache()->get('settings')['title'] }}</a></h1>--}}
+                {{--</div>--}}
             </div>
             <nav class="col-md-9 col-sm-9 col-xs-9">
                 <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Danh mục di động</span></a>
                 <div class="main-menu">
                     <div id="header_menu">
+
                         <img src="/frontend/img/logo_sticky.png" width="160" height="34" alt="{{ cache()->get('settings')['title'] }}"
                              data-retina="true">
                     </div>
