@@ -154,69 +154,69 @@
 
 <!-- Header Plain:  add the id plain to header and change logo.png to logo_sticky.png ======================= -->
 <header id="plain">
-    <div id="top_line">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-6"><i class="icon-phone"></i><strong>{{ cache()->get('settings')['phone'] }}</strong>
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-6">
-                    <ul id="top_links">
-                        <li>
-                            <div class="dropdown dropdown-access">
-                                @if(!auth('frontend')->check())
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="access_link">Đăng
-                                    nhập</a>
-                                @else
-                                    <a href="#" class="dropdown-toggle" id="access_link">Xin chào, {{ auth('frontend')->user()->name }}</a>
-                                    @endif
+    {{--<div id="top_line">--}}
+        {{--<div class="container">--}}
+            {{--<div class="row">--}}
+                {{--<div class="col-md-6 col-sm-6 col-xs-6"><i class="icon-phone"></i><strong>{{ cache()->get('settings')['phone'] }}</strong>--}}
+                {{--</div>--}}
+                {{--<div class="col-md-6 col-sm-6 col-xs-6">--}}
+                    {{--<ul id="top_links">--}}
+                        {{--<li>--}}
+                            {{--<div class="dropdown dropdown-access">--}}
+                                {{--@if(!auth('frontend')->check())--}}
+                                {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="access_link">Đăng--}}
+                                    {{--nhập</a>--}}
+                                {{--@else--}}
+                                    {{--<a href="#" class="dropdown-toggle" id="access_link">Xin chào, {{ auth('frontend')->user()->name }}</a>--}}
+                                    {{--@endif--}}
 
-                                <div class="dropdown-menu">
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6 col-xs-6">
-                                            <a href="#" class="bt_facebook"><i class="icon-facebook"></i>Facebook </a>
-                                        </div>
-                                    </div>
-                                    <div class="login-or">
-                                        <hr class="hr-or">
-                                        <span class="span-or">hoặc</span>
-                                    </div>
-                                    <form method="post" action="{{ url('process-login') }}">
-                                        {!! csrf_field() !!}
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="inputUsernameEmail" name="email"
-                                                   placeholder="Email">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control" id="inputPassword"
-                                                   name="password"
-                                                   placeholder="Mật khẩu">
-                                        </div>
-                                        <a id="forgot_pw" href="#">Quên mật khẩu?</a>
-                                        <input type="submit" name="Sign_in" value="Đăng nhập" id="Sign_in"
-                                               class="button_drop">
-                                        <a href="{{ url('dang-ky') }}" name="Sign_up" value="Đăng ký" id="Sign_up"
-                                           class="button_drop outline">Đăng ký</a>
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- End Dropdown access -->
-                        </li>
-                        @if(auth('frontend')->check())
-                        <li><a href="{{ url('logout') }}" >Đăng xuất</a>
-                            @endif
-                        </li>
-                        <li><a href="{{ url('yeu-thich') }}" id="wishlist_link">Yêu thích</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- End row -->
-        </div>
-        <!-- End container-->
-    </div>
+                                {{--<div class="dropdown-menu">--}}
+                                    {{--<div class="row">--}}
+                                        {{--<div class="col-md-6 col-sm-6 col-xs-6">--}}
+                                            {{--<a href="#" class="bt_facebook"><i class="icon-facebook"></i>Facebook </a>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="login-or">--}}
+                                        {{--<hr class="hr-or">--}}
+                                        {{--<span class="span-or">hoặc</span>--}}
+                                    {{--</div>--}}
+                                    {{--<form method="post" action="{{ url('process-login') }}">--}}
+                                        {{--{!! csrf_field() !!}--}}
+                                        {{--<div class="form-group">--}}
+                                            {{--<input type="text" class="form-control" id="inputUsernameEmail" name="email"--}}
+                                                   {{--placeholder="Email">--}}
+                                        {{--</div>--}}
+                                        {{--<div class="form-group">--}}
+                                            {{--<input type="password" class="form-control" id="inputPassword"--}}
+                                                   {{--name="password"--}}
+                                                   {{--placeholder="Mật khẩu">--}}
+                                        {{--</div>--}}
+                                        {{--<a id="forgot_pw" href="#">Quên mật khẩu?</a>--}}
+                                        {{--<input type="submit" name="Sign_in" value="Đăng nhập" id="Sign_in"--}}
+                                               {{--class="button_drop">--}}
+                                        {{--<a href="{{ url('dang-ky') }}" name="Sign_up" value="Đăng ký" id="Sign_up"--}}
+                                           {{--class="button_drop outline">Đăng ký</a>--}}
+                                    {{--</form>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<!-- End Dropdown access -->--}}
+                        {{--</li>--}}
+                        {{--@if(auth('frontend')->check())--}}
+                        {{--<li><a href="{{ url('logout') }}" >Đăng xuất</a>--}}
+                            {{--@endif--}}
+                        {{--</li>--}}
+                        {{--<li><a href="{{ url('yeu-thich') }}" id="wishlist_link">Yêu thích</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+            {{--<!-- End row -->--}}
+        {{--</div>--}}
+        {{--<!-- End container-->--}}
+    {{--</div>--}}
     <!-- End top line-->
 
-    <div class="container">
+<div style="margin-left: 10%; margin-right: 10%">
         <div class="row">
             <div class="col-md-3 col-sm-3 col-xs-3">
                 <a href="{{ url('/') }}"><h3 style="color: #f47b09; font-weight: 900; ">VIETHOUSE24</h3></a>
@@ -224,7 +224,7 @@
                     {{--<h1><a href="{{ url('/') }}" title="City tours travel template">{{ cache()->get('settings')['title'] }}</a></h1>--}}
                 {{--</div>--}}
             </div>
-            <nav class="col-md-9 col-sm-9 col-xs-9">
+            <nav class="col-md-6 col-sm-6 col-xs-9">
                 <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Danh mục di động</span></a>
                 <div class="main-menu">
                     <div id="header_menu">
@@ -242,7 +242,9 @@
                                 @php  \App\Components\Functions::printMenuFrontend($menu); @endphp
                             </li>
                         @endforeach
+
                     </ul>
+
                 </div><!-- End main-menu -->
                 {{--<ul id="top_tools">--}}
                 {{--<li>--}}
@@ -253,9 +255,61 @@
                 {{--</li>--}}
 
                 {{--</ul>--}}
+
             </nav>
+            <div class="col-md-3 col-sm-6 col-xs-6" style="margin-top: 20px">
+                <ul id="top_links">
+                    <li>
+                        <div class="dropdown dropdown-access">
+                            @if(!auth('frontend')->check())
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="access_link">Đăng
+                                    nhập</a>
+                            @else
+                                <a href="#" class="dropdown-toggle" id="access_link">Xin chào, {{ auth('frontend')->user()->name }}</a>
+                            @endif
+
+                            <div class="dropdown-menu">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <a href="#" class="bt_facebook"><i class="icon-facebook"></i>Facebook </a>
+                                    </div>
+                                </div>
+                                <div class="login-or">
+                                    <hr class="hr-or">
+                                    <span class="span-or">hoặc</span>
+                                </div>
+                                <form method="post" action="{{ url('process-login') }}">
+                                    {!! csrf_field() !!}
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="inputUsernameEmail" name="email"
+                                               placeholder="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="inputPassword"
+                                               name="password"
+                                               placeholder="Mật khẩu">
+                                    </div>
+                                    <a id="forgot_pw" href="#">Quên mật khẩu?</a>
+                                    <input type="submit" name="Sign_in" value="Đăng nhập" id="Sign_in"
+                                           class="button_drop">
+                                    <a href="{{ url('dang-ky') }}" name="Sign_up" value="Đăng ký" id="Sign_up"
+                                       class="button_drop outline">Đăng ký</a>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End Dropdown access -->
+                    </li>
+                    @if(auth('frontend')->check())
+                        <li><a href="{{ url('logout') }}" >Đăng xuất</a>
+                            @endif
+                        </li>
+                        <li><a href="{{ url('yeu-thich') }}" id="wishlist_link">Yêu thích</a>
+                        </li>
+                </ul>
+            </div>
         </div>
-    </div>
+</div>
+
     <!-- container -->
 </header>
 <!-- End Header -->
