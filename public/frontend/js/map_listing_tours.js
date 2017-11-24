@@ -135,20 +135,21 @@ if (typeof(element) != 'undefined' && element != null) {
 
     map.addControl({
         position: 'right_center',
-        content: 'Xem trường học',
+        content: '<i class="fa fa-graduation-cap"></i>',
         id: 'school_map',
-        class: 'btn btn-success',
+        classes: 'btn-map',
         type: 'get',
         style: {
             color: '#444',
             border: '1px solid #CCC',
-            background: '#DDD',
+            background: '#fff',
             'box-shadow': '0 0 5px -1px rgba(0,0,0,0.2)',
             cursor: 'pointer',
             'vertical-align': 'middle',
-            'max-width': '100px',
             'padding': '10px',
             'text-align': 'center',
+            'font-size': '20px',
+            'border-radius': '7px'
         },
         events: {
 

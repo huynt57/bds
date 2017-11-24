@@ -224,7 +224,7 @@
                     {{--<h1><a href="{{ url('/') }}" title="City tours travel template">{{ cache()->get('settings')['title'] }}</a></h1>--}}
                 {{--</div>--}}
             </div>
-            <nav class="col-md-6 col-sm-6 col-xs-9">
+            <nav class="col-md-7 col-sm-6 col-xs-9">
                 <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Danh mục di động</span></a>
                 <div class="main-menu">
                     <div id="header_menu">
@@ -257,7 +257,7 @@
                 {{--</ul>--}}
 
             </nav>
-            <div class="col-md-3 col-sm-6 col-xs-6" style="margin-top: 20px">
+            <div class="col-md-2 col-sm-6 col-xs-6" style="margin-top: 20px">
                 <ul id="top_links">
                     <li>
                         <div class="dropdown dropdown-access">

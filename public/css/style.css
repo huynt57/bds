@@ -9,6 +9,9 @@
 	margin:0;
 	padding:0
 }
+html * {
+	font-size: 14px;
+}
 .auto_height:before{
 content:'';
 padding:50% 0;
@@ -103,3 +106,9 @@ border: 1px solid #00acd6;
 cursor:pointer
 }
 .color_select{display:inline-block;zoom:1;padding:3px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;border:1px solid #999}
+.btn-map{
+	height: 40px;
+	width: 40px;
+	border-radius: 7px;
+	font-size: 20px;
+}
