@@ -3,6 +3,8 @@ var
     markers = [],
     markersData = {};
 
+var is_more ='';
+
 var mapOptions = {
     zoom: 12,
     center: new google.maps.LatLng(48.865633, 2.321236),
@@ -216,26 +218,30 @@ if (typeof(element) != 'undefined' && element != null) {
             'vertical-align': 'middle',
             'padding': '10px',
             'text-align': 'center',
-            'font-size': '20px',
+            'font-size': '16px',
             'border-radius': '7px',
             'margin-top': '20px'
         },
 
         events: {
             click: function () {
+                is_more = $(this).attr('data-check');
                 if ($(this).attr('data-check') == '1' || typeof ($(this).attr('data-check')) == 'undefined') {
                     $('.content-left').removeClass('col-md-5').addClass('col-md-3');
                     $('.map-right').removeClass('col-md-7').addClass('col-md-9');
                     $('.img-ajax').addClass('image-container');
                     $('.tour_container').parent().removeClass('col-md-6').removeClass('col-sm-6').addClass('col-md-12');
                     $('#change_map').html('<i class="fa fa-chevron-left" aria-hidden="true"></i> Nhỏ map').attr('data-check', '2');
-                    google.maps.event.trigger(map, 'resize');
+                    is_more = '2';
+                    reIntilizeMap();
                 } else {
                     $('.content-left').removeClass('col-md-3').addClass('col-md-5');
                     $('.map-right').removeClass('col-md-9').addClass('col-md-7');
                     $('.img-ajax').removeClass('image-container');
                     $('.tour_container').parent().removeClass('col-md-12').addClass('col-sm-6').addClass('col-md-6');
                     $('#change_map').html('<i class="fa fa-chevron-right" aria-hidden="true"></i> Thêm map').attr('data-check', '1');
+                    is_more = '1';
+                    reIntilizeMap();
                 }
 
             }
@@ -330,5 +336,192 @@ if (typeof(element) != 'undefined' && element != null) {
 
     function onHtmlClick(location_type, key) {
         google.maps.event.trigger(markers[key], "click");
+    }
+
+    function reIntilizeMap()
+    {
+        var content = '';
+        console.log(is_more);
+        if (is_more == '2') {
+            content = '<i class="fa fa-chevron-left" aria-hidden="true"></i> Nhỏ map';
+        } else {
+            content = '<i class="fa fa-chevron-right" aria-hidden="true"></i> Thêm map';
+        }
+        var map = new GMaps({
+            div: '#map',
+            zoomControl: true,
+            zoomControlOpt: {
+                position: 'TOP_RIGHT'
+            },
+            lat: -12.043333,
+            lng: -77.028333,
+
+            zoom_changed: function (e) {
+
+                var lat = e.center.lat();
+                var lng = e.center.lng();
+                var zoom = e.zoom;
+                var radius = getBoundsRadius(e.getBounds(), lat, lng);
+                get_house_by_center(lat, lng, radius);
+            },
+            dragend: function (e) {
+
+                var lat = e.center.lat();
+                var lng = e.center.lng();
+                var zoom = e.zoom;
+                var radius = getBoundsRadius(e.getBounds(), lat, lng);
+                get_house_by_center(lat, lng, radius);
+
+            }
+        });
+
+
+        var marker_schools = [];
+
+        map.addControl({
+            position: 'right_center',
+            content: '<i class="fa fa-graduation-cap"></i>',
+            id: 'school_map',
+            classes: 'btn-map unselected',
+            type: 'get',
+            style: {
+                color: '#444',
+                border: '1px solid #CCC',
+                background: '#fff',
+                'box-shadow': '0 0 5px -1px rgba(0,0,0,0.2)',
+                cursor: 'pointer',
+                'vertical-align': 'middle',
+                'padding': '10px',
+                'text-align': 'center',
+                'font-size': '20px',
+                'border-radius': '7px'
+            },
+            events: {
+
+                click: function () {
+
+                    var type = $(this).attr('type');
+
+                    if (type == 'get' || typeof (type) == 'undefined') {
+                        $.ajax({
+                            url: '/school',
+                            cache: false,
+                            data: {
+                                lat: center_lat,
+                                lng: center_lng,
+
+                            },
+                            dataType: 'json',
+                            success: function (response) {
+                                var data = response.data;
+
+                                $('#school_map').attr('type', 'remove').removeClass('unselected').addClass('selected');
+
+                                $.each(data, function (i, item) {
+
+
+                                    var marker = map.addMarker({
+                                        lat: item.lat,
+                                        lng: item.lng,
+                                        icon: '/images/school.png',
+                                        infoWindow: {
+                                            content: item.name
+                                        }
+                                    });
+
+                                    marker_schools.push(marker);
+                                });
+                            }
+                        });
+                    } else {
+
+                        marker_schools.forEach(function (marker) {
+                            marker.setMap(null);
+                        });
+
+                        $(this).attr('type', 'get').addClass('unselected').removeClass('selected');
+
+                    }
+
+                }
+            }
+        });
+
+        map.addControl({
+            position: 'right_center',
+            content: content,
+            id: 'change_map',
+            style: {
+                color: '#444',
+                border: '1px solid #CCC',
+                background: '#fff',
+                'box-shadow': '0 0 5px -1px rgba(0,0,0,0.2)',
+                cursor: 'pointer',
+                'vertical-align': 'middle',
+                'padding': '10px',
+                'text-align': 'center',
+                'font-size': '16px',
+                'border-radius': '7px',
+                'margin-top': '20px'
+            },
+
+            events: {
+                click: function () {
+                    if (is_more == '1' || typeof (is_more) == 'undefined') {
+                        $('.content-left').removeClass('col-md-5').addClass('col-md-3');
+                        $('.map-right').removeClass('col-md-7').addClass('col-md-9');
+                        $('.img-ajax').addClass('image-container');
+                        $('.tour_container').parent().removeClass('col-md-6').removeClass('col-sm-6').addClass('col-md-12');
+                        $('#change_map').html('<i class="fa fa-chevron-left" aria-hidden="true"></i> Nhỏ map').attr('data-check', '2');
+                        is_more = '2';
+                    } else {
+                        $('.content-left').removeClass('col-md-3').addClass('col-md-5');
+                        $('.map-right').removeClass('col-md-9').addClass('col-md-7');
+                        $('.img-ajax').removeClass('image-container');
+                        $('.tour_container').parent().removeClass('col-md-12').addClass('col-sm-6').addClass('col-md-6');
+                        $('#change_map').html('<i class="fa fa-chevron-right" aria-hidden="true"></i> Thêm map').attr('data-check', '1');
+                        is_more = '1';
+                    }
+
+                }
+            }
+        });
+
+
+        $.ajax({
+            url: window.location.href,
+            type: 'get',
+            dataType: 'json',
+            cache: false,
+            success: function (response) {
+                markers = [];
+                markersData = response.markers.data;
+                for (var key in markersData) {
+                    markersData[key].forEach(function (item) {
+                        var marker = map.addMarker({
+                            lat: item.location_latitude,
+                            lng: item.location_longitude,
+                            icon: 'img/pins/' + key + '.png',
+                            click: function (e) {
+                                map.setCenter(item.location_latitude, item.location_longitude);
+
+                            },
+                            infoWindow: {
+                                content: item.info_window
+                            }
+                        });
+
+                        markers.push(marker);
+
+                    });
+                }
+                center_lat = response.markers.center.lat;
+                center_lng = response.markers.center.lng;
+                if (center_lat != -1 && center_lng != -1) {
+                    map.setCenter(response.markers.center.lat, response.markers.center.lng);
+                }
+
+            }
+        });
     }
 }
