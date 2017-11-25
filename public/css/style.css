@@ -115,3 +115,7 @@ cursor:pointer
 #school_map:hover {
 	background-color: #00A0D1;
 }
+
+.image-container {
+	width: auto !important;
+}

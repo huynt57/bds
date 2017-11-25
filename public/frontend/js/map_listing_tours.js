@@ -49,7 +49,8 @@ function get_house_by_center(lat, lng, radius) {
         data: {
             lat: lat,
             lng: lng,
-            radius: radius
+            radius: radius,
+            is_more : $('#change_map').attr('data-check')
 
         },
         beforeSend: function () {
@@ -204,33 +205,37 @@ if (typeof(element) != 'undefined' && element != null) {
 
     map.addControl({
         position: 'right_center',
-        content: 'Xem map rộng hơn',
+        content: '<i class="fa fa-chevron-right" aria-hidden="true"></i> Thêm map',
         id: 'change_map',
         style: {
             color: '#444',
             border: '1px solid #CCC',
-            background: '#DDD',
+            background: '#fff',
             'box-shadow': '0 0 5px -1px rgba(0,0,0,0.2)',
             cursor: 'pointer',
             'vertical-align': 'middle',
-            'max-width': '100px',
             'padding': '10px',
             'text-align': 'center',
-            'margin-top' : '50px'
+            'font-size': '20px',
+            'border-radius': '7px',
+            'margin-top': '20px'
         },
 
         events: {
             click: function () {
-                if ($(this).attr('data-check') == '1') {
+                if ($(this).attr('data-check') == '1' || typeof ($(this).attr('data-check')) == 'undefined') {
                     $('.content-left').removeClass('col-md-5').addClass('col-md-3');
                     $('.map-right').removeClass('col-md-7').addClass('col-md-9');
+                    $('.img-ajax').addClass('image-container');
                     $('.tour_container').parent().removeClass('col-md-6').removeClass('col-sm-6').addClass('col-md-12');
-                    $('#change_map').html('Xem map nhỏ lại').attr('data-check', '2');
+                    $('#change_map').html('<i class="fa fa-chevron-left" aria-hidden="true"></i> Nhỏ map').attr('data-check', '2');
+                    google.maps.event.trigger(map, 'resize');
                 } else {
                     $('.content-left').removeClass('col-md-3').addClass('col-md-5');
                     $('.map-right').removeClass('col-md-9').addClass('col-md-7');
+                    $('.img-ajax').removeClass('image-container');
                     $('.tour_container').parent().removeClass('col-md-12').addClass('col-sm-6').addClass('col-md-6');
-                    $('#change_map').html('Xem map rộng hơn').attr('data-check', '1');
+                    $('#change_map').html('<i class="fa fa-chevron-right" aria-hidden="true"></i> Thêm map').attr('data-check', '1');
                 }
 
             }

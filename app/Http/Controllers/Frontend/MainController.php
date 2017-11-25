@@ -237,6 +237,7 @@ class MainController extends Controller
 
         $coordinates['latitude'] = $lat;
         $coordinates['longitude'] = $lng;
+        $isMore = $request->input('is_more');
 
 
         $items = House::publish()->orderBy('id', 'desc');
@@ -300,7 +301,7 @@ class MainController extends Controller
 
         return response([
             'markers' => $markers,
-            'items' => view('frontend.houses_ajax', compact('items'))->render(),
+            'items' => view('frontend.houses_ajax', compact('items', 'isMore'))->render(),
             'url' => $request->fullUrl()
         ]);
     }
@@ -381,6 +382,7 @@ class MainController extends Controller
 
         $coordinates['latitude'] = $lat;
         $coordinates['longitude'] = $lng;
+        $isMore = $request->input('is_more');
 
         $items = Project::publish()->orderBy('id', 'desc');
 
@@ -436,7 +438,7 @@ class MainController extends Controller
 
         return response([
             'markers' => $markers,
-            'items' => view('frontend.houses_ajax', compact('items'))->render(),
+            'items' => view('frontend.houses_ajax', compact('items', 'isMore'))->render(),
             'url' => $request->fullUrl()
         ]);
     }

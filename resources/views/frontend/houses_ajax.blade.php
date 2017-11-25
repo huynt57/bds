@@ -1,5 +1,13 @@
 @php $houses = $items->chunk(2) @endphp
-@php $cnt = -1; @endphp
+@php $cnt = -1;
+if(isset($isMore) && $isMore == 2)
+{
+    $size = 12;
+} else {
+    $size = 6;
+}
+
+@endphp
 @foreach($houses as $house)
 
     <div class="row">
@@ -9,15 +17,15 @@
             @if(!empty($col))
                 <div class="col-md-{{$col}} col-sm-{{$col}}">
                     @else
-                        <div class="col-md-6 col-sm-6">
+                        <div class="col-md-{{ $size }} col-sm-{{ $size }}">
                             @endif
                             <div class="tour_container">
                                 {{--<div class="ribbon_3 popular"><span>Popular</span>--}}
                                 {{--</div>--}}
                                 <div class="img_container">
                                     <a href="{{ url('house/'.str_slug($item->name).'-'.$item->id) }}">
-                                        <div alt="Image"
-                                             style="width:360px; height:240px; background-size: cover; background-image: url('{{ $item->main_images }}');"></div>
+                                        <div alt="Image" class="img-ajax"
+                                             style="width:auto; height:240px; background-size: cover; background-image: url('{{ $item->main_images }}');"></div>
 
                                         <div class="zsg-photo-card-caption"
                                              style="color: #fff; right: 6px; left: 6px; bottom: 6px; position: absolute; text-shadow: 0 0 3px rgba(0,0,0,.5);"><h4
