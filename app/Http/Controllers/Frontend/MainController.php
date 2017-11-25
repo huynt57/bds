@@ -553,8 +553,9 @@ class MainController extends Controller
 
             $lat = $result['geometry']['location']['lat'];
             $lng = $result['geometry']['location']['lng'];
+            $name = $result['name'];
 
-            $itemArr = ['lat' => $lat, 'lng' => $lng];
+            $itemArr = ['lat' => $lat, 'lng' => $lng, 'name' => $name];
 
             $returnArr[] = $itemArr;
 

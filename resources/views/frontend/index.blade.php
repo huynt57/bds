@@ -8,7 +8,9 @@
                      style="background-image: url('stock/stock-01.jpg')">
                     <div class="container">
                         <div class="text-center">
-                            <h1 class="tab-heading-title">Mua bán</h1>
+                            <h1 class="tab-heading-title">Đường về mái ấm
+
+                            </h1>
                         </div>
                     </div>
                 </div>
@@ -16,7 +18,7 @@
                      style="background-image: url('stock/stock-02.jpg')">
                     <div class="container">
                         <div class="text-center">
-                            <h1 class="tab-heading-title">Cho thuê</h1>
+                            <h1 class="tab-heading-title">Ngôi nhà bạn sẽ thuê</h1>
                         </div>
                     </div>
                 </div>
@@ -24,7 +26,7 @@
                      style="background-image: url('stock/stock-03.jpg')">
                     <div class="container">
                         <div class="text-center">
-                            <h1 class="tab-heading-title">Phương án tài chính</h1>
+                            <h1 class="tab-heading-title">Hãy trở thành nhà đầu tư thông thái</h1>
                         </div>
                     </div>
                 </div>
@@ -32,7 +34,7 @@
                      style="background-image: url('stock/stock-04.jpg')">
                     <div class="container">
                         <div class="text-center">
-                            <h1 class="tab-heading-title">Môi giới</h1>
+                            <h1 class="tab-heading-title">Hiện thực hóa giấc mơ</h1>
                         </div>
                     </div>
                 </div>
@@ -45,8 +47,8 @@
                                 <li class="active"><a id="searchTab01" href="#demoSearchTab01" role="tab" data-toggle="tab">Mua bán</a>
                                 </li>
                                 <li><a id="searchTab02" href="#demoSearchTab02" role="tab" data-toggle="tab">Cho thuê</a></li>
-                                <li><a href="#demoSearchTab03" role="tab" data-toggle="tab">Phương án tài chính</a></li>
-                                <li><a href="#demoSearchTab04" role="tab" data-toggle="tab">Môi giới</a></li>
+                                <li><a href="#demoSearchTab03" role="tab" data-toggle="tab">Giải pháp tài chính</a></li>
+                                <li><a href="#demoSearchTab04" role="tab" data-toggle="tab">Tư vấn BĐS</a></li>
                             </ul>
                             <form action="{{ url('map') }}" class="home-search-form">
                                 <div class="form-group">

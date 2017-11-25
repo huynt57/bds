@@ -137,7 +137,7 @@ if (typeof(element) != 'undefined' && element != null) {
         position: 'right_center',
         content: '<i class="fa fa-graduation-cap"></i>',
         id: 'school_map',
-        classes: 'btn-map',
+        classes: 'btn-map unselected',
         type: 'get',
         style: {
             color: '#444',
@@ -157,7 +157,7 @@ if (typeof(element) != 'undefined' && element != null) {
 
                 var type = $(this).attr('type');
 
-                if (type == 'get') {
+                if (type == 'get' || typeof (type) == 'undefined') {
                     $.ajax({
                         url: '/school',
                         cache: false,
@@ -170,7 +170,7 @@ if (typeof(element) != 'undefined' && element != null) {
                         success: function (response) {
                             var data = response.data;
 
-                            $('#school_map').html('Ẩn trường học').attr('type', 'remove');
+                            $('#school_map').attr('type', 'remove').removeClass('unselected').addClass('selected');
 
                             $.each(data, function (i, item) {
 
@@ -178,12 +178,9 @@ if (typeof(element) != 'undefined' && element != null) {
                                 var marker = map.addMarker({
                                     lat: item.lat,
                                     lng: item.lng,
-                                    icon: 'img/pins/' + 'Walking' + '.png',
-                                    click: function (e) {
-                                        closeInfoBox();
-                                        getInfoBox(item).open(map, this);
-                                        //  map.setCenter(item.location_latitude, item.location_longitude);
-
+                                    icon: '/images/school.png',
+                                    infoWindow: {
+                                        content: item.name
                                     }
                                 });
 
@@ -197,8 +194,7 @@ if (typeof(element) != 'undefined' && element != null) {
                         marker.setMap(null);
                     });
 
-                    $(this).attr('type', 'get');
-                    $(this).html('Xem trường học');
+                    $(this).attr('type', 'get').addClass('unselected').removeClass('selected');
 
                 }
 

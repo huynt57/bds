@@ -71,6 +71,22 @@
             background-size: 36px 36px;
             background-repeat: no-repeat;
         }
+
+        .selected {
+            background-color: #0074e4 !important;
+        }
+
+        .unselected {
+            background-color: #fff !important;
+        }
+
+        #school_map.unselected:hover {
+            background-color: #0074e4 !important;
+        }
+
+        #school_map.selected:hover {
+            background-color: red !important;
+        }
     </style>
     <style>
         /*div {*/

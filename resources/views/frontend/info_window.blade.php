@@ -20,6 +20,8 @@
         <a href="#">Môi giới viên: Chưa xác định</a>
         @endif
     <br>
+    <a href="#"> {{ $house->beds }} phòng ngủ, {{ $house->bath }} phòng tắm</a>
+    <br>
     <a href="#">Diện tích: {{ $house->size }} m2</a>
     <br>
 

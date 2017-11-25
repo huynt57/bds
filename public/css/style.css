@@ -112,3 +112,6 @@ cursor:pointer
 	border-radius: 7px;
 	font-size: 20px;
 }
+#school_map:hover {
+	background-color: #00A0D1;
+}
