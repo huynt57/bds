@@ -31,7 +31,8 @@ class MainController extends Controller
         $sells = House::publish()->whereIn('type', [House::SALE, House::FOR_SALE])->orderBy('id', 'desc')->take(15)->get();
         $rents = House::publish()->whereIn('type', [House::RENT, House::FOR_RENT])->orderBy('id', 'desc')->take(15)->get();
         $regions = Region::all();
-        return view('frontend.index', compact('features', 'sells', 'rents', 'regions'));
+        $partners = User::partner()->get();
+        return view('frontend.index', compact('features', 'sells', 'rents', 'regions', 'partners'));
     }
 
     public function getAgents()

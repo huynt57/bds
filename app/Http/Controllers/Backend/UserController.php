@@ -22,6 +22,11 @@ class UserController extends AdminController
         return view('admin.user.investors');
     }
 
+	public function indexPartner()
+	{
+		return view('admin.user.partners');
+	}
+
     public function getUserByAttribute(Request $request)
     {
         $users = User::where('type', '<>', User::INVESTOR);
@@ -68,6 +73,29 @@ class UserController extends AdminController
             ->make(true);
     }
 
+	public function getPartnerByAttribute(Request $request)
+	{
+		$users = User::partner();
+		return Datatables::of($users)
+		                 ->editColumn('type', function ($user) {
+			                 return $user->type_text;
+		                 })
+		                 ->editColumn('status', function ($user) {
+			                 return '<a href="javascript:;" data-type="select" 
+                data-pk="' . $user->id . '" data-url="' . url('admin/user/update-inline', ['id' => $user->id]) . '" 
+                data-id="' . $user->id . '" 
+                data-name="status"
+                class="editable editable-click"> ' . $user->status_text . ' </a>';
+		                 })
+		                 ->addColumn('action', function ($user) {
+
+			                 return '<button class="btn btn-sm yellow btn-outline "> Xem</button>' .
+			                        '<a href="' . url('admin/user/edit', ['id' => $user->id]) . '" class="btn btn-sm green btn-outline "> Sửa</a>' .
+			                        '<a href="'.url('admin/user/delete', ['id' => $user->id]).'" class="btn btn-sm red btn-outline delete-btn"> Xóa</a>';
+		                 })
+		                 ->make(true);
+	}
+
     public function updateStatusUser($id, Request $request)
     {
         $user = User::find($id);
@@ -100,6 +128,11 @@ class UserController extends AdminController
     {
         return view('admin.user.create_investor');
     }
+
+	public function createPartner(Request $request)
+	{
+		return view('admin.user.create_partner');
+	}
 
     public function edit($id)
     {

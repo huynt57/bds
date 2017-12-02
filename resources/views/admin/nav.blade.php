@@ -75,6 +75,13 @@
                     <span class="title">Quản lý nhà đầu tư - đối tác</span>
                 </a>
             </li>
+
+            <li class="nav-item  ">
+                <a href="{{ url('admin/partner/list') }}" class="nav-link nav-toggle">
+                    <i class="fa fa-users"></i>
+                    <span class="title">Quản lý đối tác liên kết</span>
+                </a>
+            </li>
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-home"></i>

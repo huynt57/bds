@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Bank;
 use App\Models\Region;
 use App\Models\Setting;
 use App\Models\Slide;
@@ -207,4 +208,72 @@ class SettingController extends AdminController
 
         ]);
     }
+
+    public function listBank(Request $request)
+    {
+    	return view('admin.bank.index');
+    }
+
+    public function listBanksByAttribute(Request $request)
+    {
+    	$banks = Bank::all();
+    	return \Datatables::of($banks)->editColumn('bank', function ($item) {
+		    return '<a href="javascript:;" data-type="text" 
+                data-pk="' . $item->id . '" data-url="' . url('admin/settings/bank/update-inline', ['id' => $item->id]) . '" 
+                data-id="' . $item->id . '" 
+                data-name="bank"
+                class="editable editable-click"> ' . $item->bank . ' </a>';
+	    })->editColumn('rate', function ($item) {
+		    return '<a href="javascript:;" data-type="text" 
+                data-pk="' . $item->id . '" data-url="' . url('admin/settings/bank/update-inline', ['id' => $item->id]) . '" 
+                data-id="' . $item->id . '" 
+                data-name="rate"
+                class="editable editable-click"> ' . $item->rate . ' </a>';
+	    })->addColumn('action', function ($item) {
+		    $url = url('admin/settings/bank/delete', ['id' => $item->id]);
+		    return  '<a href="' . $url . '"  data-id="' . $item->id . '" class="btn btn-sm red btn-outline delete-btn"> Xóa</a>';
+	    })->make(true);
+    }
+
+	public function storeBanks(Request $request)
+	{
+		$data = $request->all();
+
+		Bank::create($data);
+
+		cache()->forget('banks');
+		cache()->rememberForever('banks', function () {
+			return Bank::all();
+		});
+
+		return response([
+			'status' => 1,
+			'message' => 'Thành công'
+
+		]);
+	}
+
+	public function updateInlineBank($id, Request $request)
+	{
+		$testimonial = Bank::find($id);
+
+		$name = $request->input('name');
+		$value = $request->input('value');
+
+		$testimonial->update([
+			$name => $value
+		]);
+
+		cache()->forget('banks');
+		cache()->rememberForever('banks', function () {
+			return Bank::all();
+		});
+
+	}
+
+	public function deleteBank($id)
+	{
+		Bank::find($id)->delete();
+		return redirect()->back()->with('success', 'Xóa thành công');
+	}
 }

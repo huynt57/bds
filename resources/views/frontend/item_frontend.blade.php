@@ -16,8 +16,8 @@
                         </h4>
                         <p style="margin-bottom: 0px;" class="zsg-photo-card-spec"><span class="zsg-photo-card-price"
                                                                                          style="font-size: 28px; line-height: 1">{{ $item->price_text }}</span><span
-                                    class="zsg-photo-card-info" style="font-size: 15px; margin-left: 6px;">{{ $item->beds }} p <span
-                                        class="interpunct">·</span> {{ $item->bath }} pt <span
+                                    class="zsg-photo-card-info" style="font-size: 15px; margin-left: 6px;">{{ $item->beds }} p ngủ <span
+                                        class="interpunct">·</span> {{ $item->bath }} p tắm <span
                                         class="interpunct">·</span> {{ $item->size }} m2</span></p>
                         <p style="margin-bottom: 0px;" class="zsg-photo-card-spec"><span
                                     class="zsg-photo-card-address" style="font-size: 13px; color: white">{{ $item->address }}</span>
