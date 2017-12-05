@@ -544,6 +544,8 @@ class MainController extends Controller
 
         $url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' . $lat . ',' . $lng .
             '&radius=5000&type=school&key=AIzaSyC5_oqCsJvZdLWEadt934vSKipvwhIDFNY';
+
+
         $json = file_get_contents($url);
 
         $data = json_decode($json, true);

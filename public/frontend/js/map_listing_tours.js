@@ -69,7 +69,9 @@ function get_house_by_center(lat, lng, radius) {
                     var marker = map.addMarker({
                         lat: item.location_latitude,
                         lng: item.location_longitude,
-                        icon: 'img/pins/' + key + '.png',
+                        icon: '/images/house.png',
+                        scaledSize : new google.maps.Size(22, 32),
+
                         click: function (e) {
                             map.setCenter(item.location_latitude, item.location_longitude);
 
@@ -82,8 +84,16 @@ function get_house_by_center(lat, lng, radius) {
 
                 });
             }
-            center_lat = response.markers.center.lat;
-            center_lng = response.markers.center.lng;
+            if(response.markers.center.lat != -1)
+            {
+                center_lat = response.markers.center.lat;
+            }
+
+            if(response.markers.center.lng != -1)
+            {
+                center_lng = response.markers.center.lng;
+            }
+
         }
     });
 }
@@ -116,17 +126,21 @@ if (typeof(element) != 'undefined' && element != null) {
 
         zoom_changed: function (e) {
 
-            var lat = e.center.lat();
-            var lng = e.center.lng();
+            var lat = e.getBounds().getCenter().lat();
+            var lng = e.getBounds().getCenter().lng();
             var zoom = e.zoom;
             var radius = getBoundsRadius(e.getBounds(), lat, lng);
+            center_lat = lat;
+            center_lng = lng;
             get_house_by_center(lat, lng, radius);
         },
         dragend: function (e) {
 
-            var lat = e.center.lat();
-            var lng = e.center.lng();
+            var lat = e.getBounds().getCenter().lat();
+            var lng = e.getBounds().getCenter().lng();
             var zoom = e.zoom;
+            center_lat = lat;
+            center_lng = lng;
             var radius = getBoundsRadius(e.getBounds(), lat, lng);
             get_house_by_center(lat, lng, radius);
 
@@ -181,6 +195,7 @@ if (typeof(element) != 'undefined' && element != null) {
                                 var marker = map.addMarker({
                                     lat: item.lat,
                                     lng: item.lng,
+                                    scaledSize : new google.maps.Size(22, 32),
                                     icon: '/images/school.png',
                                     infoWindow: {
                                         content: item.name
@@ -262,7 +277,7 @@ if (typeof(element) != 'undefined' && element != null) {
                     var marker = map.addMarker({
                         lat: item.location_latitude,
                         lng: item.location_longitude,
-                        icon: 'img/pins/' + key + '.png',
+                        icon: '/images/house.png',
                         click: function (e) {
                             map.setCenter(item.location_latitude, item.location_longitude);
 
@@ -358,18 +373,22 @@ if (typeof(element) != 'undefined' && element != null) {
 
             zoom_changed: function (e) {
 
-                var lat = e.center.lat();
-                var lng = e.center.lng();
+                var lat = e.getBounds().getCenter().lat();
+                var lng = e.getBounds().getCenter().lng();
                 var zoom = e.zoom;
                 var radius = getBoundsRadius(e.getBounds(), lat, lng);
+                center_lat = lat;
+                center_lng = lng;
                 get_house_by_center(lat, lng, radius);
             },
             dragend: function (e) {
 
-                var lat = e.center.lat();
-                var lng = e.center.lng();
+                var lat = e.getBounds().getCenter().lat();
+                var lng = e.getBounds().getCenter().lng();
                 var zoom = e.zoom;
                 var radius = getBoundsRadius(e.getBounds(), lat, lng);
+                center_lat = lat;
+                center_lng = lng;
                 get_house_by_center(lat, lng, radius);
 
             }
@@ -501,7 +520,7 @@ if (typeof(element) != 'undefined' && element != null) {
                         var marker = map.addMarker({
                             lat: item.location_latitude,
                             lng: item.location_longitude,
-                            icon: 'img/pins/' + key + '.png',
+                            icon: '/images/house.png',
                             click: function (e) {
                                 map.setCenter(item.location_latitude, item.location_longitude);
 
