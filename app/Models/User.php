@@ -12,6 +12,7 @@ class User extends Authenticatable
     const AGENT = 1;
     const ADMIN = 2;
     const INVESTOR = 3;
+    const PARTNER = 4;
 
     const ACTIVE = 1;
     const IN_ACTIVE = 0;
@@ -48,6 +49,11 @@ class User extends Authenticatable
     {
         $query->where('type', User::INVESTOR);
     }
+
+	public function scopePartner($query)
+	{
+		$query->where('type', User::PARTNER);
+	}
 
     public function getStatusTextAttribute()
     {

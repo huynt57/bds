@@ -1,5 +1,7 @@
 @extends('frontend')
-
+@section('styles')
+    <link href="/frontend/css/shop.css" rel="stylesheet">
+@endsection
 @section('content')
     @php $slide = \App\Models\Slide::all(); @endphp
     <div class="ht-ht-after-lg-header" style=" background: #fff">
@@ -45,11 +47,12 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
                             <ul class="home-search-nav-tabs ht-nav-justified" role="tablist">
-                                <li class="active"><a id="searchTab01" href="#demoSearchTab01" role="tab" data-toggle="tab">Mua bán</a>
+                                <li class="active"><a id="searchTab01" href="#demoSearchTab01" role="tab"
+                                                      data-toggle="tab">Mua </a>
                                 </li>
-                                <li><a id="searchTab02" href="#demoSearchTab02" role="tab" data-toggle="tab">Cho thuê</a></li>
-                                <li><a href="#demoSearchTab03" role="tab" data-toggle="tab">Giải pháp tài chính</a></li>
-                                <li><a href="#demoSearchTab04" role="tab" data-toggle="tab">Tư vấn BĐS</a></li>
+                                <li><a id="searchTab02" href="#demoSearchTab02" role="tab" data-toggle="tab">Bán</a>
+                                </li>
+                                <li><a href="#demoSearchTab03" role="tab" data-toggle="tab">Cho thuê</a></li>
                             </ul>
                             <form action="{{ url('map') }}" class="home-search-form">
                                 <div class="form-group">
@@ -165,53 +168,23 @@
 
             <div class="row slick-items">
 
-                <div class="col-md-4 wow zoomIn animated" data-wow-delay="0.2s"
-                     style="visibility: visible; animation-delay: 0.2s; animation-name: zoomIn;">
-                    <div class="feature_home">
-                        <i class="icon_set_1_icon-41"></i>
-                        <h3><span>+100</span> Địa điểm tuyệt vời</h3>
-                        <p>
-                            Chúng tôi có rất nhiều điểm đến tuyệt vời cho bạn
-                        </p>
-                        <!--                <a href="#" class="btn_1 outline">Read more</a>-->
+                @foreach($partners as $partner)
+                    <div class="shop-item col-lg-4 col-md-4 col-sm-6">
+                        <div class="inner-box">
+                            <div class="image-box">
+                                <figure class="image">
+                                    <a href="#"><img src="/files/{{ $partner->image }}" alt="">
+                                    </a>
+                                </figure>
+                            </div>
+                            <div class="product_description">
+                                <h3><a href="#">{{ $partner->name }}</a></h3>
+                                <h4><a href="#">{{ $partner->phone }}</a></h4>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4 wow zoomIn animated" data-wow-delay="0.2s"
-                     style="visibility: visible; animation-delay: 0.2s; animation-name: zoomIn;">
-                    <div class="feature_home">
-                        <i class="icon_set_1_icon-41"></i>
-                        <h3><span>+100</span> Địa điểm tuyệt vời</h3>
-                        <p>
-                            Chúng tôi có rất nhiều điểm đến tuyệt vời cho bạn
-                        </p>
-                        <!--                <a href="#" class="btn_1 outline">Read more</a>-->
-                    </div>
-                </div>
-
-
-                <div class="col-md-4 wow zoomIn animated" data-wow-delay="0.4s"
-                     style="visibility: visible; animation-delay: 0.4s; animation-name: zoomIn;">
-                    <div class="feature_home">
-                        <i class="icon_set_1_icon-30"></i>
-                        <h3><span>+1000</span> Người sử dụng</h3>
-                        <p>
-                            Mọi người khắp nơi đang cùng nhau chia sẻ thông tin với Onho, bạn thì sao ?
-                        </p>
-                        <!--                <a href="#" class="btn_1 outline">Read more</a>-->
-                    </div>
-                </div>
-
-                <div class="col-md-4 wow zoomIn animated" data-wow-delay="0.6s"
-                     style="visibility: visible; animation-delay: 0.6s; animation-name: zoomIn;">
-                    <div class="feature_home">
-                        <i class="icon_set_1_icon-57"></i>
-                        <h3><span>H24 </span> Hỗ trợ</h3>
-                        <p>
-                            Chúng tôi luôn nố lực và cố gắng đem lại sự hỗ trợ tốt nhất cho bạn
-                        </p>
-                        <!--                <a href="#" class="btn_1 outline">Read more</a>-->
-                    </div>
-                </div>
+                    <!--End Shop Item-->
+                @endforeach
 
             </div><!--End row -->
         </div>

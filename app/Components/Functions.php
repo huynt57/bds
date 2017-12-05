@@ -10,6 +10,7 @@ namespace App\Components;
 
 
 use App\Models\Image;
+use App\Models\Menu;
 use App\Models\Post;
 
 class Functions
@@ -19,6 +20,11 @@ class Functions
         return cache()->rememberForever('provinces', function () {
             return \DB::table('province')->get();
         });
+    }
+
+    public static function calculateChildMenu($menu)
+    {
+    	return Menu::where('parent_id', $menu->id)->count();
     }
 
     public static function printMenu($menu)

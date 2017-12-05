@@ -53,6 +53,24 @@
                     </div>
                 </div>
             </div>
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Liên kết danh mục tới bài viết</label>
+                    <div class="col-md-9">
+                        <select class="form-control select2" name="category_id">
+                            <option value="">Không liên kết tới danh mục bài viết</option>
+                            @php $categories = \App\Models\Category::all(); @endphp
+
+                            @foreach($categories as $category)
+                                <option @if($category->id == $item->category_id) selected @endif value="{{ $category->id }}">
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach
+
+                        </select>
+                    </div>
+                </div>
+            </div>
             <input type="hidden" name="id" value="{{ $item->id }}">
             <div class="form-body">
                 <div class="form-group">

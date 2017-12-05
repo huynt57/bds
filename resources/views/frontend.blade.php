@@ -234,13 +234,13 @@
 
 <div style="margin-left: 10%; margin-right: 10%">
         <div class="row">
-            <div class="col-md-3 col-sm-3 col-xs-3">
+            <div class="col-md-2 col-sm-2 col-xs-2">
                 <a href="{{ url('/') }}"><h3 style="color: #f47b09; font-weight: 900; ">VIETHOUSE24</h3></a>
                 {{--<div id="logo_home">--}}
                     {{--<h1><a href="{{ url('/') }}" title="City tours travel template">{{ cache()->get('settings')['title'] }}</a></h1>--}}
                 {{--</div>--}}
             </div>
-            <nav class="col-md-7 col-sm-6 col-xs-9">
+            <nav class="col-md-8 col-sm-8 col-xs-8">
                 <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Danh mục di động</span></a>
                 <div class="main-menu">
                     <div id="header_menu">
@@ -253,8 +253,10 @@
                         @php $menus = \App\Models\Menu::where('parent_id', null)->orderBy('order', 'asc')->get(); @endphp
                         @foreach($menus as $menu)
                             <li class="submenu">
-                                <a href="{{ \App\Components\Functions::getUrlMenu($menu) }}" class="show-submenu">{{ $menu->title }} <i
-                                            class="icon-down-open-mini"></i></a>
+                                <a href="{{ \App\Components\Functions::getUrlMenu($menu) }}" class="show-submenu">{{ $menu->title }}
+                                    @if(\App\Components\Functions::calculateChildMenu($menu))
+                                    <i class="icon-down-open-mini"></i></a>
+                                @endif
                                 @php  \App\Components\Functions::printMenuFrontend($menu); @endphp
                             </li>
                         @endforeach
@@ -273,7 +275,7 @@
                 {{--</ul>--}}
 
             </nav>
-            <div class="col-md-2 col-sm-6 col-xs-6" style="margin-top: 20px">
+            <div class="col-md-2 col-sm-2 col-xs-2" style="margin-top: 20px">
                 <ul id="top_links">
                     <li>
                         <div class="dropdown dropdown-access">
@@ -457,6 +459,20 @@
 
 <!--owlcarousel-->
 <script type='text/javascript' src="http://viethouse24.com/assets/frontend/js/owlcarousel/owl.carousel.js"></script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+<div style="position:fixed; z-index:9999999; right:10px; bottom:10px;" class="fb-page" data-tabs="messages"
+     data-href="https://www.facebook.com/hotrohoctapUET/" data-width="350" data-height="350"
+     data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"></div>
+
 <script type="text/javascript">
 
     function addWishlist(house_id) {
