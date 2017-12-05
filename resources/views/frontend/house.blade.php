@@ -234,6 +234,7 @@
 
             <!--End row -->
             <div class="row">
+                <h2>Thông tin hỗ trợ cho vay</h2>
                 <div class="col-md-6">
                     <form>
                     <div class="form-group mamount">
@@ -255,6 +256,20 @@
                             </div>
                         </div>
                     </div>
+                        <div class="form-group mamount">
+                            <label for="loanamount" class="col-md-12 control-label">Chọn ngân hàng</label>
+                            @php $banks = cache()->get('banks'); @endphp
+                            <div class="col-md-12">
+                                <select class="form-control" id="bank">
+
+                                    <option value="0"> Vui lòng chọn </option>
+                                    @foreach($banks as $bank)
+                                        <option value="{{ $bank->rate }}"> {{ $bank->bank }} </option>
+                                        @endforeach
+
+                                </select>
+                            </div>
+                        </div>
 
                     <div class="form-group mamount">
                         <label for="loanamount" class="col-md-12 control-label">Lãi suất</label>
@@ -422,6 +437,11 @@
 
 
     $("body").on("keyup", "#downpayment , #loanintrest , #loanamount , #period, #per_year", function () {
+        change();
+    });
+
+    $("body").on("change", "#bank", function () {
+        $('#loanintrest').val($(this).val());
         change();
     });
 

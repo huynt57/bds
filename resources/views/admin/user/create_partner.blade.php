@@ -22,7 +22,7 @@
             </ul>
         </div>
     @endif
-    <h1 class="page-title"> Thêm mới tài khoản
+    <h1 class="page-title"> Thêm mới đối tác liên kết
     </h1>
     <div class="row">
         <div class="col-md-12">
@@ -41,7 +41,7 @@
                                 <div class="tab-content">
                                     <!-- PERSONAL INFO TAB -->
                                     <div class="tab-pane active" id="tab_1_1">
-                                        <form role="form" action="{{ url('admin/investor/store') }}" method="POST" enctype="multipart/form-data">
+                                        <form role="form" action="{{ url('admin/partner/store') }}" method="POST" enctype="multipart/form-data">
                                             {!! csrf_field() !!}
                                             <div class="row">
                                                 <div class="col-md-12">
@@ -75,14 +75,14 @@
                                                                 <label class="control-label">Tên</label>
                                                                 <input type="text" placeholder="Điền tên người dùng"
                                                                        class="form-control" name="name" value="{{ old('name') }}"></div>
-                                                            <div class="form-group">
-                                                                <label class="control-label">SĐT</label>
-                                                                <input type="text" name="phone" placeholder="0123456789" value="{{ old('phone') }}"
-                                                                       class="form-control"></div>
-                                                            <div class="form-group">
-                                                                <label class="control-label">Email</label>
-                                                                <input type="text" name="email" placeholder="Điền email người dùng" value="{{ old('email') }}"
-                                                                       class="form-control"></div>
+                                                            {{--<div class="form-group">--}}
+                                                                {{--<label class="control-label">SĐT</label>--}}
+                                                                {{--<input type="text" name="phone" placeholder="0123456789" value="{{ old('phone') }}"--}}
+                                                                       {{--class="form-control"></div>--}}
+                                                            {{--<div class="form-group">--}}
+                                                                {{--<label class="control-label">Email</label>--}}
+                                                                {{--<input type="text" name="email" placeholder="Điền email người dùng" value="{{ old('email') }}"--}}
+                                                                       {{--class="form-control"></div>--}}
                                                             <input type="hidden" value="{{ \App\Models\User::PARTNER }}" name="type">
                                                             <div class="form-group">
                                                                 <label class="control-label">Website Url</label>

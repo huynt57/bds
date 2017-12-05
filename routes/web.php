@@ -174,8 +174,8 @@ Route::group( [ 'prefix' => 'admin' ], function () {
 	Route::group( [ 'prefix' => 'partner' ], function () {
 		Route::get( 'list', 'Backend\UserController@indexPartner' );
 		Route::get( 'create', 'Backend\UserController@create' );
-		Route::get( 'create-investor', 'Backend\UserController@createPartner' );
-		Route::post( 'store', 'Backend\UserController@storeInvestor' );
+		Route::get( 'create-partner', 'Backend\UserController@createPartner' );
+		Route::post( 'store', 'Backend\UserController@storePartner' );
 		Route::get( 'edit/{id}', 'Backend\UserController@edit' );
 		Route::post( 'edit/{id}', 'Backend\UserController@update' );
 		Route::post( 'update-inline/{id}', 'Backend\UserController@updateStatusUser' );
@@ -199,7 +199,7 @@ Route::group( [ 'prefix' => 'admin' ], function () {
 		Route::get( 'testimonial/delete/{id}', 'Backend\SettingController@deleteTestimonial' );
 		Route::post( 'testimonial/store', 'Backend\SettingController@storeTestimonials' );
 
-		Route::get( 'banks', 'Backend\SettingController@listBankss' );
+		Route::get( 'banks', 'Backend\SettingController@listBanks' );
 		Route::get( 'bank/delete/{id}', 'Backend\SettingController@deleteBank' );
 		Route::post( 'bank/store', 'Backend\SettingController@storeBanks' );
 

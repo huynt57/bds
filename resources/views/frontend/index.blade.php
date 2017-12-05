@@ -3,40 +3,41 @@
     <link href="/frontend/css/shop.css" rel="stylesheet">
 @endsection
 @section('content')
+    @php $slide = \App\Models\Slide::all(); @endphp
     <div class="ht-ht-after-lg-header" style=" background: #fff">
         <div class="home-search-wrapper">
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active ht-bgcover" id="demoSearchTab01"
-                     style="background-image: url('stock/stock-01.jpg')">
+                     style="background-image: url('{{ $slide[0]->path }}')">
                     <div class="container">
                         <div class="text-center">
-                            <h1 class="tab-heading-title">Đường về mái ấm
+                            <h1 class="tab-heading-title">{{ $slide[0]->name }}
 
                             </h1>
                         </div>
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane ht-bgcover fade" id="demoSearchTab02"
-                     style="background-image: url('stock/stock-02.jpg')">
+                     style="background-image: url('{{ $slide[1]->path }}')">
                     <div class="container">
                         <div class="text-center">
-                            <h1 class="tab-heading-title">Ngôi nhà bạn sẽ thuê</h1>
+                            <h1 class="tab-heading-title">{{ $slide[1]->name }}</h1>
                         </div>
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane ht-bgcover fade" id="demoSearchTab03"
-                     style="background-image: url('stock/stock-03.jpg')">
+                     style="background-image: url('{{ $slide[2]->path }}')">
                     <div class="container">
                         <div class="text-center">
-                            <h1 class="tab-heading-title">Hãy trở thành nhà đầu tư thông thái</h1>
+                            <h1 class="tab-heading-title">{{ $slide[2]->name }}</h1>
                         </div>
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane ht-bgcover fade" id="demoSearchTab04"
-                     style="background-image: url('stock/stock-04.jpg')">
+                     style="background-image: url('{{ $slide[3]->path }}')">
                     <div class="container">
                         <div class="text-center">
-                            <h1 class="tab-heading-title">Hiện thực hóa giấc mơ</h1>
+                            <h1 class="tab-heading-title">{{ $slide[3]->name }}</h1>
                         </div>
                     </div>
                 </div>
@@ -168,17 +169,16 @@
             <div class="row slick-items">
 
                 @foreach($partners as $partner)
-                    <div class="shop-item col-lg-4 col-md-4 col-sm-6">
+                    <div class="shop-item col-lg-3 col-md-3 col-sm-6">
                         <div class="inner-box">
                             <div class="image-box">
                                 <figure class="image">
-                                    <a href="#"><img src="/files/{{ $partner->image }}" alt="">
+                                    <a target="_blank" href="{{ $partner->website }}"><img src="/files/{{ $partner->image }}" alt="">
                                     </a>
                                 </figure>
                             </div>
                             <div class="product_description">
-                                <h3><a href="#">{{ $partner->name }}</a></h3>
-                                <h4><a href="#">{{ $partner->phone }}</a></h4>
+                                <h3><a href="{{ $partner->website }}">{{ $partner->name }}</a></h3>
                             </div>
                         </div>
                     </div>

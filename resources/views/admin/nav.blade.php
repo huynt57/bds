@@ -153,6 +153,11 @@
                             <span class="title">Cảm nhận khách hàng</span>
                         </a>
                     </li>
+                    <li class="nav-item  ">
+                        <a href="{{ url('admin/settings/banks') }}" class="nav-link ">
+                            <span class="title">Danh sách ngân hàng</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item  ">

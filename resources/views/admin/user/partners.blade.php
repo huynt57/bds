@@ -74,8 +74,8 @@
                     {{--<th>Id</th>--}}
                     <th>Ảnh</th>
                     <th>Tên</th>
-                    <th>Email</th>
-                    <th>SĐT</th>
+                    <th>Website</th>
+                    {{--<th>SĐT</th>--}}
                     {{--<th>Miêu tả</th>--}}
                     <th>Hành động</th>
                 </tr>
@@ -138,8 +138,7 @@
                     }
                 },
                 {data: 'name', name: 'name'},
-                {data: 'email', name: 'email'},
-                {data: 'phone', name: 'phone'},
+                {data: 'website', name: 'website'},
                 {data: 'action', name: 'action'},
             ]
         });
@@ -163,8 +162,7 @@
                     }
                 },
                 {data: 'name', name: 'name'},
-                {data: 'email', name: 'email'},
-                {data: 'phone', name: 'phone'},
+                {data: 'website', name: 'website'},
                 {data: 'action', name: 'action'},
             ],
             initComplete: function () {

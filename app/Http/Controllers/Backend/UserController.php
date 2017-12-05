@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Requests\CreateInvestorRequest;
+use App\Http\Requests\CreatePartnerRequest;
 use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ class UserController extends AdminController
 
     public function getUserByAttribute(Request $request)
     {
-        $users = User::where('type', '<>', User::INVESTOR);
+        $users = User::where('type', '<>', User::INVESTOR)->where('type', '<>', User::PARTNER);
         return Datatables::of($users)
             ->editColumn('type', function ($user) {
                 return $user->type_text;
@@ -205,6 +206,37 @@ class UserController extends AdminController
         }
 
         $data['password'] = bcrypt(time());
+
+        User::create($data);
+
+        if ($request->ajax()) {
+            return response([
+                'status' => 1,
+                'message' => 'Success'
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Thêm người dùng thành công');
+    }
+
+    public function storePartner(CreatePartnerRequest $request)
+    {
+        $data = $request->all();
+
+        if ($request->file('image') && $request->file('image')->isValid()) {
+            $data['image'] = $this->saveImage($request->file('image'));
+        }
+
+        $data['type'] = User::PARTNER;
+
+
+        if (!isset($data['status'])) {
+            $data['status'] = User::ACTIVE;
+        }
+
+        $data['password'] = bcrypt(time());
+        $data['email'] = time().'@gmail.com';
+        $data['phone'] = time();
 
         User::create($data);
 
