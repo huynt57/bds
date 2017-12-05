@@ -169,17 +169,16 @@
             <div class="row slick-items">
 
                 @foreach($partners as $partner)
-                    <div class="shop-item col-lg-4 col-md-4 col-sm-6">
+                    <div class="shop-item col-lg-3 col-md-3 col-sm-6">
                         <div class="inner-box">
                             <div class="image-box">
                                 <figure class="image">
-                                    <a href="#"><img src="/files/{{ $partner->image }}" alt="">
+                                    <a target="_blank" href="{{ $partner->website }}"><img src="/files/{{ $partner->image }}" alt="">
                                     </a>
                                 </figure>
                             </div>
                             <div class="product_description">
-                                <h3><a href="#">{{ $partner->name }}</a></h3>
-                                <h4><a href="#">{{ $partner->phone }}</a></h4>
+                                <h3><a href="{{ $partner->website }}">{{ $partner->name }}</a></h3>
                             </div>
                         </div>
                     </div>

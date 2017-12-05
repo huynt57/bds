@@ -209,9 +209,9 @@ class SettingController extends AdminController
         ]);
     }
 
-    public function listBank(Request $request)
+    public function listBanks(Request $request)
     {
-    	return view('admin.bank.index');
+    	return view('admin.setting.banks');
     }
 
     public function listBanksByAttribute(Request $request)
@@ -260,6 +260,13 @@ class SettingController extends AdminController
 		$name = $request->input('name');
 		$value = $request->input('value');
 
+		if($name == 'rate')
+        {
+            if(!is_numeric($value))
+            {
+                return;
+            }
+        }
 		$testimonial->update([
 			$name => $value
 		]);
