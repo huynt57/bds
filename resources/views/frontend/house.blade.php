@@ -440,6 +440,11 @@
         change();
     });
 
+    $("body").on("change", "#bank", function () {
+        $('#loanintrest').val($(this).val());
+        change();
+    });
+
     $(function () {
         change();
     });
