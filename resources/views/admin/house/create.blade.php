@@ -247,7 +247,7 @@
                 <div class="form-group dmc0">
                     <label>Tỉnh / thành phố *</label>
                     <div>
-                        <select class="form-control select2" name="city_id" data-index="0">
+                        <select class="form-control select2" name="city_id" data-index="0" id="province">
                             <option value="">Chọn thành phố</option>
                             @php $cities = \App\Components\Functions::getProvinces();@endphp
 
@@ -260,7 +260,7 @@
                 <div class="form-group dmc0">
                     <label>Quận / huyện *</label>
                     <div>
-                        <select class="form-control" name="district_id">
+                        <select class="form-control select2" name="district_id" id="district">
                             <option value="">Chọn quận huyện</option>
                         </select>
                     </div>
@@ -268,7 +268,7 @@
                 <div class="form-group dmc0">
                     <label>Phường / xã *</label>
                     <div>
-                        <select class="form-control" name="ward_id">
+                        <select class="form-control select2" name="ward_id" id="ward">
                             <option value="">Chọn phường xã</option>
                         </select>
                     </div>
@@ -408,6 +408,40 @@
 <script src="../assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="/esg/slick/slick.min.js"></script>
 <script src="//maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyBRy4cuNgPMeS5sDUj8rZ8Ql4_BkMMf4TM"></script>
+
+<script>
+    $(document).on('change', '#province', function (e) {
+        $.ajax({
+            url: '{{ url('get-sub-location') }}',
+            type: 'get',
+            data: {
+                'id': $(this).val(),
+                'type': 'province'
+            },
+            dataType: 'html',
+            success: function (response) {
+                $('#district').html(response);
+                $('.select2').select2();
+            }
+        });
+    });
+
+    $(document).on('change', '#district', function (e) {
+        $.ajax({
+            url: '{{ url('get-sub-location') }}',
+            type: 'get',
+            data: {
+                'id': $(this).val(),
+                'type': 'district'
+            },
+            dataType: 'html',
+            success: function (response) {
+                $('#ward').html(response);
+                $('.select2').select2();
+            }
+        });
+    });
+</script>
 <script>
     var map;
     var marker;

@@ -32,7 +32,7 @@ Route::post( 'connect-house-agent', 'Frontend\MainController@contactAgent' );
 Route::get( 'get-house-by-center', 'Frontend\MainController@getHouseByCenter' );
 
 Route::get( 'school', 'Frontend\MainController@getSchoolNearBy' );
-
+Route::get( 'get-sub-location', 'Frontend\MainController@getSubLocation' );
 
 Route::post( 'contact/store', 'Frontend\MainController@storeContact' );
 Route::post( 'wishlist/store', 'Frontend\MainController@addToWishlist' );

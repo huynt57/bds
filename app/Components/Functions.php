@@ -22,6 +22,20 @@ class Functions
         });
     }
 
+    public static function getDistricts()
+    {
+        return cache()->rememberForever('districts', function () {
+            return \DB::table('district')->get();
+        });
+    }
+
+    public static function getWards()
+    {
+        return cache()->rememberForever('wards', function () {
+            return \DB::table('ward')->get();
+        });
+    }
+
     public static function calculateChildMenu($menu)
     {
     	return Menu::where('parent_id', $menu->id)->count();

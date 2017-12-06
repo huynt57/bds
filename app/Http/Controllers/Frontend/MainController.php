@@ -162,7 +162,9 @@ class MainController extends Controller
 
         $lat = $request->input('lat');
         $lng = $request->input('lng');
-        $cityId = $request->input('city_id');
+        $cityId = $request->input('province');
+        $district = $request->input('district');
+        $ward = $request->input('ward');
 
         $coordinates['latitude'] = $lat;
         $coordinates['longitude'] = $lng;
@@ -195,9 +197,18 @@ class MainController extends Controller
             $items = $items->isWithinMaxDistance($coordinates, $radius);
         }
 
-        if(!empty($cityId))
-        {
+        if (!empty($cityId)) {
             $items = $items->where('city_id', $cityId);
+        }
+
+        if(!empty($district))
+        {
+            $items = $items->where('district_id', $district);
+        }
+
+        if(!empty($ward))
+        {
+            $items = $items->where('ward_id', $ward);
         }
 
         if ($request->ajax()) {
@@ -215,6 +226,22 @@ class MainController extends Controller
 
         return view('frontend.houses', compact('items'));
 
+    }
+
+    public function getSubLocation(Request $request)
+    {
+        $id = $request->input('id');
+        $type = $request->input('type');
+
+        if ($type == 'province') {
+            $type = 'districtid';
+            $items = \DB::table('district')->where('provinceid', $id)->get();
+        } else if ($type == 'district') {
+            $type = 'wardid';
+            $items = \DB::table('ward')->where('districtid', $id)->get();
+        }
+
+        return view('frontend.locations', compact('items', 'type'))->render();
     }
 
     public function getHouseByAttributeAjax(Request $request)
@@ -266,7 +293,6 @@ class MainController extends Controller
 
             }
         }
-
 
 
         if (!empty($lat) && !empty($lng)) {
@@ -449,8 +475,7 @@ class MainController extends Controller
     {
         $house = House::find($id);
 
-        if(!$house)
-        {
+        if (!$house) {
             $house = Project::find($id);
         }
 

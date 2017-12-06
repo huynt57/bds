@@ -258,7 +258,7 @@
                 <div class="form-group dmc0">
                     <label>Tỉnh / thành phố *</label>
                     <div>
-                        <select class="form-control select2" name="city_id" data-index="0">
+                        <select class="form-control select2" name="city_id" id="province" data-index="0">
                             <option value="0">Chọn thành phố</option>
                             @php $cities = \App\Components\Functions::getProvinces();@endphp
 
@@ -272,16 +272,25 @@
                 <div class="form-group dmc0">
                     <label>Quận / huyện *</label>
                     <div>
-                        <select class="form-control" name="district_id">
+                        <select class="form-control select2" name="district_id" id="district">
                             <option value="0">Chọn quận huyện</option>
+
+                            @if($district = DB::table('district')->where('districtid', $house->district_id)->first())
+                            <option selected value="{{ $house->district_id }}">{{ $district->name }}</option>
+                                @endif
+
                         </select>
                     </div>
                 </div>
                 <div class="form-group dmc0">
                     <label>Phường / xã *</label>
                     <div>
-                        <select class="form-control" name="ward_id">
+                        <select class="form-control select2" name="ward_id" id="ward">
                             <option value="">Chọn phường xã</option>
+                            @if($ward = DB::table('district')->where('districtid', $house->district_id)->first())
+                                <option selected
+                                        value="{{ $house->district_id }}">{{  $ward->name }}</option>
+                            @endif
                         </select>
                     </div>
                 </div>
@@ -421,6 +430,39 @@
 <script type="text/javascript" src="/esg/slick/slick.min.js"></script>
 <script src="//maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyBRy4cuNgPMeS5sDUj8rZ8Ql4_BkMMf4TM"></script>
 <script>
+    $(document).on('change', '#province', function (e) {
+        $.ajax({
+            url: '{{ url('get-sub-location') }}',
+            type: 'get',
+            data: {
+                'id': $(this).val(),
+                'type': 'province'
+            },
+            dataType: 'html',
+            success: function (response) {
+                $('#district').html(response);
+                $('.select2').select2();
+            }
+        });
+    });
+
+    $(document).on('change', '#district', function (e) {
+        $.ajax({
+            url: '{{ url('get-sub-location') }}',
+            type: 'get',
+            data: {
+                'id': $(this).val(),
+                'type': 'district'
+            },
+            dataType: 'html',
+            success: function (response) {
+                $('#ward').html(response);
+                $('.select2').select2();
+            }
+        });
+    });
+</script>
+<script>
     var map;
     var marker;
     var myLatlng = new google.maps.LatLng({{ $house->lat }}, {{ $house->lng }});
@@ -535,7 +577,7 @@
             'initialPreview': [
                 @php  $images = \App\Models\Image::where('house_id', $house->id)->get();@endphp
                         @foreach ($images as $image)
-                  '<img src=" {{$image->path }} " class="kv-preview-data file-preview-image" style="width:auto;height:160px;">',
+                    '<img src=" {{$image->path }} " class="kv-preview-data file-preview-image" style="width:auto;height:160px;">',
                 @endforeach
             ],
             showCaption: false, language: "vi",
