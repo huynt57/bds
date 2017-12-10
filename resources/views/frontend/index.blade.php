@@ -33,14 +33,14 @@
                         </div>
                     </div>
                 </div>
-                <div role="tabpanel" class="tab-pane ht-bgcover fade" id="demoSearchTab04"
-                     style="background-image: url('{{ $slide[3]->path }}')">
-                    <div class="container">
-                        <div class="text-center">
-                            <h1 class="tab-heading-title">{{ $slide[3]->name }}</h1>
-                        </div>
-                    </div>
-                </div>
+                {{--<div role="tabpanel" class="tab-pane ht-bgcover fade" id="demoSearchTab04"--}}
+                     {{--style="background-image: url('{{ $slide[3]->path }}')">--}}
+                    {{--<div class="container">--}}
+                        {{--<div class="text-center">--}}
+                            {{--<h1 class="tab-heading-title">{{ $slide[3]->name }}</h1>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
             </div>
             <div class="search-content">
                 <div class="container">
