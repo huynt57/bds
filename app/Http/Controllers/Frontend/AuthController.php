@@ -74,7 +74,8 @@ class AuthController extends Controller
         }
 
         $data['password'] = \Hash::make($data['password']);
-
+        $data['name'] = $data['email'];
+        $data['phone'] = '';
 
         Account::create($data);
 
@@ -85,7 +86,7 @@ class AuthController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('success', 'Thêm người dùng thành công');
+        return redirect()->to(url('/'))->with('success', 'Đăng ký thành công, vui lòng đăng nhập');
     }
 
     public function login()

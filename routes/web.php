@@ -205,6 +205,7 @@ Route::group( [ 'prefix' => 'admin' ], function () {
 
 
 		Route::post( 'slide/update/{id}', 'Backend\SettingController@updateSlide' );
+        Route::post( 'logo/update', 'Backend\SettingController@updateLogo' );
 		Route::post( 'testimonial/update-inline/{id}', 'Backend\SettingController@updateInlineTestimonial' );
 		Route::post( 'update-inline/{id}', 'Backend\SettingController@updateInlineSetting' );
 

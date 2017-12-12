@@ -64,28 +64,6 @@
 
                     </div>
                 </div>
-                {{--<div class="col-md-2">--}}
-                {{--<div class="form-group">--}}
-                {{--<label>Số phòng ngủ</label>--}}
-                {{--<select class="form-control" name="beds" id="beds">--}}
-                {{--<option value="">Chọn</option>--}}
-                {{--@for($i = 1; $i<=8; $i++)--}}
-                {{--<option value="{{ $i }}">Từ {{$i}}</option>--}}
-                {{--@endfor--}}
-                {{--</select>--}}
-                {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="col-md-2">--}}
-                {{--<div class="form-group">--}}
-                {{--<label>Số phòng tắm</label>--}}
-                {{--<select class="form-control" name="bathrooms" id="bathrooms">--}}
-                {{--<option value="">Chọn</option>--}}
-                {{--@for($i = 1; $i<=8; $i++)--}}
-                {{--<option value="{{ $i }}">Từ {{$i}}</option>--}}
-                {{--@endfor--}}
-                {{--</select>--}}
-                {{--</div>--}}
-                {{--</div>--}}
 
                 <div class="col-md-3">
                     <a class="btn btn-warning" href="#add-criteria" data-toggle="modal" style="margin-top: 25px">Thêm

@@ -19,7 +19,8 @@ class SettingController extends AdminController
     public function index(Request $request)
     {
         $settings = Setting::all();
-        return view('admin.setting.index', compact('settings'));
+        $logo = Setting::where('name', 'logo')->first();
+        return view('admin.setting.index', compact('settings', 'logo'));
     }
 
     public function addSlide(Request $request)
@@ -66,6 +67,29 @@ class SettingController extends AdminController
     public function updateSetting(Request $request)
     {
 
+    }
+
+    public function updateLogo(Request $request)
+    {
+        $data = [];
+        if ($request->file('image') && $request->file('image')->isValid()) {
+            $data['value'] = $this->saveImage($request->file('image'));
+        }
+        \DB::table('settings')->where('name', 'logo')->update([
+            'value' => $data['value']
+        ]);
+
+        cache()->forget('settings');
+
+        cache()->rememberForever('settings', function () {
+            $settings = Setting::all();
+            $arr = [];
+            foreach ($settings as $setting) {
+                $arr[$setting->name] = $setting->value;
+            }
+            return $arr;
+        });
+        return redirect()->back()->with('success', 'Cập nhật Thành công');
     }
 
     public function updateSlide($id, Request $request)
@@ -136,7 +160,7 @@ class SettingController extends AdminController
                 class="editable editable-click"> ' . $item->address . ' </a>';
         })->addColumn('action', function ($item) {
             $url = url('admin/settings/testimonial/delete', ['id' => $item->id]);
-            return  '<a href="' . $url . '"  data-id="' . $item->id . '" class="btn btn-sm red btn-outline delete-btn"> Xóa</a>';
+            return '<a href="' . $url . '"  data-id="' . $item->id . '" class="btn btn-sm red btn-outline delete-btn"> Xóa</a>';
         })->make(true);
     }
 
@@ -211,76 +235,74 @@ class SettingController extends AdminController
 
     public function listBanks(Request $request)
     {
-    	return view('admin.setting.banks');
+        return view('admin.setting.banks');
     }
 
     public function listBanksByAttribute(Request $request)
     {
-    	$banks = Bank::all();
-    	return \Datatables::of($banks)->editColumn('bank', function ($item) {
-		    return '<a href="javascript:;" data-type="text" 
+        $banks = Bank::all();
+        return \Datatables::of($banks)->editColumn('bank', function ($item) {
+            return '<a href="javascript:;" data-type="text" 
                 data-pk="' . $item->id . '" data-url="' . url('admin/settings/bank/update-inline', ['id' => $item->id]) . '" 
                 data-id="' . $item->id . '" 
                 data-name="bank"
                 class="editable editable-click"> ' . $item->bank . ' </a>';
-	    })->editColumn('rate', function ($item) {
-		    return '<a href="javascript:;" data-type="text" 
+        })->editColumn('rate', function ($item) {
+            return '<a href="javascript:;" data-type="text" 
                 data-pk="' . $item->id . '" data-url="' . url('admin/settings/bank/update-inline', ['id' => $item->id]) . '" 
                 data-id="' . $item->id . '" 
                 data-name="rate"
                 class="editable editable-click"> ' . $item->rate . ' </a>';
-	    })->addColumn('action', function ($item) {
-		    $url = url('admin/settings/bank/delete', ['id' => $item->id]);
-		    return  '<a href="' . $url . '"  data-id="' . $item->id . '" class="btn btn-sm red btn-outline delete-btn"> Xóa</a>';
-	    })->make(true);
+        })->addColumn('action', function ($item) {
+            $url = url('admin/settings/bank/delete', ['id' => $item->id]);
+            return '<a href="' . $url . '"  data-id="' . $item->id . '" class="btn btn-sm red btn-outline delete-btn"> Xóa</a>';
+        })->make(true);
     }
 
-	public function storeBanks(Request $request)
-	{
-		$data = $request->all();
+    public function storeBanks(Request $request)
+    {
+        $data = $request->all();
 
-		Bank::create($data);
+        Bank::create($data);
 
-		cache()->forget('banks');
-		cache()->rememberForever('banks', function () {
-			return Bank::all();
-		});
+        cache()->forget('banks');
+        cache()->rememberForever('banks', function () {
+            return Bank::all();
+        });
 
-		return response([
-			'status' => 1,
-			'message' => 'Thành công'
+        return response([
+            'status' => 1,
+            'message' => 'Thành công'
 
-		]);
-	}
+        ]);
+    }
 
-	public function updateInlineBank($id, Request $request)
-	{
-		$testimonial = Bank::find($id);
+    public function updateInlineBank($id, Request $request)
+    {
+        $testimonial = Bank::find($id);
 
-		$name = $request->input('name');
-		$value = $request->input('value');
+        $name = $request->input('name');
+        $value = $request->input('value');
 
-		if($name == 'rate')
-        {
-            if(!is_numeric($value))
-            {
+        if ($name == 'rate') {
+            if (!is_numeric($value)) {
                 return;
             }
         }
-		$testimonial->update([
-			$name => $value
-		]);
+        $testimonial->update([
+            $name => $value
+        ]);
 
-		cache()->forget('banks');
-		cache()->rememberForever('banks', function () {
-			return Bank::all();
-		});
+        cache()->forget('banks');
+        cache()->rememberForever('banks', function () {
+            return Bank::all();
+        });
 
-	}
+    }
 
-	public function deleteBank($id)
-	{
-		Bank::find($id)->delete();
-		return redirect()->back()->with('success', 'Xóa thành công');
-	}
+    public function deleteBank($id)
+    {
+        Bank::find($id)->delete();
+        return redirect()->back()->with('success', 'Xóa thành công');
+    }
 }

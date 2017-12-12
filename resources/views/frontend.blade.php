@@ -32,10 +32,9 @@
     <link rel="stylesheet" type="text/css" href="/frontend/css/slick.css"/>
     <link rel="stylesheet" type="text/css" href="/frontend/css/slick-theme.css"/>
     <link rel="stylesheet" type="text/css" href="/frontend/css/font-awesome.min.css"/>
-    <link href="/assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
-
+    <link href="/assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
 
     <!-- CSS -->
@@ -56,6 +55,28 @@
         .select2-container {
             width: 100% !important;
         }
+
+        @media only screen and (max-width: 1440px) {
+
+            #nav-main-top {
+                margin-left: 5%;
+                margin-right: 5%;
+
+            }
+
+        }
+
+        @media only screen and (min-width: 1441px) {
+
+            #nav-main-top {
+                margin-left: 10%;
+                margin-right: 10%;
+
+            }
+
+        }
+
+
     </style>
     <style>
         .ht-on-loading {
@@ -177,82 +198,83 @@
 
 <!-- Header Plain:  add the id plain to header and change logo.png to logo_sticky.png ======================= -->
 <header id="plain">
-    {{--<div id="top_line">--}}
-        {{--<div class="container">--}}
-            {{--<div class="row">--}}
-                {{--<div class="col-md-6 col-sm-6 col-xs-6"><i class="icon-phone"></i><strong>{{ cache()->get('settings')['phone'] }}</strong>--}}
-                {{--</div>--}}
-                {{--<div class="col-md-6 col-sm-6 col-xs-6">--}}
-                    {{--<ul id="top_links">--}}
-                        {{--<li>--}}
-                            {{--<div class="dropdown dropdown-access">--}}
-                                {{--@if(!auth('frontend')->check())--}}
-                                {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="access_link">Đăng--}}
-                                    {{--nhập</a>--}}
-                                {{--@else--}}
-                                    {{--<a href="#" class="dropdown-toggle" id="access_link">Xin chào, {{ auth('frontend')->user()->name }}</a>--}}
-                                    {{--@endif--}}
+{{--<div id="top_line">--}}
+{{--<div class="container">--}}
+{{--<div class="row">--}}
+{{--<div class="col-md-6 col-sm-6 col-xs-6"><i class="icon-phone"></i><strong>{{ cache()->get('settings')['phone'] }}</strong>--}}
+{{--</div>--}}
+{{--<div class="col-md-6 col-sm-6 col-xs-6">--}}
+{{--<ul id="top_links">--}}
+{{--<li>--}}
+{{--<div class="dropdown dropdown-access">--}}
+{{--@if(!auth('frontend')->check())--}}
+{{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="access_link">Đăng--}}
+{{--nhập</a>--}}
+{{--@else--}}
+{{--<a href="#" class="dropdown-toggle" id="access_link">Xin chào, {{ auth('frontend')->user()->name }}</a>--}}
+{{--@endif--}}
 
-                                {{--<div class="dropdown-menu">--}}
-                                    {{--<div class="row">--}}
-                                        {{--<div class="col-md-6 col-sm-6 col-xs-6">--}}
-                                            {{--<a href="#" class="bt_facebook"><i class="icon-facebook"></i>Facebook </a>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="login-or">--}}
-                                        {{--<hr class="hr-or">--}}
-                                        {{--<span class="span-or">hoặc</span>--}}
-                                    {{--</div>--}}
-                                    {{--<form method="post" action="{{ url('process-login') }}">--}}
-                                        {{--{!! csrf_field() !!}--}}
-                                        {{--<div class="form-group">--}}
-                                            {{--<input type="text" class="form-control" id="inputUsernameEmail" name="email"--}}
-                                                   {{--placeholder="Email">--}}
-                                        {{--</div>--}}
-                                        {{--<div class="form-group">--}}
-                                            {{--<input type="password" class="form-control" id="inputPassword"--}}
-                                                   {{--name="password"--}}
-                                                   {{--placeholder="Mật khẩu">--}}
-                                        {{--</div>--}}
-                                        {{--<a id="forgot_pw" href="#">Quên mật khẩu?</a>--}}
-                                        {{--<input type="submit" name="Sign_in" value="Đăng nhập" id="Sign_in"--}}
-                                               {{--class="button_drop">--}}
-                                        {{--<a href="{{ url('dang-ky') }}" name="Sign_up" value="Đăng ký" id="Sign_up"--}}
-                                           {{--class="button_drop outline">Đăng ký</a>--}}
-                                    {{--</form>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<!-- End Dropdown access -->--}}
-                        {{--</li>--}}
-                        {{--@if(auth('frontend')->check())--}}
-                        {{--<li><a href="{{ url('logout') }}" >Đăng xuất</a>--}}
-                            {{--@endif--}}
-                        {{--</li>--}}
-                        {{--<li><a href="{{ url('yeu-thich') }}" id="wishlist_link">Yêu thích</a>--}}
-                        {{--</li>--}}
-                    {{--</ul>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-            {{--<!-- End row -->--}}
-        {{--</div>--}}
-        {{--<!-- End container-->--}}
-    {{--</div>--}}
-    <!-- End top line-->
+{{--<div class="dropdown-menu">--}}
+{{--<div class="row">--}}
+{{--<div class="col-md-6 col-sm-6 col-xs-6">--}}
+{{--<a href="#" class="bt_facebook"><i class="icon-facebook"></i>Facebook </a>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--<div class="login-or">--}}
+{{--<hr class="hr-or">--}}
+{{--<span class="span-or">hoặc</span>--}}
+{{--</div>--}}
+{{--<form method="post" action="{{ url('process-login') }}">--}}
+{{--{!! csrf_field() !!}--}}
+{{--<div class="form-group">--}}
+{{--<input type="text" class="form-control" id="inputUsernameEmail" name="email"--}}
+{{--placeholder="Email">--}}
+{{--</div>--}}
+{{--<div class="form-group">--}}
+{{--<input type="password" class="form-control" id="inputPassword"--}}
+{{--name="password"--}}
+{{--placeholder="Mật khẩu">--}}
+{{--</div>--}}
+{{--<a id="forgot_pw" href="#">Quên mật khẩu?</a>--}}
+{{--<input type="submit" name="Sign_in" value="Đăng nhập" id="Sign_in"--}}
+{{--class="button_drop">--}}
+{{--<a href="{{ url('dang-ky') }}" name="Sign_up" value="Đăng ký" id="Sign_up"--}}
+{{--class="button_drop outline">Đăng ký</a>--}}
+{{--</form>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--<!-- End Dropdown access -->--}}
+{{--</li>--}}
+{{--@if(auth('frontend')->check())--}}
+{{--<li><a href="{{ url('logout') }}" >Đăng xuất</a>--}}
+{{--@endif--}}
+{{--</li>--}}
+{{--<li><a href="{{ url('yeu-thich') }}" id="wishlist_link">Yêu thích</a>--}}
+{{--</li>--}}
+{{--</ul>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--<!-- End row -->--}}
+{{--</div>--}}
+{{--<!-- End container-->--}}
+{{--</div>--}}
+<!-- End top line-->
 
-<div style="margin-left: 10%; margin-right: 10%">
+    <div id="nav-main-top">
         <div class="row">
             <div class="col-md-2 col-sm-2 col-xs-2">
-                <a href="{{ url('/') }}"><h3 style="color: #f47b09; font-weight: 900; ">VIETHOUSE24</h3></a>
-                {{--<div id="logo_home">--}}
-                    {{--<h1><a href="{{ url('/') }}" title="City tours travel template">{{ cache()->get('settings')['title'] }}</a></h1>--}}
-                {{--</div>--}}
+                {{--<a href="{{ url('/') }}"><h3 style="color: #f47b09; font-weight: 900; ">VIETHOUSE24</h3></a>--}}
+                <div id="logo_home">
+                <h1><a style="background-repeat:no-repeat; background-image: url('/files/{{ cache()->get('settings')['logo'] }}')" href="{{ url('/') }}" title="{{ cache()->get('settings')['title'] }}">{{ cache()->get('settings')['title'] }}</a></h1>
+                </div>
             </div>
             <nav class="col-md-8 col-sm-8 col-xs-8">
                 <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Danh mục di động</span></a>
                 <div class="main-menu">
                     <div id="header_menu">
 
-                        <img src="/frontend/img/logo_sticky.png" width="160" height="34" alt="{{ cache()->get('settings')['title'] }}"
+                        <img src="{{ cache()->get('settings')['logo'] }}" width="160" height="34"
+                             alt="{{ cache()->get('settings')['title'] }}"
                              data-retina="true">
                     </div>
                     <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
@@ -260,9 +282,10 @@
                         @php $menus = \App\Models\Menu::where('parent_id', null)->orderBy('order', 'asc')->get(); @endphp
                         @foreach($menus as $menu)
                             <li class="submenu">
-                                <a href="{{ \App\Components\Functions::getUrlMenu($menu) }}" class="show-submenu">{{ $menu->title }}
+                                <a href="{{ \App\Components\Functions::getUrlMenu($menu) }}"
+                                   class="show-submenu">{{ $menu->title }}
                                     @if(\App\Components\Functions::calculateChildMenu($menu))
-                                    <i class="icon-down-open-mini"></i></a>
+                                        <i class="icon-down-open-mini"></i></a>
                                 @endif
                                 @php  \App\Components\Functions::printMenuFrontend($menu); @endphp
                             </li>
@@ -290,19 +313,10 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="access_link">Đăng
                                     nhập</a>
                             @else
-                                <a href="#" class="dropdown-toggle" id="access_link">Xin chào, {{ auth('frontend')->user()->name }}</a>
+
                             @endif
 
                             <div class="dropdown-menu">
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-6 col-xs-6">
-                                        <a href="#" class="bt_facebook"><i class="icon-facebook"></i>Facebook </a>
-                                    </div>
-                                </div>
-                                <div class="login-or">
-                                    <hr class="hr-or">
-                                    <span class="span-or">hoặc</span>
-                                </div>
                                 <form method="post" action="{{ url('process-login') }}">
                                     {!! csrf_field() !!}
                                     <div class="form-group">
@@ -325,7 +339,7 @@
                         <!-- End Dropdown access -->
                     </li>
                     @if(auth('frontend')->check())
-                        <li><a href="{{ url('logout') }}" >Đăng xuất</a>
+                        <li><a href="{{ url('logout') }}">Đăng xuất</a>
                             @endif
                         </li>
                         <li><a href="{{ url('yeu-thich') }}" id="wishlist_link">Yêu thích</a>
@@ -333,7 +347,7 @@
                 </ul>
             </div>
         </div>
-</div>
+    </div>
 
     <!-- container -->
 </header>
@@ -348,21 +362,21 @@
 {{--</section>--}}
 <!-- End section -->
 <div class="container">
-@if (session()->has('error'))
-    <div class="alert alert-danger">{{ session()->get('error') }}</div>
-@endif
-@if (session()->has('success'))
-    <div class="alert alert-success">{{ session()->get('success') }}</div>
-@endif
-@if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+    @if (session()->has('error'))
+        <div class="alert alert-danger">{{ session()->get('error') }}</div>
+    @endif
+    @if (session()->has('success'))
+        <div class="alert alert-success">{{ session()->get('success') }}</div>
+    @endif
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 </div>
 @yield('content')
 
@@ -376,16 +390,19 @@
                         <i class="fa fa-phone"></i> <a href="#">{{ cache()->get('settings')['phone'] }}</a>
                     </li>
                     <li>
-                        <i class="fa fa-envelope"></i> <a href="mailto:{{ cache()->get('settings')['email'] }}">{{ cache()->get('settings')['email'] }}</a>
+                        <i class="fa fa-envelope"></i> <a
+                                href="mailto:{{ cache()->get('settings')['email'] }}">{{ cache()->get('settings')['email'] }}</a>
                     </li>
                     <li class="location">
                         <i class="fa fa-home"></i> <a href="#"> {{ cache()->get('settings')['address'] }}</a>
                     </li>
                     <li class="location">
-                        <i class="fa fa-skype"></i> <a href="skype:{{ cache()->get('settings')['skype'] }}"> {{ cache()->get('settings')['skype'] }} </a>
+                        <i class="fa fa-skype"></i> <a
+                                href="skype:{{ cache()->get('settings')['skype'] }}"> {{ cache()->get('settings')['skype'] }} </a>
                     </li>
                     <li class="location">
-                        <i class="fa fa-facebook-official"></i> <a href="{{ cache()->get('settings')['facebook'] }}"> {{ cache()->get('settings')['facebook'] }} </a>
+                        <i class="fa fa-facebook-official"></i> <a
+                                href="{{ cache()->get('settings')['facebook'] }}"> {{ cache()->get('settings')['facebook'] }} </a>
                     </li>
                 </ul>
             </div>
@@ -444,7 +461,7 @@
 <script>
     var baseUrl = '{{url('/')}}';
     $.ajaxSetup({
-        headers: { 'X-CSRF-Token' : $('meta[name=csrf-token]').attr('content') }
+        headers: {'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')}
     });
 
 </script>
@@ -452,7 +469,6 @@
 <script src="/frontend/js/functions.js"></script>
 <script src="/frontend/js/slick.js"></script>
 <script src="/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
-
 
 
 <script type="text/javascript"
@@ -471,11 +487,10 @@
 <div id="fb-root"></div>
 
 
-
 <script type="text/javascript">
 
-    $(document).ready(function() {
-       $('.select2').select2();
+    $(document).ready(function () {
+        $('.select2').select2();
     });
 
     function addWishlist(house_id) {
@@ -487,7 +502,7 @@
             },
             dataType: 'json',
             success: function (response) {
-                if(response.status == 1) {
+                if (response.status == 1) {
                     toastr.success(response.message);
                 } else {
                     toastr.error(response.message);
@@ -547,7 +562,15 @@
 
 @stack('scripts')
 <script type="text/javascript">
-    (function(d,s,id){var z=d.createElement(s);z.type="text/javascript";z.id=id;z.async=true;z.src="//static.zotabox.com/4/7/47092d2a102003d709bc82e4af0ccdac/widgets.js";var sz=d.getElementsByTagName(s)[0];sz.parentNode.insertBefore(z,sz)}(document,"script","zb-embed-code"));
+    (function (d, s, id) {
+        var z = d.createElement(s);
+        z.type = "text/javascript";
+        z.id = id;
+        z.async = true;
+        z.src = "//static.zotabox.com/4/7/47092d2a102003d709bc82e4af0ccdac/widgets.js";
+        var sz = d.getElementsByTagName(s)[0];
+        sz.parentNode.insertBefore(z, sz)
+    }(document, "script", "zb-embed-code"));
 </script>
 </body>
 
