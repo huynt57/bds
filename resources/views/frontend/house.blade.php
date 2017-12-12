@@ -370,11 +370,11 @@
         var total_amount = permonth * Number(period) * 12;
 
         var total_intrest =  total_amount - loanamount;
-        $("#permonth").text("VND" + permonth);
-        $("#downpament_a").text("VND" + downpayment.toFixed(2));
-        $("#loanamount_total").text("VND" + Number(loanamount_total).toFixed(2));
-        $("#total_interest").text("VND" + total_intrest.toFixed(2));
-        $("#total_amount").text("VND" + total_amount.toFixed(2));
+        $("#permonth").text( permonth);
+        $("#downpament_a").text( downpayment.toFixed(2));
+        $("#loanamount_total").text( Number(loanamount_total).toFixed(2));
+        $("#total_interest").text( total_intrest.toFixed(2));
+        $("#total_amount").text( total_amount.toFixed(2));
 
         var total_intrest_percent = (Number(total_intrest) * 100) / Number(total_amount);
         var total_amount_precent = (Number(loanamount) * 100) / Number(total_amount);
@@ -387,7 +387,7 @@
             left_amount = left_amount - permonth;
             var principle = permonth - intrest_l;
             loanamount_left = loanamount_left - principle;
-            $( "#tbody" ).append( "<tr style='background-color: #FBFCFF;border-top: dotted #DEEEFE 1px;'><td style='padding:5px'> "+ i +" </td><td> VND"+ permonth  +" </td> <td>VND" + principle.toFixed(2) +" </td><td>VND" + intrest_l.toFixed(2)  + "</td>  <td> VND"+ left_amount.toFixed(2) +" </td></tr>" );
+            $( "#tbody" ).append( "<tr style='background-color: #FBFCFF;border-top: dotted #DEEEFE 1px;'><td style='padding:5px'> "+ i +" </td><td> "+ permonth  +" </td> <td>" + principle.toFixed(2) +" </td><td>" + intrest_l.toFixed(2)  + "</td>  <td> VND"+ left_amount.toFixed(2) +" </td></tr>" );
         }
 
 
