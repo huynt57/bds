@@ -131,7 +131,7 @@
                             <div class="col-md-9">
                                 <select class="form-control select2" name="beds" id="beds">
 
-                                    <option value="">Vui lòng chọn</option>
+                                    <option value="0">Vui lòng chọn</option>
                                     @for($i = 1; $i<=8; $i++)
                                         <option value="{{ $i }}">Từ {{$i}}</option>
                                     @endfor
@@ -144,7 +144,7 @@
                             <div class="col-md-9">
                                 <select class="form-control select2" name="bathrooms" id="bathrooms">
 
-                                    <option value="">Vui lòng chọn</option>
+                                    <option value="0">Vui lòng chọn</option>
                                     @for($i = 1; $i<=8; $i++)
                                         <option value="{{ $i }}">Từ {{$i}}</option>
                                     @endfor
@@ -245,6 +245,7 @@
                     markers[key].setMap(null);
                 }
                 markers = [];
+                $('#add-criteria').modal('hide');
             },
             success: function (response) {
                 $('.content-left').removeClass('ht-on-loading').html(response.items);
@@ -255,7 +256,7 @@
                         var marker = map.addMarker({
                             lat: item.location_latitude,
                             lng: item.location_longitude,
-                            icon: 'img/pins/' + key + '.png',
+                            icon: '/images/house.png',
                             click: function (e) {
                                 map.setCenter(item.location_latitude, item.location_longitude);
 

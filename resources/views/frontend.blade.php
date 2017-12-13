@@ -328,7 +328,7 @@
                                                name="password"
                                                placeholder="Mật khẩu">
                                     </div>
-                                    <a id="forgot_pw" href="#">Quên mật khẩu?</a>
+                                    {{--<a id="forgot_pw" href="#">Quên mật khẩu?</a>--}}
                                     <input type="submit" name="Sign_in" value="Đăng nhập" id="Sign_in"
                                            class="button_drop">
                                     <a href="{{ url('dang-ky') }}" name="Sign_up" value="Đăng ký" id="Sign_up"
@@ -463,6 +463,9 @@
     $.ajaxSetup({
         headers: {'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')}
     });
+    function numberWithDots(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
 
 </script>
 <script src="/frontend/js/common_scripts_min.js"></script>

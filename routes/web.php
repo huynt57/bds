@@ -17,6 +17,7 @@ Route::get( 'map', 'Frontend\MainController@getHouseByAttribute' );
 Route::get( 'map-project', 'Frontend\MainController@getProjectByAttribute' );
 Route::get( 'map-ajax', 'Frontend\MainController@getHouseByAttributeAjax' );
 Route::get( 'map-project-ajax', 'Frontend\MainController@getProjectByAttributeAjax' );
+Route::get( 'map-ajax-project', 'Frontend\MainController@getProjectByAttributeAjax' );
 Route::get( 'get-house-marker', 'Frontend\MainController@getHouseMarker' );
 Route::get( 'agents', 'Frontend\MainController@getAgents' );
 Route::get( 'lien-he', 'Frontend\MainController@contact' );
@@ -39,6 +40,9 @@ Route::post( 'wishlist/store', 'Frontend\MainController@addToWishlist' );
 
 Route::get( 'post/{slug}-{id}', 'Frontend\MainController@getPostBySlug' )
      ->where( [ 'slug' => '[a-zA-Z0-9-]+', 'id' => '[0-9-]+' ] );
+
+Route::get( 'post/category/{slug}-{id}', 'Frontend\MainController@getPostCategory' )
+    ->where( [ 'slug' => '[a-zA-Z0-9-]+', 'id' => '[0-9-]+' ] );
 
 Route::get( 'house/{slug}-{id}', 'Frontend\MainController@detail' )
      ->where( [ 'slug' => '[a-zA-Z0-9-]+', 'id' => '[0-9-]+' ] );

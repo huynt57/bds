@@ -55,10 +55,10 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <body class=" login">
 <!-- BEGIN LOGO -->
-<div class="logo">
-    <a href="index.html">
-        <img src="/assets/pages/img/logo-big.png" alt="" /> </a>
-</div>
+{{--<div class="logo">--}}
+    {{--<a href="index.html">--}}
+        {{--<img src="/assets/pages/img/logo-big.png" alt="" /> </a>--}}
+{{--</div>--}}
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
 <div class="content">

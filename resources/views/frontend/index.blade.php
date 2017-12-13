@@ -52,7 +52,7 @@
                                 </li>
                                 <li><a id="searchTab02" href="#demoSearchTab02" role="tab" data-toggle="tab">Bán</a>
                                 </li>
-                                <li><a href="#demoSearchTab03" role="tab" data-toggle="tab">Cho thuê</a></li>
+                                <li><a id="searchTab03" href="#demoSearchTab03" role="tab" data-toggle="tab">Cho thuê</a></li>
                             </ul>
                             <form action="{{ url('map') }}" class="home-search-form">
                                 <div class="form-group">
@@ -204,11 +204,14 @@
 
         $('#searchTab01').click(function () {
 
-            $('#type_search').val('{{ \App\Models\House::BOTH_SALE }}')
+            $('#type_search').val('{{ \App\Models\House::FOR_SALE }}')
         });
 
         $('#searchTab02').click(function () {
-            $('#type_search').val('{{ \App\Models\House::BOTH_RENT }}')
+            $('#type_search').val('{{ \App\Models\House::SALE }}')
+        });
+        $('#searchTab03').click(function () {
+            $('#type_search').val('{{ \App\Models\House::FOR_RENT }}')
         });
     });
 

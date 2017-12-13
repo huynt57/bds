@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Requests\CreateContactRequest;
+use App\Models\Category;
 use App\Models\Contact;
 use App\Models\House;
 use App\Models\Post;
@@ -153,6 +154,19 @@ class MainController extends Controller
         ]);
     }
 
+    public function getPostCategory($slug, $id, Request $request)
+    {
+        $category = Category::find($id);
+        if (!$category) {
+            return redirect()->back()->with('error', 'Dữ liệu không hợp lệ');
+        }
+
+        $posts = Post::where('category_id', $category->id)->paginate(10);
+        $categories = Category::all();
+
+        return view('frontend.posts', compact('posts', 'categories'));
+    }
+
     public function getHouseByAttribute(Request $request)
     {
         $type = $request->input('type');
@@ -173,10 +187,13 @@ class MainController extends Controller
 
 
         if (!empty(trim($keyword))) {
-            $items->where(function ($query) use ($keyword) {
-                $query->where('name', 'LIKE', '%' . $keyword . '%');
-                $query->orWhere('address', 'LIKE', '%' . $keyword . '%');
-            });
+            $searchTerms = explode(' ', $keyword);
+            foreach ($searchTerms as $searchTerm) {
+                $items->where(function ($query) use ($searchTerm) {
+                    $query->where('name', 'LIKE', '%' . $searchTerm . '%');
+                    $query->orWhere('address', 'LIKE', '%' . $searchTerm . '%');
+                });
+            }
         }
 
         if (!empty($categoryId)) {
@@ -201,13 +218,11 @@ class MainController extends Controller
             $items = $items->where('city_id', $cityId);
         }
 
-        if(!empty($district))
-        {
+        if (!empty($district)) {
             $items = $items->where('district_id', $district);
         }
 
-        if(!empty($ward))
-        {
+        if (!empty($ward)) {
             $items = $items->where('ward_id', $ward);
         }
 
@@ -272,10 +287,13 @@ class MainController extends Controller
 
 
         if (!empty(trim($keyword))) {
-            $items->where(function ($query) use ($keyword) {
-                $query->where('name', 'LIKE', '%' . $keyword . '%');
-                $query->orWhere('address', 'LIKE', '%' . $keyword . '%');
-            });
+            $searchTerms = explode(' ', $keyword);
+            foreach ($searchTerms as $searchTerm) {
+                $items->where(function ($query) use ($searchTerm) {
+                    $query->where('name', 'LIKE', '%' . $searchTerm . '%');
+                    $query->orWhere('address', 'LIKE', '%' . $searchTerm . '%');
+                });
+            }
         }
 
         if (!empty($categoryId)) {
@@ -353,10 +371,13 @@ class MainController extends Controller
         }
 
         if (!empty(trim($keyword))) {
-            $items->where(function ($query) use ($keyword) {
-                $query->where('name', 'LIKE', '%' . $keyword . '%');
-                $query->orWhere('address', 'LIKE', '%' . $keyword . '%');
-            });
+            $searchTerms = explode(' ', $keyword);
+            foreach ($searchTerms as $searchTerm) {
+                $items->where(function ($query) use ($searchTerm) {
+                    $query->where('name', 'LIKE', '%' . $searchTerm . '%');
+                    $query->orWhere('address', 'LIKE', '%' . $searchTerm . '%');
+                });
+            }
         }
 
         if (!empty($categoryId)) {
@@ -418,10 +439,13 @@ class MainController extends Controller
         }
 
         if (!empty(trim($keyword))) {
-            $items->where(function ($query) use ($keyword) {
-                $query->where('name', 'LIKE', '%' . $keyword . '%');
-                $query->orWhere('address', 'LIKE', '%' . $keyword . '%');
-            });
+            $searchTerms = explode(' ', $keyword);
+            foreach ($searchTerms as $searchTerm) {
+                $items->where(function ($query) use ($searchTerm) {
+                    $query->where('name', 'LIKE', '%' . $searchTerm . '%');
+                    $query->orWhere('address', 'LIKE', '%' . $searchTerm . '%');
+                });
+            }
         }
 
         if (!empty($categoryId)) {

@@ -32,7 +32,11 @@
     </section>
     <!-- End section -->
 
+    <div class="collapse" id="collapseMap" style="height: 1000px;">
+        <div id="map" class="map"></div>
+    </div>
     <main>
+
         <div id="position">
             <div class="container">
                 <ul>
@@ -44,9 +48,7 @@
         </div>
         <!-- End Position -->
 
-        <div class="collapse" id="collapseMap">
-            <div id="map" class="map"></div>
-        </div>
+
         <!-- End Map -->
 
         <div class="container margin_60">
@@ -65,8 +67,7 @@
                     {{--</div>--}}
                     <p class="visible-sm visible-xs"><a class="btn_map" data-toggle="collapse" href="#collapseMap"
                                                         aria-expanded="false" aria-controls="collapseMap"
-                                                        data-text-swap="Hide map" data-text-original="View on map">View
-                            on map</a>
+                                                        data-text-swap="Ẩn bản đồ" data-text-original="Xem trên bản đồ">Xem trên bản đồ</a>
                     </p>
                     <!-- Map button for tablets/mobiles -->
                     <div id="Img_carousel" class="slider-pro">
@@ -161,10 +162,12 @@
                 </div>
                 <!--End  single_tour_desc-->
 
+
+
                 <aside class="col-md-4">
                     <p class="hidden-sm hidden-xs">
                         <a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false"
-                           aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">Xem
+                           aria-controls="collapseMap" data-text-swap="Ẩn bản đồ" data-text-original="Xem trên bản đồ">Xem
                             trên bản đồ</a>
                     </p>
                     <form id="form-agent">
@@ -263,9 +266,11 @@
                                 <select class="form-control" id="bank">
 
                                     <option value="0"> Vui lòng chọn </option>
+                                    @if($banks)
                                     @foreach($banks as $bank)
                                         <option value="{{ $bank->rate }}"> {{ $bank->bank }} </option>
                                         @endforeach
+                                        @endif
 
                                 </select>
                             </div>
@@ -351,6 +356,106 @@
 @push('scripts')
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script type="text/javascript">
+    var map;
+    var center_lat = '{{ $house->lat }}';
+    var center_lng = '{{ $house->lng }}';
+    $('#collapseMap').on('shown.bs.collapse', function (e) {
+        // prettyPrint();
+        $('#map').css({
+           'height' : '500px',
+            'width': '100%'
+        });
+        map = new GMaps({
+            div: '#map',
+            lat: center_lat,
+            lng: center_lng,
+            scrollwheel: false,
+            zoomControl: true,
+            zoomControlOpt: {
+                position: 'TOP_RIGHT'
+            },
+        });
+        map.addMarker({
+            lat: center_lat,
+            lng: center_lng,
+            title: '{{ $house->name }}',
+            icon: '/images/house.png',
+        });
+
+        map.addControl({
+            position: 'right_center',
+            content: '<i class="fa fa-graduation-cap"></i>',
+            id: 'school_map',
+            classes: 'btn-map unselected',
+            type: 'get',
+            style: {
+                color: '#444',
+                border: '1px solid #CCC',
+                background: '#fff',
+                'box-shadow': '0 0 5px -1px rgba(0,0,0,0.2)',
+                cursor: 'pointer',
+                'vertical-align': 'middle',
+                'padding': '10px',
+                'text-align': 'center',
+                'font-size': '20px',
+                'border-radius': '7px'
+            },
+            events: {
+
+                click: function () {
+
+                    var type = $(this).attr('type');
+
+                    if (type == 'get' || typeof (type) == 'undefined') {
+                        $.ajax({
+                            url: '/school',
+                            cache: false,
+                            data: {
+                                lat: center_lat,
+                                lng: center_lng,
+
+                            },
+                            dataType: 'json',
+                            success: function (response) {
+                                var data = response.data;
+
+                                $('#school_map').attr('type', 'remove').removeClass('unselected').addClass('selected');
+
+                                $.each(data, function (i, item) {
+
+
+                                    var marker = map.addMarker({
+                                        lat: item.lat,
+                                        lng: item.lng,
+                                        scaledSize : new google.maps.Size(22, 32),
+                                        icon: '/images/school.png',
+                                        infoWindow: {
+                                            content: item.name
+                                        }
+                                    });
+
+                                    marker_schools.push(marker);
+                                });
+                            }
+                        });
+                    } else {
+
+                        marker_schools.forEach(function (marker) {
+                            marker.setMap(null);
+                        });
+
+                        $(this).attr('type', 'get').addClass('unselected').removeClass('selected');
+
+                    }
+
+                }
+            }
+        });
+
+    });
+</script>
+
 <script>
 
     function change() {
@@ -370,11 +475,11 @@
         var total_amount = permonth * Number(period) * 12;
 
         var total_intrest =  total_amount - loanamount;
-        $("#permonth").text( permonth);
-        $("#downpament_a").text( downpayment.toFixed(2));
-        $("#loanamount_total").text( Number(loanamount_total).toFixed(2));
-        $("#total_interest").text( total_intrest.toFixed(2));
-        $("#total_amount").text( total_amount.toFixed(2));
+        $("#permonth").text( numberWithDots(permonth) + ' VND');
+        $("#downpament_a").text( numberWithDots(downpayment.toFixed())+' VND');
+        $("#loanamount_total").text( numberWithDots(Number(loanamount_total).toFixed()) + ' VND');
+        $("#total_interest").text( numberWithDots(total_intrest.toFixed()) + ' VND');
+        $("#total_amount").text( numberWithDots(total_amount.toFixed()) + ' VND');
 
         var total_intrest_percent = (Number(total_intrest) * 100) / Number(total_amount);
         var total_amount_precent = (Number(loanamount) * 100) / Number(total_amount);
@@ -387,7 +492,7 @@
             left_amount = left_amount - permonth;
             var principle = permonth - intrest_l;
             loanamount_left = loanamount_left - principle;
-            $( "#tbody" ).append( "<tr style='background-color: #FBFCFF;border-top: dotted #DEEEFE 1px;'><td style='padding:5px'> "+ i +" </td><td> "+ permonth  +" </td> <td>" + principle.toFixed(2) +" </td><td>" + intrest_l.toFixed(2)  + "</td>  <td> VND"+ left_amount.toFixed(2) +" </td></tr>" );
+            $( "#tbody" ).append( "<tr style='background-color: #FBFCFF;border-top: dotted #DEEEFE 1px;'><td style='padding:5px'> "+ i +" </td><td> "+ numberWithDots(permonth)+' VND'  +" </td> <td>" + numberWithDots(principle.toFixed(0)) + ' VND' +" </td><td>" + numberWithDots(intrest_l.toFixed())+ ' VND'  + "</td>  <td>"+ numberWithDots(left_amount.toFixed()) +" VND </td></tr>" );
         }
 
 
@@ -460,7 +565,7 @@
         var i = ($('#loanintrest').val().replace(/[^0-9\.]/g, '') / 100) / 12;
         var n = term;
         var x = Math.pow((1 + i ), n);
-        var M = ( P * ((i * x) / (x - 1)) ).toFixed(2);
+        var M = ( P * ((i * x) / (x - 1)) ).toFixed();
         return M;
     }
 

@@ -9,9 +9,11 @@
 namespace App\Components;
 
 
+use App\Models\Category;
 use App\Models\Image;
 use App\Models\Menu;
 use App\Models\Post;
+use Carbon\Carbon;
 
 class Functions
 {
@@ -38,7 +40,7 @@ class Functions
 
     public static function calculateChildMenu($menu)
     {
-    	return Menu::where('parent_id', $menu->id)->count();
+        return Menu::where('parent_id', $menu->id)->count();
     }
 
     public static function printMenu($menu)
@@ -98,6 +100,11 @@ class Functions
             if ($post) {
                 return url('post/' . str_slug($post->title) . '-' . $post->id);
             }
+        }
+        if (!empty($menu->category_id)) {
+            $category = Category::find($menu->category_id);
+            return url('post/category/' . str_slug($category->name) . '-' . $category->id);
+
         } else if (!empty($menu->route)) {
             return $menu->route;
         }

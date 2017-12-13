@@ -4,11 +4,11 @@
     <div class="container-fluid" style="margin-top: 20px">
         <form id="form-search-house">
             <div class="row">
-                <div class="col-md-1">
+                <div class="col-md-2 col-md-offset-1">
                     <div class="form-group">
                         <label>Chọn loại dự án</label>
                         <select class="form-control" name="type" id="type">
-                            <option value="">Loại nhà</option>
+                            <option value="0">Loại dự án</option>
                             <option @if(request()->input('type') == \App\Models\Project::DEVELOPING ) selected
                                     @endif value="{{ \App\Models\Project::DEVELOPING }}">Đang phát triển
                             </option>
@@ -38,8 +38,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -63,37 +61,13 @@
 
                     </div>
                 </div>
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <label>Số phòng ngủ</label>
-                        <select class="form-control" name="beds" id="beds">
-                            <option value="">Chọn</option>
-                            @for($i = 1; $i<=8; $i++)
-                                <option value="{{ $i }}">Từ {{$i}}</option>
-                            @endfor
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <label>Số phòng tắm</label>
-                        <select class="form-control" name="bathrooms" id="bathrooms">
-                            <option value="">Chọn</option>
-                            @for($i = 1; $i<=8; $i++)
-                                <option value="{{ $i }}">Từ {{$i}}</option>
-                            @endfor
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label>Từ khóa tìm kiếm</label>
-                        <input type="text" class="form-control" name="key_word" id="key_word"
-                               placeholder="Từ khóa tìm kiếm">
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <button class="btn btn-success" style="margin-top: 25px" id="btn-search">Tìm kiếm</button>
+
+                <div class="col-md-3">
+                    <a class="btn btn-warning" href="#add-criteria" data-toggle="modal" style="margin-top: 25px">Thêm
+                        tiêu chí</a>
+                    <button class="btn btn-success btn-search" style="margin-top: 25px; margin-left: 15px" id="btn-search">Tìm
+                        kiếm
+                    </button>
                 </div>
             </div>
         </form>
@@ -112,20 +86,150 @@
         </div><!-- End row-->
     </div>
 
+    <div class="modal fade" id="add-criteria" tabindex="false" role="add-criteria" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Thêm điều kiện lọc</h4>
+                </div>
+                <div class="modal-body">
+
+
+                    <form class="form-horizontal" role="form" id="add_course_homepage_form">
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Tỉnh / thành phố</label>
+                                <div class="col-md-9">
+                                    <select class="form-control select2" name="province" id="province">
+
+                                        <option>Vui lòng chọn</option>
+                                        @php $provinces = \App\Components\Functions::getProvinces(); @endphp
+                                        @foreach($provinces as $province)
+                                            <option value="{{ $province->provinceid }}">{{ $province->name }}</option>
+                                        @endforeach
+
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Quận / huyện</label>
+                                <div class="col-md-9">
+                                    <select class="form-control select2" name="district" id="district">
+
+                                        <option>Vui lòng chọn</option>
+
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Phường / xã</label>
+                                <div class="col-md-9">
+                                    <select class="form-control select2" name="ward" id="ward">
+
+                                        <option>Vui lòng chọn</option>
+
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Số phòng ngủ</label>
+                                <div class="col-md-9">
+                                    <select class="form-control select2" name="beds" id="beds">
+
+                                        <option value="0">Vui lòng chọn</option>
+                                        @for($i = 1; $i<=8; $i++)
+                                            <option value="{{ $i }}">Từ {{$i}}</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Số phòng tắm</label>
+                                <div class="col-md-9">
+                                    <select class="form-control select2" name="bathrooms" id="bathrooms">
+
+                                        <option value="0">Vui lòng chọn</option>
+                                        @for($i = 1; $i<=8; $i++)
+                                            <option value="{{ $i }}">Từ {{$i}}</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn dark btn-outline" data-dismiss="modal" id="dismiss-modal">Đóng
+                    </button>
+                    <button type="button" class="btn btn-success btn-search">Tìm kiếm</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 @endsection
 
 @push('scripts')
 
 <script>
 
-    $(document).on('click', '#btn-search', function (e) {
+    $(document).on('change', '#province', function (e) {
+        $.ajax({
+            url: '{{ url('get-sub-location') }}',
+            type: 'get',
+            data: {
+                'id': $(this).val(),
+                'type': 'province'
+            },
+            dataType: 'html',
+            success: function (response) {
+                $('#district').html(response);
+            }
+        });
+    });
+
+    $(document).on('change', '#district', function (e) {
+        $.ajax({
+            url: '{{ url('get-sub-location') }}',
+            type: 'get',
+            data: {
+                'id': $(this).val(),
+                'type': 'district'
+            },
+            dataType: 'html',
+            success: function (response) {
+                $('#ward').html(response);
+            }
+        });
+    });
+
+    $(document).on('click', '.btn-search', function (e) {
         e.preventDefault();
 
         var data = $('#form-search-house').serialize();
 
+        data = data + '&' + $.param({
+                'province': $('#province').val(),
+                'district': $('#district').val(),
+                'ward': $('#ward').val(),
+                'beds': $('#beds').val(),
+                'bathrooms' : $('#bathrooms').val()
+            });
+
 
         $.ajax({
-            url: '{{ url('map-ajax') }}',
+            url: '{{ url('map-project-ajax') }}',
             type: 'get',
             dataType: 'json',
             data: data,
@@ -136,6 +240,7 @@
                     markers[key].setMap(null);
                 }
                 markers = [];
+                $('#add-criteria').modal('hide');
             },
             success: function (response) {
                 $('.content-left').removeClass('ht-on-loading').html(response.items);
@@ -146,7 +251,7 @@
                         var marker = map.addMarker({
                             lat: item.location_latitude,
                             lng: item.location_longitude,
-                            icon: 'img/pins/' + key + '.png',
+                            icon: '/images/house.png',
                             click: function (e) {
                                 map.setCenter(item.location_latitude, item.location_longitude);
 
@@ -166,7 +271,7 @@
                     map.setCenter(response.markers.center.lat, response.markers.center.lng);
                 }
 
-                url_new = response.url.replace('map-ajax?', 'map?');
+                url_new = response.url.replace('map-project-ajax?', 'map-project?');
 
                 var obj = {Title: 'title', Url: url_new};
                 history.pushState(obj, obj.Title, obj.Url);
