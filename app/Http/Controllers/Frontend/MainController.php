@@ -65,7 +65,7 @@ class MainController extends Controller
         return view('frontend.house', compact('$house'));
     }
 
-    public function getHouseMarker($houses)
+    public function getHouseMarker($houses, $province = null, $district = null, $ward = null)
     {
 
         $returnArr = [];
@@ -86,12 +86,45 @@ class MainController extends Controller
             $returnArr[] = $itemArr;
         }
 
+        $centerPoint['lat'] = -1;
+        $centerPoint['lng'] = -1;
+
         if (isset($returnArr[0])) {
             $centerPoint['lat'] = $returnArr[0]['location_latitude'];
             $centerPoint['lng'] = $returnArr[0]['location_longitude'];
         } else {
-            $centerPoint['lat'] = -1;
-            $centerPoint['lng'] = -1;
+
+            if (!empty($province)) {
+                $provinceItem = \DB::table('province')->where('provinceid', $province)->first();
+                if ($provinceItem) {
+                    $lat = $provinceItem->lat;
+                    $lng = $provinceItem->lng;
+                    $centerPoint['lat'] = $lat;
+                    $centerPoint['lng'] = $lng;
+                }
+            }
+
+            if (!empty($district) && !empty($province)) {
+                $districtItem = \DB::table('district')->where('districtid', $district)->first();
+                if ($districtItem) {
+                    $lat = $districtItem->lat;
+                    $lng = $districtItem->lng;
+                    $centerPoint['lat'] = $lat;
+                    $centerPoint['lng'] = $lng;
+                }
+            }
+
+
+            if (!empty($district) && !empty($province) && !empty($ward)) {
+                $wardItem = \DB::table('ward')->where('wardid', $ward)->first();
+                if ($wardItem) {
+                    $lat = $wardItem->lat;
+                    $lng = $wardItem->lng;
+                    $centerPoint['lat'] = $lat;
+                    $centerPoint['lng'] = $lng;
+                }
+            }
+
         }
 
 
@@ -183,6 +216,12 @@ class MainController extends Controller
         $coordinates['latitude'] = $lat;
         $coordinates['longitude'] = $lng;
 
+        $orderBySize = $request->input('order_by_size');
+        $orderByPrice = $request->input('order_by_price');
+        $orderByDate = $request->input('order_by_date');
+
+
+
         $items = House::publish()->orderBy('id', 'desc');
 
 
@@ -224,6 +263,19 @@ class MainController extends Controller
 
         if (!empty($ward)) {
             $items = $items->where('ward_id', $ward);
+        }
+
+        if(!empty($orderBySize))
+        {
+            $items = $items->orderBy('size', $orderBySize);
+        }
+        if(!empty($orderByDate))
+        {
+            $items = $items->orderBy('begin_year', $orderBySize);
+        }
+        if(!empty($orderByPrice))
+        {
+            $items = $items->orderBy('price', $orderBySize);
         }
 
         if ($request->ajax()) {
@@ -278,6 +330,10 @@ class MainController extends Controller
         $beds = $request->input('beds');
         $bathrooms = $request->input('bathrooms');
 
+        $province = $request->input('province');
+        $district = $request->input('district');
+        $ward = $request->input('ward');
+
         $coordinates['latitude'] = $lat;
         $coordinates['longitude'] = $lng;
         $isMore = $request->input('is_more');
@@ -298,6 +354,18 @@ class MainController extends Controller
 
         if (!empty($categoryId)) {
             $items = $items->where('category_id', $categoryId);
+        }
+
+        if (!empty($province)) {
+            $items = $items->where('city_id', $province);
+        }
+
+        if (!empty($district)) {
+            $items = $items->where('district_id', $district);
+        }
+
+        if (!empty($ward)) {
+            $items = $items->where('ward_id', $ward);
         }
 
         if (isset($type)) {
@@ -341,7 +409,7 @@ class MainController extends Controller
             $items = $items->where('bath', '>=', $bathrooms);
         }
 
-        $markers = $this->getHouseMarker($items->get());
+        $markers = $this->getHouseMarker($items->get(), $province, $district, $ward);
         $items = $items->paginate(10);
 
         return response([

@@ -108,7 +108,7 @@
                             <div class="col-md-9">
                                 <select class="form-control select2" name="district" id="district">
 
-                                    <option>Vui lòng chọn</option>
+                                    <option value="0">Vui lòng chọn</option>
 
 
                                 </select>
@@ -119,7 +119,7 @@
                             <div class="col-md-9">
                                 <select class="form-control select2" name="ward" id="ward">
 
-                                    <option>Vui lòng chọn</option>
+                                    <option value="0">Vui lòng chọn</option>
 
 
                                 </select>
@@ -175,7 +175,6 @@
                 <div class="map" id="map"></div>
             </div>
             <div class="col-md-5 content-left" style="padding-top: 0px !important;">
-
                 @include('frontend.houses_ajax', compact('houses'));
             </div>
 
@@ -188,6 +187,24 @@
 @push('scripts')
 
 <script>
+
+    $(document).on('change', '.order', function (e) {
+        var orderBySize = $('#order_by_size').val();
+        var orderByDate = $('#order_by_date').val();
+        var orderByPrice = $('#order_by_price').val();
+        $.ajax({
+            url: '{{ url('get-sub-location') }}',
+            type: 'get',
+            data: {
+                'id': $(this).val(),
+                'type': 'province'
+            },
+            dataType: 'html',
+            success: function (response) {
+                $('#district').html(response);
+            }
+        });
+    });
 
     $(document).on('change', '#province', function (e) {
         $.ajax({

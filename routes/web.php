@@ -202,6 +202,11 @@ Route::group( [ 'prefix' => 'admin' ], function () {
 		Route::get( 'testimonials', 'Backend\SettingController@listTestimonials' );
 		Route::get( 'testimonial/delete/{id}', 'Backend\SettingController@deleteTestimonial' );
 		Route::post( 'testimonial/store', 'Backend\SettingController@storeTestimonials' );
+        Route::post( 'testimonial/update-inline/{id}', 'Backend\SettingController@updateInlineTestimonial' );
+        Route::get( 'testimonial.data', [
+            'as'   => 'testimonial.data',
+            'uses' => 'Backend\SettingController@getTestimonialsByAttribute'
+        ] );
 
 		Route::get( 'banks', 'Backend\SettingController@listBanks' );
 		Route::get( 'bank/delete/{id}', 'Backend\SettingController@deleteBank' );
@@ -210,7 +215,7 @@ Route::group( [ 'prefix' => 'admin' ], function () {
 
 		Route::post( 'slide/update/{id}', 'Backend\SettingController@updateSlide' );
         Route::post( 'logo/update', 'Backend\SettingController@updateLogo' );
-		Route::post( 'testimonial/update-inline/{id}', 'Backend\SettingController@updateInlineTestimonial' );
+
 		Route::post( 'update-inline/{id}', 'Backend\SettingController@updateInlineSetting' );
 
 
@@ -222,10 +227,7 @@ Route::group( [ 'prefix' => 'admin' ], function () {
 			'as'   => 'slide.data',
 			'uses' => 'Backend\SettingController@getSlidesByAttribute'
 		] );
-		Route::get( 'testimonial.data', [
-			'as'   => 'testimonial.data',
-			'uses' => 'Backend\SettingController@getTestimonialsByAttribute'
-		] );
+
 
 		Route::get( 'bank.data', [
 			'as'   => 'bank.data',

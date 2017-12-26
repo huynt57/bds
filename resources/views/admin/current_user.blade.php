@@ -49,7 +49,7 @@
                                 <div class="tab-content">
                                     <!-- PERSONAL INFO TAB -->
                                     <div class="tab-pane active" id="tab_1_1">
-                                        <form role="form" action="{{ url('/admin/user/update') }}" method="POST" enctype="multipart/form-data">
+                                        <form role="form" action="{{ url('/admin/user/edit', ['id' => auth('backend')->user()->id]) }}" method="POST" enctype="multipart/form-data">
                                             {!! csrf_field() !!}
                                             <div class="row">
                                                 <div class="col-md-12">

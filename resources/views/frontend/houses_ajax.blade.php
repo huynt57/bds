@@ -8,6 +8,38 @@ if(isset($isMore) && $isMore == 2)
 }
 
 @endphp
+<div class="row">
+    <div class="col-md-4 col-sm-4">
+        <div class="form-group">
+            <select class="form-control order" name="order_by_price" id="order_by_price">
+
+                <option>Sắp xếp theo giá</option>
+                <option value="desc">Giá giảm dần</option>
+                <option value="asc">Giá tăng dần</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-4">
+        <div class="form-group">
+            <select class="form-control order" name="order_by_date" id="order_by_date">
+
+                <option>Sắp xếp theo thời gian</option>
+                <option value="desc">Mới nhất</option>
+                <option value="asc">Cũ nhất</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-4 order">
+        <div class="form-group">
+            <select class="form-control" name="order_by_size" id="order_by_size">
+
+                <option>Sắp xếp theo diện tích</option>
+                <option value="desc">Diện tích giảm dần</option>
+                <option value="asc"> Diện tích tăng dần</option>
+            </select>
+        </div>
+    </div>
+</div>
 @foreach($houses as $house)
 
     <div class="row">
@@ -28,18 +60,24 @@ if(isset($isMore) && $isMore == 2)
                                              style="width:auto; height:240px; background-size: cover; background-image: url('{{ $item->main_images }}');"></div>
 
                                         <div class="zsg-photo-card-caption"
-                                             style="color: #fff; right: 6px; left: 6px; bottom: 6px; position: absolute; text-shadow: 0 0 3px rgba(0,0,0,.5);"><h4
+                                             style="color: #fff; right: 6px; left: 6px; bottom: 6px; position: absolute; text-shadow: 0 0 3px rgba(0,0,0,.5);">
+                                            <h4
                                                     class="zsg-photo-card-spec"><span
-                                                        class="zsg-photo-card-status" style="font-size: 15px; color: white"><span
-                                                            class="zsg-icon-for-rent"></span>BĐS {{ $item->type_text }} - {{ $item->name }}</span>
+                                                        class="zsg-photo-card-status"
+                                                        style="font-size: 15px; color: white"><span
+                                                            class="zsg-icon-for-rent"></span>BĐS {{ $item->type_text }}
+                                                    - {{ $item->name }}</span>
                                             </h4>
-                                            <p style="margin-bottom: 0px;" class="zsg-photo-card-spec"><span class="zsg-photo-card-price"
-                                                                                                             style="font-size: 28px; line-height: 1">{{ $item->price_text }}</span><span
-                                                        class="zsg-photo-card-info" style="font-size: 15px; margin-left: 6px;">{{ $item->beds }} p ngủ <span
+                                            <p style="margin-bottom: 0px;" class="zsg-photo-card-spec"><span
+                                                        class="zsg-photo-card-price"
+                                                        style="font-size: 28px; line-height: 1">{{ $item->price_text }}</span><span
+                                                        class="zsg-photo-card-info"
+                                                        style="font-size: 15px; margin-left: 6px;">{{ $item->beds }} p ngủ <span
                                                             class="interpunct">·</span> {{ $item->bath }} p tắm <span
                                                             class="interpunct">·</span> {{ $item->size }} m2</span></p>
                                             <p style="margin-bottom: 0px;" class="zsg-photo-card-spec"><span
-                                                        class="zsg-photo-card-address" style="font-size: 13px; color: white">{{ $item->address }}</span>
+                                                        class="zsg-photo-card-address"
+                                                        style="font-size: 13px; color: white">{{ $item->address }}</span>
                                             </p></div>
                                     </a>
                                     <div class="wishlist">
