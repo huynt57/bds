@@ -192,18 +192,18 @@
         var orderBySize = $('#order_by_size').val();
         var orderByDate = $('#order_by_date').val();
         var orderByPrice = $('#order_by_price').val();
-        $.ajax({
-            url: '{{ url('get-sub-location') }}',
-            type: 'get',
-            data: {
-                'id': $(this).val(),
-                'type': 'province'
-            },
-            dataType: 'html',
-            success: function (response) {
-                $('#district').html(response);
-            }
-        });
+        {{--$.ajax({--}}
+            {{--url: '{{ url('get-sub-location') }}',--}}
+            {{--type: 'get',--}}
+            {{--data: {--}}
+                {{--'id': $(this).val(),--}}
+                {{--'type': 'province'--}}
+            {{--},--}}
+            {{--dataType: 'html',--}}
+            {{--success: function (response) {--}}
+                {{--$('#district').html(response);--}}
+            {{--}--}}
+        {{--});--}}
     });
 
     $(document).on('change', '#province', function (e) {
