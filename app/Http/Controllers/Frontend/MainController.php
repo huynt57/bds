@@ -222,7 +222,7 @@ class MainController extends Controller
 
 
 
-        $items = House::publish()->orderBy('id', 'desc');
+        $items = House::publish();
 
 
         if (!empty(trim($keyword))) {
@@ -265,17 +265,24 @@ class MainController extends Controller
             $items = $items->where('ward_id', $ward);
         }
 
+        if(!empty($orderByPrice))
+        {
+            $items = $items->orderBy('price', $orderByPrice);
+        }
+
+        if(!empty($orderByDate))
+        {
+            $items = $items->orderBy('begin_year', $orderByDate);
+        }
+
         if(!empty($orderBySize))
         {
             $items = $items->orderBy('size', $orderBySize);
         }
-        if(!empty($orderByDate))
+
+        if(empty($orderBySize) && empty($orderByDate) && empty($orderByPrice))
         {
-            $items = $items->orderBy('begin_year', $orderBySize);
-        }
-        if(!empty($orderByPrice))
-        {
-            $items = $items->orderBy('price', $orderBySize);
+            $items = $items->orderBy('id', 'desc');
         }
 
         if ($request->ajax()) {
@@ -338,8 +345,12 @@ class MainController extends Controller
         $coordinates['longitude'] = $lng;
         $isMore = $request->input('is_more');
 
+        $orderBySize = $request->input('order_by_size');
+        $orderByPrice = $request->input('order_by_price');
+        $orderByDate = $request->input('order_by_date');
 
-        $items = House::publish()->orderBy('id', 'desc');
+
+        $items = House::publish();
 
 
         if (!empty(trim($keyword))) {
@@ -409,6 +420,28 @@ class MainController extends Controller
             $items = $items->where('bath', '>=', $bathrooms);
         }
 
+
+
+        if(!empty($orderByPrice))
+        {
+            $items = $items->orderBy('price', $orderByPrice);
+        }
+
+        if(!empty($orderByDate))
+        {
+            $items = $items->orderBy('begin_year', $orderByDate);
+        }
+
+        if(!empty($orderBySize))
+        {
+            $items = $items->orderBy('size', $orderBySize);
+        }
+
+        if(empty($orderByPrice) && empty($orderByDate) && empty($orderBySize))
+        {
+            $items = $items->orderBy('id', 'desc');
+        }
+
         $markers = $this->getHouseMarker($items->get(), $province, $district, $ward);
         $items = $items->paginate(10);
 
@@ -432,7 +465,15 @@ class MainController extends Controller
         $coordinates['latitude'] = $lat;
         $coordinates['longitude'] = $lng;
 
-        $items = Project::publish()->orderBy('id', 'desc');
+        $orderBySize = $request->input('order_by_size');
+        $orderByPrice = $request->input('order_by_price');
+        $orderByDate = $request->input('order_by_date');
+
+        $cityId = $request->input('province');
+        $district = $request->input('district');
+        $ward = $request->input('ward');
+
+        $items = Project::publish();
 
         if (!empty($type)) {
             $items = $items->where('type', $type);
@@ -452,8 +493,41 @@ class MainController extends Controller
             $items = $items->where('category_id', $categoryId);
         }
 
+        if (!empty($cityId)) {
+            $items = $items->where('city_id', $cityId);
+        }
+
+        if (!empty($district)) {
+            $items = $items->where('district_id', $district);
+        }
+
+        if (!empty($ward)) {
+            $items = $items->where('ward_id', $ward);
+        }
+
+
         if (isset($type)) {
             $items = $items->where('type', $type);
+        }
+
+        if(!empty($orderByPrice))
+        {
+            $items = $items->orderBy('price', $orderByPrice);
+        }
+
+        if(!empty($orderByDate))
+        {
+            $items = $items->orderBy('begin_year', $orderByDate);
+        }
+
+        if(!empty($orderBySize))
+        {
+            $items = $items->orderBy('size', $orderBySize);
+        }
+
+        if(empty($orderBySize) && empty($orderByDate) && empty($orderByPrice))
+        {
+            $items = $items->orderBy('id', 'desc');
         }
 
         if (!empty($lat) && !empty($lng)) {
@@ -462,7 +536,7 @@ class MainController extends Controller
 
         if ($request->ajax()) {
 
-            $markers = $this->getHouseMarker($items->get());
+            $markers = $this->getHouseMarker($items->get(), $cityId, $district, $ward);
             $items = $items->paginate(10);
 
             return response([
@@ -496,6 +570,14 @@ class MainController extends Controller
         $beds = $request->input('beds');
         $bathrooms = $request->input('bathrooms');
 
+        $cityId = $request->input('province');
+        $district = $request->input('district');
+        $ward = $request->input('ward');
+
+        $orderBySize = $request->input('order_by_size');
+        $orderByPrice = $request->input('order_by_price');
+        $orderByDate = $request->input('order_by_date');
+
         $coordinates['latitude'] = $lat;
         $coordinates['longitude'] = $lng;
         $isMore = $request->input('is_more');
@@ -514,6 +596,18 @@ class MainController extends Controller
                     $query->orWhere('address', 'LIKE', '%' . $searchTerm . '%');
                 });
             }
+        }
+
+        if (!empty($cityId)) {
+            $items = $items->where('city_id', $cityId);
+        }
+
+        if (!empty($district)) {
+            $items = $items->where('district_id', $district);
+        }
+
+        if (!empty($ward)) {
+            $items = $items->where('ward_id', $ward);
         }
 
         if (!empty($categoryId)) {
@@ -552,7 +646,27 @@ class MainController extends Controller
             $items = $items->where('bath', '>=', $bathrooms);
         }
 
-        $markers = $this->getHouseMarker($items->get());
+        if(!empty($orderByPrice))
+        {
+            $items = $items->orderBy('price', $orderByPrice);
+        }
+
+        if(!empty($orderByDate))
+        {
+            $items = $items->orderBy('begin_year', $orderByDate);
+        }
+
+        if(!empty($orderBySize))
+        {
+            $items = $items->orderBy('size', $orderBySize);
+        }
+
+        if(empty($orderBySize) && empty($orderByDate) && empty($orderByPrice))
+        {
+            $items = $items->orderBy('id', 'desc');
+        }
+
+        $markers = $this->getHouseMarker($items->get(), $cityId, $district, $ward);
         $items = $items->paginate(10);
 
         return response([

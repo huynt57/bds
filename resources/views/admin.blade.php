@@ -128,6 +128,7 @@
             <!-- BEGIN LOGO -->
             <div class="page-logo">
                 <a href="{{ url('/') }}">
+                    <img src="/files/{{ cache()->get('settings')['logo'] }}" alt="logo" class="logo-default">
                     </a>
                 <div class="menu-toggler sidebar-toggler">
                     <span></span>

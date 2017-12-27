@@ -5,6 +5,16 @@
     <link href="/frontend/css/date_time_picker.css" rel="stylesheet">
     <link href="/frontend/css/owl.carousel.css" rel="stylesheet">
     <link href="/frontend/css/owl.theme.css" rel="stylesheet">
+
+    <style>
+        ul.list_ok li {
+            line-height: 35px !important;
+        }
+
+        .control-label {
+            font-size: 15px !important;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -18,8 +28,8 @@
                         {{--class="icon-star voted"></i><i class="icon-star voted"></i><i--}}
                         {{--class=" icon-star-empty"></i></span>--}}
                         <h1>{{ $house->name }}</h1>
-                        <span>{{ $house->type_text }}</span><br>
-                        <span>{{ $house->address }}</span>
+                        <span style="font-size: 25px">{{ $house->type_text }}</span><br>
+                        <span style="font-size: 25px">{{ $house->address }}</span>
                     </div>
                     <div class="col-md-4 col-sm-4">
                         <div id="price_single_main" class="hotel">
@@ -95,7 +105,7 @@
                         <div class="col-md-3">
                             <h3>Miêu tả</h3>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-9" style="font-size: 18px">
                             <p>
                                 {!! $house->desc !!}
                             </p>
@@ -108,10 +118,10 @@
                         <div class="col-md-3">
                             <h3>Thông tin</h3>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-9" style="font-size: 22px">
                             <div class="row">
 
-                                <div class="col-md-6 col-sm-6">
+                                <div class="col-md-12 col-sm-12">
                                     <ul class="list_ok">
                                         <li>Năm xây dựng: {{ $house->begin_year }}</li>
                                         <li>Diện tích xây dựng: {{ $house->size }}</li>
@@ -132,7 +142,7 @@
                         <div class="col-md-3">
                             <h3>Tiện ích BĐS</h3>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-9" style="font-size: 22px">
                             <div class="row">
                                 @php $featuresJson = $house->features; $featuredecoded = json_decode($featuresJson); $features = collect($featuredecoded); @endphp
 

@@ -64,6 +64,14 @@
 
             }
 
+            .main-menu > ul > li > a {
+                font-size: 15px;
+            }
+
+            #top_links {
+                font-size: 14px !important;
+            }
+
         }
 
         @media only screen and (min-width: 1441px) {
@@ -306,7 +314,7 @@
 
             </nav>
             <div class="col-md-2 col-sm-2 col-xs-2" style="margin-top: 20px">
-                <ul id="top_links">
+                <ul id="top_links" style="font-size: 18px">
                     <li>
                         <div class="dropdown dropdown-access">
                             @if(!auth('frontend')->check())

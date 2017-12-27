@@ -11,14 +11,17 @@
                     <div class="zsg-photo-card-caption"
                          style="color: #fff; right: 6px; left: 6px; bottom: 6px; position: absolute; text-shadow: 0 0 3px rgba(0,0,0,.5);"><h4
                                 class="zsg-photo-card-spec"><span
-                                    class="zsg-photo-card-status" style="font-size: 15px; color: white"><span
+                                    class="zsg-photo-card-status" style="font-size: 18px; color: white"><span
                                         class="zsg-icon-for-rent"></span>BĐS {{ $item->type_text }} - {{ $item->name }}</span>
                         </h4>
                         <p style="margin-bottom: 0px;" class="zsg-photo-card-spec"><span class="zsg-photo-card-price"
-                                                                                         style="font-size: 28px; line-height: 1">{{ $item->price_text }}</span><span
-                                    class="zsg-photo-card-info" style="font-size: 15px; margin-left: 6px;">{{ $item->beds }} p ngủ <span
-                                        class="interpunct">·</span> {{ $item->bath }} p tắm <span
-                                        class="interpunct">·</span> {{ $item->size }} m2</span></p>
+                                                                                         style="font-size: 25px; line-height: 1">{{ $item->price_text }}</span>
+
+                            </p>
+                        <p style="margin-bottom: 0px;" class="zsg-photo-card-spec"><span
+                                    class="zsg-photo-card-info" style="font-size: 18px;"><i class="fa fa-bed"></i> {{ $item->beds }} p.ngủ <span
+                                        class="interpunct">·</span><i class="fa fa-bath"></i> {{ $item->bath }} p.tắm <span
+                                        class="interpunct">·</span><i class="fa fa-expand"></i> {{ $item->size }} m2</span></p>
                         <p style="margin-bottom: 0px;" class="zsg-photo-card-spec"><span
                                     class="zsg-photo-card-address" style="font-size: 13px; color: white">{{ $item->address }}</span>
                         </p></div>

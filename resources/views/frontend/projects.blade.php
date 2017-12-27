@@ -77,9 +77,42 @@
             <div class="col-md-7 map-right">
                 <div class="map" id="map"></div>
             </div>
-            <div class="col-md-5 content-left" style="padding-top: 0px !important;">
+            <div class="col-md-5" style="padding-top: 0px !important;">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="form-group">
+                            <select class="form-control order" name="order_by_price" id="order_by_price">
 
-                @include('frontend.houses_ajax', compact('houses'));
+                                <option value="0">Sắp xếp theo giá</option>
+                                <option value="desc">Giá giảm dần</option>
+                                <option value="asc">Giá tăng dần</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="form-group">
+                            <select class="form-control order" name="order_by_date" id="order_by_date">
+
+                                <option value="0">Sắp xếp theo thời gian</option>
+                                <option value="desc">Mới nhất</option>
+                                <option value="asc">Cũ nhất</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="form-group">
+                            <select class="form-control order" name="order_by_size" id="order_by_size">
+
+                                <option value="0">Sắp xếp theo diện tích</option>
+                                <option value="desc">Diện tích giảm dần</option>
+                                <option value="asc"> Diện tích tăng dần</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-left" style="padding-top: 0px; overflow-x: hidden">
+                    @include('frontend.houses_ajax', compact('houses'));
+                </div>
             </div>
 
 
@@ -211,6 +244,50 @@
             success: function (response) {
                 $('#ward').html(response);
             }
+        });
+    });
+
+    $(document).on('change', '.order', function (e) {
+        e.preventDefault();
+        var orderBySize = $('#order_by_size').val();
+        var orderByDate = $('#order_by_date').val();
+        var orderByPrice = $('#order_by_price').val();
+
+
+        var c_url = location.href;
+        c_url = c_url.replace('map-project?', 'map-project-ajax?');
+        c_url = c_url.replace('&order_by_size=asc', '').replace('&order_by_size=0', '').replace('&order_by_size=desc', '');
+        c_url = c_url.replace('&order_by_date=asc', '').replace('&order_by_date=0', '').replace('&order_by_date=desc', '');
+        c_url = c_url.replace('&order_by_price=asc', '').replace('&order_by_price=0', '').replace('&order_by_price=desc', '');
+
+        $.ajax({
+            url: c_url,
+            type: 'get',
+            dataType: 'json',
+            data: {
+                order_by_size: orderBySize,
+                order_by_date: orderByDate,
+                order_by_price: orderByPrice
+            },
+            cache: false,
+            beforeSend: function () {
+                $('.content-left').addClass('ht-on-loading');
+            },
+            success: function (response) {
+                $('.content-left').removeClass('ht-on-loading').html(response.items);
+                center_lat = response.markers.center.lat;
+                center_lng = response.markers.center.lng;
+
+                if (center_lat != -1 && center_lng != -1) {
+                    map.setCenter(response.markers.center.lat, response.markers.center.lng);
+                }
+
+                url_new = response.url.replace('map-project-ajax?', 'map-project?');
+
+                var obj = {Title: 'title', Url: url_new};
+                history.pushState(obj, obj.Title, obj.Url);
+            }
+
         });
     });
 

@@ -68,7 +68,8 @@
                 <div class="col-md-3">
                     <a class="btn btn-warning" href="#add-criteria" data-toggle="modal" style="margin-top: 25px">Thêm
                         tiêu chí</a>
-                    <button class="btn btn-success btn-search" style="margin-top: 25px; margin-left: 15px" id="btn-search">Tìm
+                    <button class="btn btn-success btn-search" style="margin-top: 25px; margin-left: 15px"
+                            id="btn-search">Tìm
                         kiếm
                     </button>
                 </div>
@@ -77,96 +78,96 @@
     </div>
 
     <div class="modal fade" id="add-criteria" tabindex="false" role="add-criteria" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">Thêm điều kiện lọc</h4>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Thêm điều kiện lọc</h4>
+                </div>
+                <div class="modal-body">
+
+
+                    <form class="form-horizontal" role="form" id="add_course_homepage_form">
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Tỉnh / thành phố</label>
+                                <div class="col-md-9">
+                                    <select class="form-control select2" name="province" id="province">
+
+                                        <option>Vui lòng chọn</option>
+                                        @php $provinces = \App\Components\Functions::getProvinces(); @endphp
+                                        @foreach($provinces as $province)
+                                            <option value="{{ $province->provinceid }}">{{ $province->name }}</option>
+                                        @endforeach
+
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Quận / huyện</label>
+                                <div class="col-md-9">
+                                    <select class="form-control select2" name="district" id="district">
+
+                                        <option value="0">Vui lòng chọn</option>
+
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Phường / xã</label>
+                                <div class="col-md-9">
+                                    <select class="form-control select2" name="ward" id="ward">
+
+                                        <option value="0">Vui lòng chọn</option>
+
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Số phòng ngủ</label>
+                                <div class="col-md-9">
+                                    <select class="form-control select2" name="beds" id="beds">
+
+                                        <option value="0">Vui lòng chọn</option>
+                                        @for($i = 1; $i<=8; $i++)
+                                            <option value="{{ $i }}">Từ {{$i}}</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Số phòng tắm</label>
+                                <div class="col-md-9">
+                                    <select class="form-control select2" name="bathrooms" id="bathrooms">
+
+                                        <option value="0">Vui lòng chọn</option>
+                                        @for($i = 1; $i<=8; $i++)
+                                            <option value="{{ $i }}">Từ {{$i}}</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn dark btn-outline" data-dismiss="modal" id="dismiss-modal">Đóng
+                    </button>
+                    <button type="button" class="btn btn-success btn-search">Tìm kiếm</button>
+                </div>
             </div>
-            <div class="modal-body">
-
-
-                <form class="form-horizontal" role="form" id="add_course_homepage_form">
-                    <div class="form-body">
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Tỉnh / thành phố</label>
-                            <div class="col-md-9">
-                                <select class="form-control select2" name="province" id="province">
-
-                                    <option>Vui lòng chọn</option>
-                                    @php $provinces = \App\Components\Functions::getProvinces(); @endphp
-                                    @foreach($provinces as $province)
-                                        <option value="{{ $province->provinceid }}">{{ $province->name }}</option>
-                                    @endforeach
-
-
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Quận / huyện</label>
-                            <div class="col-md-9">
-                                <select class="form-control select2" name="district" id="district">
-
-                                    <option value="0">Vui lòng chọn</option>
-
-
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Phường / xã</label>
-                            <div class="col-md-9">
-                                <select class="form-control select2" name="ward" id="ward">
-
-                                    <option value="0">Vui lòng chọn</option>
-
-
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Số phòng ngủ</label>
-                            <div class="col-md-9">
-                                <select class="form-control select2" name="beds" id="beds">
-
-                                    <option value="0">Vui lòng chọn</option>
-                                    @for($i = 1; $i<=8; $i++)
-                                        <option value="{{ $i }}">Từ {{$i}}</option>
-                                    @endfor
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Số phòng tắm</label>
-                            <div class="col-md-9">
-                                <select class="form-control select2" name="bathrooms" id="bathrooms">
-
-                                    <option value="0">Vui lòng chọn</option>
-                                    @for($i = 1; $i<=8; $i++)
-                                        <option value="{{ $i }}">Từ {{$i}}</option>
-                                    @endfor
-                                </select>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                </form>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn dark btn-outline" data-dismiss="modal" id="dismiss-modal">Đóng
-                </button>
-                <button type="button" class="btn btn-success btn-search">Tìm kiếm</button>
-            </div>
+            <!-- /.modal-content -->
         </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
+        <!-- /.modal-dialog -->
     </div>
 
     <div class="container-fluid full-height">
@@ -174,8 +175,42 @@
             <div class="col-md-7 map-right">
                 <div class="map" id="map"></div>
             </div>
-            <div class="col-md-5 content-left" style="padding-top: 0px !important;">
+            <div class="col-md-5" style="padding-top: 0px !important;">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="form-group">
+                            <select class="form-control order" name="order_by_price" id="order_by_price">
+
+                                <option value="0">Sắp xếp theo giá</option>
+                                <option value="desc">Giá giảm dần</option>
+                                <option value="asc">Giá tăng dần</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="form-group">
+                            <select class="form-control order" name="order_by_date" id="order_by_date">
+
+                                <option value="0">Sắp xếp theo thời gian</option>
+                                <option value="desc">Mới nhất</option>
+                                <option value="asc">Cũ nhất</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="form-group">
+                            <select class="form-control order" name="order_by_size" id="order_by_size">
+
+                                <option value="0">Sắp xếp theo diện tích</option>
+                                <option value="desc">Diện tích giảm dần</option>
+                                <option value="asc"> Diện tích tăng dần</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-left" style="padding-top: 0px; overflow-x: hidden">
                 @include('frontend.houses_ajax', compact('houses'));
+                </div>
             </div>
 
 
@@ -189,21 +224,47 @@
 <script>
 
     $(document).on('change', '.order', function (e) {
+        e.preventDefault();
         var orderBySize = $('#order_by_size').val();
         var orderByDate = $('#order_by_date').val();
         var orderByPrice = $('#order_by_price').val();
-        {{--$.ajax({--}}
-            {{--url: '{{ url('get-sub-location') }}',--}}
-            {{--type: 'get',--}}
-            {{--data: {--}}
-                {{--'id': $(this).val(),--}}
-                {{--'type': 'province'--}}
-            {{--},--}}
-            {{--dataType: 'html',--}}
-            {{--success: function (response) {--}}
-                {{--$('#district').html(response);--}}
-            {{--}--}}
-        {{--});--}}
+
+
+        var c_url = location.href;
+        c_url = c_url.replace('map?', 'map-ajax?');
+        c_url = c_url.replace('&order_by_size=asc', '').replace('&order_by_size=0', '').replace('&order_by_size=desc', '');
+        c_url = c_url.replace('&order_by_date=asc', '').replace('&order_by_date=0', '').replace('&order_by_date=desc', '');
+        c_url = c_url.replace('&order_by_price=asc', '').replace('&order_by_price=0', '').replace('&order_by_price=desc', '');
+
+        $.ajax({
+            url: c_url,
+            type: 'get',
+            dataType: 'json',
+            data: {
+                order_by_size: orderBySize,
+                order_by_date: orderByDate,
+                order_by_price: orderByPrice
+            },
+            cache: false,
+            beforeSend: function () {
+                $('.content-left').addClass('ht-on-loading');
+            },
+            success: function (response) {
+                $('.content-left').removeClass('ht-on-loading').html(response.items);
+                center_lat = response.markers.center.lat;
+                center_lng = response.markers.center.lng;
+
+                if (center_lat != -1 && center_lng != -1) {
+                    map.setCenter(response.markers.center.lat, response.markers.center.lng);
+                }
+
+                url_new = response.url.replace('map-ajax?', 'map?');
+
+                var obj = {Title: 'title', Url: url_new};
+                history.pushState(obj, obj.Title, obj.Url);
+            }
+
+        });
     });
 
     $(document).on('change', '#province', function (e) {
@@ -246,7 +307,7 @@
                 'district': $('#district').val(),
                 'ward': $('#ward').val(),
                 'beds': $('#beds').val(),
-                'bathrooms' : $('#bathrooms').val()
+                'bathrooms': $('#bathrooms').val()
             });
 
 
