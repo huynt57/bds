@@ -80,7 +80,7 @@
         .home-search-wrapper ul.home-search-nav-tabs li a:hover {
           background-color: rgba(33, 150, 243, 0.4); }
       .home-search-wrapper ul.home-search-nav-tabs li:last-child {
-        border-right: 2px solid #fff; }
+        border-right: 3px solid #fff; }
       .home-search-wrapper ul.home-search-nav-tabs li:after {
         content: "";
         display: none;
