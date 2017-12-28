@@ -314,7 +314,7 @@
 
             </nav>
             <div class="col-md-2 col-sm-2 col-xs-2" style="margin-top: 20px">
-                <ul id="top_links" style="font-size: 18px">
+                <ul id="top_links" style="font-size: 17px">
                     <li>
                         <div class="dropdown dropdown-access">
                             @if(!auth('frontend')->check())
