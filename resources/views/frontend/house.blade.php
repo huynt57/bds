@@ -47,7 +47,7 @@
     </div>
     <main>
 
-        <div id="position">
+        <div id="position" style="font-size: 18px">
             <div class="container">
                 <ul>
                     <li><a href="{{ url('/') }}">Trang chủ</a>
@@ -118,7 +118,7 @@
                         <div class="col-md-3">
                             <h3>Thông tin</h3>
                         </div>
-                        <div class="col-md-9" style="font-size: 22px">
+                        <div class="col-md-9" style="font-size: 18px">
                             <div class="row">
 
                                 <div class="col-md-12 col-sm-12">
@@ -142,7 +142,7 @@
                         <div class="col-md-3">
                             <h3>Tiện ích BĐS</h3>
                         </div>
-                        <div class="col-md-9" style="font-size: 22px">
+                        <div class="col-md-9" style="font-size: 18px">
                             <div class="row">
                                 @php $featuresJson = $house->features; $featuredecoded = json_decode($featuresJson); $features = collect($featuredecoded); @endphp
 
