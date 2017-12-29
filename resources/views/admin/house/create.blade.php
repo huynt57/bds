@@ -218,7 +218,7 @@
                     </div>
                 </div>
                 <div class="form-group dmc0">
-                    <label>Danh mục *</label>
+                    <label>Chọn môi giới viên </label>
                     <div>
                         <select class="form-control select2" name="agent_id">
                             <option value="">Chọn môi giới viên</option>

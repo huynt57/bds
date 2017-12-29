@@ -18,7 +18,7 @@ class AdminController extends Controller
     public function saveImage($file, $old = null)
     {
         $filename = md5(time()) . str_slug($file->getClientOriginalName()) . '.' . $file->getClientOriginalExtension();
-        Image::make($file->getRealPath())->save(public_path('files/' . $filename));
+        Image::make($file->getRealPath())->save('files/' . $filename);
 
         if ($old) {
             @unlink(public_path('files/' . $old));

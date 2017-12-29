@@ -492,7 +492,7 @@
 <script src="/frontend/js/map_listing_tours.js"></script>
 
 <!--owlcarousel-->
-<script type='text/javascript' src="http://viethouse24.com/assets/frontend/js/owlcarousel/owl.carousel.js"></script>
+<script type='text/javascript' src="/frontend/js/owl2.js"></script>
 <script src="/assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
 
 <div id="fb-root"></div>
